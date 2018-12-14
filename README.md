@@ -1,6 +1,6 @@
 # CD
 
-[![CI Status](https://img.shields.io/travis/LCD-sifenzi/CD.svg?style=flat)](https://travis-ci.org/LCD-sifenzi/CD)
+[![CI Status](https://img.shields.io/travis/liucaide/CD.svg?style=flat)](https://travis-ci.org/liucaide/CD)
 [![Version](https://img.shields.io/cocoapods/v/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
 [![License](https://img.shields.io/cocoapods/l/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
 [![Platform](https://img.shields.io/cocoapods/p/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
@@ -22,7 +22,7 @@ pod 'CD'
 
 ## Author
 
-LCD-sifenzi, 565726319@qq.com
+liucaide, 565726319@qq.com
 
 ## License
 

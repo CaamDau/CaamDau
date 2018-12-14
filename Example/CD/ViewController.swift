@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  CD
 //
-//  Created by LCD-sifenzi on 12/14/2018.
-//  Copyright (c) 2018 LCD-sifenzi. All rights reserved.
+//  Created by liucaide on 12/14/2018.
+//  Copyright (c) 2018 liucaide. All rights reserved.
 //
 
 import UIKit
