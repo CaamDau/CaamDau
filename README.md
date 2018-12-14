@@ -1,2 +1,29 @@
 # CD
-iOS 开发盒子 Swift &amp; Object-C，iOS项目开发实践下来的模块代码，这里有独立的多功能选项，可快速集成使用
+
+[![CI Status](https://img.shields.io/travis/LCD-sifenzi/CD.svg?style=flat)](https://travis-ci.org/LCD-sifenzi/CD)
+[![Version](https://img.shields.io/cocoapods/v/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
+[![License](https://img.shields.io/cocoapods/l/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
+[![Platform](https://img.shields.io/cocoapods/p/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+CD is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'CD'
+```
+
+## Author
+
+LCD-sifenzi, 565726319@qq.com
+
+## License
+
+CD is available under the MIT license. See the LICENSE file for more info.
