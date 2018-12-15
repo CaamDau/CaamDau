@@ -31,6 +31,7 @@
 		12DF6ADB9596AF1C711B7B5F /* Pods-CD_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CD_Example.release.xcconfig"; path = "Target Support Files/Pods-CD_Example/Pods-CD_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2491569A24D6000AEADDDEEB /* Pods-CD_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CD_Example.debug.xcconfig"; path = "Target Support Files/Pods-CD_Example/Pods-CD_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		46351D3BA68BF7B4BF016330 /* Pods-CD_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CD_Tests.debug.xcconfig"; path = "Target Support Files/Pods-CD_Tests/Pods-CD_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		477838CA21C4C50B000043D7 /* TestPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TestPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		607FACD01AFB9204008FA782 /* CD_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CD_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,10 +44,10 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		71103DEB7705E8D1E26757B8 /* Pods_CD_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CD_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7D441589387BC924BD8E43 /* Pods_CD_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CD_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		82ED0A2F56D771DE0701320B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		8B4C7787002012EFC8CDAEC9 /* CD.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = CD.podspec; path = ../CD.podspec; sourceTree = "<group>"; };
+		82ED0A2F56D771DE0701320B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		8B4C7787002012EFC8CDAEC9 /* CD.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = CD.podspec; path = ../CD.podspec; sourceTree = "<group>"; };
 		98276F4BEE9E86C754E81B07 /* Pods-CD_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CD_Tests.release.xcconfig"; path = "Target Support Files/Pods-CD_Tests/Pods-CD_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		BA1B16A973B3973769BE00F0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		BA1B16A973B3973769BE00F0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 		607FACD21AFB9204008FA782 /* Example for CD */ = {
 			isa = PBXGroup;
 			children = (
+				477838CA21C4C50B000043D7 /* TestPlayground.playground */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -156,7 +158,6 @@
 				46351D3BA68BF7B4BF016330 /* Pods-CD_Tests.debug.xcconfig */,
 				98276F4BEE9E86C754E81B07 /* Pods-CD_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
