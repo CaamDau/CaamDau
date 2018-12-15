@@ -3,17 +3,18 @@
 import Foundation
 
 public extension CD where Base: UITableView {
-    func cell(_ id:String, _ cellClass:AnyClass) -> UITableViewCell{
-        var cell = base.dequeueReusableCell(withIdentifier: id)
+    func cell(_ cellClass:AnyClass, _ id:String = "") -> UITableViewCell{
+        let identifier = id=="" ? String(describing: cellClass) : id
+        var cell = base.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil  {
-            let bundle = Bundle.main.path(forResource:id, ofType: "nib")
+            let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
             if bundle == nil{
-                base.register(cellClass, forCellReuseIdentifier: id)
+                base.register(cellClass, forCellReuseIdentifier: identifier)
             }else{
-                let nib = UINib(nibName: id, bundle: nil)
-                base.register(nib, forCellReuseIdentifier: id)
+                let nib = UINib(nibName:identifier, bundle: nil)
+                base.register(nib, forCellReuseIdentifier: identifier)
             }
-            cell = base.dequeueReusableCell(withIdentifier: id)
+            cell = base.dequeueReusableCell(withIdentifier: identifier)
         }
         return cell ?? UITableViewCell()
     }

@@ -5,8 +5,8 @@ import Foundation
 
 //MARK:---  单元格更新协议 ---
 public protocol CD_RowProtocol {
-    var id: String { get }
     var tag:Int { get }
+    var viewId: String { get }
     var viewClass:AnyClass { get }
     var datas: Any { set get }
     var frame: CGRect { set get }
@@ -29,9 +29,9 @@ public extension CD_RowUpdateProtocol{
 }
 
 //MARK:---  建设单元格模型 ---
-public struct CD_Row<T> where T: AnyObject, T: CD_RowUpdateProtocol {
+public struct CD_Row<T> where T: UIView, T: CD_RowUpdateProtocol {
     public var data: T.DataSource
-    public var id: String
+    public let id: String
     public var tag:Int
     public var frame: CGRect
     public let viewClass:AnyClass = T.self
@@ -48,7 +48,6 @@ public struct CD_Row<T> where T: AnyObject, T: CD_RowUpdateProtocol {
 }
 
 extension CD_Row:CD_RowProtocol {
-    
     // 单元格模型绑定单元格实例
     public func bind(_ view: AnyObject) {
         if let v = view as? T {
@@ -58,6 +57,11 @@ extension CD_Row:CD_RowProtocol {
 }
 //MARK:--- 附加 ---
 extension CD_Row {
+    public var viewId:String {
+        get{
+            return id=="" ? String(describing: viewClass) : id
+        }
+    }
     public var datas: Any {
         get { return data }
         set { data = newValue as! T.DataSource }
