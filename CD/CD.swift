@@ -10,10 +10,10 @@ public struct CD<Base> {
 }
 public protocol CD_Compatible {
     associatedtype CompatibleType
-    var b: CompatibleType { get }
+    var cd: CompatibleType { get }
 }
 public extension CD_Compatible {
-    public var b: CD<Self> {
+    public var cd: CD<Self> {
         return CD(self)
     }
 }
