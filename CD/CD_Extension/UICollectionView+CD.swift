@@ -1,7 +1,7 @@
 //Created  on 2018/12/13  by LCD :https://github.com/liucaide .
 
 import Foundation
-public  extension UICollectionView {
+public extension CD where Base: UICollectionView {
     enum CD_Kind:Int {
         case header = 0
         case footer = 1
@@ -26,24 +26,24 @@ public  extension UICollectionView {
         for (_, model) in identifiers.enumerated() {
             switch model {
             case .tClass(let cell, let id):
-                self.register(cell, forCellWithReuseIdentifier: id)
+                base.register(cell, forCellWithReuseIdentifier: id)
             case .tXib1(let id):
-                self.register(UINib(nibName: id, bundle: nil), forCellWithReuseIdentifier: id)
+                base.register(UINib(nibName: id, bundle: nil), forCellWithReuseIdentifier: id)
             case .tXib2(let name, let id):
-                self.register(UINib(nibName: name, bundle: nil), forCellWithReuseIdentifier: id)
+                base.register(UINib(nibName: name, bundle: nil), forCellWithReuseIdentifier: id)
             case .tViewClass(let view, let id, let kind):
-                self.register(view, forSupplementaryViewOfKind: kind, withReuseIdentifier: id)
+                base.register(view, forSupplementaryViewOfKind: kind, withReuseIdentifier: id)
             case .tViewXib1(let id, let kind):
-                self.register(UINib(nibName: id, bundle: nil), forSupplementaryViewOfKind: kind, withReuseIdentifier: id)
+                base.register(UINib(nibName: id, bundle: nil), forSupplementaryViewOfKind: kind, withReuseIdentifier: id)
             case .tViewXib2(let name, let id, let kind):
-                self.register(UINib(nibName: name, bundle: nil), forSupplementaryViewOfKind: kind, withReuseIdentifier: id)
+                base.register(UINib(nibName: name, bundle: nil), forSupplementaryViewOfKind: kind, withReuseIdentifier: id)
             }
         }
     }
-    func cd_cell(_ id:String, _ index:IndexPath) -> UICollectionViewCell{
-        return self.dequeueReusableCell(withReuseIdentifier: id, for: index)
+    func cell(_ id:String, _ index:IndexPath) -> UICollectionViewCell{
+        return base.dequeueReusableCell(withReuseIdentifier: id, for: index)
     }
-    func cd_reusableView(_ id:String,_ kind:String, _ index:IndexPath) -> UICollectionReusableView{
-        return self.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: id, for: index)
+    func reusableView(_ id:String,_ kind:String, _ index:IndexPath) -> UICollectionReusableView{
+        return base.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: id, for: index)
     }
 }

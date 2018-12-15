@@ -2,16 +2,17 @@
 
 import Foundation
 public extension UIView {
-    @IBInspectable var cd_cornerRadius: CGFloat {
+    @IBInspectable var cornerRadius: CGFloat {
         get { return layer.cornerRadius }
         set { layer.cornerRadius = newValue }
     }
     
-    @IBInspectable var cd_borderWidth: CGFloat {
+    @IBInspectable var borderWidth: CGFloat {
         get { return layer.borderWidth }
         set { layer.borderWidth = newValue }
     }
-    @IBInspectable var cd_borderColor: UIColor {
+    
+    @IBInspectable var borderColor: UIColor {
         get { return UIColor(cgColor: layer.borderColor ?? UIColor.clear.cgColor) }
         set { layer.borderColor = newValue.cgColor }
     }
