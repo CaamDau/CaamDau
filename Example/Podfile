@@ -2,7 +2,7 @@ use_frameworks!
 
 target 'CD_Example' do
   pod 'CD', :path => '../'
-
+  
   target 'CD_Tests' do
     inherit! :search_paths
 

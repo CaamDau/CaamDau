@@ -10,7 +10,6 @@ public func += <key, value> ( one: inout Dictionary<key, value>, two: Dictionary
     }
 }
 
-
 public func cd_string(from className: String) -> AnyClass? {
     guard let appName:String = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String else {
         print("命名空间不存在")
