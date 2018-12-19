@@ -1,6 +1,7 @@
 //Created  on 2018/12/13  by LCD :https://github.com/liucaide .
 
 import Foundation
+import UIKit
 public extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get { return layer.cornerRadius }
@@ -17,3 +18,19 @@ public extension UIView {
         set { layer.borderColor = newValue.cgColor }
     }
 }
+
+
+public extension CD where Base: UIView{
+    func vc() -> UIViewController? {
+        var next:UIResponder? = base
+        repeat {
+            next = next?.next
+            if let vc = next as? UIViewController {
+                return vc
+            }
+        }while next != nil
+        return nil
+    }
+}
+
+

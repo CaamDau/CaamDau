@@ -1,6 +1,7 @@
 //Created  on 2018/12/13  by LCD :https://github.com/liucaide .
 
 import Foundation
+import UIKit
 public extension CD where Base: UICollectionView {
     enum CD_Kind:Int {
         case header = 0

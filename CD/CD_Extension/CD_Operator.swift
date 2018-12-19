@@ -1,6 +1,7 @@
 //Created  on 2018/12/11  by LCD :https://github.com/liucaide .
 
 import Foundation
+import UIKit
 
 //MARK:-----------重载运算符 两个字典合并为一个字典
 public func += <key, value> ( one: inout Dictionary<key, value>, two: Dictionary<key, value>) {
