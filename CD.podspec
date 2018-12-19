@@ -16,11 +16,11 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'CD/**/*'
-  s.resource_bundles = {
-    'CD' => ['CD/Storyboards/*.{storyboard}']
-  }
+  #s.resource_bundles = {
+  #  'CD' => ['CD/Storyboards/*.{storyboard}']
+  #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit'
+  # s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
