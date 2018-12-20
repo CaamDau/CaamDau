@@ -3,7 +3,7 @@
 import UIKit
 import Foundation
 
-//MARK:---  单元格更新协议 ---
+//MARK:---  单元格配置协议 ---
 public protocol CD_RowProtocol {
     var tag:Int { get }
     var viewId: String { get }
@@ -111,15 +111,15 @@ struct VM_ViewController {
         let row0 = CD_Row<Cell_Storyboard>(data:Model(img: "", text: "999"),
                                             id:"Cell_Storyboard",
                                             tag:11,
-                                            frame:CGRect(x: 0, y: 0, width: 0, height: 50))
+                                            frame:CGRect(h: 50))
         let row1 = CD_Row<Cell_Nib>(data:["text":"777"],
                                      id:"Cell_Nib",
                                      tag:22,
-                                     frame:CGRect(x: 0, y: 0, width: 0, height: 100))
+                                     frame:CGRect(h: 100))
         let row2 = CD_Row<Cell_Class>(data:"666",
                                        id:"Cell_Class",
                                        tag:33,
-                                       frame:CGRect(x: 0, y: 0, width: 0, height: 150))
+                                       frame:CGRect(h: 150))
         form = [row0, row1, row2]
     }
 }
@@ -141,7 +141,7 @@ extension ViewController :UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = vm.form[indexPath.row]
-        let cell = tableView.cd_cell(row.id, row.viewClass)
+        let cell = tableView.cd.cell(row.viewClass)
         row.bind(cell)
         return cell
     }

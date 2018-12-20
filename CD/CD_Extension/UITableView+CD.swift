@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 public extension CD where Base: UITableView {
-    func cell(_ cellClass:AnyClass, _ id:String = "") -> UITableViewCell{
+    func cell(_ cellClass:AnyClass, _ id:String = "") -> UITableViewCell?{
         let identifier = id=="" ? String(describing: cellClass) : id
         var cell = base.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil  {
@@ -17,6 +17,10 @@ public extension CD where Base: UITableView {
             }
             cell = base.dequeueReusableCell(withIdentifier: identifier)
         }
-        return cell ?? UITableViewCell()
+        guard let ce = cell else {
+            assertionFailure("👉👉👉dequeueReusableCell 失败，请检查你的cell👈👈👈")
+            return nil
+        }
+        return ce
     }
 }
