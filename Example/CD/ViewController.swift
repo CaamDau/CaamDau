@@ -14,6 +14,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let al = UIAlertController()
+        al.cd.show(self, block: nil)
+        
     }
 
     @IBAction func clickButton(_ sender: UIButton) {

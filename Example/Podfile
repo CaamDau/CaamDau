@@ -1,7 +1,11 @@
 use_frameworks!
+inhibit_all_warnings!
+platform :ios, '9.0'
 
 target 'CD_Example' do
   pod 'CD', :path => '../'
+  #pod 'CD/Form', :path => '../'
+  #pod 'CD/Extension', :path => '../'
   
   target 'CD_Tests' do
     inherit! :search_paths

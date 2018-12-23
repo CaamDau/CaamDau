@@ -15,7 +15,30 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'CD/**/*'
+  # s.source_files = 'CD/**/*'
+  
+  s.default_subspec = 'CD'
+  
+  s.subspec 'CD' do |cd|
+      cd.source_files = 'CD/**/*'
+  end
+  
+  s.subspec 'Config' do |cf|
+      cf.source_files = 'CD/CD_Config/*'
+  end
+  
+  s.subspec 'Extension' do |es|
+      es.source_files = 'CD/CD_Extension/*', 'CD/CD.swift'
+  end
+  
+  s.subspec 'Form' do |fm|
+      fm.source_files = 'CD/CD_Form/*'
+  end
+  
+  s.subspec 'Chain' do |cn|
+      cn.source_files = 'CD/CD_Form/*', 'CD/CD.swift'
+  end
+  
   #s.resource_bundles = {
   #  'CD' => ['CD/Storyboards/*.{storyboard}']
   #}
