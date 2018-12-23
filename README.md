@@ -19,7 +19,12 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'CD'
 ```
-
+```ruby
+pod 'CD/Chain'
+pod 'CD/Form'
+pod 'CD/Extension'
+pod 'CD/Config'
+```
 ## Author
 
 liucaide, 565726319@qq.com
