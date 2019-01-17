@@ -8,6 +8,8 @@
 
 import UIKit
 import CD
+import TabbarNavigation
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let vc = VC_Tab.show()
 //        window?.rootViewController = vc
 //        window?.makeKeyAndVisible()
-        
+        print_cd(UIApplication.shared.keyWindow)
+        print_cd(UIApplication.shared.delegate!.window!!)
         return true
     }
 

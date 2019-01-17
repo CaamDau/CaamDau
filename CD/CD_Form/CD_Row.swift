@@ -8,6 +8,7 @@ public protocol CD_RowProtocol {
     var tag:Int { get }
     var viewId: String { get }
     var viewClass:AnyClass { get }
+    var bundleFrom:String { get }
     var datas: Any { set get }
     var frame: CGRect { set get }
     var x:CGFloat { set get }
@@ -35,15 +36,18 @@ public struct CD_Row<T> where T: UIView, T: CD_RowUpdateProtocol {
     public var tag:Int
     public var frame: CGRect
     public let viewClass:AnyClass = T.self
+    public let bundleFrom:String
     
-    public init( data: T.DataSource,
+    public init(data: T.DataSource,
           id: String = "",
           tag:Int = 0,
-          frame: CGRect = .zero) {
+          frame: CGRect = .zero,
+          bundleFrom:String = "") {
         self.data = data
         self.id = id
         self.frame = frame
         self.tag = tag
+        self.bundleFrom = bundleFrom
     }
 }
 

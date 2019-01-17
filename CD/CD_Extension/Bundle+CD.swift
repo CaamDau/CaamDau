@@ -7,7 +7,7 @@ public extension CD where Base: Bundle {
 }
 public extension Bundle{
     //MARK:--- Pod Bundle 检索 ----------
-    /// - from:bundle.url(forResource (s.resource_bundles -> key)
+    /// - from:bundle.url(forResource ‘(pod s.resource_bundles -> key)’
     static func cd_bundle(_ forClass:AnyClass, _ from:String) -> Bundle? {
         let bundle = Bundle(for: forClass)
         guard let bundleURL = bundle.url(forResource: from, withExtension: "bundle") else {

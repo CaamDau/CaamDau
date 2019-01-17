@@ -20,7 +20,22 @@ TODO: Add long description of the pod here.
   s.default_subspec = 'CD'
   
   s.subspec 'CD' do |cd|
-      cd.source_files = 'CD/**/*'
+    cd.source_files = 'CD/CD.swift'
+    cd.dependency 'CD/Config'
+    cd.dependency 'CD/Extension'
+    cd.dependency 'CD/Form'
+    cd.dependency 'CD/Chain'
+    cd.dependency 'CD/MVVM'
+  end
+  
+  s.subspec 'All' do |all|
+    all.source_files = 'CD/CD.swift'
+    all.dependency 'CD/Config'
+    all.dependency 'CD/Extension'
+    all.dependency 'CD/Form'
+    all.dependency 'CD/Chain'
+    all.dependency 'CD/MVVM'
+    all.dependency 'CD/MJRefresh'
   end
   
   s.subspec 'Config' do |cf|
@@ -36,7 +51,15 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'Chain' do |cn|
-      cn.source_files = 'CD/CD_Form/*', 'CD/CD.swift'
+      cn.source_files = 'CD/CD_Chain/*', 'CD/CD.swift'
+  end
+  s.subspec 'MVVM' do |vm|
+    vm.source_files = 'CD/CD_MVVM/*'
+  end
+  
+  s.subspec 'MJRefresh' do |mj|
+    mj.source_files = 'CD/CD_MJRefresh/*'
+    mj.dependency 'MJRefresh'
   end
   
   #s.resource_bundles = {

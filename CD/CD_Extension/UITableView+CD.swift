@@ -4,15 +4,20 @@ import Foundation
 import UIKit
 
 public extension CD where Base: UITableView {
-    func cell(_ cellClass:AnyClass, _ id:String = "") -> UITableViewCell?{
+    func cell(_ cellClass:AnyClass, id:String = "", bundleFrom:String = "") -> UITableViewCell?{
         let identifier = id=="" ? String(describing: cellClass) : id
         var cell = base.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil  {
-            let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
-            if bundle == nil{
-                base.register(cellClass, forCellReuseIdentifier: identifier)
+            if bundleFrom.count == 0 {
+                let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
+                if bundle == nil{
+                    base.register(cellClass, forCellReuseIdentifier: identifier)
+                }else{
+                    let nib = UINib(nibName:identifier, bundle: nil)
+                    base.register(nib, forCellReuseIdentifier: identifier)
+                }
             }else{
-                let nib = UINib(nibName:identifier, bundle: nil)
+                let nib = UINib(nibName:identifier, bundle: Bundle.cd_bundle(cellClass, bundleFrom))
                 base.register(nib, forCellReuseIdentifier: identifier)
             }
             cell = base.dequeueReusableCell(withIdentifier: identifier)

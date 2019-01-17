@@ -9,3 +9,6 @@ func cd_readPlist(_ name:String = "CD_Config") -> [String:Any] {
     }
     return [:]
 }
+
+
+let color_main_1:UIColor = UIColor.red

@@ -2,6 +2,7 @@
 
 import Foundation
 import UIKit
+
 public extension UIViewController{
     enum UIViewControllerError:Error {
         case noBundle
@@ -17,19 +18,4 @@ public extension UIViewController{
         let storyboard = UIStoryboard(name: name, bundle: Bundle.cd_bundle(self, from))
         return storyboard.instantiateViewController(withIdentifier: identifier)
     }
-}
-
-///获取当前控制器
-public func cd_vc() ->UIViewController? {
-    var vc = UIApplication.shared.keyWindow?.rootViewController
-    
-    if (vc?.isKind(of: UITabBarController.self))! {
-        vc = (vc as! UITabBarController).selectedViewController
-    }else if (vc?.isKind(of: UINavigationController.self))!{
-        vc = (vc as! UINavigationController).visibleViewController
-    }else if ((vc?.presentedViewController) != nil){
-        vc =  vc?.presentedViewController
-    }
-    
-    return vc
 }
