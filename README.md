@@ -1,4 +1,4 @@
-# CD
+# CD  （[OC版本在这里](https://github.com/liucaide/CD_ObjC)）
 
 [![CI Status](https://img.shields.io/travis/liucaide/CD.svg?style=flat)](https://travis-ci.org/liucaide/CD)
 [![Version](https://img.shields.io/cocoapods/v/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
