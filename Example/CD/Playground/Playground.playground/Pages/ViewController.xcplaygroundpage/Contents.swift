@@ -31,13 +31,14 @@ class MyViewController : UIViewController {
     }
 }
 PlaygroundPage.current.liveView = MyViewController()
-func cd_codeDescription() -> (Any){
-    return (#file.components(separatedBy: "/").last ?? #file, #line, #function)
-}
-func test(){
-    let tt = cd_codeDescription()
-    print(tt)
-}
 
-test()
+//func cd_codeDescription() -> (Any){
+//    return (#file.components(separatedBy: "/").last ?? #file, #line, #function)
+//}
+//func test(){
+//    let tt = cd_codeDescription()
+//    print(tt)
+//}
+
+//test()
 

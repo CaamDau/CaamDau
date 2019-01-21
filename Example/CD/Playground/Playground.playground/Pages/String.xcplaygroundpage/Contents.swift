@@ -1,42 +1,6 @@
 //: [Previous](@previous)
 
 import Foundation
-/*
-extension String {
-    // 取子串  下标脚本
-    /*
-     //插入
-     var str = "1234"
-     str[1..<1] = "345"
-     print(str) //1345234
-     //替换
-     str[1...4] = "000"
-     print(str) //100034
-     //删除
-     str[1...3] = ""
-     print(str) //134
-     //取子串
-     let subStr = str[0...1]
-     print(subStr) //13
-     */
-    subscript (range: Range<Int>) -> String {
-        get {
-            
-            let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
-            let r = Range()
-            return self[Range(startIndex..<endIndex)]
-        }
-        
-        set {
-            let startIndex = self.index(self.startIndex, offsetBy: range.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: range.upperBound)
-            let strRange = Range(startIndex..<endIndex)
-            print(strRange)
-            self.replaceSubrange(strRange, with: newValue)
-        }
-    }
-}*/
 
 extension String {
     /// 下标脚本

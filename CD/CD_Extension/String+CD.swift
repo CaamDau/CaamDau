@@ -160,7 +160,7 @@ class CD_StringSize {
     }
 }
 
-extension String {
+public extension String {
     ///限制最大行数的场景下，计算Label的bounds
     func size( maxWidth: CGFloat, _ font: UIFont, _ maxLine: Int) -> CGSize {
         return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font, maxLine: maxLine)
