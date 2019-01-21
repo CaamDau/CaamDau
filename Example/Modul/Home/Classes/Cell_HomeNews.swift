@@ -22,7 +22,7 @@ public class Cell_HomeNews: UITableViewCell {
 }
 extension Cell_HomeNews:CD_RowUpdateProtocol{
     public typealias DataSource = Any
-    public func update(_ data: Any, id: String, tag: Int, frame: CGRect) {
+    public func update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         if let model = data as? M_HomeNews {
             print(lab)
             //lab.text = "LCD"

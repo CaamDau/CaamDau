@@ -31,11 +31,8 @@ class VM_Form {
     func makeForm() {
         forms.removeAll()
         do{
-            let row = CD_Row<Cell_Form1>(data: data, frame: CGRect(h:80), callBack: { [weak self](any) in
+            let row = CD_RowClass<Cell_Form1>(data: data, frame: CGRect(h:80), callBack: { [weak self](any) in
                 print(any)
-                self?.data.title = "\((Int(self!.data.title) ?? 0) + 1)"
-                self?.makeForm()
-                
             }) {
                 print("点击")
             }
@@ -43,7 +40,11 @@ class VM_Form {
         }
         do{
             for _ in 0..<30 {
-                let row = CD_Row<Cell_Form1>(data: M_Form(), frame: CGRect(h:80))
+                let row = CD_Row<Cell_Form1>(data: M_Form(), frame: CGRect(h:80), callBack: { [weak self](any) in
+                    print(any)
+                }) {
+                    print("点击")
+                }
                 self.forms.append(row)
             }
         }
@@ -191,6 +192,94 @@ extension CD_Row:CD_RowProtocol {
 
 //MARK:--- 附加 ---
 extension CD_Row {
+    public var viewId:String {
+        get{
+            return id=="" ? String(describing: viewClass) : id
+        }
+    }
+    public var datas: Any {
+        get { return data }
+        set { data = newValue as! T.DataSource }
+    }
+    public var x:CGFloat {
+        get{ return frame.origin.x }
+        set{ frame.origin.x = newValue }
+    }
+    public var y:CGFloat{
+        get{ return frame.origin.y }
+        set{ frame.origin.y = newValue }
+    }
+    public var w:CGFloat{
+        get{ return frame.size.width }
+        set{ frame.size.width = newValue }
+    }
+    public var h:CGFloat{
+        get{ return frame.size.height }
+        set{ frame.size.height = newValue }
+    }
+    public var size:CGSize{
+        get{ return frame.size }
+        set{ frame.size = newValue }
+    }
+}
+
+
+//MARK:--- CD_RowClass 对象 ----------
+///CD_RowClass 对象，可用于如：实时输入类view 使数据源变更便捷，普通还是建议使用上面 值类型 CD_Row
+public class CD_RowClass<T> where T: UIView, T: CD_RowUpdateProtocol {
+    public var data: T.DataSource
+    public let id: String
+    public var tag:Int
+    public var frame: CGRect
+    public let viewClass:AnyClass = T.self
+    public let bundleFrom:String
+    public var callBack:CD_RowCallBack? = nil
+    public var didSelect:CD_RowDidSelectBlock? = nil
+    public var insets:UIEdgeInsets
+    public var insetsTitle:UIEdgeInsets
+    
+    /*
+     data  ：View Data 数据源
+     id    ：View Id 标识 输入空则默认以类名 viewClass 为标识
+     tag   ：View Tag 标签 - 同类不同数据源或同控件不同UI展示效果做区分
+     frame ：View frame 数据源
+     insets  ：View UIButton imageEdgeInsets | UICollectionView sectionInset
+     另 UICollectionView LineSpacing InteritemSpacing 使用 frame - x  y
+     insetsTitle  ：View UIButton titleEdgeInsets
+     bundleFrom ：View bundle 索引（组件化 | pod   nib 资源。。。。）
+     callBack ： View 类内执行回调
+     didSelect ： View 点击回调 UITableView | UICollectionView didSelectRow
+     */
+    public init(data: T.DataSource,
+                id: String = "",
+                tag:Int = 0,
+                frame: CGRect = .zero,
+                insets:UIEdgeInsets = .zero,
+                insetsTitle:UIEdgeInsets = .zero,
+                bundleFrom:String = "",
+                callBack:CD_RowCallBack? = nil,
+                didSelect:CD_RowDidSelectBlock? = nil) {
+        self.data = data
+        self.id = id
+        self.frame = frame
+        self.tag = tag
+        self.bundleFrom = bundleFrom
+        self.callBack = callBack
+        self.didSelect = didSelect
+        self.insets = insets
+        self.insetsTitle = insetsTitle
+    }
+}
+extension CD_RowClass:CD_RowProtocol {
+    // 单元格模型绑定单元格实例
+    public func bind(_ view: AnyObject) {
+        if let v = view as? T {
+            v.update(self.data, id:self.id, tag:self.tag, frame:self.frame, callBack:self.callBack)
+        }
+    }
+}
+//MARK:--- 附加 ---
+extension CD_RowClass {
     public var viewId:String {
         get{
             return id=="" ? String(describing: viewClass) : id

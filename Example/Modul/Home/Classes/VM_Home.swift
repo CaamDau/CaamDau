@@ -24,7 +24,7 @@ extension VM_Home{
     func makeForm() {
         
         var f1 = [CD_RowProtocol]()
-        let row4 = CD_Row<Cell_HomeTitle>(data:"Form", frame:CGRect(h:45))
+        let row4 = CD_RowClass<Cell_HomeTitle>(data:"Form", frame:CGRect(h:45))
         f1.append(row4)
         let row5 = CD_Row<Cell_HomeTitle>(data:"Chain", frame:CGRect(h:45))
         f1.append(row5)
