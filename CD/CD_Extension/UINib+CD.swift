@@ -4,8 +4,7 @@ import Foundation
 import UIKit
 
 public extension UINib{
-    
-    static func cd_xibWithBundle(from:String, name:String) -> UINib? {
+    static func cd_xib(withBundle from:String, name:String) -> UINib? {
         return UINib(nibName: name, bundle: Bundle.cd_bundle(self, from))
     }
 }

@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 public extension CD where Base: UITableView {
-    func cell(_ cellClass:AnyClass, id:String = "", bundleFrom:String = "") -> UITableViewCell?{
+    func cell(_ cellClass:AnyClass, id:String = "", bundleFrom:String = "") -> UITableViewCell? {
         let identifier = id=="" ? String(describing: cellClass) : id
         var cell = base.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil  {

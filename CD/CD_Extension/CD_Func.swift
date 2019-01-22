@@ -13,6 +13,17 @@ public func print_cd(_ items: Any...){
 public func print_cd(_ items: Any...){}
 #endif
 
+#if DEBUG
+public func print_address(_ value:AnyObject){
+    print("---👉👉👉 内存地址-->", value)
+    print(Unmanaged.passUnretained(value).toOpaque())
+    print("----------💀")
+}
+#else
+public func print_address(_ value:AnyObject){}
+#endif
+
+
 //MARK:--- 重载运算符 两个字典合并为一个字典 ----------
 public func += <key, value> ( cd_one: inout Dictionary<key, value>, cd_two: Dictionary<key, value>) {
     for (k, v) in cd_two {
@@ -22,7 +33,7 @@ public func += <key, value> ( cd_one: inout Dictionary<key, value>, cd_two: Dict
 
 //MARK:--- 耗时测试 ----------
 /// 耗时测试
-public func cd_timeConsuming(_ name:String? = "💀👉👉耗时：", call:(()->Void)? = nil) {
+public func cd_timeConsuming(_ name:String = "💀👉👉耗时：", call:(()->Void)? = nil) {
     //let startTime = CFAbsoluteTimeGetCurrent()
     //let endTime = CACurrentMediaTime()
     let start = CACurrentMediaTime()

@@ -20,3 +20,9 @@ public extension CGSize{
         self.init(width: w, height: h)
     }
 }
+
+public extension UIEdgeInsets {
+    init(t:CGFloat = 0, l:CGFloat = 0, b:CGFloat = 0, r:CGFloat = 0) {
+        self.init(top: t, left: l, bottom: b, right: r)
+    }
+}

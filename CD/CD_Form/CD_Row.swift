@@ -14,7 +14,7 @@ class Cell_Form1: UITableViewCell {
 }
 extension Cell_Form1: CD_RowUpdateProtocol{
     typealias DataSource = M_Form
-    func update(_ data: M_Form, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(_ data: M_Form, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         lab_title.text = data.title
         self.callBack = callBack
     }
@@ -127,10 +127,10 @@ public protocol CD_RowProtocol {
 public protocol CD_RowUpdateProtocol {
     /// 数据源 关联类型
     associatedtype DataSource
-    func update(_ data: DataSource, id:String, tag:Int, frame:CGRect, callBack:CD_RowCallBack?)
+    func row_update(_ data: DataSource, id:String, tag:Int, frame:CGRect, callBack:CD_RowCallBack?)
 }
 public extension CD_RowUpdateProtocol{
-    func update(_ data: DataSource, id:String , tag:Int, frame:CGRect, callBack:CD_RowCallBack?) {}
+    func row_update(_ data: DataSource, id:String , tag:Int, frame:CGRect, callBack:CD_RowCallBack?) {}
 }
 
 //MARK:---  建设单元格模型 ---
@@ -161,14 +161,14 @@ public struct CD_Row<T> where T: UIView, T: CD_RowUpdateProtocol {
      didSelect ： View 点击回调 UITableView | UICollectionView didSelectRow
      */
     public init(data: T.DataSource,
-          id: String = "",
-          tag:Int = 0,
-          frame: CGRect = .zero,
-          insets:UIEdgeInsets = .zero,
-          insetsTitle:UIEdgeInsets = .zero,
-          bundleFrom:String = "",
-          callBack:CD_RowCallBack? = nil,
-          didSelect:CD_RowDidSelectBlock? = nil) {
+                id: String = "",
+                tag:Int = 0,
+                frame: CGRect = .zero,
+                insets:UIEdgeInsets = .zero,
+                insetsTitle:UIEdgeInsets = .zero,
+                bundleFrom:String = "",
+                callBack:CD_RowCallBack? = nil,
+                didSelect:CD_RowDidSelectBlock? = nil) {
         self.data = data
         self.id = id
         self.frame = frame
@@ -185,7 +185,7 @@ extension CD_Row:CD_RowProtocol {
     // 单元格模型绑定单元格实例
     public func bind(_ view: AnyObject) {
         if let v = view as? T {
-            v.update(self.data, id:self.id, tag:self.tag, frame:self.frame, callBack:self.callBack)
+            v.row_update(self.data, id:self.id, tag:self.tag, frame:self.frame, callBack:self.callBack)
         }
     }
 }
@@ -225,7 +225,7 @@ extension CD_Row {
 
 
 //MARK:--- CD_RowClass 对象 ----------
-///CD_RowClass 对象，可用于如：实时输入类view 使数据源变更便捷，普通还是建议使用上面 值类型 CD_Row
+///CD_RowClass 对象，可用于如：实时输入类view 使数据源变更便捷，普通还是建议使用上面 struct CD_Row
 public class CD_RowClass<T> where T: UIView, T: CD_RowUpdateProtocol {
     public var data: T.DataSource
     public let id: String
@@ -274,7 +274,7 @@ extension CD_RowClass:CD_RowProtocol {
     // 单元格模型绑定单元格实例
     public func bind(_ view: AnyObject) {
         if let v = view as? T {
-            v.update(self.data, id:self.id, tag:self.tag, frame:self.frame, callBack:self.callBack)
+            v.row_update(self.data, id:self.id, tag:self.tag, frame:self.frame, callBack:self.callBack)
         }
     }
 }
