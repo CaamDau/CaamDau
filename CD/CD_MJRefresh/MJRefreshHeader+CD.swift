@@ -80,18 +80,18 @@ public extension CD where Base: MJRefreshStateHeader {
         return self
     }
 }
-public let imagessssss:[UIImage] = (0..<8).map{UIImage(named: "refresh_\($0)") ?? UIImage()}
+
 
 //MARK:--- MJRefreshGifHeader 重设置 ----------
 public extension CD where Base: MJRefreshGifHeader {
     
     /// 设置时间
     @discardableResult
-    func setImages(_ images:[CD_MJRefreshModel.ImagesEnum] = [.idle(imagessssss),
-                                                              .pulling(imagessssss),
-                                                              .willRefresh(imagessssss),
-                                                              .refreshing(imagessssss),
-                                                              .noMoreData(imagessssss)]
+    func setImages(_ images:[CD_MJRefreshModel.ImagesEnum] = [.idle([]),
+                                                              .pulling([]),
+                                                              .willRefresh([]),
+                                                              .refreshing([]),
+                                                              .noMoreData([])]
         ) -> CD
     {
         for item in images {
