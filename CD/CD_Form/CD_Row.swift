@@ -274,6 +274,7 @@ extension CD_RowClass:CD_RowProtocol {
     // 单元格模型绑定单元格实例
     public func bind(_ view: AnyObject) {
         if let v = view as? T {
+            //if v.conforms(to: CD_RowUpdateProtocol.self)
             v.row_update(self.data, id:self.id, tag:self.tag, frame:self.frame, callBack:self.callBack)
         }
     }

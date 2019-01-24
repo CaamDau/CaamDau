@@ -10,7 +10,10 @@ let letterCount = letters.reduce(into: [:]) { counts, letter in
 }
 print(letterCount)
 */
+var arr2 = [1,1,1,1,1].compactMap {[$0,$0,$0,$0,$0]}
+print(arr2)
 
+/*
 //MARK:--- 升维 组合 ----------
 let arr = (0..<15).map{$0}
 let arr2 = arr.enumerated().reduce(into: []) { (item, element) in
@@ -25,7 +28,7 @@ let arr2 = arr.enumerated().reduce(into: []) { (item, element) in
 
 print(arr)
 print(arr2)
-
+*/
 //MARK:--- 求和等 ----------
 //print((1...20).reduce(0, +))
 //print((1...4).reduce(1, -))
