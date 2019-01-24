@@ -87,10 +87,15 @@ public struct CD_MJRefreshModel {
     /// 下拉菊花样式
     var up_activityStyle:UIActivityIndicatorView.Style = .gray
     
+    
+    /// 忽略多少scrollView的contentInset的bottom
+    var ignoredContentInsetBottom:CGFloat = 0
     /// 是否禁止自动加载
-    var automaticallyRefresh:Bool = true
-    
-    
+    var isAutoRefresh:Bool = true
+    /// 当底部控件出现多少时就自动刷新
+    var autoRefreshPercent:CGFloat = 1
+    /// 是否每一次拖拽只发一次请求
+    var onlyRefreshPerDrag:Bool = false
     
     init() {}
     

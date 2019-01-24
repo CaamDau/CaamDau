@@ -98,7 +98,6 @@ public extension CD where Base: UIScrollView {
     func footerMJBack( _ block:@escaping MJRefreshComponentRefreshingBlock, model:CD_MJRefreshModel = CD_MJRefresh.shared.model, custom:((MJRefreshBackNormalFooter?)->Void)? = nil) -> CD{
         let mj = MJRefreshBackNormalFooter(refreshingBlock: block)
         self.footer(withBack: mj, model: model)
-        mj?.activityIndicatorViewStyle = model.up_activityStyle
         custom?(mj)
         base.mj_footer = mj
         return self
@@ -108,7 +107,6 @@ public extension CD where Base: UIScrollView {
     func footerMJBackWithModel( _ block:@escaping MJRefreshComponentRefreshingBlock, model:CD_MJRefreshModel = CD_MJRefresh.shared.model, custom:((MJRefreshBackNormalFooter?)->Void)? = nil) -> CD{
         let mj = MJRefreshBackNormalFooter(refreshingBlock: block)
         self.footer(withBack: mj, model: model)
-        mj?.activityIndicatorViewStyle = model.up_activityStyle
         custom?(mj)
         base.mj_footer = mj
         return self
@@ -118,8 +116,6 @@ public extension CD where Base: UIScrollView {
     func footerMJAuto( _ block:@escaping MJRefreshComponentRefreshingBlock, custom:((MJRefreshAutoNormalFooter?)->Void)? = nil) -> CD{
         let mj = MJRefreshAutoNormalFooter(refreshingBlock: block)
         self.footer(withAuto: mj, model: nil)
-        mj?.cd.activityStyle()
-        //mj?.activityIndicatorViewStyle = model.up_activityStyle
         custom?(mj)
         base.mj_footer = mj
         return self
@@ -166,12 +162,15 @@ public extension CD where Base: UIScrollView {
             mj?.cd.activityStyle().setTitle()
             return
         }
-        mj?.cd.activityStyle(m.up_activityStyle)
+        mj?.cd
+            .activityStyle(m.up_activityStyle)
         self.footer(back: mj, model: m)
     }
     private func footer(withAuto mj: MJRefreshAutoNormalFooter?, model:CD_MJRefreshModel?) {
         guard let m = model else {
-            mj?.cd.activityStyle().setTitle()
+            mj?.cd
+                .activityStyle()
+                .setTitle()
             return
         }
         mj?.cd.activityStyle(m.up_activityStyle)
@@ -190,7 +189,8 @@ public extension CD where Base: UIScrollView {
                                 .noMoreData(model.up_txtNoMoreData)])
     }
     private func footer(auto mj: MJRefreshAutoStateFooter?, model:CD_MJRefreshModel) {
-        mj?.cd.setTitle(isHidden: model.up_txtHidden,
+        mj?.cd
+            .setTitle(isHidden: model.up_txtHidden,
                         font: model.up_txtFont,
                         color: model.up_txtColor,
                         inset: model.up_leftInset,
@@ -199,6 +199,10 @@ public extension CD where Base: UIScrollView {
                                 .willRefresh(model.up_txtWillRefresh),
                                 .refreshing(model.up_txtRefreshing),
                                 .noMoreData(model.up_txtNoMoreData)])
+            .isAutoRefresh(model.isAutoRefresh)
+            .autoRefreshPercent(model.autoRefreshPercent)
+            .onlyRefreshPerDrag(model.onlyRefreshPerDrag)
+            .ignoredContentInsetBottom(model.ignoredContentInsetBottom)
         
     }
     private func footerGif(withBack mj: MJRefreshBackGifFooter?, model:CD_MJRefreshModel?) {

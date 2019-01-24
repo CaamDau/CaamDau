@@ -3,6 +3,38 @@
 import Foundation
 import MJRefresh
 
+
+//MARK:--- MJRefreshAutoFooter 重设置 ----------
+public extension CD where Base: MJRefreshFooter {
+    /// 忽略多少scrollView的contentInset的bottom
+    @discardableResult
+    func ignoredContentInsetBottom(_ t:CGFloat = 0) -> CD{
+        base.ignoredScrollViewContentInsetBottom = t
+        return self
+    }
+}
+
+//MARK:--- MJRefreshAutoFooter 重设置 ----------
+public extension CD where Base: MJRefreshAutoFooter {
+    /// 是否自动刷新
+    @discardableResult
+    func isAutoRefresh(_ t:Bool = true) -> CD{
+        base.isAutomaticallyRefresh = t
+        return self
+    }
+    /// 当底部控件出现多少时就自动刷新
+    @discardableResult
+    func autoRefreshPercent(_ t:CGFloat = 1.0) -> CD{
+        base.triggerAutomaticallyRefreshPercent = t
+        return self
+    }
+    /// 是否每一次拖拽只发一次请求
+    @discardableResult
+    func onlyRefreshPerDrag(_ t:Bool = false) -> CD{
+        base.isOnlyRefreshPerDrag = t
+        return self
+    }
+}
 //MARK:--- MJRefreshBackNormalFooter 重设置 ----------
 public extension CD where Base: MJRefreshBackNormalFooter {
     var activityStyle:UIActivityIndicatorView.Style {
@@ -36,6 +68,7 @@ public extension CD where Base: MJRefreshAutoNormalFooter {
         base.activityIndicatorViewStyle = t
         return self
     }
+    
 }
 //MARK:--- MJRefreshBackStateFooter 重设置 ----------
 public extension CD where Base: MJRefreshBackStateFooter {
