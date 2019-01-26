@@ -57,7 +57,9 @@ public extension CD where Base: UIScrollView {
             mj?.cd.activityStyle().setTitle().setTime()
             return
         }
-        mj?.cd.activityStyle(m.down_activityStyle)
+        mj?.cd
+            .activityStyle(m.down_activityStyle)
+            .ignoredContentInsetTop(m.ignoredContentInsetTop)
         self.header(mj, m: m)
     }
     
@@ -250,7 +252,6 @@ public extension CD where Base: UIScrollView {
                 self.beginRefreshing()
             case .tEnd:
                 self.endRefreshing()
-                
             case .tNoMoreDataEnd:
                 self.endRefreshingWithNoMoreData()
             case .tNoMoreDataReset:

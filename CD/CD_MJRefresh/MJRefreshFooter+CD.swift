@@ -123,6 +123,7 @@ public extension CD where Base: MJRefreshAutoStateFooter {
                                                           .noMoreData("")]
         ) -> CD
     {
+        base.isRefreshingTitleHidden = isHidden
         base.stateLabel.isHidden = isHidden
         guard !isHidden else {
             return self

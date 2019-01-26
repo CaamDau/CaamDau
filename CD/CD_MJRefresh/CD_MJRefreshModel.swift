@@ -72,6 +72,8 @@ public struct CD_MJRefreshModel {
     var up_txtHidden:Bool = true
     /// 上拉文字和图片间的距离
     var up_leftInset:CGFloat = 0
+    /// 下拉菊花样式
+    var up_activityStyle:UIActivityIndicatorView.Style = .gray
     
     /// 上拉闲置状态 图片
     var up_imgIdle:[UIImage] = []
@@ -84,12 +86,13 @@ public struct CD_MJRefreshModel {
     /// 上拉数据加载完毕状态 图片
     var up_imgNoMoreData:[UIImage] = []
     
-    /// 下拉菊花样式
-    var up_activityStyle:UIActivityIndicatorView.Style = .gray
+    
     
     
     /// 忽略多少scrollView的contentInset的bottom
     var ignoredContentInsetBottom:CGFloat = 0
+    /// 忽略多少scrollView的contentInset的Top
+    var ignoredContentInsetTop:CGFloat = 0
     /// 是否禁止自动加载
     var isAutoRefresh:Bool = true
     /// 当底部控件出现多少时就自动刷新

@@ -4,7 +4,15 @@ import Foundation
 import MJRefresh
 
 //MARK:--- MJRefreshNormalHeader 重设置 ----------
-
+//MARK:--- MJRefreshAutoFooter 重设置 ----------
+public extension CD where Base: MJRefreshHeader {
+    /// 忽略多少scrollView的contentInset的bottom
+    @discardableResult
+    func ignoredContentInsetTop(_ t:CGFloat = 0) -> CD{
+        base.ignoredScrollViewContentInsetTop = t
+        return self
+    }
+}
 public extension CD where Base: MJRefreshNormalHeader {
     
     var activityStyle:UIActivityIndicatorView.Style {
