@@ -4,7 +4,7 @@ import UIKit
 import CD
 public extension VC_Mine{
     static func show() -> VC_Mine{
-        return VC_Mine.cd_storyboardWithBundle(from:"Mine", name:"MineStoryboard") as! VC_Mine
+        return VC_Mine.cd_storyboard(withBundle:"Mine", name:"MineStoryboard") as! VC_Mine
     }
 }
 

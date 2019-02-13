@@ -4,7 +4,7 @@ import UIKit
 import CD
 public extension VC_Publish{
     static func show() -> VC_Publish{
-        return VC_Publish.cd_storyboardWithBundle(from:"Publish", name:"PublishStoryboard") as! VC_Publish
+        return VC_Publish.cd_storyboard(withBundle:"Publish", name:"PublishStoryboard") as! VC_Publish
     }
 }
 

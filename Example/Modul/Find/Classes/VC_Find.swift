@@ -7,7 +7,7 @@ import CD
 
 public extension VC_Find{
     static func show() -> VC_Find{
-        return VC_Find.cd_storyboardWithBundle(from:"Find", name: "FindStoryboard") as! VC_Find
+        return VC_Find.cd_storyboard(withBundle:"Find", name: "FindStoryboard") as! VC_Find
     }
 }
 

@@ -6,7 +6,7 @@ import CD
 
 public extension VC_Login{
     static func show() -> VC_Login{
-        return VC_Login.cd_storyboardWithBundle(from:"Login", name:"LoginStoryboard") as! VC_Login
+        return VC_Login.cd_storyboard(withBundle:"Login", name:"LoginStoryboard") as! VC_Login
     }
     
     @discardableResult static func isLogin(_ pvc:UIViewController,_ canPop:Bool, _ blockLoginEnd:(()->Void)? = nil) -> Bool {

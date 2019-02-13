@@ -22,22 +22,23 @@ class Cell_MainNews: UITableViewCell {
 }
 extension Cell_MainNews:CD_RowUpdateProtocol{
     typealias DataSource = M_MainNews
-    func update(_ data: M_MainNews, id: String, tag: Int, frame: CGRect) {
+    func row_update(_ data: M_MainNews, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         lab.text = data.name
-//        time_consuming("耗时->\(tag)：") { [weak self] in
-//            self?.img.image = AssetsShare.share.logo_60
-////            switch tag%3 {
-////            case 0:
-////                self?.img.image = Assets.logo_200
-////            case 1:
-////                self?.img.image = AssetsImg.logo_0.light
-////            case 2:
-////                self?.img.image = AssetsShare.share.logo_60
-////            default:
-////                self?.img.image = Assets.logo_200
-////            }
-//            
-//        }
+        /*
+        time_consuming("耗时->\(tag)：") { [weak self] in
+            self?.img.image = AssetsShare.share.logo_60
+            switch tag%3 {
+            case 0:
+                self?.img.image = Assets.logo_200
+            case 1:
+                self?.img.image = AssetsImg.logo_0.light
+            case 2:
+                self?.img.image = AssetsShare.share.logo_60
+            default:
+                self?.img.image = Assets.logo_200
+            }
+            
+        }*/
         
     }
     

@@ -29,7 +29,6 @@
         <!--主页-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <viewController title="主页" id="vXZ-lx-hvc" customClass="ViewController" customModule="CD_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -78,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="主页" id="1yA-V3-8Er"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-530" y="-85"/>
         </scene>
@@ -116,6 +116,28 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="img" destination="eTX-zo-l60" id="GIC-yj-0wk"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell_ImageTestT" id="hiJ-wH-ARN" customClass="Cell_ImageTestT" customModule="CD_Example" customModuleProvider="target">
+                                <rect key="frame" x="200" y="10" width="165" height="282"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="165" height="282"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XJQ-na-ggQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="165" height="262"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="XJQ-na-ggQ" firstAttribute="leading" secondItem="hiJ-wH-ARN" secondAttribute="leading" id="EKO-IP-eCL"/>
+                                    <constraint firstAttribute="trailing" secondItem="XJQ-na-ggQ" secondAttribute="trailing" id="QXX-qd-hqO"/>
+                                    <constraint firstAttribute="bottom" secondItem="XJQ-na-ggQ" secondAttribute="bottom" constant="20" id="kfY-Ko-zNn"/>
+                                    <constraint firstItem="XJQ-na-ggQ" firstAttribute="top" secondItem="hiJ-wH-ARN" secondAttribute="top" id="sVf-jR-LLw"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="img" destination="XJQ-na-ggQ" id="myI-Ev-eqT"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

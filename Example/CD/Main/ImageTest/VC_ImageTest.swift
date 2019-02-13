@@ -14,12 +14,33 @@ class Cell_ImageTest: UICollectionViewCell {
 }
 extension Cell_ImageTest:CD_RowUpdateProtocol{
     typealias DataSource = String
-    func update(_ data: String, id: String, tag: Int, frame: CGRect) {
+    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         cd_timeConsuming("耗时->\(tag)：") { [weak self] in
-            self?.img.image = self!.assets.logo_200
+            self?.img.image = Assets().share_微信
         }
     }
+    
 }
+
+
+class Cell_ImageTestT: UICollectionViewCell {
+    
+    @IBOutlet weak var img: UIImageView!
+    
+    lazy var assets:Assets = {
+        return Assets()
+    }()
+}
+extension Cell_ImageTestT:CD_RowUpdateProtocol{
+    typealias DataSource = String
+    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+        cd_timeConsuming("耗时->\(tag)：") { [weak self] in
+            self?.img.image = Assets().logo_launch
+        }
+    }
+    
+}
+
 
 class VC_ImageTest: UICollectionViewController {
     var forms:[CD_RowProtocol] = []
@@ -28,9 +49,14 @@ class VC_ImageTest: UICollectionViewController {
         super.viewDidLoad()
         
         for item in (0..<100) {
+            if item%2 == 0 {
+                let row = CD_Row<Cell_ImageTest>(data:"", tag:item)
+                forms.append(row)
+            }else{
+                let row = CD_Row<Cell_ImageTestT>(data:"", tag:item)
+                forms.append(row)
+            }
             
-            let row = CD_Row<Cell_ImageTest>(data:"", tag:item)
-            forms.append(row)
         }
         
         self.collectionView.reloadData()

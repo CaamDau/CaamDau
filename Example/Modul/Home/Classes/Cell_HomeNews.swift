@@ -2,6 +2,7 @@
 
 import UIKit
 import CD
+import Assets
 
 public class Cell_HomeNews: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
@@ -22,10 +23,12 @@ public class Cell_HomeNews: UITableViewCell {
 }
 extension Cell_HomeNews:CD_RowUpdateProtocol{
     public typealias DataSource = Any
-    public func update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    public func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         if let model = data as? M_HomeNews {
             print(lab)
+            //img.image = Assets().logo_200
             //lab.text = "LCD"
         }
+        //img.image = Assets().logo_200
     }
 }

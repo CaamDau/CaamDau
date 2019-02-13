@@ -2,7 +2,7 @@
 
 import UIKit
 import CD
-
+import Assets
 //MARK:--- 标签 ----------
 class Cell_HomeTitle: UITableViewCell {
     override func awakeFromNib() {
@@ -11,7 +11,7 @@ class Cell_HomeTitle: UITableViewCell {
 }
 extension Cell_HomeTitle:CD_RowUpdateProtocol{
     typealias DataSource = String
-    func update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         self.textLabel?.text = data
     }
     
@@ -25,8 +25,9 @@ class Cell_HomeSwitch: UITableViewCell {
 }
 extension Cell_HomeSwitch:CD_RowUpdateProtocol{
     typealias DataSource = (String,Bool)
-    func update(_ data: (String,Bool), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(_ data: (String,Bool), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         self.textLabel?.text = data.0
         self.switch.isOn = data.1
+        self.imageView?.image = Assets().logo_launch
     }
 }

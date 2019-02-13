@@ -4,7 +4,7 @@ import UIKit
 import CD
 public extension VC_News{
     static func show() -> VC_News{
-        return VC_News.cd_storyboardWithBundle(from:"News", name:"NewsStoryboard") as! VC_News
+        return VC_News.cd_storyboard(withBundle: "News", name:"NewsStoryboard") as! VC_News
     }
     static func push(_ pvc:UIViewController){
         let vc = VC_News.show()

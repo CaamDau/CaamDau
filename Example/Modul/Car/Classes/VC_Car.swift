@@ -5,7 +5,7 @@ import CD
 
 public extension VC_Car{
     static func show() -> VC_Car{
-        return VC_Car.cd_storyboardWithBundle(from:"Car", name:"CarStoryboard") as! VC_Car
+        return VC_Car.cd_storyboard(withBundle:"Car", name:"CarStoryboard") as! VC_Car
     }
 }
 

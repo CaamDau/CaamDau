@@ -7,7 +7,7 @@ public extension VC_Home{
     static func show() -> VC_Home{
         //return VC_Home.cd_storyboard(name: "HomeStoryboard") as! VC_Home
         
-        return VC_Home.cd_storyboardWithBundle(from:"Home", name:"HomeStoryboard") as! VC_Home
+        return VC_Home.cd_storyboard(withBundle:"Home", name:"HomeStoryboard") as! VC_Home
     }
 }
 
