@@ -10,6 +10,7 @@
 - [CD_Chain 链式调用组件](https://github.com/liucaide/CD/tree/master/CD/CD_Chain)
 - [CD_Extension 便利性扩展](https://github.com/liucaide/CD/tree/master/CD/CD_Extension)
 - [CD_Config 基本配置组件范例](https://github.com/liucaide/CD/tree/master/CD/CD_Config)
+- [CD_IconFont 阿里矢量图标管理和使用](https://github.com/liucaide/CD/tree/master/CD/CD_IconFont)
 
 
 ##### 第三方扩展组件
