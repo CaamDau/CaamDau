@@ -36,6 +36,7 @@ TODO: Add long description of the pod here.
     all.dependency 'CD/Chain'
     all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
+    all.dependency 'CD/IconFont'
   end
   
   s.subspec 'Config' do |cf|
@@ -53,6 +54,14 @@ TODO: Add long description of the pod here.
   s.subspec 'Chain' do |cn|
       cn.source_files = 'CD/CD_Chain/*', 'CD/CD.swift'
   end
+  
+  s.subspec 'IconFont' do |ifont|
+      ifont.source_files = 'CD/CD_IconFont/Classes/*', 'CD/CD.swift'
+      ifont.resource_bundles = {
+          'IconFont' => ['CD/CD_IconFont/Assets/*.{ttf}']
+      }
+  end
+  
   s.subspec 'MVVM' do |vm|
     vm.source_files = 'CD/CD_MVVM/*'
   end

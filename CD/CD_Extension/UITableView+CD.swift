@@ -23,7 +23,7 @@ public extension CD where Base: UITableView {
             cell = base.dequeueReusableCell(withIdentifier: identifier)
         }
         guard let ce = cell else {
-            assertionFailure("👉👉👉dequeueReusableCell 失败，请检查你的cell👈👈👈")
+            assertionFailure("👉👉👉dequeueReusableCell 失败，请检查你的cell  👻")
             return nil
         }
         return ce

@@ -13,17 +13,28 @@ class Cell_MainNews: UITableViewCell {
         super.awakeFromNib()
         
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
     }
-    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+    }
 }
 extension Cell_MainNews:CD_RowUpdateProtocol{
     typealias DataSource = M_MainNews
     func row_update(_ data: M_MainNews, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        lab.text = data.name
+        
+        lab.cd
+            .font(CD_IconFont.temoji(20).font)
+            .text(CD_IconFont.temoji(20).text + "哈哈哈")
+        
+        img.cd.iconfont(CD_Logo.t朋友圈(60), color: UIColor.red, mode: .bottomLeft)
+        
+        button.cd
+            .iconfont(CD_IconFont.tauction(60), style: .image(.normal, color:UIColor.yellow, mode: .bottomRight))
+        
         /*
         time_consuming("耗时->\(tag)：") { [weak self] in
             self?.img.image = AssetsShare.share.logo_60
@@ -53,8 +64,8 @@ class Cell_MainTitle: UITableViewCell {
 }
 extension Cell_MainTitle:CD_RowUpdateProtocol{
     typealias DataSource = String
-    func update(_ data: String, id: String, tag: Int, frame: CGRect) {
-        self.textLabel?.text = data
+    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+        self.textLabel?.cd.iconfont(CD_IconFont.tauction(30))
     }
 }
 //MARK:--- 开关 ----------
@@ -68,7 +79,7 @@ class Cell_MainSwitch: UITableViewCell {
 
 extension Cell_MainSwitch:CD_RowUpdateProtocol{
     typealias DataSource = (String,Bool)
-    func update(_ data: (String,Bool), id: String, tag: Int, frame: CGRect) {
+    func row_update(_ data: (String, Bool), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         self.textLabel?.text = data.0
         self.switch.isOn = data.1
     }

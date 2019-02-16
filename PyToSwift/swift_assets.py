@@ -55,9 +55,9 @@ def make_swift(arr, path_output, classname):
 
 
 def setup():
-    path_input = raw_input("请输入资源文件夹XXX.xcassets的路径：")
-    path_output = raw_input("请输入XXX.swift保存的路径：")
-    name_swift = raw_input("请输入XXX.swift 的文件名：")
+    path_input = raw_input("请输入资源文件夹 ~.xcassets 的路径：")
+    path_output = raw_input("请输入 ~.swift 保存的路径：")
+    name_swift = raw_input("请输入 ~.swift 的文件名：")
     try:
         arr = file_names(path_input)
         make_swift(arr, path_output, name_swift)
@@ -66,8 +66,9 @@ def setup():
         setup()
     else:
         print '已完成'
-    finally:
-        pass
+        next = raw_input("是否继续创建(Y/N)：")
+        if next == "Y" or next == "y":
+            setup()
 
 
 if __name__ == '__main__':

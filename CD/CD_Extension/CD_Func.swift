@@ -7,7 +7,7 @@ import UIKit
 public func print_cd(_ items: Any...){
     print("---👉👉👉")
     print(items)
-    print("----------💀")
+    print("----------  👻")
 }
 #else
 public func print_cd(_ items: Any...){}
@@ -17,7 +17,7 @@ public func print_cd(_ items: Any...){}
 public func print_address(_ value:AnyObject){
     print("---👉👉👉 内存地址-->", value)
     print(Unmanaged.passUnretained(value).toOpaque())
-    print("----------💀")
+    print("---------- 👻")
 }
 #else
 public func print_address(_ value:AnyObject){}
@@ -33,7 +33,7 @@ public func += <key, value> ( cd_one: inout Dictionary<key, value>, cd_two: Dict
 
 //MARK:--- 耗时测试 ----------
 /// 耗时测试
-public func cd_timeConsuming(_ name:String = "💀👉👉耗时：", call:(()->Void)? = nil) {
+public func cd_timeConsuming(_ name:String = " 👻👉👉耗时：", call:(()->Void)? = nil) {
     //let startTime = CFAbsoluteTimeGetCurrent()
     //let endTime = CACurrentMediaTime()
     let start = CACurrentMediaTime()
@@ -44,11 +44,13 @@ public func cd_timeConsuming(_ name:String = "💀👉👉耗时：", call:(()->
 
 //MARK:--- UIWindow ----------
 /// delegate UIWindow
-public let cd_window:UIWindow? = UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow ?? nil
+public func cd_window() -> UIWindow? {
+    return UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow ?? nil
+}
 //MARK:--- 顶层 VC ----------
 /// 当前显示的 VC
 public func cd_visibleVC(_ vc: UIViewController? = nil) -> UIViewController?{
-    let vc = vc ?? cd_window?.rootViewController
+    let vc = vc ?? cd_window()?.rootViewController
     func visibleVC(_ vc: UIViewController? = nil) -> UIViewController? {
         if let nv = vc as? UINavigationController
         {
@@ -66,9 +68,9 @@ public func cd_visibleVC(_ vc: UIViewController? = nil) -> UIViewController?{
 }
 /// 导航栈的栈顶 VC
 public func cd_topVC(_ vc: UIViewController? = nil) -> UIViewController? {
-    let vc = vc ?? cd_window?.rootViewController
+    let vc = vc ?? cd_window()?.rootViewController
     func topVC(_ vc: UIViewController? = nil) -> UIViewController? {
-        let vc = vc ?? cd_window?.rootViewController
+        let vc = vc ?? cd_window()?.rootViewController
         if let nv = vc as? UINavigationController,
             !nv.viewControllers.isEmpty
         {

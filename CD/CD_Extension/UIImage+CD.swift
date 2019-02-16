@@ -9,6 +9,7 @@ public extension CD where Base: UIImage {
 
 //MARK:--- pod 资源图片 ----------
 public extension UIImage{
+    ///- forClass:class  from: pod resource_bundles key
     ///- from:bundle.url(forResource ‘(pod s.resource_bundles -> key)’
     static func cd_podImg(name:String, forClass:AnyClass, from:String = "") -> UIImage {
         let fromPod = from=="" ? String(describing: forClass) : from

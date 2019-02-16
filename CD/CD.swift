@@ -7,7 +7,11 @@ public struct CD<Base> {
     public init(_ base: Base) {
         self.base = base
     }
+    public var build: Base {
+        return base
+    }
 }
+
 public protocol CD_Compatible {
     associatedtype CompatibleType
     var cd: CompatibleType { get }
