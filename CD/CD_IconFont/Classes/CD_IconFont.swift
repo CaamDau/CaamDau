@@ -1,7 +1,7 @@
 
     import Foundation
     import UIKit
-    import CD
+    
     
     public enum CD_IconFont {
         class Help {}

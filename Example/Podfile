@@ -15,7 +15,8 @@ target 'CD_Example' do
   pod 'Publish', :path => './Modul/'
   pod 'Mine', :path => './Modul/'
   pod 'TabbarNavigation', :path => './Modul/'
-  pod 'Assets', :path => './Modul/'
+  pod 'Assets', :path => './Util/'
+  pod 'Config', :path => './Util/'
   
   target 'CD_Tests' do
     inherit! :search_paths

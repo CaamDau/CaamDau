@@ -6,5 +6,7 @@
         <page name='Array'/>
         <page name='CD_Form'/>
         <page name='String'/>
+        <page name='Color'/>
+        <page name='Config'/>
     </pages>
 </playground>

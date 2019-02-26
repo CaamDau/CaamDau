@@ -1,7 +1,7 @@
 //: [Previous](@previous)
 
 import Foundation
-
+import UIKit
 extension String {
     /// 下标脚本
     /*
@@ -48,14 +48,16 @@ extension String {
         }
     }
 }
+
 // 示例
+/*
 var strsss = "01234567"
 
 let c = strsss.count
 if c >= 8 {
     strsss[(c-8)/2 ..< (c-8)/2+8] = "********"
 }
-strsss
+strsss*/
 /*
 var rang = Range(0..<3)
 var s = rang.lowerBound

@@ -15,6 +15,8 @@ public extension UIImage{
         let fromPod = from=="" ? String(describing: forClass) : from
         return UIImage(named: name, in: Bundle.cd_bundle(forClass, fromPod), compatibleWith: nil) ?? UIImage()
     }
+    
+    
 }
 
 

@@ -9,7 +9,11 @@
 import UIKit
 import CD
 
+import Config
+
 class ViewController: UIViewController {
+    
+    
     
     lazy var vm:VM_ViewController = {
         return VM_ViewController()
@@ -17,6 +21,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(Config.font.name)
+        print(Config.font.fitSizeiPhone320)
+        print(Config.font.fitSizeiPhone375)
+        print(Config.font.fitSizeiPhone414)
     }
     
     override func didReceiveMemoryWarning() {

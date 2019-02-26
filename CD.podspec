@@ -21,7 +21,6 @@ TODO: Add long description of the pod here.
   
   s.subspec 'CD' do |cd|
     cd.source_files = 'CD/CD.swift'
-    cd.dependency 'CD/Config'
     cd.dependency 'CD/Extension'
     cd.dependency 'CD/Form'
     cd.dependency 'CD/Chain'
@@ -30,17 +29,12 @@ TODO: Add long description of the pod here.
   
   s.subspec 'All' do |all|
     all.source_files = 'CD/CD.swift'
-    all.dependency 'CD/Config'
     all.dependency 'CD/Extension'
     all.dependency 'CD/Form'
     all.dependency 'CD/Chain'
     all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
     all.dependency 'CD/IconFont'
-  end
-  
-  s.subspec 'Config' do |cf|
-      cf.source_files = 'CD/CD_Config/*'
   end
   
   s.subspec 'Extension' do |es|

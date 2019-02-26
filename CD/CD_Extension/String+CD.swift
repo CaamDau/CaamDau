@@ -4,8 +4,99 @@
 import Foundation
 import UIKit
 
+//MARK:--- 字符串宽高计算 ----------
+public extension String {
+    ///限制最大行数的场景下，计算Label的bounds
+    func cd_size( maxWidth: CGFloat, _ font: UIFont, _ maxLine: Int) -> CGSize {
+        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font, maxLine: maxLine)
+    }
+    ///行数不限的场景下，计算Label的bounds
+    func cd_size(_ maxWidth: CGFloat, _ font: UIFont) -> CGSize {
+        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font)
+    }
+    
+    ///限定最大高度的场景下，计算Label的bounds
+    func cd_size(_ maxSize: CGSize, _ font: UIFont) -> CGSize {
+        return CD_StringSize.shared.calculateSize(withString: self, maxSize: maxSize, font: font)
+    }
+}
+
+
+//MARK:--- 脚本 ----------
+public extension String {
+    /*
+     //插入
+     var str = "1234"
+     str[1..<1] = "345"
+     print(str) //1345234
+     //替换
+     str[1...4] = "000"
+     print(str) //100034
+     //删除
+     str[1...3] = ""
+     print(str) //134
+     //取子串
+     let subStr = str[0...1]
+     print(subStr) //13
+     */
+    /// 下标脚本
+    subscript (cd_rang: Range<Int>) -> String {
+        get {
+            var r = cd_rang
+            guard r.lowerBound < self.count else{
+                return ""
+            }
+            if r.upperBound > self.count {
+                r = r.lowerBound..<self.count
+            }
+            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
+            return String(self[startIndex..<endIndex])
+        }
+        set{
+            var r = cd_rang
+            guard r.lowerBound < self.count else{
+                return
+            }
+            if r.upperBound > self.count {
+                r = r.lowerBound..<self.count
+            }
+            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
+            self.replaceSubrange(Range(uncheckedBounds: (startIndex, endIndex)), with: newValue)
+        }
+    }
+}
+
+
+public extension String{
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK:--- 这是私有的 ----------
 // 代码借鉴来源：https://github.com/577528249/StringCalculate
-class CD_StringSize {
+private class CD_StringSize {
     static let shared = CD_StringSize()
     //fontDictionary是一个Dictionary，例如{".SFUIText-Semibold-16.0": {"0":10.3203125, "Z":10.4140625, "中":16.32, "singleLineHeight":19.09375}}，
     //fontDictionary的key是以字体的名字和大小拼接的String，例如".SFUIText-Semibold-16.0"
@@ -15,8 +106,8 @@ class CD_StringSize {
     var fileUrl: URL = {//fontDictionary在磁盘中的存储路径
         let manager = FileManager.default
         var filePath = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-        filePath!.appendPathComponent("font_dictionary.json")
-        print("font_dictionary.json的路径是===\(filePath!)")
+        filePath!.appendPathComponent("cd_stringSize_font_dictionary.json")
+        print_cd("cd_stringSize_font_dictionary.json的路径是===\(filePath!)")
         return filePath!
     }()
     
@@ -159,74 +250,4 @@ class CD_StringSize {
             print("第一次运行时font_dictionary不存在或者读取失败")
         }
     }
-}
-
-
-//MARK:--- 字符串宽高计算 ----------
-public extension String {
-    ///限制最大行数的场景下，计算Label的bounds
-    func size( maxWidth: CGFloat, _ font: UIFont, _ maxLine: Int) -> CGSize {
-        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font, maxLine: maxLine)
-    }
-    ///行数不限的场景下，计算Label的bounds
-    func size(_ maxWidth: CGFloat, _ font: UIFont) -> CGSize {
-        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font)
-    }
-    
-    ///限定最大高度的场景下，计算Label的bounds
-    func size(_ maxSize: CGSize, _ font: UIFont) -> CGSize {
-        return CD_StringSize.shared.calculateSize(withString: self, maxSize: maxSize, font: font)
-    }
-}
-
-
-//MARK:--- 脚本 ----------
-public extension String {
-    /*
-     //插入
-     var str = "1234"
-     str[1..<1] = "345"
-     print(str) //1345234
-     //替换
-     str[1...4] = "000"
-     print(str) //100034
-     //删除
-     str[1...3] = ""
-     print(str) //134
-     //取子串
-     let subStr = str[0...1]
-     print(subStr) //13
-     */
-    /// 下标脚本
-    subscript (cd_rang: Range<Int>) -> String {
-        get {
-            var r = cd_rang
-            guard r.lowerBound < self.count else{
-                return ""
-            }
-            if r.upperBound > self.count {
-                r = r.lowerBound..<self.count
-            }
-            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
-            return String(self[startIndex..<endIndex])
-        }
-        set{
-            var r = cd_rang
-            guard r.lowerBound < self.count else{
-                return
-            }
-            if r.upperBound > self.count {
-                r = r.lowerBound..<self.count
-            }
-            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
-            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
-            self.replaceSubrange(Range(uncheckedBounds: (startIndex, endIndex)), with: newValue)
-        }
-    }
-}
-
-
-public extension String{
-    
 }

@@ -5,9 +5,9 @@ import UIKit
 
 
 public extension UIFont {
-    public static var cd_fontFitSize:CGFloat = 0
+    public static var cd_fontFitSizeRatio:CGFloat = 0
     func fit() -> UIFont {
-        return self.withSize(self.pointSize+UIFont.cd_fontFitSize)
+        return self.withSize(self.pointSize+UIFont.cd_fontFitSizeRatio)
     }
     
     //MARK:--- IconFont ----------

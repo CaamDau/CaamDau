@@ -69,7 +69,7 @@ public struct CD_MJRefreshModel {
     /// 上拉刷新状态的Label文字颜色
     var up_txtColor:UIColor = UIColor.lightGray
     /// 上拉刷新状态的Label是否隐藏
-    var up_txtHidden:Bool = true
+    var up_txtHidden:Bool = false
     /// 上拉文字和图片间的距离
     var up_leftInset:CGFloat = 0
     /// 下拉菊花样式
