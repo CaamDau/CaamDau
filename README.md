@@ -9,7 +9,6 @@
 - [CD_Form UI排版组件](https://github.com/liucaide/CD/tree/master/CD/CD_Form)
 - [CD_Chain 链式调用组件](https://github.com/liucaide/CD/tree/master/CD/CD_Chain)
 - [CD_Extension 便利性扩展](https://github.com/liucaide/CD/tree/master/CD/CD_Extension)
-- [CD_Config 基本配置组件范例](https://github.com/liucaide/CD/tree/master/CD/CD_Config)
 - [CD_IconFont 阿里矢量图标管理和使用](https://github.com/liucaide/CD/tree/master/CD/CD_IconFont)
 
 
@@ -21,8 +20,11 @@
   - [图片资源管理类代码自动化](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_assets.py)
   - [阿里矢量图标资源管理类代码自动化](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_iconfont.py)
   - [基础配置资源管理类代码自动化](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_config.py)
+
 - [组件化示例](https://github.com/liucaide/CD/tree/master/Example)
-  - [资源图片管理](https://github.com/liucaide/CD/tree/master/Example/Modul/Assets)
+  - [资源、基本配置管理](https://github.com/liucaide/CD/tree/master/Example/Util)
+    - [资源图片管理 Assets](https://github.com/liucaide/CD/tree/master/Example/Util/Assets)
+    - [基本配置管理 Config <颜色配置、字体配置、字体适配、屏幕适配、基础图片配置...>](https://github.com/liucaide/CD/tree/master/Example/Util/Config)
   - ...
 
 
@@ -47,7 +49,6 @@ pod 'CD/All'
 pod 'CD/Chain'
 pod 'CD/Form'
 pod 'CD/Extension'
-pod 'CD/Config'
 pod 'CD/IconFont'
 ```
 ## Author
