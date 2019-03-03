@@ -5,21 +5,6 @@ import UIKit
 
 public extension CD where Base: UIButton {
     @discardableResult
-    func title(_ title: String, for state:UIControl.State = .normal) -> CD {
-        base.setTitle(title, for: state)
-        return self
-    }
-    @discardableResult
-    func title(_ color: UIColor, for state:UIControl.State = .normal) -> CD {
-        base.setTitleColor(color, for: state)
-        return self
-    }
-    @discardableResult
-    func title(_ font: UIFont) -> CD {
-        base.titleLabel?.font = font
-        return self
-    }
-    @discardableResult
     func image(_ image: UIImage, for state:UIControl.State = .normal) -> CD {
         base.setImage(image, for: state)
         return self

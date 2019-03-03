@@ -1,9 +1,9 @@
 
 
 Pod::Spec.new do |s|
-  s.name             = 'Login'
+  s.name             = 'M_Sign'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of Find.'
+  s.summary          = 'A '
 
 
 
@@ -20,14 +20,10 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'Login/Classes/**/*'
+  s.source_files = 'M_Sign/**/*'
   
-  s.resource_bundles = {
-    'Login' => ['Login/Nib/*.{storyboard}']
-    
-  }
-
+ 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'CD'
+  # s.dependency 'CD/Extension'
 end

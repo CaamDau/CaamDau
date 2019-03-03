@@ -5,7 +5,7 @@
 	<key>color</key>
 	<dict>
 		<key>main_1</key>
-		<string>#d3b788</string>
+		<string>5C86FF</string>
 		<key>main_2</key>
 		<string>#ffffff</string>
 		<key>main_3</key>
@@ -15,15 +15,15 @@
 		<key>main_5</key>
 		<string>#3c3c3c</string>
 		<key>btnBgSelected</key>
-		<string>#d3b788</string>
+		<string>5C86FF</string>
 		<key>btnBgNormal</key>
-		<string>#d3b788</string>
+		<string>5C86FF</string>
 		<key>btnBgEnabledNo</key>
 		<string>#ededed</string>
 		<key>btnBgEnabledYes</key>
-		<string>#d3b788</string>
+		<string>5C86FF</string>
 		<key>btnBgHighlighted</key>
-		<string>#d3b788</string>
+		<string>5C86FF</string>
 		<key>txt_1</key>
 		<string>#3c3c3c</string>
 		<key>txt_2</key>

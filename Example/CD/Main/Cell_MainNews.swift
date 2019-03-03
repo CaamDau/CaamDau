@@ -27,7 +27,7 @@ extension Cell_MainNews:CD_RowUpdateProtocol{
     func row_update(_ data: M_MainNews, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         
         lab.cd
-            .font(CD_IconFont.temoji(20).font)
+            .text(CD_IconFont.temoji(20).font)
             .text(CD_IconFont.temoji(20).text + "哈哈哈")
         
         img.cd.iconfont(CD_Logo.t朋友圈(60), color: UIColor.red, mode: .bottomLeft)

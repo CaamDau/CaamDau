@@ -3,6 +3,40 @@
 import Foundation
 import UIKit
 
+public protocol CDViewProtocol {
+    /// T: UIView、UIGestureRecognizer、NSLayoutConstraint、[NSLayoutConstraint]、、
+    func addT<T>(_ t: T?)
+}
+extension CDViewProtocol {
+    func addT<T>(_ t: T?){}
+}
+
+public extension CD where Base: CDViewProtocol {
+    @discardableResult
+    public func add<T>(_ t: T?) -> CD {
+        base.addT(t)
+        return self
+    }
+}
+
+extension UIView: CDViewProtocol {
+    public func addT<T>(_ t: T?) {
+        switch t {
+        case let subview as UIView :
+            self.addSubview(subview)
+        case let ges as UIGestureRecognizer :
+            self.addGestureRecognizer(ges)
+        case let lay as NSLayoutConstraint :
+            self.addConstraint(lay)
+        case let lays as [NSLayoutConstraint] :
+            self.addConstraints(lays)
+        default:
+            break
+        }
+    }
+}
+
+
 public extension CD where Base: UIView {
     @discardableResult
     func frame(_ a: CGRect) -> CD {
@@ -58,8 +92,6 @@ public extension CD where Base: UIView {
         base.contentMode = mode
         return self
     }
-    
-    
     
     @discardableResult
     func isHidden(_ a: Bool) -> CD {
@@ -193,29 +225,18 @@ public extension CD where Base: UIView {
         return self
     }
     
-    @discardableResult
-    func add(_ subview: UIView) -> CD {
-        base.addSubview(subview)
-        return self
-    }
-    
-    @discardableResult
-    func add(_ gestureRecognizer: UIGestureRecognizer) -> CD {
-        base.addGestureRecognizer(gestureRecognizer)
-        return self
-    }
-    
-    @discardableResult
-    func add(_ constraint: NSLayoutConstraint) -> CD {
-        base.addConstraint(constraint)
-        return self
-    }
-    
-    @discardableResult
-    func add(_ constraints: [NSLayoutConstraint]) -> CD {
-        base.addConstraints(constraints)
-        return self
-    }
 }
 
-
+//MARK:--- 返回非 self 将中断链式 ----------
+public extension CD where Base: UIView{
+    func vc() -> UIViewController? {
+        var next:UIResponder? = base
+        repeat {
+            next = next?.next
+            if let vc = next as? UIViewController {
+                return vc
+            }
+        }while next != nil
+        return nil
+    }
+}

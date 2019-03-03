@@ -8,6 +8,7 @@ import Find
 import Publish
 import Car
 import Mine
+import Sign
 
 public extension VC_Tab{
     public static func show() -> VC_Tab{

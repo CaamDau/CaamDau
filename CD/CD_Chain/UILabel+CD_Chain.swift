@@ -3,35 +3,12 @@
 import Foundation
 import UIKit
 
+
+
 public extension CD where Base: UILabel {
-    @discardableResult
-    func text(_ txt: String) -> CD {
-        base.text = txt
-        return self
-    }
-    @discardableResult
-    func text(_ color: UIColor) -> CD {
-        base.textColor = color
-        return self
-    }
-    @discardableResult
-    func font(_ a: UIFont) -> CD {
-        base.font = a
-        return self
-    }
-    @discardableResult
-    func text(_ alignment: NSTextAlignment) -> CD {
-        base.textAlignment = alignment
-        return self
-    }
     @discardableResult
     func number(_ ofLines: Int) -> CD {
         base.numberOfLines = ofLines
-        return self
-    }
-    @discardableResult
-    func attributed(_ text:NSAttributedString) -> CD {
-        base.attributedText = text
         return self
     }
     @discardableResult

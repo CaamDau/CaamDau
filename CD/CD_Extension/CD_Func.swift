@@ -33,8 +33,8 @@ public func += <key, value> ( cd_one: inout Dictionary<key, value>, cd_two: Dict
     }
 }
 
-//MARK:--- 耗时测试 ----------
-/// 耗时测试
+//MARK:--- 耗时 ----------
+/// 耗时
 public func cd_timeConsuming(_ name:String = " 👻👉👉耗时：", call:(()->Void)? = nil) {
     //let startTime = CFAbsoluteTimeGetCurrent()
     //let endTime = CACurrentMediaTime()
@@ -319,8 +319,29 @@ public func cd_topVC(_ vc: UIViewController? = nil) -> UIViewController? {
     return topVC(vc)
 }
 
-
-
+/// App 安装日期
+public func cd_appCreatDate() -> Date? {
+    guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
+        return nil
+    }
+    guard let dates = try? FileManager.default.attributesOfItem(atPath: url.path) else {
+        return nil
+    }
+    return dates[FileAttributeKey.creationDate] as? Date ?? nil
+}
+/// App 更新日期
+public func cd_appUpdateDate() -> Date? {
+    guard let info = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+        return nil
+    }
+    let url = URL(fileURLWithPath: info, isDirectory: true)
+    let path = url.deletingLastPathComponent().relativePath
+    //let file = url.lastPathComponent
+    guard let dates = try? FileManager.default.attributesOfItem(atPath: path) else {
+        return nil
+    }
+    return dates[FileAttributeKey.modificationDate] as? Date ?? nil
+}
 
 /*
 public func cd_string(from className: String) -> AnyClass? {

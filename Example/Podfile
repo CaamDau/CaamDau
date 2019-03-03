@@ -7,9 +7,11 @@ target 'CD_Example' do
   pod 'CD/All', :path => '../'
   #pod 'CD/Form', :path => '../'
   #pod 'CD/Extension', :path => '../'
+  
+  pod 'Models', :path => './Modul/'
   pod 'Find', :path => './Modul/'
   pod 'Home', :path => './Modul/'
-  pod 'Login', :path => './Modul/'
+  pod 'Sign', :path => './Modul/'
   pod 'Car', :path => './Modul/'
   pod 'News', :path => './Modul/'
   pod 'Publish', :path => './Modul/'
@@ -17,6 +19,12 @@ target 'CD_Example' do
   pod 'TabbarNavigation', :path => './Modul/'
   pod 'Assets', :path => './Util/'
   pod 'Config', :path => './Util/'
+  pod 'M_Sign', :path => './Util/'
+  
+  # 阿里七巧板
+  #pod 'Tangram'
+  # 阿里协程库
+  #pod 'coobjc'
   
   target 'CD_Tests' do
     inherit! :search_paths
