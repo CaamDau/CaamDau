@@ -69,9 +69,3 @@ if __name__ == '__main__':
     print dic
     for key, value in dic.items():
         print key, value
-
-
-
-
-
-

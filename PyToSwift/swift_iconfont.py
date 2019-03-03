@@ -5,7 +5,6 @@
 __author__ = 'LCD'
 
 
-import os
 import re
 
 
