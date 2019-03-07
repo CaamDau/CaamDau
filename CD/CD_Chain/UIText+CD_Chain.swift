@@ -40,6 +40,7 @@ public extension CD where Base: UITextField {
         return self
     }
     
+    
     @discardableResult
     func adjusts(_ fontSizeToFitWidth:Bool) -> CD {
         base.adjustsFontSizeToFitWidth = fontSizeToFitWidth
@@ -96,9 +97,19 @@ public extension CD where Base: UITextField {
         base.rightViewMode = v
         return self
     }
+    
+    @discardableResult
+    func returnKeyType(_ a:UIReturnKeyType) -> CD {
+        base.returnKeyType = a
+        return self
+    }
 }
 
 
 
 public extension CD where Base: UITextView {
 }
+
+
+
+
