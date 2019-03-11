@@ -30,10 +30,10 @@ extension Cell_MainNews:CD_RowUpdateProtocol{
             .text(CD_IconFont.temoji(20).font)
             .text(CD_IconFont.temoji(20).text + "哈哈哈")
         
-        img.cd.iconfont(CD_Logo.t朋友圈(60), color: UIColor.red, mode: .bottomLeft)
+        img.cd.iconfont(CD_IconFont.tpic_fill(60), color: UIColor.red, mode: .bottomLeft)
         
         button.cd
-            .iconfont(CD_IconFont.tauction(60), style: .image(.normal, color:UIColor.yellow, mode: .bottomRight))
+            .iconfont(CD_IconFont.tcart_fill(60), style: .image(.normal, color:UIColor.yellow, mode: .bottomRight))
         
         /*
         time_consuming("耗时->\(tag)：") { [weak self] in
@@ -65,7 +65,7 @@ class Cell_MainTitle: UITableViewCell {
 extension Cell_MainTitle:CD_RowUpdateProtocol{
     typealias DataSource = String
     func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.textLabel?.cd.iconfont(CD_IconFont.tauction(30))
+        self.textLabel?.cd.iconfont(CD_IconFont.temoji(30))
     }
 }
 //MARK:--- 开关 ----------

@@ -25,6 +25,8 @@ def file_names(dir):
 
 def make_swift(arr, path_output, classname):
     swift = """
+    //更多代码自动化可了解 :https://github.com/liucaide/CD/tree/master/PyToSwift .
+    
     import Foundation
     import UIKit
     import CD

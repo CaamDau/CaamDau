@@ -242,11 +242,28 @@ public extension CD where Base: UIScrollView {
         case tNoMoreDataEnd
         case tNoMoreDataReset
         case tHiddenFoot(_ b:Bool)
+        
+        var intValue:Int {
+            switch self {
+            case .tBegin:
+                return 0
+            case .tEnd:
+                return 1
+            case .tNoMoreDataEnd:
+                return 2
+            case .tNoMoreDataReset:
+                return 3
+            case .tHiddenFoot:
+                return 4
+            }
+        }
     }
     /// 设置刷新状态
     @discardableResult
-    func mjRefreshTypes(_ type:[MJRefreshType]) -> CD {
-        for item in type {
+    func mjRefreshTypes(_ types:[MJRefreshType]) -> CD {
+        var types = types
+        types.sort{$0.intValue < $1.intValue}
+        for item in types {
             switch item {
             case .tBegin:
                 self.beginRefreshing()

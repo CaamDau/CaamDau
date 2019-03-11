@@ -98,9 +98,9 @@ public extension String{
 // 代码借鉴来源：https://github.com/577528249/StringCalculate
 private class CD_StringSize {
     static let shared = CD_StringSize()
-    //fontDictionary是一个Dictionary，例如{".SFUIText-Semibold-16.0": {"0":10.3203125, "Z":10.4140625, "中":16.32, "singleLineHeight":19.09375}}，
+    //fontDictionary是一个Dictionary，例如{".SFUIText-Semibold-16.0": {"0":10.3203125, "Z":10.4140625, "国":16.32, "singleLineHeight":19.09375}}，
     //fontDictionary的key是以字体的名字和大小拼接的String，例如".SFUIText-Semibold-16.0"
-    //fontDictionary的value是一个Dictionary，存储对应字体的各种字符对应的宽度及字体的单行高度，例如{"0":10.3203125, "Z":10.4140625, "中":16.32, "singleLineHeight":19.09375}
+    //fontDictionary的value是一个Dictionary，存储对应字体的各种字符对应的宽度及字体的单行高度，例如{"0":10.3203125, "Z":10.4140625, "国":16.32, "singleLineHeight":19.09375}
     var fontDictionary = [String: [String: CGFloat]]()
     var numsNeedToSave = 0//更新的数据的条数
     var fileUrl: URL = {//fontDictionary在磁盘中的存储路径
@@ -177,7 +177,7 @@ private class CD_StringSize {
         var totalWidth: CGFloat = 0
         let fontKey = "\(font.fontName)-\(font.pointSize)"
         var widthDictionary = fetchWidthDictionaryWith(font)
-        let chineseWidth = widthDictionary["中"]!
+        let chineseWidth = widthDictionary["国"]!
         for character in string {
             if "\u{4E00}" <= character  && character <= "\u{9FA5}" {//中文
                 totalWidth += chineseWidth

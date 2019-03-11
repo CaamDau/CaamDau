@@ -80,6 +80,8 @@ def make_swift(path_output, classname, arr, pod_key):
     first = arr[0]
     # 头部
     swift = """
+    //更多代码自动化可了解 :https://github.com/liucaide/CD/tree/master/PyToSwift .
+    
     import Foundation
     import UIKit
     import CD

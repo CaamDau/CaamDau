@@ -24,4 +24,3 @@ public extension CD_Compatible {
 
 extension NSObject: CD_Compatible {}
 
-

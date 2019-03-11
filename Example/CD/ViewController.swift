@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         print(Config.font.fitSizeiPhone320)
         print(Config.font.fitSizeiPhone375)
         print(Config.font.fitSizeiPhone414)
+        
     }
     
     override func didReceiveMemoryWarning() {

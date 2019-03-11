@@ -42,6 +42,14 @@ public class M_Sign {
             verification()
         }
     }
+    /// 是否同意用户协议
+    public var isAgreement:Bool = true {
+        didSet{
+            verification()
+        }
+    }
+    
+    
     public var verifyCodeMaxCount:Int = 6
     public var verifyCodeMixCount:Int = 4
     public var blockCodeEnabled:((Bool) -> (Void))?
@@ -74,6 +82,7 @@ public class M_Sign {
                 && account.count <= accountMaxCount
                 && password.count >= passwordMixCount
                 && password.count <= passwordMaxCount
+                && isAgreement
             
         case .loginCode?:
             isCodeEnabled =
@@ -84,6 +93,7 @@ public class M_Sign {
                 isCodeEnabled
                 && verifyCode.count >= verifyCodeMixCount
                 && verifyCode.count <= verifyCodeMaxCount
+                && isAgreement
         case .register?, .pwdForget?:
             isCodeEnabled =
                 account.count >= accountMixCount
@@ -95,6 +105,7 @@ public class M_Sign {
                 && password.count <= passwordMaxCount
                 && verifyCode.count >= verifyCodeMixCount
                 && verifyCode.count <= verifyCodeMaxCount
+                && isAgreement
         case .pwdChange?:
             isSubmitEnabled =
                 account.count >= accountMixCount
@@ -103,6 +114,7 @@ public class M_Sign {
                 && password.count <= passwordMaxCount
                 && passwordVerify.count >= passwordMixCount
                 && passwordVerify.count <= passwordMaxCount
+                && isAgreement
         case .none:
             break
         }

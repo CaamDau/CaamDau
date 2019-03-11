@@ -9,181 +9,158 @@
 
 import Foundation
 
-//MARK:--- 计时模型 ----------
-/// 计时模型 应用类型以保持前后变更一致
-public class M_CDTime {
-    var year:Int = 0
-    var month:Int = 0
-    var day:Int = 0
-    var hour:Int = 0
-    var minute:Int = 0
-    var second:Int = 0
-    var millisecond:Int = 0
-    
-    enum Style {
-        case remainTime(_ time:TimeInterval)
-        case timestamp(_ now:TimeInterval, _ end:TimeInterval)
-    }
-    var style:Style?
-    
-    private init(){}
-    init(style:Style) {
-        self.style = style
-    }
-    
-    
-    var remainTime:Int = 0
-    var nowTime:TimeInterval = 0
-    var endTime:TimeInterval = 0
+public protocol CD_CountDownProtocol {
+    func cd_countDown(withModel model:CD_CountDown.Model)
 }
 
-
 public class CD_CountDown {
-    enum Style {
-        case delegate
-        case notification(_ name:String)
-        case block(_ b:((M_CDTime)->Void))
-    }
-    
     private init(){}
     public static let shared:CD_CountDown = CD_CountDown()
     ///时间倒计时标识存储，预防重复创建同一计时线程
-    var tags:[String] = []
+    private var timers:[String:CD_CountDown.Timer] = [:]
 }
 
 public extension CD_CountDown {
-    //MARK:--- 时间倒计时 ----------
-    ///时间倒计时
-    static func addCountDown(_ model:M_CDTime, nowTimestamp:TimeInterval, endTimestamp:TimeInterval, second:Double = 0.1) {
-        //以model 地址为标识，不必重复创建
-        let tag = String(format: "%p", model as! CVarArg)
-        if CD_CountDown.shared.tags.contains(tag) {return}
-        CD_CountDown.shared.tags.append(tag)
-        
-        
-        //结束时间
-        let endDate:Date = Date(timeIntervalSince1970: model.endTime)
-        //当前时间
-        let nowDate:Date = Date(timeIntervalSince1970: model.nowTime)
-        
-        //当前时间与系统时间差
-        let nowDateDiffer:TimeInterval = nowDate.timeIntervalSinceNow
-        
-        
-        //时间间隔 ^ 毫秒
-        var aTime:TimeInterval = endDate.timeIntervalSince(Date()) * 10
-        var bTime:Int = 999
-        
-        var saveSecond:Int  = 59
-        
-        // 创建一个时间源
-        let queue = DispatchQueue(label: tag)
-        let timer = DispatchSource.makeTimerSource(queue:queue)
-        
-        //循环执行，马上开始，间隔为 ms
-        timer.schedule(deadline: .now(), repeating: .milliseconds(Int(second*1000)), leeway: .milliseconds(10))
-        
-        // 设定时间源的触发事件
-        timer.setEventHandler(handler: {
-            //计算剩余时间
-            let gregorian = Calendar(identifier: .gregorian)
-            let cmps = gregorian.dateComponents(
-                [.year,
-                 .month,
-                 .day,
-                 .hour,
-                 .minute,
-                 .second],
-                from: Date(timeIntervalSince1970:Date().timeIntervalSince1970 + nowDateDiffer),
-                to: endDate)
-            
-            aTime = endDate.timeIntervalSince(Date(timeIntervalSince1970: Date().timeIntervalSince1970 + nowDateDiffer)) * 10
-            
-            bTime = saveSecond != cmps.second ? 999 : (bTime <= 0 ? 999 : bTime - Int(second*1000))
-            
-            saveSecond = cmps.second ?? 59
-            
-            if aTime <= 0 {
-                timer.cancel()
-                DispatchQueue.main.async(execute: { [weak model] in
-                    //print("通知\(aTime)毫秒")
-                    model?.year = 0
-                    model?.month = 0
-                    model?.day = 0
-                    model?.hour = 0
-                    model?.minute = 0
-                    model?.second = 0
-                    model?.millisecond = 0
-                    CD_CountDown.shared.tags.removeAll{$0 == tag}
-                })
-            } else {
-                DispatchQueue.main.async(execute: {[weak model] in
-                    model?.year = cmps.year ?? 0
-                    model?.month = cmps.month ?? 0
-                    model?.day = cmps.day ?? 0
-                    model?.hour = cmps.hour ?? 0
-                    model?.minute = cmps.minute ?? 0
-                    model?.second = cmps.second ?? 0
-                    model?.millisecond = bTime*10+Int(aTime)
-                })
-                
+    /// 计时器
+    public class Timer {
+        private init(){}
+        private var timer:DispatchSourceTimer?
+        /// 初始化一个计时器 handler: () -> Bool:是否停止  mainThread:主线程操作
+        init(id:String,
+             repeatSecond:Double,
+             handler:@escaping (() -> Bool),
+             mainThread:@escaping (() -> Void)) {
+            let queue = DispatchQueue(label: id)
+            self.timer = DispatchSource.makeTimerSource(queue:queue)
+            //wallDeadline 和 deadline
+            //gettimeofday(3)
+            //let tv = timespec(tv_sec: 1, tv_nsec: 1000)
+            self.timer?.schedule(wallDeadline:.now(), repeating: .milliseconds(Int(repeatSecond*1000)), leeway: .milliseconds(10))
+            self.timer?.setEventHandler { [weak self] in
+                //print(tv)
+                if handler() {
+                    self?.timer?.cancel()
+                    self?.timer = nil
+                }
+                DispatchQueue.main.async(execute: mainThread)
             }
-        })
-        // 启动时间源
-        timer.resume()
+            self.timer?.resume()
+        }
+    }
+    /// 回调类型
+    public enum Style {
+        case delegate(_ d:CD_CountDownProtocol, _ tag:String, _ remainTime:TimeInterval, _ repeatSecond:Double)
+        case notification(_ tag:String, _ remainTime:TimeInterval, _ repeatSecond:Double)
+        case callBack( _ tag:String, _ remainTime:TimeInterval, _ repeatSecond:Double, _ block:((CD_CountDown.Model)->Void))
+    }
+    
+    /// 计时模型
+    public class Model {
+        var year:Int = 0
+        var month:Int = 0
+        var day:Int = 0
+        var hour:Int = 0
+        var minute:Int = 0
+        var second:Int = 0
+        var millisecond:Int = 0
+        
+        /// 剩余时间
+        var remainTime:TimeInterval = 0
     }
 }
 
+
 public extension CD_CountDown {
-    //MARK:--- 验证码、秒表倒计时 ----------
-    ///验证码秒表倒计时
-    static func addVerifyCode(_ model:M_CDTime, maxTime: Int = 60) {
-        //以model 地址为标识，不必重复创建
-        let tag = String(format: "%p", model as! CVarArg)
-        if CD_CountDown.shared.tags.contains(tag) {return}
-        CD_CountDown.shared.tags.append(tag)
-        
-        let toTime = Date().timeIntervalSince1970 + TimeInterval(maxTime)
-        var aTime = maxTime
-        let queue = DispatchQueue(label: tag)
-        // 创建一个时间源
-        let timer = DispatchSource.makeTimerSource(queue:queue)
-        
-        //循环执行，马上开始，间隔为1s, 误差允许10微秒
-        timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(10))
-        // 设定时间源的触发事件
-        timer.setEventHandler(handler: {
-            aTime = Int(toTime - Date().timeIntervalSince1970)
-            if aTime <= 0 {
-                //timer.suspend()
-                timer.cancel()
-                DispatchQueue.main.async { [weak model] in
-                    //print("通知\(aTime)毫秒")
-                    model?.year = 0
-                    model?.month = 0
-                    model?.day = 0
-                    model?.hour = 0
-                    model?.minute = 0
-                    model?.second = 0
-                    model?.millisecond = 0
-                    CD_CountDown.shared.tags.removeAll{$0 == tag}
-                }
+    class func make(id:String,
+                    remainTime:TimeInterval,
+                    repeatSecond:Double,
+                    mainThread block:@escaping ((CD_CountDown.Model) -> Void)){
+        guard !CD_CountDown.shared.timers.keys.contains(id) else {return}
+        // 监听用户手动改变系统时间 UIApplicationSignificantTimeChangeNotification
+        /*
+         NotificationCenter.default.addObserver(forName: UIApplication.Significant.timeChangeNotification, object: nil, queue: nil) { (n) in
+         
+         }*/
+        /// 当前时间
+        let endTime = remainTime
+        let endDate = endTime.cd_date()
+        let time = CD_CountDown.Model()
+        time.remainTime = endTime
+        CD_CountDown.shared.timers[id] = CD_CountDown.Timer(id: id, repeatSecond: repeatSecond, handler: { () -> Bool in
+            /// 当前时间 与 结束时间间隔 即剩余时间
+            let nowDate2 = Date()
+            let nowTime2 = nowDate2.cd_timestamp()
+            let interval = endTime - nowTime2
+            let coms = nowDate2.cd_interval( to: endDate)
+            if interval <= 0 {
+                time.year = 0
+                time.month = 0
+                time.day = 0
+                time.hour = 0
+                time.minute = 0
+                time.second = 0
+                time.millisecond = 0
+                time.remainTime = 0
+                CD_CountDown.shared.timers.removeValue(forKey: id)
             }else{
-                DispatchQueue.main.async {[weak model] in
-                    model?.second = aTime
-                }
+                time.year = coms.year ?? 0
+                time.month = coms.month ?? 0
+                time.day = coms.day ?? 0
+                time.hour = coms.hour ?? 0
+                time.minute = coms.minute ?? 0
+                time.second = coms.second ?? 0
+                time.millisecond = Int((interval - TimeInterval(Int(endTime - nowTime2))) * 1000.0)
+                time.remainTime = interval
             }
+            return interval <= 0
+        }, mainThread: {
+            block(time)
         })
-        // 启动时间源
-        timer.resume()
     }
 }
-
+public extension CD_CountDown {
+    class func make(_ style:CD_CountDown.Style) {
+        switch style {
+        case let .delegate(d, id, time, second):
+            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second) { (model) in
+                d.cd_countDown(withModel: model)
+            }
+        case let .notification(id, time, second):
+            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second) { (model) in
+                NotificationCenter.default.post(name: NSNotification.Name(id), object: model)
+            }
+        case let .callBack(id, time, second, block):
+            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: block)
+        }
+    }
+}
+public extension CD_CountDown {
+    /// 剩余时间转换 - *提供一个参照样例*
+    class func remainTime<T>(_ time:T) -> TimeInterval {
+        switch time {
+        case let t as String:
+            guard let date = t.cd_date() else{
+                return 0
+            }
+            return date.cd_timestamp() - Date().cd_timestamp()
+        case let t as (String, String):
+            guard let date = t.0.cd_date(t.1) else{
+                return 0
+            }
+            return date.cd_timestamp() - Date().cd_timestamp()
+        case let t as Date:
+            return t.cd_timestamp() - Date().cd_timestamp()
+        default:
+            return 0
+        }
+    }
+}
 
 //MARK:--- 延时执行 ----------
 public extension CD_CountDown {
-    static func after(_ time:Double, _ block:@escaping () -> Void){
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time, execute: block)
+    /// 如果时间大于 30 建议使用 CD_CountDown.make
+    class func after(_ time:Double, _ block:@escaping (() -> Void)){
+        DispatchQueue.main.asyncAfter(deadline: .now() + time, execute: block)
         /*
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(2*NSEC_PER_SEC))/Double(NSEC_PER_SEC)) {
             

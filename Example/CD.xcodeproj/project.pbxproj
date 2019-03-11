@@ -39,9 +39,6 @@
 		4707FD7721E871080072257B /* Cell_MainNews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_MainNews.xib; sourceTree = "<group>"; };
 		4707FD7A21E873130072257B /* VM_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ViewController.swift; sourceTree = "<group>"; };
 		4707FD8921E8C67C0072257B /* VC_ImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_ImageTest.swift; sourceTree = "<group>"; };
-		47E08F1E2230C70F00AD66E2 /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		47E08F1F2230C71000AD66E2 /* Array.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Array.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		47E08F202230C71000AD66E2 /* M_Sign.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = M_Sign.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		607FACD01AFB9204008FA782 /* CD_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CD_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,17 +95,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		47E08F1D2230C70F00AD66E2 /* Playground */ = {
-			isa = PBXGroup;
-			children = (
-				47E08F1E2230C70F00AD66E2 /* String.playground */,
-				47E08F1F2230C71000AD66E2 /* Array.playground */,
-				47E08F202230C71000AD66E2 /* M_Sign.playground */,
-			);
-			name = Playground;
-			path = ../../Playground;
-			sourceTree = "<group>";
-		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +119,6 @@
 		607FACD21AFB9204008FA782 /* Example for CD */ = {
 			isa = PBXGroup;
 			children = (
-				47E08F1D2230C70F00AD66E2 /* Playground */,
 				47D118F421D13BE0005AD155 /* Main */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,

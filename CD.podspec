@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CD'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱).'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
@@ -24,6 +24,8 @@ TODO: Add long description of the pod here.
     cd.dependency 'CD/Extension'
     cd.dependency 'CD/Form'
     cd.dependency 'CD/Chain'
+    cd.dependency 'CD/CountDown'
+    cd.dependency 'CD/Value'
   end
   
   s.subspec 'All' do |all|
@@ -31,6 +33,8 @@ TODO: Add long description of the pod here.
     all.dependency 'CD/Extension'
     all.dependency 'CD/Form'
     all.dependency 'CD/Chain'
+    all.dependency 'CD/CountDown'
+    all.dependency 'CD/Value'
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
     all.dependency 'CD/MVVM'
@@ -51,6 +55,14 @@ TODO: Add long description of the pod here.
   
   s.subspec 'Chain' do |cn|
       cn.source_files = 'CD/CD_Chain/*', 'CD/CD.swift'
+  end
+  
+  s.subspec 'CountDown' do |down|
+    down.source_files = 'CD/CD_CountDown/*'
+  end
+  
+  s.subspec 'Value' do |v|
+    v.source_files = 'CD/CD_Value/*'
   end
   
   s.subspec 'IconFont' do |ifont|

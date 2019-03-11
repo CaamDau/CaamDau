@@ -12,93 +12,88 @@ import UIKit
 
 public protocol CDTextProtocol {
     /// T: String、NSAttributedString、UIColor、NSTextAlignment、UIFont、、
-    func set<T>(_ t: T?, _ state:UIControl.State?)
+    func setText<T>(_ t: T?, _ state:UIControl.State?)
 }
+
 extension CDTextProtocol {
     /// T: String、NSAttributedString、UIColor、NSTextAlignment、UIFont、、
-    func set<T>(_ t: T?, _ state:UIControl.State?){}
+    public func setText<T>(_ t: T?, _ state:UIControl.State?){
+        switch self {
+        case let ui as UILabel:
+            switch t {
+            case let txt as String:
+                ui.text = txt
+            case let attributed as NSAttributedString:
+                ui.attributedText = attributed
+            case let color as UIColor:
+                ui.textColor = color
+            case let alignment as NSTextAlignment:
+                ui.textAlignment = alignment
+            case let font as UIFont:
+                ui.font = font
+            default:
+                break
+            }
+        case let ui as UITextField:
+            switch t {
+            case let txt as String:
+                ui.text = txt
+            case let attributed as NSAttributedString:
+                ui.attributedText = attributed
+            case let color as UIColor:
+                ui.textColor = color
+            case let alignment as NSTextAlignment:
+                ui.textAlignment = alignment
+            case let font as UIFont:
+                ui.font = font
+            default:
+                break
+            }
+        case let ui as UITextView:
+            switch t {
+            case let txt as String:
+                ui.text = txt
+            case let attributed as NSAttributedString:
+                ui.attributedText = attributed
+            case let color as UIColor:
+                ui.textColor = color
+            case let alignment as NSTextAlignment:
+                ui.textAlignment = alignment
+            case let font as UIFont:
+                ui.font = font
+            default:
+                break
+            }
+        case let ui as UIButton:
+            switch t {
+            case let txt as String:
+                ui.setTitle(txt, for: state ?? .normal)
+            case let attributed as NSAttributedString:
+                ui.setAttributedTitle(attributed, for: state ?? .normal)
+            case let color as UIColor:
+                ui.setTitleColor(color, for: state ?? .normal)
+            case let font as UIFont:
+                ui.titleLabel?.font = font
+            default:
+                break
+            }
+        default:
+            break
+        }
+    }
 }
 
 
 public extension CD where Base: CDTextProtocol {
     /// T: String、NSAttributedString、UIColor、NSTextAlignment、UIFont、、 state -> button use
     @discardableResult
-    public func text<T>(_ t: T?, _ state:UIControl.State? = .normal) -> CD {
-        base.set(t, state)
+    func text<T>(_ t: T?, _ state:UIControl.State? = .normal) -> CD {
+        base.setText(t, state)
         return self
     }
 }
 
-extension UILabel: CDTextProtocol {
-    public func set<T>(_ t: T?, _ state:UIControl.State?) {
-        switch t {
-        case let txt as String:
-            self.text = txt
-        case let attributed as NSAttributedString:
-            self.attributedText = attributed
-        case let color as UIColor:
-            self.textColor = color
-        case let alignment as NSTextAlignment:
-            self.textAlignment = alignment
-        case let font as UIFont:
-            self.font = font
-        default:
-            break
-        }
-    }
-}
-
-extension UIButton: CDTextProtocol {
-    public func set<T>(_ t: T?, _ state:UIControl.State?) {
-        switch t {
-        case let txt as String:
-            self.setTitle(txt, for: state ?? .normal)
-        case let attributed as NSAttributedString:
-            self.setAttributedTitle(attributed, for: state ?? .normal)
-        case let color as UIColor:
-            self.setTitleColor(color, for: state ?? .normal)
-        case let font as UIFont:
-            self.titleLabel?.font = font
-        default:
-            break
-        }
-    }
-}
-
-extension UITextField: CDTextProtocol {
-    public func set<T>(_ t: T?, _ state:UIControl.State?) {
-        switch t {
-        case let txt as String:
-            self.text = txt
-        case let attributed as NSAttributedString:
-            self.attributedText = attributed
-        case let color as UIColor:
-            self.textColor = color
-        case let alignment as NSTextAlignment:
-            self.textAlignment = alignment
-        case let font as UIFont:
-            self.font = font
-        default:
-            break
-        }
-    }
-}
-
-extension UITextView: CDTextProtocol {
-    public func set<T>(_ t: T?, _ state:UIControl.State?) {
-        switch t {
-        case let txt as String:
-            self.text = txt
-        case let attributed as NSAttributedString:
-            self.attributedText = attributed
-        case let color as UIColor:
-            self.textColor = color
-        case let alignment as NSTextAlignment:
-            self.textAlignment = alignment
-        case let font as UIFont:
-            self.font = font
-        default:
-            break
-        }
-    }
-}
+extension UILabel: CDTextProtocol {}
+extension UIButton: CDTextProtocol {}
+extension UITextField: CDTextProtocol {}
+extension UITextView: CDTextProtocol {}

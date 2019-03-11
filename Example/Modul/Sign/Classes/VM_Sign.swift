@@ -43,9 +43,18 @@ struct VM_Sign {
             form.append(row)
         }
         do {
+            let row = CD_Row<Cell_SignLine>.init(data: "", frame: CGRect(h: 10))
+            form.append(row)
+        }
+        do {
+            let row = CD_Row<Cell_SignAgreement>.init(data: m_sign, frame: CGRect(h: 30))
+            form.append(row)
+        }
+        do {
             let row = CD_Row<Cell_SignLine>.init(data: "", frame: CGRect(h: 15))
             form.append(row)
         }
+        
         do {
             let row = CD_Row<Cell_SignOther>.init(data: "", frame: CGRect(h: 40))
             form.append(row)

@@ -7,6 +7,7 @@
 import Foundation
 import UIKit
 
+//MARK:--- UITextField ----------
 public extension CD where Base: UITextField {
     @discardableResult
     func placeholder(_ p: String? = nil) -> CD {
@@ -105,9 +106,31 @@ public extension CD where Base: UITextField {
     }
 }
 
-
-
+//MARK:--- UITextView ----------
 public extension CD where Base: UITextView {
+    
+    @discardableResult
+    func delegate(_ d:UITextViewDelegate? = nil) -> CD {
+        base.delegate = d
+        return self
+    }
+    
+    @discardableResult
+    func allows(editingTextAttributes b:Bool) -> CD {
+        base.allowsEditingTextAttributes = b
+        return self
+    }
+    @discardableResult
+    func typing(attributes b:[NSAttributedString.Key : Any]) -> CD {
+        base.typingAttributes = b
+        return self
+    }
+    
+    @discardableResult
+    func returnKeyType(_ a:UIReturnKeyType) -> CD {
+        base.returnKeyType = a
+        return self
+    }
 }
 
 
