@@ -15,6 +15,20 @@ public extension Date {
         case s2001
         case sNow
         case s(_ date:Date)
+        
+        var rawValue:Int {
+            switch self {
+            case .s1970:
+                return 1970
+            case .s2001:
+                return 2001
+            case .sNow:
+                return 1
+            case .s(let date):
+                return Int(date.cd_timestamp())
+            
+            }
+        }
     }
 }
 
@@ -31,6 +45,10 @@ public extension TimeInterval {
         case .s(let d):
             return Date(timeInterval: self, since: d)
         }
+    }
+    /// 时间戳 相对时间转换
+    func cd_timestamp(_ from:Date.CD_TimeSince, _ to:Date.CD_TimeSince) -> TimeInterval {
+        return self.cd_date(from).cd_timestamp(to)
     }
 }
 

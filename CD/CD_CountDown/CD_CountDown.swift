@@ -16,8 +16,10 @@ public protocol CD_CountDownProtocol {
 public class CD_CountDown {
     private init(){}
     public static let shared:CD_CountDown = CD_CountDown()
-    ///时间倒计时标识存储，预防重复创建同一计时线程
-    private var timers:[String:CD_CountDown.Timer] = [:]
+    ///时间倒计时标识存储 - 区别每个计时队列
+    public var timers:[String:CD_CountDown.Timer] = [:]
+    
+    
 }
 
 public extension CD_CountDown {
@@ -26,15 +28,13 @@ public extension CD_CountDown {
         private init(){}
         private var timer:DispatchSourceTimer?
         /// 初始化一个计时器 handler: () -> Bool:是否停止  mainThread:主线程操作
-        init(id:String,
-             repeatSecond:Double,
-             handler:@escaping (() -> Bool),
-             mainThread:@escaping (() -> Void)) {
-            let queue = DispatchQueue(label: id)
+        public init(id:String,
+                    repeatSecond:Double,
+                    handler:@escaping (() -> Bool),
+                    mainThread:@escaping (() -> Void),
+                    qos:DispatchQoS = .default) {
+            let queue = DispatchQueue(label: id, qos:qos)
             self.timer = DispatchSource.makeTimerSource(queue:queue)
-            //wallDeadline 和 deadline
-            //gettimeofday(3)
-            //let tv = timespec(tv_sec: 1, tv_nsec: 1000)
             self.timer?.schedule(wallDeadline:.now(), repeating: .milliseconds(Int(repeatSecond*1000)), leeway: .milliseconds(10))
             self.timer?.setEventHandler { [weak self] in
                 //print(tv)
@@ -56,16 +56,16 @@ public extension CD_CountDown {
     
     /// 计时模型
     public class Model {
-        var year:Int = 0
-        var month:Int = 0
-        var day:Int = 0
-        var hour:Int = 0
-        var minute:Int = 0
-        var second:Int = 0
-        var millisecond:Int = 0
+        public var year:Int = 0
+        public var month:Int = 0
+        public var day:Int = 0
+        public var hour:Int = 0
+        public var minute:Int = 0
+        public var second:Int = 0
+        public var millisecond:Int = 0
         
         /// 剩余时间
-        var remainTime:TimeInterval = 0
+        public var remainTime:TimeInterval = 0
     }
 }
 
@@ -74,7 +74,8 @@ public extension CD_CountDown {
     class func make(id:String,
                     remainTime:TimeInterval,
                     repeatSecond:Double,
-                    mainThread block:@escaping ((CD_CountDown.Model) -> Void)){
+                    mainThread block:@escaping ((CD_CountDown.Model) -> Void),
+                    qos:DispatchQoS = .default){
         guard !CD_CountDown.shared.timers.keys.contains(id) else {return}
         // 监听用户手动改变系统时间 UIApplicationSignificantTimeChangeNotification
         /*
@@ -82,7 +83,7 @@ public extension CD_CountDown {
          
          }*/
         /// 当前时间
-        let endTime = remainTime
+        let endTime = Date().cd_timestamp()+remainTime
         let endDate = endTime.cd_date()
         let time = CD_CountDown.Model()
         time.remainTime = endTime
@@ -115,22 +116,22 @@ public extension CD_CountDown {
             return interval <= 0
         }, mainThread: {
             block(time)
-        })
+        }, qos:qos)
     }
 }
 public extension CD_CountDown {
-    class func make(_ style:CD_CountDown.Style) {
+    class func make(_ style:CD_CountDown.Style, qos:DispatchQoS = .default) {
         switch style {
         case let .delegate(d, id, time, second):
-            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second) { (model) in
+            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in
                 d.cd_countDown(withModel: model)
-            }
+            }, qos: qos)
         case let .notification(id, time, second):
-            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second) { (model) in
+            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in
                 NotificationCenter.default.post(name: NSNotification.Name(id), object: model)
-            }
+            }, qos: qos)
         case let .callBack(id, time, second, block):
-            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: block)
+            CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: block, qos: qos)
         }
     }
 }
