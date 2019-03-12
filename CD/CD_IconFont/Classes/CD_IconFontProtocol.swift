@@ -48,7 +48,7 @@ public extension CD where Base: UIButton {
 public extension CD where Base: UIImageView {
     @discardableResult
     func iconfont(_ font:CD_IconFontProtocol, color:UIColor = UIColor.lightGray, mode:UIImage.CD_IconFontMode = .center) -> CD {
-        base.cd.image(UIImage.cd_iconfont(font, color:color, point: mode.point(font.size)))
+        base.image = UIImage.cd_iconfont(font, color:color, point: mode.point(font.size))
         return self
     }
 }

@@ -43,6 +43,7 @@ TODO: Add long description of the pod here.
   
   s.subspec 'Extension' do |es|
       es.source_files = 'CD/CD_Extension/*', 'CD/CD.swift'
+      es.dependency 'CD/Form'
   end
   
   s.subspec 'IBInspectable' do |ib|
@@ -59,6 +60,7 @@ TODO: Add long description of the pod here.
   
   s.subspec 'CountDown' do |down|
     down.source_files = 'CD/CD_CountDown/*'
+    down.dependency 'CD/Extension'
   end
   
   s.subspec 'Value' do |v|
@@ -66,10 +68,11 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'IconFont' do |ifont|
-      ifont.source_files = 'CD/CD_IconFont/Classes/*', 'CD/CD.swift'
+      ifont.source_files = 'CD/CD_IconFont/Classes/*'
       ifont.resource_bundles = {
           'IconFont' => ['CD/CD_IconFont/Assets/*.{ttf}']
       }
+      ifont.dependency 'CD/Extension'
   end
   
   s.subspec 'MVVM' do |vm|
@@ -77,7 +80,7 @@ TODO: Add long description of the pod here.
   end
   
   s.subspec 'MJRefresh' do |mj|
-    mj.source_files = 'CD/CD_MJRefresh/*'
+    mj.source_files = 'CD/CD_MJRefresh/*', 'CD/CD.swift'
     mj.dependency 'MJRefresh'
   end
   
@@ -86,6 +89,6 @@ TODO: Add long description of the pod here.
   #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit'
+  s.frameworks = 'UIKit', 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
