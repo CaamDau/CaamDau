@@ -61,6 +61,8 @@ pod 'CD/Chain'
 pod 'CD/Form'
 pod 'CD/Extension'
 pod 'CD/IconFont'
+pod 'CD/CountDown'
+pod 'CD/Value'
 ```
 ## Author
 
