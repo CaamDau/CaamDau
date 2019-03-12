@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CD'
-  s.version          = '0.2.4.2'
+  s.version          = '0.2.42'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱).'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
