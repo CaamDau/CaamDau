@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CD'
-  s.version          = '0.2.0'
+  s.version          = '0.2.4.2'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱).'
   s.description      = <<-DESC
 TODO: Add long description of the pod here.
@@ -14,7 +14,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-
+  s.swift_version = '4.2'
   # s.source_files = 'CD/**/*'
   
   s.default_subspec = 'CD'
@@ -37,7 +37,7 @@ TODO: Add long description of the pod here.
     all.dependency 'CD/Value'
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
-    all.dependency 'CD/MVVM'
+    #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
   end
   
@@ -75,9 +75,9 @@ TODO: Add long description of the pod here.
       ifont.dependency 'CD/Extension'
   end
   
-  s.subspec 'MVVM' do |vm|
-    vm.source_files = 'CD/CD_MVVM/*'
-  end
+  #s.subspec 'MVVM' do |vm|
+  #  vm.source_files = 'CD/CD_MVVM/*'
+  #end
   
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CD/CD_MJRefresh/*', 'CD/CD.swift'
