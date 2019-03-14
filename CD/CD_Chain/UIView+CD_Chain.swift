@@ -225,6 +225,21 @@ public extension CD where Base: UIView {
         return self
     }
     
+    /// 圆角
+    @discardableResult
+    func byRounded(_ corners:UIRectCorner, _ radii:CGSize) -> CD {
+        return self.byRounded(base.bounds, corners, radii)
+    }
+    
+    /// 圆角
+    @discardableResult
+    func byRounded(_ rect:CGRect, _ corners:UIRectCorner, _ radii:CGSize) -> CD {
+        let rounded = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: radii)
+        let shape = CAShapeLayer()
+        shape.path = rounded.cgPath
+        base.layer.mask = shape
+        return self
+    }
 }
 
 //MARK:--- 返回非 self 将中断链式 ----------
