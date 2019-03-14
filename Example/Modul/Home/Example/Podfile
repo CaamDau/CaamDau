@@ -1,0 +1,17 @@
+use_frameworks!
+inhibit_all_warnings!
+platform :ios, '9.0'
+
+target 'Example' do
+  
+  pod 'CD/All'
+  
+  pod 'Assets', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
+  pod 'Config', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
+  
+  # 阿里七巧板
+  #pod 'Tangram'
+  # 阿里协程库
+  #pod 'coobjc'
+  
+end

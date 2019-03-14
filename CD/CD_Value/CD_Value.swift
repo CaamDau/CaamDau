@@ -137,7 +137,6 @@ public extension CD_Value {
     }
     private func isArrayHashable<T>(_ key:T) -> AnyHashable? {
         guard let value = self.isArray(key) as? AnyHashable else {
-            assertionFailure("👉👉👉\(self)[\(key)] - 数组Value非法不能转换 👻")
             return nil
         }
         return value
@@ -155,7 +154,6 @@ public extension CD_Value {
     
     private func isDictionaryHashable<T>(_ key:T) -> AnyHashable? {
         guard let value = self.isDictionary(key) as? AnyHashable else {
-            assertionFailure("👉👉👉\(self)[\(key)] - 字典Value非法不能转换 👻")
             return nil
         }
         return value

@@ -228,7 +228,7 @@ let json1 = json.compactMap{$0["list"]}
 
 
 
-/*
+
  
  //: [Next](@next)
  
@@ -240,15 +240,15 @@ let json1 = json.compactMap{$0["list"]}
  }
  arr1
  
- var arr2 = arr1.compactMap { (str) -> [[String]]? in
+ var arr22 = arr1.compactMap { (str) -> [[String]]? in
  return [[str, str, str], [str, str, str], ]
  }
  arr2
  
- var arr3 = Array(arr2.joined())
+ var arr3 = Array(arr22.joined())
  var arr4 = Array(arr3.joined())
  var arr5 = Array(arr4.joined(separator: "666"))
- 
+ /*
  var arr6:[Any] = [1, [2,3], 4]
  
  var arr7 = arr6.compactMap { (tt) -> [Int]? in

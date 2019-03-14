@@ -155,9 +155,6 @@ public protocol CD_Value {
      func float80<T>(_ key:T) -> Float80?
      func float80Value<T>(_ key:T) -> Float80
      */
-    
-    
-    
 }
 
 public extension CD_Value {
@@ -177,7 +174,6 @@ public extension CD_Value {
     }
     private func isArrayHashable<T>(_ key:T) -> AnyHashable? {
         guard let value = self.isArray(key) as? AnyHashable else {
-            assertionFailure("👉👉👉\(self)[\(key)] - 数组Value非法不能转换 👻")
             return nil
         }
         return value
@@ -195,7 +191,6 @@ public extension CD_Value {
     
     private func isDictionaryHashable<T>(_ key:T) -> AnyHashable? {
         guard let value = self.isDictionary(key) as? AnyHashable else {
-            assertionFailure("👉👉👉\(self)[\(key)] - 字典Value非法不能转换 👻")
             return nil
         }
         return value
@@ -492,8 +487,3 @@ arr.urlValue(2)
 arr.arrayValue(4)
 arr.stringValue(1).arrayValue(".")
 arr.dictValue(5).dictValue("23")
-
-
-
-
-"123AAASSdr".lowercased()

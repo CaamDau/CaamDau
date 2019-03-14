@@ -49,4 +49,24 @@ public extension UIColor {
         Scanner(string: sb).scanHexInt32(&b)
         return UIColor(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b))
     }
+    
+    
+    var cd_hex:String {
+        let rgba = self.cd_rgba
+        let rs:String = String(format: "%0X", Int(rgba.0*255))
+        let gs:String = String(format: "%0X", Int(rgba.1*255))
+        let bs:String = String(format: "%0X", Int(rgba.2*255))
+        return "#" + rs + gs + bs
+    }
+    var cd_rgba:(CGFloat,CGFloat,CGFloat,CGFloat) {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 1
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return (r,g,b,a)
+    }
+    var cd_alpha:CGFloat {
+        return self.cd_rgba.3
+    }
 }
