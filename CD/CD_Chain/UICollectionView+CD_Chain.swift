@@ -72,8 +72,6 @@ public extension CD where Base: UICollectionView {
         return base.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: id, for: index)
     }
     
-    
-    
     @discardableResult
     func background(view v: UIView?) -> CD {
         base.backgroundView = v
@@ -100,13 +98,21 @@ public extension CD where Base: UICollectionView {
     
     @discardableResult
     func prefetch(dataSource d: UICollectionViewDataSourcePrefetching?) -> CD {
-        base.prefetchDataSource = d
+        if #available(iOS 10.0, *) {
+            base.prefetchDataSource = d
+        } else {
+            // Fallback on earlier versions
+        }
         return self
     }
     
     @discardableResult
     func isPrefetching(enabled e: Bool) -> CD {
-        base.isPrefetchingEnabled = e
+        if #available(iOS 10.0, *) {
+            base.isPrefetchingEnabled = e
+        } else {
+            // Fallback on earlier versions
+        }
         return self
     }
     

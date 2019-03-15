@@ -34,6 +34,17 @@ public extension CD where Base: UITableView {
     }
     
     @discardableResult
+    func estimatedAll() -> CD {
+        if #available(iOS 11.0, *) {
+            base.contentInsetAdjustmentBehavior = .never
+        }
+        base.estimatedRowHeight = 0
+        base.estimatedSectionHeaderHeight = 0
+        base.estimatedSectionFooterHeight = 0
+        return self
+    }
+    
+    @discardableResult
     func dataSource(_ d: UITableViewDataSource?) -> CD {
         base.dataSource = d
         return self
@@ -55,7 +66,6 @@ public extension CD where Base: UITableView {
     @available(iOS 11.0, *)
     @discardableResult
     func drag(delegate d: UITableViewDragDelegate?) -> CD {
-        base.dragDelegate = d
         return self
     }
     

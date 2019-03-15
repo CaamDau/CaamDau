@@ -347,8 +347,9 @@ public func cd_appUpdateDate() -> Date? {
 public func cd_iOS11ScrollViewAdjustmentBehavior() {
     if #available(iOS 11.0, *) {
         UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
-        UITableView.appearance().contentInsetAdjustmentBehavior = .never
         UICollectionView.appearance().contentInsetAdjustmentBehavior = .never
+        
+        UITableView.appearance().contentInsetAdjustmentBehavior = .never
         UITableView.appearance().estimatedRowHeight = 0
         UITableView.appearance().estimatedSectionHeaderHeight = 0
         UITableView.appearance().estimatedSectionFooterHeight = 0
