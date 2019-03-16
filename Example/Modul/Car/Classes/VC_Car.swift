@@ -13,6 +13,6 @@ public class VC_Car: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.red
+        
     }
 }

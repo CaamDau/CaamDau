@@ -30,4 +30,9 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'CD'
   s.dependency 'Assets'
+  s.dependency 'Config'
+  s.dependency 'Web'
+  s.dependency 'RxSwift'
+  s.dependency 'RxCocoa'
+  s.dependency 'RxDataSources'
 end

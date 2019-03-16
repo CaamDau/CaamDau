@@ -12,95 +12,95 @@ import UIKit
 
 public struct CD_MJRefreshModel {
     /// 下拉闲置状态 文字
-    var down_txtIdle = ""
+    public var down_txtIdle = ""
     /// 下拉提示松开状态 文字
-    var down_txtPulling = ""
+    public var down_txtPulling = ""
     /// 下拉即将刷新状态
-    var down_txtWillRefresh = ""
+    public var down_txtWillRefresh = ""
     /// 下拉松开正在刷新状态
-    var down_txtRefreshing = ""
+    public var down_txtRefreshing = ""
     /// 下拉数据加载完毕状态
-    var down_txtNoMoreData = ""
+    public var down_txtNoMoreData = ""
     
     /// 下拉闲置状态 图片
-    var down_imgIdle:[UIImage] = []
+    public var down_imgIdle:[UIImage] = []
     /// 下拉提示松开状态 图片
-    var down_imgPulling:[UIImage] = []
+    public var down_imgPulling:[UIImage] = []
     /// 下拉即将刷新状态 图片
-    var down_imgWillRefresh:[UIImage] = []
+    public var down_imgWillRefresh:[UIImage] = []
     /// 下拉松开正在刷新状态 图片
-    var down_imgRefreshing:[UIImage] = []
+    public var down_imgRefreshing:[UIImage] = []
     /// 下拉数据加载完毕状态 图片
-    var down_imgNoMoreData:[UIImage] = []
+    public var down_imgNoMoreData:[UIImage] = []
     
     /// 下拉刷新状态的Label字体
-    var down_txtFont:UIFont = UIFont.systemFont(ofSize: 14)
+    public var down_txtFont:UIFont = UIFont.systemFont(ofSize: 14)
     /// 下拉刷新状态的Label文字颜色
-    var down_txtColor:UIColor = UIColor.lightGray
+    public var down_txtColor:UIColor = UIColor.lightGray
     /// 下拉刷新状态的Label是否隐藏
-    var down_txtHidden:Bool = true
+    public var down_txtHidden:Bool = true
     /// 下拉刷新状态的Label字体
-    var down_timeFont:UIFont = UIFont.systemFont(ofSize: 12)
+    public var down_timeFont:UIFont = UIFont.systemFont(ofSize: 12)
     /// 下拉刷新状态的Label文字颜色
-    var down_timeColor:UIColor = UIColor.lightGray
+    public var down_timeColor:UIColor = UIColor.lightGray
     /// 下拉刷新状态的Label是否隐藏
-    var down_timeHidden:Bool = true
+    public var down_timeHidden:Bool = true
     /// 下拉文字和图片间的距离
-    var down_leftInset:CGFloat = 0
+    public var down_leftInset:CGFloat = 0
     /// 下拉菊花样式
-    var down_activityStyle:UIActivityIndicatorView.Style = .gray
+    public var down_activityStyle:UIActivityIndicatorView.Style = .gray
     /// 下拉时间格式自定义
-    var down_timeText:((Date)->(String))?
+    public var down_timeText:((Date)->(String))?
     
     
     /// 上拉闲置状态 文字
-    var up_txtIdle = ""
+    public var up_txtIdle = ""
     /// 上拉提示松开状态 文字
-    var up_txtPulling = ""
+    public var up_txtPulling = ""
     /// 上拉即将刷新状态
-    var up_txtWillRefresh = ""
+    public var up_txtWillRefresh = ""
     /// 上拉松开正在刷新状态
-    var up_txtRefreshing = ""
+    public var up_txtRefreshing = ""
     /// 上拉数据加载完毕状态
-    var up_txtNoMoreData = "没有更多数据"
+    public var up_txtNoMoreData = "没有更多数据"
     
     /// 上拉刷新状态的Label字体
-    var up_txtFont:UIFont = UIFont.systemFont(ofSize: 14)
+    public var up_txtFont:UIFont = UIFont.systemFont(ofSize: 14)
     /// 上拉刷新状态的Label文字颜色
-    var up_txtColor:UIColor = UIColor.lightGray
+    public var up_txtColor:UIColor = UIColor.lightGray
     /// 上拉刷新状态的Label是否隐藏
-    var up_txtHidden:Bool = false
+    public var up_txtHidden:Bool = false
     /// 上拉文字和图片间的距离
-    var up_leftInset:CGFloat = 0
+    public var up_leftInset:CGFloat = 0
     /// 下拉菊花样式
-    var up_activityStyle:UIActivityIndicatorView.Style = .gray
+    public var up_activityStyle:UIActivityIndicatorView.Style = .gray
     
     /// 上拉闲置状态 图片
-    var up_imgIdle:[UIImage] = []
+    public var up_imgIdle:[UIImage] = []
     /// 上拉提示松开状态 图片
-    var up_imgPulling:[UIImage] = []
+    public var up_imgPulling:[UIImage] = []
     /// 上拉即将刷新状态 图片
-    var up_imgWillRefresh:[UIImage] = []
+    public var up_imgWillRefresh:[UIImage] = []
     /// 上拉松开正在刷新状态 图片
-    var up_imgRefreshing:[UIImage] = []
+    public var up_imgRefreshing:[UIImage] = []
     /// 上拉数据加载完毕状态 图片
-    var up_imgNoMoreData:[UIImage] = []
+    public var up_imgNoMoreData:[UIImage] = []
     
     
     
     
     /// 忽略多少scrollView的contentInset的bottom
-    var ignoredContentInsetBottom:CGFloat = 0
+    public var ignoredContentInsetBottom:CGFloat = 0
     /// 忽略多少scrollView的contentInset的Top
-    var ignoredContentInsetTop:CGFloat = 0
+    public var ignoredContentInsetTop:CGFloat = 0
     /// 是否禁止自动加载
-    var isAutoRefresh:Bool = true
+    public var isAutoRefresh:Bool = true
     /// 当底部控件出现多少时就自动刷新
-    var autoRefreshPercent:CGFloat = 1
+    public var autoRefreshPercent:CGFloat = 1
     /// 是否每一次拖拽只发一次请求
-    var onlyRefreshPerDrag:Bool = false
+    public var onlyRefreshPerDrag:Bool = false
     
-    init() {}
+    public init() {}
     
     
     
@@ -118,6 +118,31 @@ public struct CD_MJRefreshModel {
         case refreshing(_ t:[UIImage])
         case willRefresh(_ t:[UIImage])
         case noMoreData(_ t:[UIImage])
+    }
+    
+    
+    //MARK:--- 刷新状态更新 ----------
+    public enum RefreshType {
+        case tBegin
+        case tEnd
+        case tNoMoreDataEnd
+        case tNoMoreDataReset
+        case tHiddenFoot(_ b:Bool)
+        
+        var intValue:Int {
+            switch self {
+            case .tBegin:
+                return 0
+            case .tEnd:
+                return 1
+            case .tNoMoreDataEnd:
+                return 2
+            case .tNoMoreDataReset:
+                return 3
+            case .tHiddenFoot:
+                return 4
+            }
+        }
     }
 }
 

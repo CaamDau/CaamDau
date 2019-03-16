@@ -10,7 +10,7 @@
 import Foundation
 
 public protocol CD_CountDownProtocol {
-    func cd_countDown(withModel model:CD_CountDown.Model)
+    func cd_countDown(withModel model:CD_CountDown.Model, id:String)
 }
 
 public class CD_CountDown {
@@ -124,7 +124,7 @@ public extension CD_CountDown {
         switch style {
         case let .delegate(d, id, time, second):
             CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in
-                d.cd_countDown(withModel: model)
+                d.cd_countDown(withModel: model, id:id)
             }, qos: qos)
         case let .notification(id, time, second):
             CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in

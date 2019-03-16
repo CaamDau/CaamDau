@@ -10,45 +10,102 @@
 import Foundation
 import CD
 import Sign
+import Web
+import Config
+
+//MARK:--- 分组 ----------
+extension VM_Mine {
+    enum Section:Int {
+        case form = 0
+        case other
+        case me
+        case end
+        
+        var headerTitle:String {
+            switch self {
+            case .form:
+                return "CD_Form"
+            default:
+                return ""
+            }
+        }
+        var headerColor:UIColor {
+            switch self {
+            case .form:
+                return Config.color.bg
+            default:
+                return Config.color.bg
+            }
+        }
+    }
+}
+
 
 struct VM_Mine {
-    lazy var form:[[CD_RowProtocol]] = {
-        return [[],[]]
-    }()
-    lazy var title0:[String] = {
-        return ["登录"]
+    
+    lazy var forms:[[CD_RowProtocol]] = {
+        return (0..<Section.end.rawValue).map{_ in []}
     }()
     
     var block:(()->Void)?
     
-    mutating func makeForm(){
-        do{
-            let row = CD_Row<Cell_MineTitle>.init(data: "登录") {
-                VC_Sign.isSignUp(true)
-                
-            }
-            form[1].append(row)
-        }
-        
-        
-        block?()
-    }
-    
-    
     init() {
         makeForm()
     }
-}
-
-
-
-class Cell_MineTitle:UITableViewCell{
-    
-}
-extension Cell_MineTitle:CD_RowUpdateProtocol{
-    typealias DataSource = String
-    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.textLabel?.cd.text(data)
+    mutating func makeForm() {
+        makeSectionMe()
+        makeSectionForm()
+        
+        block?()
     }
+}
+
+
+
+//MARK:--- 排版 ----------
+extension VM_Mine{
+    mutating func makeSectionMe(){
+        do{
+            let row = CD_Row<Cell_MineSign>(data: "登 录", frame: CGRect(h:45)) {
+                VC_Sign.isSignUp(true)
+            }
+            self.forms[Section.me.rawValue].append(row)
+        }
+    }
+}
+extension VM_Mine{
+    mutating func makeSectionForm() {
+        let callBack:CD_RowCallBack = { _ in
+            VC_Web.push(.http("https://github.com/liucaide/CD"))
+        }
+        
+        do{
+            let row = CD_Row<Cell_MineForm>(data: "Form-TableView", frame: CGRect(h:45), callBack: callBack) {
+                VC_MineTableView.push()
+            }
+            self.forms[Section.form.rawValue].append(row)
+        }
+        do{
+            let row = CD_RowClass<Cell_MineForm>(data: "Form-CollectionView", frame: CGRect(h:45), callBack:callBack) {
+                VC_MineCollection.push()
+            }
+            self.forms[Section.form.rawValue].append(row)
+        }
+        
+        // --------- IconFont CountDown ----------
+        do{
+            let row = CD_Row<Cell_MineTitle>(data: ("CD_CountDown","计时器"), frame: CGRect(h:45)) {
+                VC_MineTableView.push()
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        do{
+            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_IconFont", "阿里矢量图标库 管理&使用"), frame: CGRect(h:45)) {
+                VC_MineCollection.push()
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+    }
+    
     
 }

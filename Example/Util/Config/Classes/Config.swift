@@ -167,35 +167,60 @@ public extension Config {
             }
         }
         
-        public static func font(_ size:CGFloat) -> UIFont {
-            return UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size)
+        public static let setFit:Void = {
+            setFontFitSizeRatio()
+            return ()
+        }()
+        
+        public static func font(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size)
+            return fit ? font.fit() : font
         }
-        public static func fontMedium(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameMedium, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.medium)
+        public static func fontMedium(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameMedium, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.medium)
+            return fit ? font.fit() : font
         }
-        public static func fontBold(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
+        public static func fontBold(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
+            return fit ? font.fit() : font
         }
-        public static func fontThin(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameThin, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.thin)
+        public static func fontThin(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameThin, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.thin)
+            return fit ? font.fit() : font
         }
-        public static func fontRegular(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameRegular, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+        public static func fontRegular(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameRegular, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+            return fit ? font.fit() : font
         }
-        public static func fontSemibold(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameSemibold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+        public static func fontSemibold(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameSemibold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+            return fit ? font.fit() : font
         }
-        public static func fontUltralight(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameUltralight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.ultraLight)
+        public static func fontUltralight(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameUltralight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.ultraLight)
+            return fit ? font.fit() : font
         }
-        public static func fontLight(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameLight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
+        public static func fontLight(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameLight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
+            return fit ? font.fit() : font
         }
-        public static func fontHeavy(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameHeavy, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.heavy)
+        public static func fontHeavy(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameHeavy, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.heavy)
+            return fit ? font.fit() : font
         }
-        public static func fontBlack(_ size:CGFloat) -> UIFont {
-            return UIFont(name: nameBlack, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.black)
+        public static func fontBlack(_ size:CGFloat, fit:Bool = false) -> UIFont {
+            _ = setFit
+            let font = UIFont(name: nameBlack, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.black)
+            return fit ? font.fit() : font
         }
     }
 }

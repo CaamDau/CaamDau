@@ -19,14 +19,19 @@ public class VC_Home: UIViewController {
         return VM_Home()
     }()
     
+//    lazy var modelMj:CD_MJRefreshModel = {
+//        //var m = CD_MJRefreshModel()
+//
+//        return m
+//    }()
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        //self.tableView.reloadData()
+        self.tableView.cd
+            .estimatedAll()
     }
 }
-
 
 
 extension VC_Home:UITableViewDelegate, UITableViewDataSource{
@@ -47,4 +52,9 @@ extension VC_Home:UITableViewDelegate, UITableViewDataSource{
         row.bind(cell!)
         return cell!
     }
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = vm.forms[indexPath.section][indexPath.row]
+        row.didSelect?()
+    }
+    
 }

@@ -7,13 +7,13 @@
 		<key>main_1</key>
 		<string>5C86FF</string>
 		<key>main_2</key>
-		<string>#ffffff</string>
+		<string>FF5500</string>
 		<key>main_3</key>
-		<string>#9f7c59</string>
+		<string>FF630F</string>
 		<key>main_4</key>
-		<string>#C6AD8F</string>
+		<string>FFBF1C</string>
 		<key>main_5</key>
-		<string>#3c3c3c</string>
+		<string>FFEEE6</string>
 		<key>btnBgSelected</key>
 		<string>5C86FF</string>
 		<key>btnBgNormal</key>
@@ -25,21 +25,21 @@
 		<key>btnBgHighlighted</key>
 		<string>5C86FF</string>
 		<key>txt_1</key>
-		<string>#3c3c3c</string>
+		<string>#0</string>
 		<key>txt_2</key>
-		<string>#6c6c6c</string>
+		<string>#6</string>
 		<key>txt_3</key>
-		<string>#b0b0b0</string>
+		<string>#9</string>
 		<key>txt_4</key>
-		<string>#b0b0b0</string>
+		<string>#b0</string>
 		<key>txt_5</key>
-		<string>#b0b0b0</string>
+		<string>#d4</string>
 		<key>bg</key>
-		<string>#f2f2f2</string>
+		<string>#f2</string>
 		<key>line_1</key>
-		<string>#e5e5e5</string>
+		<string>#e5</string>
 		<key>line_2</key>
-		<string>#e5e5e5</string>
+		<string>#f0</string>
 		<key>warning</key>
 		<string>#e54f4f</string>
 		<key>error</key>

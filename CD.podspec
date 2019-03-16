@@ -2,9 +2,9 @@
 Pod::Spec.new do |s|
   s.name             = 'CD'
   s.version          = '0.2.42'
-  s.summary          = 'A iOS development toolbox (iOS 开发工具箱).'
+  s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块插件) Swift 版).'
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  TODO: iOS 模块插件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能插件，可快速集成使用以大幅减少基础工作量；附.各种类库使用示例demo.
                        DESC
 
   s.homepage         = 'https://github.com/liucaide/CD'
@@ -17,9 +17,9 @@ TODO: Add long description of the pod here.
   s.swift_version = '4.2'
   # s.source_files = 'CD/**/*'
   
-  s.default_subspec = 'CD'
+  s.default_subspec = 'Core'
   
-  s.subspec 'CD' do |cd|
+  s.subspec 'Core' do |cd|
     cd.source_files = 'CD/CD.swift'
     cd.dependency 'CD/Extension'
     cd.dependency 'CD/Form'

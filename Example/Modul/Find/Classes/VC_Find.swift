@@ -14,20 +14,5 @@ public extension VC_Find{
 public class VC_Find: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.blue
-    }
-    
-    
-    @IBAction func clickButton(_ sender: UIButton) {
-        switch sender.tag {
-        case 0:
-            break
-            //VC_Login.isLogin(self, true)
-        case 1:
-            break
-            //VC_News.push(self)
-        default:
-            break
-        }
     }
 }

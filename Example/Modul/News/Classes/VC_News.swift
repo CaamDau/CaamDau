@@ -16,7 +16,6 @@ public extension VC_News{
 public class VC_News: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.gray
     }
 }
 

@@ -11,7 +11,7 @@ public extension Bundle{
     static func cd_bundle(_ forClass:AnyClass, _ from:String) -> Bundle? {
         let bundle = Bundle(for: forClass)
         guard let bundleURL = bundle.url(forResource: from, withExtension: "bundle") else {
-            assertionFailure("👉👉👉\(from) - 无法找到 Bundle  👻")
+            //assertionFailure("👉👉👉\(from) - 无法找到 Bundle  👻")
             return nil
         }
         return Bundle(url: bundleURL)

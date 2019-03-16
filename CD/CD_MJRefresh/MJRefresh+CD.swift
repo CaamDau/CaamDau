@@ -122,6 +122,15 @@ public extension CD where Base: UIScrollView {
         base.mj_footer = mj
         return self
     }
+    /// 添加默认上拉 - 自动刷
+    @discardableResult
+    func footerMJAutoWithModel(_ block:@escaping MJRefreshComponentRefreshingBlock, model:CD_MJRefreshModel = CD_MJRefresh.shared.model, custom:((MJRefreshAutoNormalFooter?)->Void)? = nil) -> CD{
+        let mj = MJRefreshAutoNormalFooter(refreshingBlock: block)
+        self.footer(withAuto: mj, model: model)
+        custom?(mj)
+        base.mj_footer = mj
+        return self
+    }
     /// 添加Gif上拉
     @discardableResult
     func footerMJGifBackWithModel( _ block:@escaping MJRefreshComponentRefreshingBlock, model:CD_MJRefreshModel = CD_MJRefresh.shared.model, custom:((MJRefreshBackGifFooter?)->Void)? = nil) -> CD{
@@ -173,6 +182,7 @@ public extension CD where Base: UIScrollView {
             mj?.cd
                 .activityStyle()
                 .setTitle()
+            
             return
         }
         mj?.cd.activityStyle(m.up_activityStyle)
@@ -235,32 +245,10 @@ public extension CD where Base: UIScrollView {
                         .noMoreData(m.up_imgNoMoreData)])
     }
     
-    //MARK:--- 刷新状态更新 ----------
-    enum MJRefreshType {
-        case tBegin
-        case tEnd
-        case tNoMoreDataEnd
-        case tNoMoreDataReset
-        case tHiddenFoot(_ b:Bool)
-        
-        var intValue:Int {
-            switch self {
-            case .tBegin:
-                return 0
-            case .tEnd:
-                return 1
-            case .tNoMoreDataEnd:
-                return 2
-            case .tNoMoreDataReset:
-                return 3
-            case .tHiddenFoot:
-                return 4
-            }
-        }
-    }
+    
     /// 设置刷新状态
     @discardableResult
-    func mjRefreshTypes(_ types:[MJRefreshType]) -> CD {
+    func mjRefreshTypes(_ types:[CD_MJRefreshModel.RefreshType]) -> CD {
         var types = types
         types.sort{$0.intValue < $1.intValue}
         for item in types {
@@ -272,7 +260,7 @@ public extension CD where Base: UIScrollView {
             case .tNoMoreDataEnd:
                 self.endRefreshingWithNoMoreData()
             case .tNoMoreDataReset:
-                self.endRefreshingWithNoMoreData()
+                self.resetNoMoreData()
             case .tHiddenFoot(let b):
                 self.hiddenFoot(b)
             }

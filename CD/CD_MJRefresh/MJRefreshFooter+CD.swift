@@ -103,6 +103,7 @@ public extension CD where Base: MJRefreshBackStateFooter {
                 base.setTitle(t, for: .noMoreData)
             }
         }
+        base.labelLeftInset = inset
         base.stateLabel.font = font;
         base.stateLabel.textColor = color
         return self
@@ -142,6 +143,7 @@ public extension CD where Base: MJRefreshAutoStateFooter {
                 base.setTitle(t, for: .noMoreData)
             }
         }
+        base.labelLeftInset = inset
         base.stateLabel.font = font;
         base.stateLabel.textColor = color
         return self

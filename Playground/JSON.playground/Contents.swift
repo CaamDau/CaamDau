@@ -157,6 +157,7 @@ public protocol CD_Value {
      */
 }
 
+
 public extension CD_Value {
     private func isArray<T>(_ key:T) -> Any? {
         guard let arr = self as? Array<Any> else {
@@ -413,8 +414,6 @@ public extension CD_Value {
         return self.array ?? []
     }
     
-    
-    
     func array<T>(_ key:T) -> Array<Any>? {
         if let values = self.isArray(key), let value = values as? Array<Any> {
             return value
@@ -477,7 +476,7 @@ let arr:[Any] = [3.0,
     ]
 ]
 
-
+/*
 arr.intValue(1)
 arr.uintValue(1)
 let uu = arr.uint(3) ?? UInt(abs(arr.intValue(3)))
@@ -487,3 +486,87 @@ arr.urlValue(2)
 arr.arrayValue(4)
 arr.stringValue(1).arrayValue(".")
 arr.dictValue(5).dictValue("23")
+*/
+
+//let a = Decimal.init("1.234".doubleValue)
+//let b = Decimal(0)
+
+
+enum CDDecimalRoundingMode {
+    /// 四舍五入 fraction: 保留位数
+    case tPlain(_ fraction:Int16)
+    /// 向下取整
+    case tDown(_ fraction:Int16)
+    /// 是向上取整
+    case tUp(_ fraction:Int16)
+    /// 四舍五入的基础上，截断位后值为5时，尾数变成偶数
+    case tBankers(_ fraction:Int16)
+    
+    var modeValue:(NSDecimalNumber.RoundingMode,Int16) {
+        switch self {
+        case .tPlain(let f):
+            return (.plain, f)
+        case .tDown(let f):
+            return (.down, f)
+        case .tUp(let f):
+            return (.up, f)
+        case .tBankers(let f):
+            return (.bankers, f)
+        }
+        
+    }
+}
+
+extension String {
+    /// 精确取值
+    func decimal(_ mode:CDDecimalRoundingMode = .tPlain(2)) -> String {
+        //let a = NSDecimalNumber(decimal: Decimal(self.doubleValue))
+        //let b = NSDecimalNumber(decimal: Decimal(0))
+        let a = NSDecimalNumber(string: self)
+        let b = NSDecimalNumber(string: "0")
+        let h = NSDecimalNumberHandler(roundingMode: mode.modeValue.0, scale: mode.modeValue.1, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+        return a.adding(b, withBehavior: h).stringValue
+    }
+    
+    
+    func format(){
+        
+    }
+    
+    func index(subString s:String) -> Int? {
+        guard let r = self.range(of: s) else {
+            return nil
+        }
+        return r.lowerBound.encodedOffset
+    }
+}
+
+/*
+let a = NSDecimalNumber(decimal: Decimal("12345".doubleValue))
+let b = NSDecimalNumber(decimal: Decimal(0))
+let h = NSDecimalNumberHandler(roundingMode: .bankers, scale: 2, raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: false)
+a.adding(b, withBehavior: h)
+*/
+"12399999999999999.005".decimal(.tBankers(2))
+"12399999999999999.005".doubleValue
+
+//"123.445".decimal(.tPlain(2))
+//"123.524".decimal(.tPlain(2))
+//"123.555".decimal(.tPlain(2))
+
+
+let formatter = NumberFormatter()
+formatter.generatesDecimalNumbers = false
+formatter.numberStyle = .decimal
+formatter.positiveFormat = ".000"
+formatter.formatterBehavior
+formatter.string(from: 1.235)
+
+String(255, radix: 16)
+String(16, radix: 8)
+String(16, radix: 2)
+String(16, radix: 10)
+
+"1234.56.7".index(subString: ".")
+let arrss = "1234.56.7"
+print(arrss)

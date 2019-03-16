@@ -26,6 +26,13 @@ let arr2 = arr.enumerated().reduce(into: []) { (item, element) in
 
 print(arr)
 print(arr2)
+extension Array {
+    func split(by size: Int) -> [[Element]] {
+        return stride(from: 0, through: count, by: size)
+            .map {Array(self[$0..<Swift.min($0+size, self.count)])}
+            .filter{!$0.isEmpty}
+    }
+}
 
 //MARK:--- 求和等 ----------
 //print((1...20).reduce(0, +))

@@ -53,11 +53,12 @@ public extension UIColor {
     
     var cd_hex:String {
         let rgba = self.cd_rgba
-        let rs:String = String(format: "%0X", Int(rgba.0*255))
-        let gs:String = String(format: "%0X", Int(rgba.1*255))
-        let bs:String = String(format: "%0X", Int(rgba.2*255))
+        let rs:String = String(Int(rgba.0*255), radix: 16)
+        let gs:String = String(Int(rgba.1*255), radix: 16)
+        let bs:String = String(Int(rgba.2*255), radix: 16)
         return "#" + rs + gs + bs
     }
+    
     var cd_rgba:(CGFloat,CGFloat,CGFloat,CGFloat) {
         var r:CGFloat = 0
         var g:CGFloat = 0
@@ -66,6 +67,7 @@ public extension UIColor {
         self.getRed(&r, green: &g, blue: &b, alpha: &a)
         return (r,g,b,a)
     }
+    
     var cd_alpha:CGFloat {
         return self.cd_rgba.3
     }

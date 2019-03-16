@@ -21,11 +21,13 @@ public class VC_Tab:UITabBarController{
         super.viewDidLoad()
         let n1 = UINavigationController(rootViewController: VC_Home.show())
         //self.viewControllers = [n1]
-        let n2 = UINavigationController(rootViewController: VC_Find.show())
-        let n3 = UINavigationController(rootViewController: VC_Publish.show())
-        let n4 = UINavigationController(rootViewController: VC_Car.show())
+        let n2 = UINavigationController(rootViewController: VC_Publish.show())
+        let n3 = UINavigationController(rootViewController: VC_Car.show())
+        let n4 = UINavigationController(rootViewController: VC_Find.show())
         let n5 = UINavigationController(rootViewController: VC_Mine.show())
         self.viewControllers = [n1,n2,n3,n4,n5]
+        
+        self.selectedIndex = 4
         //self.setViewControllers([n1,n2,n3,n4,n5,], animated: true)
     }
 }

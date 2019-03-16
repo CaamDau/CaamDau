@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--购物车-->
+        <!--资讯-->
         <scene sceneID="ZoA-iY-CWQ">
             <objects>
-                <viewController storyboardIdentifier="VC_Car" title="购物车" id="Fq7-50-K0w" customClass="VC_Car" customModule="CD_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VC_Car" title="资讯" id="Fq7-50-K0w" customClass="VC_Car" customModule="Car" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zph-3n-v4E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

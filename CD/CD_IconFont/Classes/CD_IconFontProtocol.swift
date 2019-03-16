@@ -37,8 +37,10 @@ public extension CD where Base: UIButton {
             base.titleLabel?.font = font.font
             base.setTitle(font.text, for: state ?? .normal)
         case let .image(state, color, mode):
+            base.contentMode = .center
             base.setImage(UIImage.cd_iconfont(font, color:color ?? base.tintColor, point: (mode ?? .center).point(font.size)), for: state ?? .normal)
         case let .bgImage(state, color, mode):
+            base.contentMode = .center
             base.setBackgroundImage(UIImage.cd_iconfont(font, color:color ?? base.tintColor, point: (mode ?? .center).point(font.size)), for: state ?? .normal)
         }
         return self
@@ -48,6 +50,7 @@ public extension CD where Base: UIButton {
 public extension CD where Base: UIImageView {
     @discardableResult
     func iconfont(_ font:CD_IconFontProtocol, color:UIColor = UIColor.lightGray, mode:UIImage.CD_IconFontMode = .center) -> CD {
+        base.contentMode = .center
         base.image = UIImage.cd_iconfont(font, color:color, point: mode.point(font.size))
         return self
     }
@@ -99,7 +102,7 @@ public extension UIImage {
         //let context = UIGraphicsGetCurrentContext()
         //context!.setFillColor(color.cgColor)
         
-        NSString(string: font.text).draw(at: point, withAttributes: [NSAttributedString.Key.font : font.font, NSAttributedString.Key.foregroundColor:color])
+        NSString(string: font.text).draw(at: point, withAttributes: [NSAttributedString.Key.font : font.font.fit(), NSAttributedString.Key.foregroundColor:color])
         
         guard let imageCG:CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage  else {
             assertionFailure("👉👉👉CGImage - 失败  👻")
