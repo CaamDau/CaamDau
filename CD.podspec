@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/liucaide/CD'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'liucaide' => '565726319@qq.com' }
-  s.source           = { :git => 'https://github.com/liucaide/CD.git' }
+  s.source           = { :git => 'https://github.com/liucaide/CD.git', :tag => s.version }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
