@@ -100,15 +100,13 @@ extension VM_MineCollection {
     func attributedString(_ idx:Int) -> NSAttributedString{
         let str = NSMutableAttributedString()
         if idx > 0 {
-            let str1 = NSAttributedString(string: CD_IconFont.tfavor_fill(20).text, attributes: [NSAttributedString.Key.font : CD_IconFont.tfavor_fill(20).font])
             for _ in 0..<(idx>5 ? 5 : idx) {
-                str.append(str1)
+                str.append(CD_IconFont.tfavor_fill(20).attributedString)
             }
         }
         if 5 - idx > 0 {
-            let str1 = NSAttributedString(string: CD_IconFont.tfavor(20).text, attributes: [NSAttributedString.Key.font : CD_IconFont.tfavor(20).font])
             for _ in 0..<(5 - idx) {
-                str.append(str1)
+                str.append(CD_IconFont.tfavor(20).attributedString)
             }
         }
         return str

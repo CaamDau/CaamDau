@@ -13,17 +13,32 @@ public protocol CD_IconFontProtocol{
     var size:CGFloat { get }
     var text:String { get }
     var font:UIFont { get }
+    var attributedString:NSAttributedString { get }
+    
+    func attributedString(_ fgColor:UIColor) -> NSAttributedString
     func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString
     func attributedString(_ attributes:[NSAttributedString.Key : Any]?) -> NSAttributedString
 }
 
-extension CD_IconFontProtocol {
-    func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString {
-        var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font : self.font.fit(), NSAttributedString.Key.foregroundColor : fgColor, NSAttributedString.Key.backgroundColor : bgColor]
-        return NSAttributedString(string: self.text, attributes: attributes)
+public extension CD_IconFontProtocol {
+    var attributedString:NSAttributedString {
+        return self.attributedString(nil)
     }
     
+    func attributedString(_ fgColor:UIColor) -> NSAttributedString {
+        return self.attributedString(fgColor, bgColor: nil)
+    }
+    
+    func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString {
+        var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor : fgColor]
+        if (bgColor != nil) {
+            attributes += [NSAttributedString.Key.backgroundColor : bgColor]
+        }
+        return self.attributedString(attributes)
+    }
     func attributedString(_ attributes:[NSAttributedString.Key : Any]?) -> NSAttributedString {
+        var attributes = attributes ?? [:]
+        attributes[NSAttributedString.Key.font] = self.font
         return NSAttributedString(string: self.text, attributes: attributes)
     }
 }
