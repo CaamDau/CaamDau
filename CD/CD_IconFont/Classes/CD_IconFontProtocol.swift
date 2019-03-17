@@ -15,29 +15,29 @@ public protocol CD_IconFontProtocol{
     var font:UIFont { get }
     var attributedString:NSAttributedString { get }
     
-    func attributedString(_ fgColor:UIColor) -> NSAttributedString
-    func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString
-    func attributedString(_ attributes:[NSAttributedString.Key : Any]?) -> NSAttributedString
+    func attributedString(withColor fg:UIColor) -> NSAttributedString
+    func attributedString(withColor fg:UIColor, bg:UIColor?) -> NSAttributedString
+    func attributedString(withAttributes a:[NSAttributedString.Key : Any]?) -> NSAttributedString
 }
 
 public extension CD_IconFontProtocol {
     var attributedString:NSAttributedString {
-        return self.attributedString(nil)
+        return self.attributedString(withAttributes:nil)
     }
     
-    func attributedString(_ fgColor:UIColor) -> NSAttributedString {
-        return self.attributedString(fgColor, bgColor: nil)
+    func attributedString(withColor fg:UIColor) -> NSAttributedString {
+        return self.attributedString(withColor:fg, bg: nil)
     }
     
-    func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString {
-        var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor : fgColor]
-        if (bgColor != nil) {
-            attributes += [NSAttributedString.Key.backgroundColor : bgColor]
+    func attributedString(withColor fg:UIColor, bg:UIColor?) -> NSAttributedString {
+        var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor : fg]
+        if (bg != nil) {
+            attributes += [NSAttributedString.Key.backgroundColor : bg]
         }
-        return self.attributedString(attributes)
+        return self.attributedString(withAttributes:attributes)
     }
-    func attributedString(_ attributes:[NSAttributedString.Key : Any]?) -> NSAttributedString {
-        var attributes = attributes ?? [:]
+    func attributedString(withAttributes a:[NSAttributedString.Key : Any]?) -> NSAttributedString {
+        var attributes = a ?? [:]
         attributes[NSAttributedString.Key.font] = self.font
         return NSAttributedString(string: self.text, attributes: attributes)
     }
