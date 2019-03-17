@@ -227,17 +227,30 @@ public extension CD where Base: UIView {
     
     /// 圆角
     @discardableResult
-    func byRounded(_ corners:UIRectCorner, _ radii:CGSize) -> CD {
-        return self.byRounded(base.bounds, corners, radii)
+    func rounded(_ corners:UIRectCorner, _ radii:CGSize) -> CD {
+        return self.rounded(base.bounds, corners, radii)
     }
     
     /// 圆角
     @discardableResult
-    func byRounded(_ rect:CGRect, _ corners:UIRectCorner, _ radii:CGSize) -> CD {
+    func rounded(_ rect:CGRect, _ corners:UIRectCorner, _ radii:CGSize) -> CD {
         let rounded = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: radii)
         let shape = CAShapeLayer()
         shape.path = rounded.cgPath
         base.layer.mask = shape
+        return self
+    }
+    
+    /// 背景渐变 默认横向渐变 point -> 0 - 1
+    @discardableResult
+    func gradient(layer gradient:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (CGPoint(x: 0, y: 0),CGPoint(x: 1, y: 0)), at: UInt32 = 0) -> CD {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = gradient.map{$0.color.cgColor}
+        gradientLayer.locations = gradient.map{NSNumber(value:$0.location)}
+        gradientLayer.startPoint = point.start
+        gradientLayer.endPoint = point.end
+        gradientLayer.frame = base.frame
+        base.layer.insertSublayer(gradientLayer, at: at)
         return self
     }
 }

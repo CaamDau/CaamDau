@@ -13,7 +13,22 @@ public protocol CD_IconFontProtocol{
     var size:CGFloat { get }
     var text:String { get }
     var font:UIFont { get }
+    func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString
+    func attributedString(_ attributes:[NSAttributedString.Key : Any]?) -> NSAttributedString
 }
+
+extension CD_IconFontProtocol {
+    func attributedString(_ fgColor:UIColor, bgColor:UIColor?) -> NSAttributedString {
+        var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.font : self.font.fit(), NSAttributedString.Key.foregroundColor : fgColor, NSAttributedString.Key.backgroundColor : bgColor]
+        return NSAttributedString(string: self.text, attributes: attributes)
+    }
+    
+    func attributedString(_ attributes:[NSAttributedString.Key : Any]?) -> NSAttributedString {
+        return NSAttributedString(string: self.text, attributes: attributes)
+    }
+}
+
+
 
 public extension CD where Base: UILabel {
     @discardableResult
