@@ -38,6 +38,7 @@ class Cell_MineCollectionLabel: UICollectionViewCell {
             make.left.top.right.equalToSuperview()
             make.width.equalTo(self.lab_icon.snp.height)
         }
+        
         self.lab_title.snp.makeConstraints { (make) in
             make.left.bottom.right.equalToSuperview()
             make.top.equalTo(self.lab_icon.snp.bottom)

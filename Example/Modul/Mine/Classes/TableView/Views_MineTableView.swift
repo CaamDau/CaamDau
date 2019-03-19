@@ -51,7 +51,6 @@ extension Cell_MineCountDown:CD_CountDownProtocol{
             makeDown(model)
         }
     }
-    
     func makeDown(_ model:CD_CountDown.Model) {
         self.lab_day.cd.text(model.day > 0 ? "\(model.day)天" : "")
         self.lab_hour.cd.text(model.hour > 9 ? "\(model.hour)" : "0\(model.hour)")
@@ -71,7 +70,6 @@ extension Cell_MineCountDown:CD_RowUpdateProtocol{
         self.img_icon.image = data.img
         self.lab_msecond.isHidden = data.second >= 1
         self.lab_dot.isHidden = data.second >= 1
-        
         if let down = data.down {
             makeDown(down)
         }else{

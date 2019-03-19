@@ -1,35 +1,26 @@
-import UIKit
-import Foundation
-import Config
-import Assets
-import CD
+# CD_RegEx 常用正则表达式枚举 以及 NSRegularExpression 扩展
 
-//MARK:--- String ----------
-do{
-    var str = "jflka8234832jsdsdsd案件是飞洒的九分裤lkfj"
-    str.cd_size(100.0, UIFont.systemFont(ofSize: 12))
-    str.cd_size(100.0, Config.font.fontBold(16))
-    str[5..<100]
-    str[5..<100] = "99"
-    str
-    
-}
-//MARK:--- Date ----------
-do{
-    "2019.10.10".cd_date("yyyy.MM.dd")?.cd_timestamp()
-}
+## Installation
 
-//MARK:--- IconFont ----------
-do{
-    CD_IconFont.temoji(20).font
-    CD_IconFont.temoji(20).text
-    CD_IconFont.temoji(20).attributedString
-}
+CD is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
+```ruby
+pod 'CD/RegEx'
+```
+
+#### 初始化
+```
+NSRegularExpression.cd_init(pattern)
+or
+CD.makeRegEx(pattern)
+```
+#### NSRegularExpression 示例
+```
 //MARK:--- RegEx ----------
 do{//验证一个邮箱地址的格式是否正确。
     let pattern = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
-    let email = "liu_cai_de@qq.163.com"
+    let email = "dsfddf@qq.163.com"
     if (CD.makeRegEx(pattern)?.cd.match(allIn: email)) != nil {
         _ = true
     }else{
@@ -68,7 +59,6 @@ do{// 获取所有匹配结果
     }
 }
 
-
 do{// ----- 字符串替换
     let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
     let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
@@ -83,7 +73,9 @@ do{//捕获组替换
     CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2")
     CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 9)
 }
-
+```
+#### CD_RegEx 示例
+```
 do{
     CD_RegEx.match("123", type: CD_RegEx.tPassword(CD_RegEx.Password.value0))
     CD_RegEx.match("123456", type: CD_RegEx.tPassword(CD_RegEx.Password.value0))
@@ -100,3 +92,13 @@ do{
     CD_RegEx.match("https://itunes.apple.com/cn/app/", type: CD_RegEx.tURL(nil))
     CD_RegEx.match("htt://itunes.apple.com/cn/app/", type: CD_RegEx.tURL(nil))
 }
+
+```
+
+## Author
+
+liucaide, 565726319@qq.com
+
+## License
+
+CD is available under the MIT license. See the LICENSE file for more info.

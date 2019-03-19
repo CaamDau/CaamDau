@@ -17,9 +17,11 @@ public class CD_CountDown {
     private init(){}
     public static let shared:CD_CountDown = CD_CountDown()
     ///时间倒计时标识存储 - 区别每个计时队列
-    public var timers:[String:CD_CountDown.Timer] = [:]
+    private var timers:[String:CD_CountDown.Timer] = [:]
     
-    
+    public static func remove(_ id:String) {
+        CD_CountDown.shared.timers.removeValue(forKey: id)
+    }
 }
 
 public extension CD_CountDown {

@@ -47,26 +47,29 @@ class VC_MineTableView: UIViewController {
                 self?.vm.requestData(false)
             })
             .mjRefreshTypes(self.vm.refreshTypes)
-            .beginRefreshing()
             .background(Config.color.bg)
         
         
         makeCounDown()
     }
+    
     func makeCounDown(){
+        /// 输出
         NotificationCenter.default.rx
             .notification(Notification.Name(rawValue: "VC_MineTableView"), object: nil)
-            .takeUntil(self.rx.deallocated)
             .asObservable()
             .subscribe(onNext: { [weak self](n) in
                 if let model = n.object as? CD_CountDown.Model {
                     self?.title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
                 }
-                
             }).disposed(by: disposeBag)
-        
+        /// 输入
         CD_CountDown.make(.notification("VC_MineTableView", 172800, 1), qos: .background)
-        
+    }
+    
+    deinit {
+        //如果不需要保持 可以移除
+        //CD_CountDown.remove("VC_MineTableView")
     }
 }
 

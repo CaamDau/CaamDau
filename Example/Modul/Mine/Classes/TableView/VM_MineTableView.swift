@@ -110,7 +110,6 @@ class VM_MineTableView {
 //MARK:--- 排版 ----------
 extension VM_MineTableView{
     func makeForm() {
-        
         var models:[Model] = []
         models.append(Model("model_1", assets.logo_200, 370000, 1, 3, false))
         models.append(Model("model_2", assets.logo_0, 3700, 0.09, 4, true))
@@ -124,7 +123,6 @@ extension VM_MineTableView{
         models.append(Model("model_10", assets.logo_0, 3700, 1, 378, false))
         models.append(Model("model_11", assets.logo_200, 3700, 1, 3111, false))
         models.append(Model("model_12", assets.logo_0, 3700, 1, 31, false))
-        
         for (i,item) in models.enumerated() {
             self.makeFormCountDown(item)
             // 除倒计时外 其余随机排版
