@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
     all.dependency 'CD/IBInspectable'
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
+    all.dependency 'CD/RegEx'
   end
   
   s.subspec 'Extension' do |es|
@@ -65,6 +66,10 @@ Pod::Spec.new do |s|
   
   s.subspec 'Value' do |v|
     v.source_files = 'CD/CD_Value/*'
+  end
+  
+  s.subspec 'RegEx' do |regex|
+    regex.source_files = 'CD/CD_RegEx/*', 'CD/CD.swift'
   end
   
   s.subspec 'IconFont' do |ifont|

@@ -8,6 +8,6 @@
 
 
 import Foundation
-public extension Dictionary {
+public extension Array {
     
 }

@@ -4,42 +4,13 @@
 import Foundation
 import UIKit
 
-//MARK:--- 字符串宽高计算 ----------
-public extension String {
-    ///限制最大行数的场景下，计算Label的bounds
-    func cd_size( maxWidth: CGFloat, _ font: UIFont, _ maxLine: Int) -> CGSize {
-        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font, maxLine: maxLine)
-    }
-    ///行数不限的场景下，计算Label的bounds
-    func cd_size(_ maxWidth: CGFloat, _ font: UIFont) -> CGSize {
-        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font)
-    }
-    
-    ///限定最大高度的场景下，计算Label的bounds
-    func cd_size(_ maxSize: CGSize, _ font: UIFont) -> CGSize {
-        return CD_StringSize.shared.calculateSize(withString: self, maxSize: maxSize, font: font)
-    }
-}
-
-
 //MARK:--- 脚本 ----------
 public extension String {
-    /*
-     //插入
-     var str = "1234"
-     str[1..<1] = "345"
-     print(str) //1345234
-     //替换
-     str[1...4] = "000"
-     print(str) //100034
-     //删除
-     str[1...3] = ""
-     print(str) //134
-     //取子串
-     let subStr = str[0...1]
-     print(subStr) //13
-     */
     /// 下标脚本
+    /// 插入 var str = "1234", str[1..<1] = "345", print(str) //1345234
+    /// 替换 str[1...4] = "000", print(str) //100034
+    /// 删除 str[1...3] = "" print(str) //134
+    /// 取子串 let subStr = str[0...1], print(subStr) //13
     subscript (cd_rang: Range<Int>) -> String {
         get {
             var r = cd_rang
@@ -74,7 +45,22 @@ public extension String{
 }
 
 
-
+//MARK:--- 字符串宽高计算 ----------
+public extension String {
+    ///限制最大行数的场景下，计算Label的bounds
+    func cd_size( maxWidth: CGFloat, _ font: UIFont, _ maxLine: Int) -> CGSize {
+        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font, maxLine: maxLine)
+    }
+    ///行数不限的场景下，计算Label的bounds
+    func cd_size(_ maxWidth: CGFloat, _ font: UIFont) -> CGSize {
+        return CD_StringSize.shared.calculateSize(withString: self, maxWidth: maxWidth, font: font)
+    }
+    
+    ///限定最大高度的场景下，计算Label的bounds
+    func cd_size(_ maxSize: CGSize, _ font: UIFont) -> CGSize {
+        return CD_StringSize.shared.calculateSize(withString: self, maxSize: maxSize, font: font)
+    }
+}
 
 
 
@@ -229,9 +215,9 @@ private class CD_StringSize {
                     data = try? JSONSerialization.data(withJSONObject: self.fontDictionary, options: .prettyPrinted)
                 }
                 try data?.write(to: self.fileUrl)
-                print("font_dictionary存入磁盘,font_dictionary=\(self.fontDictionary)")
+                print_cd("font_dictionary存入磁盘,font_dictionary=\("self.fontDictionary")")
             }  catch {
-                print("font_dictionary存储失败error=\(error)")
+                print_cd("font_dictionary存储失败error=\(error)")
             }
         }
     }
@@ -244,10 +230,10 @@ private class CD_StringSize {
                 return
             }
             fontDictionary = dict
-            print(fontDictionary)
-            print("font_dictionarys读取成功,font_dictionarys=\(fontDictionary)")
+            //print_cd(fontDictionary)
+            print_cd("font_dictionarys读取成功,font_dictionarys=\("fontDictionary")")
         } catch {
-            print("第一次运行时font_dictionary不存在或者读取失败")
+            print_cd("第一次运行时font_dictionary不存在或者读取失败")
         }
     }
 }

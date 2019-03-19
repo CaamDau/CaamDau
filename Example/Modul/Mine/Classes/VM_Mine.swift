@@ -105,6 +105,12 @@ extension VM_Mine{
             }
             self.forms[Section.other.rawValue].append(row)
         }
+        do{
+            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_RegEx", "常用正则表达式"), frame: CGRect(h:45)) {
+                VC_Web.push(.http("https://github.com/liucaide/CD/tree/master/CD/CD_RegEx"))
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
     }
     
     

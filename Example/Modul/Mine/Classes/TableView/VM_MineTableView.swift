@@ -35,8 +35,6 @@ extension VM_MineTableView {
             
         }
         
-        
-        
         deinit {
             CD_CountDown.shared.timers.removeValue(forKey: self.id)
         }
@@ -128,76 +126,105 @@ extension VM_MineTableView{
         models.append(Model("model_12", assets.logo_0, 3700, 1, 31, false))
         
         for (i,item) in models.enumerated() {
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{// 倒计时
-                let row = CD_Row<Cell_MineCountDown>(data: item, frame: CGRect(h:100))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            
-            if i > 0 {
-                do{//分割线
-                    let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
-                    self.forms[Section.countdown.rawValue].append(row)
+            self.makeFormCountDown(item)
+            // 除倒计时外 其余随机排版
+            switch Int(arc4random() % 3) {
+            case 0:
+                if i%2 == 0 {
+                    self.makeFormDetail(i)
+                    self.makeFormInput(item)
+                }else{
+                    self.makeFormInput(item)
+                    self.makeFormDetail(i)
                 }
-                do{//描述
-                    let row = CD_Row<Cell_MineDetail>(data: (0..<i).map{_ in detail}.joined(separator: ","), frame: CGRect(h:UITableView.automaticDimension))
-                    self.forms[Section.countdown.rawValue].append(row)
+            case 1:
+                if i%2 == 0 {
+                    self.makeFormDetail(i)
+                    self.makeFormSwitch(item)
+                }else{
+                    self.makeFormSwitch(item)
+                    self.makeFormDetail(i)
                 }
-                do{//分割线
-                    let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
-                    self.forms[Section.countdown.rawValue].append(row)
-                }
-                do{//分割线
-                    let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
-                    self.forms[Section.countdown.rawValue].append(row)
-                }
+            default:
+                self.makeFormDetail(i)
             }
             
             do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+                let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:10))
                 self.forms[Section.countdown.rawValue].append(row)
             }
-            do{//输入
-                let row = CD_Row<Cell_MineInput>(data: item, frame: CGRect(h:30))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            
-            
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//开关
-                let row = CD_Row<Cell_MineSwitch>(data: item, frame: CGRect(h:UITableView.automaticDimension))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
-            do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:8))
-                self.forms[Section.countdown.rawValue].append(row)
-            }
+        }
+    }
+    
+    func makeFormCountDown(_ model:VM_MineTableView.Model) {
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{// 倒计时
+            let row = CD_Row<Cell_MineCountDown>(data: model, frame: CGRect(h:100))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+    }
+    func makeFormDetail(_ i:Int) {
+        guard i > 0 else {return}
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//描述
+            let row = CD_Row<Cell_MineDetail>(data: (0..<i).map{[unowned self]_ in self.detail}.joined(separator: ","), frame: CGRect(h:UITableView.automaticDimension))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+    }
+    
+    func makeFormInput(_ model:VM_MineTableView.Model) {
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//输入
+            let row = CD_Row<Cell_MineInput>(data: model, frame: CGRect(h:30))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+    }
+    
+    func makeFormSwitch(_ model:VM_MineTableView.Model) {
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//开关
+            let row = CD_Row<Cell_MineSwitch>(data: model, frame: CGRect(h:UITableView.automaticDimension))
+            self.forms[Section.countdown.rawValue].append(row)
+        }
+        do{//分割线
+            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            self.forms[Section.countdown.rawValue].append(row)
         }
     }
 }
