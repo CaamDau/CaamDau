@@ -32,7 +32,7 @@ public extension CD_IconFontProtocol {
     func attributedString(withColor fg:UIColor, bg:UIColor?) -> NSAttributedString {
         var attributes:[NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor : fg]
         if (bg != nil) {
-            attributes += [NSAttributedString.Key.backgroundColor : bg]
+            attributes += [NSAttributedString.Key.backgroundColor : bg!]
         }
         return self.attributedString(withAttributes:attributes)
     }

@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CD'
-  s.version          = '0.3.42'
+  s.version          = '0.4.42'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块插件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 模块插件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能插件，可快速集成使用以大幅减少基础工作量；附.各种类库使用示例demo.
@@ -26,54 +26,52 @@ Pod::Spec.new do |s|
     cd.dependency 'CD/Chain'
     cd.dependency 'CD/CountDown'
     cd.dependency 'CD/Value'
+    cd.dependency 'CD/RegEx'
   end
   
   s.subspec 'All' do |all|
-    all.source_files = 'CD/CD.swift'
-    all.dependency 'CD/Extension'
-    all.dependency 'CD/Form'
-    all.dependency 'CD/Chain'
-    all.dependency 'CD/CountDown'
-    all.dependency 'CD/Value'
+    all.dependency 'CD/Core'
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
-    all.dependency 'CD/RegEx'
+    
   end
   
   s.subspec 'Extension' do |es|
-      es.source_files = 'CD/CD_Extension/*', 'CD/CD.swift'
+      es.source_files = 'CD/CD_Extension/*.{swift}', 'CD/CD.swift'
       es.dependency 'CD/Form'
   end
   
   s.subspec 'IBInspectable' do |ib|
-    ib.source_files = 'CD/CD_IBInspectable/*'
+    ib.source_files = 'CD/CD_IBInspectable/*.{swift}'
   end
   
   s.subspec 'Form' do |fm|
-      fm.source_files = 'CD/CD_Form/*'
+      fm.source_files = 'CD/CD_Form/*.{swift}'
   end
   
   s.subspec 'Chain' do |cn|
-      cn.source_files = 'CD/CD_Chain/*', 'CD/CD.swift'
+      cn.source_files = 'CD/CD_Chain/*.{swift}', 'CD/CD.swift'
   end
   
   s.subspec 'CountDown' do |down|
-    down.source_files = 'CD/CD_CountDown/*'
+    down.source_files = 'CD/CD_CountDown/*.{swift}'
     down.dependency 'CD/Extension'
   end
   
   s.subspec 'Value' do |v|
-    v.source_files = 'CD/CD_Value/*'
+    v.source_files = 'CD/CD_Value/*.{swift}'
   end
   
   s.subspec 'RegEx' do |regex|
-    regex.source_files = 'CD/CD_RegEx/*', 'CD/CD.swift'
+    regex.source_files = 'CD/CD_RegEx/*.{swift}', 'CD/CD.swift'
+    regex.dependency 'CD/Extension'
+    regex.dependency 'CD/Value'
   end
   
   s.subspec 'IconFont' do |ifont|
-      ifont.source_files = 'CD/CD_IconFont/Classes/*'
+      ifont.source_files = 'CD/CD_IconFont/Classes/*.{swift}'
       ifont.resource_bundles = {
           'IconFont' => ['CD/CD_IconFont/Assets/*.{ttf}']
       }
@@ -85,7 +83,7 @@ Pod::Spec.new do |s|
   #end
   
   s.subspec 'MJRefresh' do |mj|
-    mj.source_files = 'CD/CD_MJRefresh/*', 'CD/CD.swift'
+    mj.source_files = 'CD/CD_MJRefresh/*.{swift}', 'CD/CD.swift'
     mj.dependency 'MJRefresh'
   end
   
