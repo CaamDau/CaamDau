@@ -16,6 +16,7 @@
 - [CD_Extension：便利性扩展](https://github.com/liucaide/CD/tree/master/CD/CD_Extension)
 - [CD_CountDown：计时管理](https://github.com/liucaide/CD/tree/master/CD/CD_CountDown) 
 - [CD_Value：基本数据类型转换](https://github.com/liucaide/CD/tree/master/CD/CD_Value) 
+- [CD_RegEx：正则表达式](https://github.com/liucaide/CD/tree/master/CD/CD_RegEx)
 - [CD_IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CD/tree/master/CD/CD_IconFont) 
 - ... 持续增新
 
@@ -30,6 +31,8 @@
   - [图片资源管理类](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_assets.py)
   - [阿里矢量图标资源管理类](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_iconfont.py)
   - [基础配置资源管理类](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_config.py)
+  - MVVM 代码模板
+  - MVVM Rx 代码模板
 
 - [组件化示例](https://github.com/liucaide/CD/tree/master/Example)
   - [通用型 基本资源、配置管理](https://github.com/liucaide/CD/tree/master/Example/Util)
@@ -66,6 +69,7 @@ pod 'CD/Extension'
 pod 'CD/IconFont'
 pod 'CD/CountDown'
 pod 'CD/Value'
+pod 'CD/RegEx'
 ```
 ## Author
 
