@@ -16,6 +16,7 @@
 - ... 持续增新
 #### CD 辅助插件
 - [CD_IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CD/tree/master/CD/CD_IconFont) 
+- [CD_IBInspectable sb/xib 辅助](https://github.com/liucaide/CD/tree/master/CD/CD_IBInspectable) 
 - ... 持续增新
 
 #### 第三方扩展组件
@@ -72,10 +73,12 @@ pod 'CD/All'
 pod 'CD/Chain'
 pod 'CD/Form'
 pod 'CD/Extension'
-pod 'CD/IconFont'
 pod 'CD/CountDown'
 pod 'CD/Value'
 pod 'CD/RegEx'
+
+pod 'CD/IconFont'
+pod 'CD/IBInspectable'
 ```
 ## Author
 
