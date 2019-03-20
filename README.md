@@ -19,8 +19,8 @@
 - [CD_IBInspectable sb/xib 辅助](https://github.com/liucaide/CD/tree/master/CD/CD_IBInspectable) 
 - ... 持续增新
 
-#### 第三方扩展组件
-- [CD_MJRefresh MJRefresh扩展组件](https://github.com/liucaide/CD/tree/master/CD/CD_MJRefresh)
+#### 第三方扩展插件
+- [CD_MJRefresh MJRefresh 扩展插件](https://github.com/liucaide/CD/tree/master/CD/CD_MJRefresh)
 
 #### RxSwift 扩展
 - 
@@ -64,12 +64,13 @@ CD is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD'
+pod 'CD'  # 只引入CD核心插件
 ```
 ```ruby
-pod 'CD/All'
+pod 'CD/All' # 引入CD所有插件
 ```
 ```ruby
+# 引入CD单项插件
 pod 'CD/Chain'
 pod 'CD/Form'
 pod 'CD/Extension'
@@ -79,6 +80,8 @@ pod 'CD/RegEx'
 
 pod 'CD/IconFont'
 pod 'CD/IBInspectable'
+
+pod 'CD/MJRefresh'
 ```
 ## Author
 
