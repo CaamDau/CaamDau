@@ -7,11 +7,6 @@
 
 ## 目录
 - [CD_Form：UI排版插件—使UI排版更加直观、易扩展、易维护](https://github.com/liucaide/CD/tree/master/CD/CD_Form)
-  - 附：CD_Form 使用场景
-    - [CD_Form 之于UITableView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
-    - [CD_Form 之于UICollectionView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
-    - [CD_Form 之于阿里] [Tangram](https://github.com/alibaba/tangram-ios)
-    - [CD_Form —— MVVM 快捷代码生成模板.py]
 - [CD_Chain：链式调用插件](https://github.com/liucaide/CD/tree/master/CD/CD_Chain)
 - [CD_Extension：便利性扩展](https://github.com/liucaide/CD/tree/master/CD/CD_Extension)
 - [CD_CountDown：计时管理](https://github.com/liucaide/CD/tree/master/CD/CD_CountDown) 
@@ -26,13 +21,18 @@
 
 #### RxSwift 扩展
 
-#### 附加
+#### 附录
 - [Python 自动化工具集](https://github.com/liucaide/CD/tree/master/PyToSwift)
   - [图片资源管理类](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_assets.py)
   - [阿里矢量图标资源管理类](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_iconfont.py)
   - [基础配置资源管理类](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_config.py)
   - MVVM 代码模板
   - MVVM Rx 代码模板
+  
+- CD_Form 场景使用示例
+    - [CD_Form 之于UITableView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
+    - [CD_Form 之于UICollectionView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
+    - [CD_Form 之于阿里] [Tangram](https://github.com/alibaba/tangram-ios)
 
 - [组件化示例](https://github.com/liucaide/CD/tree/master/Example)
   - [通用型 基本资源、配置管理](https://github.com/liucaide/CD/tree/master/Example/Util)
@@ -44,6 +44,9 @@
   - ......
 - [Playground](https://github.com/liucaide/CD/tree/master/Playground)
 
+- 友情链接
+ - [JianweiWangs](https://github.com/JianweiWangs)
+ - [Pircate](https://github.com/Pircate)
 
 ## Example
 
