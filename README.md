@@ -71,8 +71,8 @@ pod 'CD/All' # 引入CD所有插件
 ```
 ```ruby
 # 引入CD单项插件
-pod 'CD/Chain'
 pod 'CD/Form'
+pod 'CD/Chain'
 pod 'CD/Extension'
 pod 'CD/CountDown'
 pod 'CD/Value'
