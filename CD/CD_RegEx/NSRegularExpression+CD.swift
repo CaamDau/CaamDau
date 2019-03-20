@@ -87,19 +87,18 @@ public extension CD where Base: NSRegularExpression {
         let matches = self.match(allIn: string, options:options)
         let ranged = Array(matches[0..<Swift.min(matches.count, count ?? .max)])
         
-        ranged
+        /*/ranged
             .reversed()
             .filter {$0.cd.range(in: string) != nil}
-            .compactMap { output.replaceSubrange($0.cd.range(in: string)!, with: $0.cd.replace(in: string, template: template)) }
+            .compactMap { output.replaceSubrange($0.cd.range(in: string)!, with: $0.cd.replace(in: string, template: template)) }*/
         //output[$0.cd.range(in: string)!.lowerBound.encodedOffset..<$0.cd.range(in: string)!.upperBound.encodedOffset] = $0.cd.replace(in: string, template: template)
         
-        /*
-         for item in ranged.reversed() {
-         let replacement = item.cd.replace(in: string, template: template)
-         if let range = item.cd.range(in: string) {
-         output.replaceSubrange(range, with: replacement)
-         }
-         }*/
+        for item in ranged.reversed() {
+            let replacement = item.cd.replace(in: string, template: template)
+            if let range = item.cd.range(in: string) {
+                output.replaceSubrange(range, with: replacement)
+            }
+        }
         return output
     }
     
