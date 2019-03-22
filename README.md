@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
 [![License](https://img.shields.io/cocoapods/l/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
 [![Platform](https://img.shields.io/cocoapods/p/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
+[![](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://cocoapods.org/pods/CD)
 
 ## 目录
 #### CD 核心插件
