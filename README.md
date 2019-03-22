@@ -37,8 +37,7 @@
 - CD_Form 场景使用示例
     - [CD_Form 之于UITableView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
     - [CD_Form 之于UICollectionView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
-    - [CD_Form 之于阿里] [Tangram](https://github.com/alibaba/tangram-ios)
-
+    
 - [组件化示例](https://github.com/liucaide/CD/tree/master/Example)
   - [通用型 基本资源、配置管理](https://github.com/liucaide/CD/tree/master/Example/Util)
     - [资源图片管理 Assets](https://github.com/liucaide/CD/tree/master/Example/Util/Assets)
