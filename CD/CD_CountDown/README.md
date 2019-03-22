@@ -8,7 +8,7 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'CD/CountDown'
 ```
-> CD_CountDown 使用系统时间对比进行计时，较为有效保持界面退出/App进入后台后重新进入的时效性；防止重复创建统一计时器
+> CD_CountDown 使用系统时间对比进行计时，较为有效保持界面退出/App进入后台后重新进入的时效性；防止重复创建同一计时器
 #### 创建倒计时
 ```ruby
 func countDown(_ tag:Int){

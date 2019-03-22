@@ -8,8 +8,8 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'CD/Form'
 ```
-
-### 无论界面多复杂，都是如下一样的代码，使用这种方式即可轻松完成复杂的 UI 排版,适用所有 UIView，编写可读性、扩展性、维护性强的代码
+#### 目标：用100行代码 实现 高耦合的 UI 排版解耦，增强排版随机、变更、扩展能力，增强 UI-Data 关联强度
+#### 无论界面多复杂，都是如下一样的代码，使用这种方式即可轻松完成复杂的 UI 排版,适用所有 UIView，编写可读性、扩展性、维护性强的代码
 
 - 排版
 
@@ -54,7 +54,7 @@ extension VM_MineTableView{
 
 ```
 
-- 对于 UITableView
+- 对于 UITableView，都是一样的代码，基本无需维护，无需考虑检查 section row  height 等多点关系
 
 ```ruby
 extension VC_Mine:UITableViewDelegate,UITableViewDataSource {

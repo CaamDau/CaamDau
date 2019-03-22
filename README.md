@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
 [![License](https://img.shields.io/cocoapods/l/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
 [![Platform](https://img.shields.io/cocoapods/p/CD.svg?style=flat)](https://cocoapods.org/pods/CD)
+[![](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://cocoapods.org/pods/CD)
 
 ## 目录
 #### CD 核心插件
@@ -36,8 +37,7 @@
 - CD_Form 场景使用示例
     - [CD_Form 之于UITableView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
     - [CD_Form 之于UICollectionView](https://github.com/liucaide/CD/tree/master/Example/Modul/Mine/Classes)
-    - [CD_Form 之于阿里] [Tangram](https://github.com/alibaba/tangram-ios)
-
+    
 - [组件化示例](https://github.com/liucaide/CD/tree/master/Example)
   - [通用型 基本资源、配置管理](https://github.com/liucaide/CD/tree/master/Example/Util)
     - [资源图片管理 Assets](https://github.com/liucaide/CD/tree/master/Example/Util/Assets)
