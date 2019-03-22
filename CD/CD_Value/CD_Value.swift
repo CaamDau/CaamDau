@@ -129,8 +129,8 @@ public extension CD_Value {
             assertionFailure("👉👉👉\(self)[\(key)] - 数组下标非法 👻")
             return nil
         }
-        guard arr.count > i else {
-            assertionFailure("👉👉👉\(self)[\(key)] - 数组Index越界 👻")
+        guard i > 0 && arr.count > i else {
+            assertionFailure("👉👉👉\(self)[\(key)] - 数组index越界 👻")
             return nil
         }
         return arr[i]

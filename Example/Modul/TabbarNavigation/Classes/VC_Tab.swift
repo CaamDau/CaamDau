@@ -4,9 +4,9 @@ import Foundation
 import UIKit
 import CD
 import Home
-import Find
+import Demo
+import Rx
 import Publish
-import Car
 import Mine
 import Sign
 
@@ -20,10 +20,10 @@ public class VC_Tab:UITabBarController{
     public override func viewDidLoad() {
         super.viewDidLoad()
         let n1 = UINavigationController(rootViewController: VC_Home.show())
+        let n2 = UINavigationController(rootViewController: VC_Demo.show())
         //self.viewControllers = [n1]
-        let n2 = UINavigationController(rootViewController: VC_Publish.show())
-        let n3 = UINavigationController(rootViewController: VC_Car.show())
-        let n4 = UINavigationController(rootViewController: VC_Find.show())
+        let n3 = UINavigationController(rootViewController: VC_Publish.show())
+        let n4 = UINavigationController(rootViewController: VC_Rx.show())
         let n5 = UINavigationController(rootViewController: VC_Mine.show())
         self.viewControllers = [n1,n2,n3,n4,n5]
         

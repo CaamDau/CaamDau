@@ -11,7 +11,6 @@ public extension VC_Publish{
 public class VC_Publish: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.darkGray
     }
 }
 

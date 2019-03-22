@@ -8,19 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		269B01BEE2F83BF445F25CF3 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB45DED5B2C2D6CC4D07D2 /* Pods_Example.framework */; };
-		470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC2223BF024006292CE /* Views_Mine.swift */; };
-		470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC4223BF024006292CE /* VC_Mine.swift */; };
-		470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC5223BF024006292CE /* VM_Mine.swift */; };
-		470C3DCB223BF025006292CE /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470C3DC7223BF025006292CE /* MineStoryboard.storyboard */; };
-		4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */; };
-		473ABC14223C82D9004CD694 /* VC_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC13223C82D9004CD694 /* VC_MineTableView.swift */; };
-		473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC15223C82E7004CD694 /* VM_MineTableView.swift */; };
-		473ABC18223C8306004CD694 /* Views_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC17223C8306004CD694 /* Views_MineTableView.swift */; };
-		473ABC1B223CF405004CD694 /* VC_MineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC1A223CF405004CD694 /* VC_MineCollection.swift */; };
-		473ABC1E223CF8E4004CD694 /* Views_MineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC1C223CF8E4004CD694 /* Views_MineCollection.swift */; };
-		473ABC1F223CF8E4004CD694 /* Cell_MineCollectionImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473ABC1D223CF8E4004CD694 /* Cell_MineCollectionImage.xib */; };
-		473ABC23223CF905004CD694 /* View_MineCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473ABC21223CF905004CD694 /* View_MineCollectionHeader.xib */; };
-		473ABC27223CF918004CD694 /* View_MineCollectionFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473ABC25223CF918004CD694 /* View_MineCollectionFooter.xib */; };
+		4738DA6622437D7600731FA8 /* DemoStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4738DA6322437D7600731FA8 /* DemoStoryboard.storyboard */; };
+		4738DA6722437D7600731FA8 /* VC_Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738DA6522437D7600731FA8 /* VC_Demo.swift */; };
+		4738DA69224394DE00731FA8 /* HeroStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4738DA68224394DE00731FA8 /* HeroStoryboard.storyboard */; };
 		47FC34E02238076F0022174D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34DF2238076F0022174D /* AppDelegate.swift */; };
 		47FC34E2223807700022174D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34E1223807700022174D /* ViewController.swift */; };
 		47FC34E5223807700022174D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FC34E3223807700022174D /* Main.storyboard */; };
@@ -30,19 +20,9 @@
 
 /* Begin PBXFileReference section */
 		11C7E6571DE563F6433941AC /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		470C3DC2223BF024006292CE /* Views_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Views_Mine.swift; sourceTree = "<group>"; };
-		470C3DC4223BF024006292CE /* VC_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_Mine.swift; sourceTree = "<group>"; };
-		470C3DC5223BF024006292CE /* VM_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VM_Mine.swift; sourceTree = "<group>"; };
-		470C3DC7223BF025006292CE /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
-		4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineCollection.swift; sourceTree = "<group>"; };
-		473ABC13223C82D9004CD694 /* VC_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_MineTableView.swift; sourceTree = "<group>"; };
-		473ABC15223C82E7004CD694 /* VM_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineTableView.swift; sourceTree = "<group>"; };
-		473ABC17223C8306004CD694 /* Views_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views_MineTableView.swift; sourceTree = "<group>"; };
-		473ABC1A223CF405004CD694 /* VC_MineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_MineCollection.swift; sourceTree = "<group>"; };
-		473ABC1C223CF8E4004CD694 /* Views_MineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views_MineCollection.swift; sourceTree = "<group>"; };
-		473ABC1D223CF8E4004CD694 /* Cell_MineCollectionImage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_MineCollectionImage.xib; sourceTree = "<group>"; };
-		473ABC21223CF905004CD694 /* View_MineCollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View_MineCollectionHeader.xib; sourceTree = "<group>"; };
-		473ABC25223CF918004CD694 /* View_MineCollectionFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View_MineCollectionFooter.xib; sourceTree = "<group>"; };
+		4738DA6322437D7600731FA8 /* DemoStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DemoStoryboard.storyboard; sourceTree = "<group>"; };
+		4738DA6522437D7600731FA8 /* VC_Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_Demo.swift; sourceTree = "<group>"; };
+		4738DA68224394DE00731FA8 /* HeroStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HeroStoryboard.storyboard; sourceTree = "<group>"; };
 		47FC34DC2238076F0022174D /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FC34DF2238076F0022174D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FC34E1223807700022174D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,64 +46,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		470C3DC1223BF024006292CE /* Classes */ = {
+		4738DA6222437D7600731FA8 /* Nib */ = {
 			isa = PBXGroup;
 			children = (
-				47CA63892244D5BF00F33EB8 /* Tangram */,
-				473ABC19223CF3D6004CD694 /* CollectionView */,
-				470C3DC4223BF024006292CE /* VC_Mine.swift */,
-				470C3DC5223BF024006292CE /* VM_Mine.swift */,
-				470C3DC2223BF024006292CE /* Views_Mine.swift */,
-				470C3DC3223BF024006292CE /* TableView */,
-			);
-			name = Classes;
-			path = ../Classes;
-			sourceTree = "<group>";
-		};
-		470C3DC3223BF024006292CE /* TableView */ = {
-			isa = PBXGroup;
-			children = (
-				473ABC13223C82D9004CD694 /* VC_MineTableView.swift */,
-				473ABC15223C82E7004CD694 /* VM_MineTableView.swift */,
-				473ABC17223C8306004CD694 /* Views_MineTableView.swift */,
-			);
-			path = TableView;
-			sourceTree = "<group>";
-		};
-		470C3DC6223BF025006292CE /* Nib */ = {
-			isa = PBXGroup;
-			children = (
-				470C3DC7223BF025006292CE /* MineStoryboard.storyboard */,
-				473ABC1D223CF8E4004CD694 /* Cell_MineCollectionImage.xib */,
-				473ABC21223CF905004CD694 /* View_MineCollectionHeader.xib */,
-				473ABC25223CF918004CD694 /* View_MineCollectionFooter.xib */,
+				4738DA6322437D7600731FA8 /* DemoStoryboard.storyboard */,
+				4738DA68224394DE00731FA8 /* HeroStoryboard.storyboard */,
 			);
 			name = Nib;
 			path = ../Nib;
 			sourceTree = "<group>";
 		};
-		473ABC19223CF3D6004CD694 /* CollectionView */ = {
+		4738DA6422437D7600731FA8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				473ABC1C223CF8E4004CD694 /* Views_MineCollection.swift */,
-				473ABC1A223CF405004CD694 /* VC_MineCollection.swift */,
-				4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */,
+				4738DA6522437D7600731FA8 /* VC_Demo.swift */,
 			);
-			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		47CA63892244D5BF00F33EB8 /* Tangram */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tangram;
+			name = Classes;
+			path = ../Classes;
 			sourceTree = "<group>";
 		};
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
-				470C3DC1223BF024006292CE /* Classes */,
-				470C3DC6223BF025006292CE /* Nib */,
+				4738DA6422437D7600731FA8 /* Classes */,
+				4738DA6222437D7600731FA8 /* Nib */,
 				47FC34DE2238076F0022174D /* Example */,
 				47FC34DD2238076F0022174D /* Products */,
 				9AB58F70F02E88BEFA7107D1 /* Pods */,
@@ -229,12 +175,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4738DA69224394DE00731FA8 /* HeroStoryboard.storyboard in Resources */,
 				47FC34EA223807710022174D /* LaunchScreen.storyboard in Resources */,
 				47FC34E7223807710022174D /* Assets.xcassets in Resources */,
-				470C3DCB223BF025006292CE /* MineStoryboard.storyboard in Resources */,
-				473ABC1F223CF8E4004CD694 /* Cell_MineCollectionImage.xib in Resources */,
-				473ABC27223CF918004CD694 /* View_MineCollectionFooter.xib in Resources */,
-				473ABC23223CF905004CD694 /* View_MineCollectionHeader.xib in Resources */,
+				4738DA6622437D7600731FA8 /* DemoStoryboard.storyboard in Resources */,
 				47FC34E5223807700022174D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,22 +219,27 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Assets/Assets.framework",
 				"${BUILT_PRODUCTS_DIR}/CD/CD.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/CollectionKit/CollectionKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Config/Config.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/IBAnimatable/IBAnimatable.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LazyScroll/LazyScroll.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/M_Sign/M_Sign.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Sign/Sign.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftForms/SwiftForms.framework",
 				"${BUILT_PRODUCTS_DIR}/TMUtils/TMUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Tangram/Tangram.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/VirtualView/VirtualView.framework",
-				"${BUILT_PRODUCTS_DIR}/Web/Web.framework",
+				"${BUILT_PRODUCTS_DIR}/cocore/cocore.framework",
+				"${BUILT_PRODUCTS_DIR}/coobjc/coobjc.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -298,22 +247,27 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Assets.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Config.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IBAnimatable.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LazyScroll.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M_Sign.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sign.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftForms.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TMUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tangram.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VirtualView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/cocore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/coobjc.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -328,16 +282,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				47FC34E2223807700022174D /* ViewController.swift in Sources */,
-				473ABC1B223CF405004CD694 /* VC_MineCollection.swift in Sources */,
-				473ABC1E223CF8E4004CD694 /* Views_MineCollection.swift in Sources */,
-				4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */,
-				470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */,
-				473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */,
-				470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */,
-				470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */,
-				473ABC18223C8306004CD694 /* Views_MineTableView.swift in Sources */,
+				4738DA6722437D7600731FA8 /* VC_Demo.swift in Sources */,
 				47FC34E02238076F0022174D /* AppDelegate.swift in Sources */,
-				473ABC14223C82D9004CD694 /* VC_MineTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

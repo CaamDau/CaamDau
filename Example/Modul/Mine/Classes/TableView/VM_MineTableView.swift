@@ -31,12 +31,10 @@ extension VM_MineTableView {
             self.second = second
             self.num = num
             self.open = open
-            
-            
         }
         
         deinit {
-            CD_CountDown.shared.timers.removeValue(forKey: self.id)
+            CD_CountDown.remove(self.id)
         }
     }
 }

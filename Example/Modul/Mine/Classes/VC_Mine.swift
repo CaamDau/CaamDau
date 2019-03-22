@@ -3,6 +3,7 @@
 import UIKit
 import CD
 import Assets
+import SnapKit
 
 public extension VC_Mine{
     
