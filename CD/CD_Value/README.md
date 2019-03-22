@@ -33,7 +33,10 @@ arr.urlValue(2)
 arr.arrayValue(4)
 arr.stringValue(1).arrayValue(".")
 arr.dictValue(5).dictValue("23")
-
+"123.88".intValue
+"12a3.88".int ?? 0
+"123.88".folatValue
+"123.88".arrayValue(".")
 ```
 
 ## Author
