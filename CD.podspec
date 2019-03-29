@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
     all.dependency 'CD/Core'
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
+    all.dependency 'CD/TopBar'
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
     
@@ -77,6 +78,15 @@ Pod::Spec.new do |s|
       }
       ifont.dependency 'CD/Extension'
   end
+  
+  s.subspec 'TopBar' do |topbar|
+      topbar.source_files = 'CD/CD_TopBar/*.{swift}'
+      topbar.dependency 'CD/Extension'
+      topbar.dependency 'CD/Chain'
+      topbar.dependency 'CD/IconFont'
+      topbar.dependency 'SnapKit', '~> 4.2.0'
+  end
+  
   
   #s.subspec 'MVVM' do |vm|
   #  vm.source_files = 'CD/CD_MVVM/*'

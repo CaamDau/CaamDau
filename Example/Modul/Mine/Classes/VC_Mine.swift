@@ -36,7 +36,8 @@ public class VC_Mine: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = true
+        self.tableView.delegate = self
         self.tableView.cd
             .estimatedAll()
             .headerMJGifWithModel({ [weak self] in
@@ -46,6 +47,7 @@ public class VC_Mine: UIViewController {
                 })
             }, model: modelMj)
             .beginRefreshing()
+        
     }
 }
 

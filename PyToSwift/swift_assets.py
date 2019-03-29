@@ -25,25 +25,25 @@ def file_names(dir):
 
 def make_swift(arr, path_output, classname):
     swift = """
-    //更多代码自动化可了解 :https://github.com/liucaide/CD/tree/master/PyToSwift .
+//更多代码自动化可了解 :https://github.com/liucaide/CD/tree/master/PyToSwift .
     
-    import Foundation
-    import UIKit
-    import CD
+import Foundation
+import UIKit
+import CD
 
-    public class %s {
-        public init(){}
+public class %s {
+    public init(){}
     """ % classname
     for name in arr:
         img = """
-        public lazy var %s:UIImage = {
-            return UIImage.cd_podImg(name:"%s", forClass:%s.self)
-        }()
+    public lazy var %s:UIImage = {
+        return UIImage.cd_podImg(name:"%s", forClass:%s.self)
+    }()
         """ % (name, name, classname)
         swift += img
 
     swift += """
-    }
+}
     """
 
     try:

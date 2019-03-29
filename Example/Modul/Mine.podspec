@@ -29,7 +29,7 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'CD'
+  s.dependency 'CD/All'
   s.dependency 'Sign'
   s.dependency 'Assets'
   s.dependency 'Config'

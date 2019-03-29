@@ -74,6 +74,7 @@ public extension CD where Base: UICollectionView {
 public extension UICollectionView {
     
 }
+
 //MARK:--- 默认的空 UICollectionViewCell CD_CollectionReusableView ----------
 public class CD_CollectionViewCellNone: UICollectionViewCell{
     static let id:String = "CD_CollectionViewCellNone"

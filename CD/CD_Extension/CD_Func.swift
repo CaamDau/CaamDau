@@ -299,23 +299,41 @@ public func cd_visibleVC(_ vc: UIViewController? = nil) -> UIViewController?{
 
 /// 导航栈的栈顶 VC
 public func cd_topVC(_ vc: UIViewController? = nil) -> UIViewController? {
-    let vc = vc ?? cd_window()?.rootViewController
+    /*
+    func presented(_ vc: UIViewController?) -> UIViewController? {
+        if let nvc = vc?.navigationController  {
+            return nvc.topViewController
+        }
+        if let vc = vc?.presentedViewController {
+            return presented(vc)
+        }
+        return nil
+        
+    }*/
     func topVC(_ vc: UIViewController? = nil) -> UIViewController? {
         let vc = vc ?? cd_window()?.rootViewController
         if let nv = vc as? UINavigationController,
             !nv.viewControllers.isEmpty
         {
-            // topViewController == viewControllers.last
             return topVC(nv.topViewController)
-        } else if let tb = vc as? UITabBarController,
+        }
+        if let tb = vc as? UITabBarController,
             let select = tb.selectedViewController
         {
             return topVC(select)
-        } else if let presented = vc?.presentedViewController {
-            return topVC(presented)
         }
+        if let presented = vc?.presentedViewController, let nvc = cd_visibleVC()?.navigationController {
+         
+            return topVC(nvc)
+        }
+        /*
+        if let vc = presented(cd_visibleVC()) {
+            return vc
+        }*/
         return vc
     }
+    
+    let vc = vc ?? cd_window()?.rootViewController
     return topVC(vc)
 }
 

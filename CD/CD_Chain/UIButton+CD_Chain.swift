@@ -5,12 +5,18 @@ import UIKit
 
 public extension CD where Base: UIButton {
     @discardableResult
-    func image(_ image: UIImage, for state:UIControl.State = .normal) -> CD {
+    func line(breakMode mode: NSLineBreakMode) -> CD {
+        base.titleLabel?.lineBreakMode = mode
+        return self
+    }
+    
+    @discardableResult
+    func image(_ image: UIImage?, for state:UIControl.State = .normal) -> CD {
         base.setImage(image, for: state)
         return self
     }
     @discardableResult
-    func background(_ image: UIImage, for state:UIControl.State = .normal) -> CD {
+    func background(_ image: UIImage?, for state:UIControl.State = .normal) -> CD {
         base.setBackgroundImage(image, for: state)
         return self
     }

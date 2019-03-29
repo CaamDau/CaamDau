@@ -12,6 +12,7 @@
 		470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC4223BF024006292CE /* VC_Mine.swift */; };
 		470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC5223BF024006292CE /* VM_Mine.swift */; };
 		470C3DCB223BF025006292CE /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470C3DC7223BF025006292CE /* MineStoryboard.storyboard */; };
+		4718400B224BB72900AA1B7D /* CD_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718400A224BB72900AA1B7D /* CD_Status.swift */; };
 		4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */; };
 		473ABC14223C82D9004CD694 /* VC_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC13223C82D9004CD694 /* VC_MineTableView.swift */; };
 		473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC15223C82E7004CD694 /* VM_MineTableView.swift */; };
@@ -21,6 +22,10 @@
 		473ABC1F223CF8E4004CD694 /* Cell_MineCollectionImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473ABC1D223CF8E4004CD694 /* Cell_MineCollectionImage.xib */; };
 		473ABC23223CF905004CD694 /* View_MineCollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473ABC21223CF905004CD694 /* View_MineCollectionHeader.xib */; };
 		473ABC27223CF918004CD694 /* View_MineCollectionFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 473ABC25223CF918004CD694 /* View_MineCollectionFooter.xib */; };
+		4745AB2A22479E87006E5461 /* VC_Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4745AB2922479E87006E5461 /* VC_Navigation.swift */; };
+		4745AB2C2247BD7D006E5461 /* View_Navi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4745AB2B2247BD7D006E5461 /* View_Navi.swift */; };
+		4745AB2E2247BD89006E5461 /* View_Navi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4745AB2D2247BD89006E5461 /* View_Navi.xib */; };
+		4745D374224E098F006A8ADE /* VC_TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4745D373224E098F006A8ADE /* VC_TopBar.swift */; };
 		47FC34E02238076F0022174D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34DF2238076F0022174D /* AppDelegate.swift */; };
 		47FC34E2223807700022174D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34E1223807700022174D /* ViewController.swift */; };
 		47FC34E5223807700022174D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FC34E3223807700022174D /* Main.storyboard */; };
@@ -34,6 +39,7 @@
 		470C3DC4223BF024006292CE /* VC_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_Mine.swift; sourceTree = "<group>"; };
 		470C3DC5223BF024006292CE /* VM_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VM_Mine.swift; sourceTree = "<group>"; };
 		470C3DC7223BF025006292CE /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
+		4718400A224BB72900AA1B7D /* CD_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_Status.swift; sourceTree = "<group>"; };
 		4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineCollection.swift; sourceTree = "<group>"; };
 		473ABC13223C82D9004CD694 /* VC_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_MineTableView.swift; sourceTree = "<group>"; };
 		473ABC15223C82E7004CD694 /* VM_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineTableView.swift; sourceTree = "<group>"; };
@@ -43,6 +49,10 @@
 		473ABC1D223CF8E4004CD694 /* Cell_MineCollectionImage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_MineCollectionImage.xib; sourceTree = "<group>"; };
 		473ABC21223CF905004CD694 /* View_MineCollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View_MineCollectionHeader.xib; sourceTree = "<group>"; };
 		473ABC25223CF918004CD694 /* View_MineCollectionFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View_MineCollectionFooter.xib; sourceTree = "<group>"; };
+		4745AB2922479E87006E5461 /* VC_Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Navigation.swift; sourceTree = "<group>"; };
+		4745AB2B2247BD7D006E5461 /* View_Navi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View_Navi.swift; sourceTree = "<group>"; };
+		4745AB2D2247BD89006E5461 /* View_Navi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View_Navi.xib; sourceTree = "<group>"; };
+		4745D373224E098F006A8ADE /* VC_TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_TopBar.swift; sourceTree = "<group>"; };
 		47FC34DC2238076F0022174D /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FC34DF2238076F0022174D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FC34E1223807700022174D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +112,14 @@
 			path = ../Nib;
 			sourceTree = "<group>";
 		};
+		47184009224BB70D00AA1B7D /* TopBar */ = {
+			isa = PBXGroup;
+			children = (
+				4718400A224BB72900AA1B7D /* CD_Status.swift */,
+			);
+			path = TopBar;
+			sourceTree = "<group>";
+		};
 		473ABC19223CF3D6004CD694 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +128,17 @@
 				4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		4745AB2822479E70006E5461 /* NavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				4745AB2922479E87006E5461 /* VC_Navigation.swift */,
+				4745D373224E098F006A8ADE /* VC_TopBar.swift */,
+				4745AB2B2247BD7D006E5461 /* View_Navi.swift */,
+				4745AB2D2247BD89006E5461 /* View_Navi.xib */,
+			);
+			path = NavigationView;
 			sourceTree = "<group>";
 		};
 		47CA63892244D5BF00F33EB8 /* Tangram */ = {
@@ -122,6 +151,7 @@
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
+				47184009224BB70D00AA1B7D /* TopBar */,
 				470C3DC1223BF024006292CE /* Classes */,
 				470C3DC6223BF025006292CE /* Nib */,
 				47FC34DE2238076F0022174D /* Example */,
@@ -142,6 +172,7 @@
 		47FC34DE2238076F0022174D /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				4745AB2822479E70006E5461 /* NavigationView */,
 				47FC34DF2238076F0022174D /* AppDelegate.swift */,
 				47FC34E1223807700022174D /* ViewController.swift */,
 				47FC34E3223807700022174D /* Main.storyboard */,
@@ -235,6 +266,7 @@
 				473ABC1F223CF8E4004CD694 /* Cell_MineCollectionImage.xib in Resources */,
 				473ABC27223CF918004CD694 /* View_MineCollectionFooter.xib in Resources */,
 				473ABC23223CF905004CD694 /* View_MineCollectionHeader.xib in Resources */,
+				4745AB2E2247BD89006E5461 /* View_Navi.xib in Resources */,
 				47FC34E5223807700022174D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,12 +359,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4745AB2A22479E87006E5461 /* VC_Navigation.swift in Sources */,
+				4745D374224E098F006A8ADE /* VC_TopBar.swift in Sources */,
 				47FC34E2223807700022174D /* ViewController.swift in Sources */,
+				4745AB2C2247BD7D006E5461 /* View_Navi.swift in Sources */,
 				473ABC1B223CF405004CD694 /* VC_MineCollection.swift in Sources */,
 				473ABC1E223CF8E4004CD694 /* Views_MineCollection.swift in Sources */,
 				4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */,
 				470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */,
 				473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */,
+				4718400B224BB72900AA1B7D /* CD_Status.swift in Sources */,
 				470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */,
 				470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */,
 				473ABC18223C8306004CD694 /* Views_MineTableView.swift in Sources */,
