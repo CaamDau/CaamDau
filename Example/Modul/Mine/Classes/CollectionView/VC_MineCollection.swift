@@ -30,7 +30,7 @@ class VC_MineCollection: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.cd.navigationBar(hidden: true)
         self.collectionView.cd
             .background(Config.color.bg)
             .register(self.vm.registerView)

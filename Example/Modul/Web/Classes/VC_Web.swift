@@ -19,6 +19,7 @@ public extension VC_Web{
 
 public class VC_Web: UIViewController {
     @IBOutlet weak var view_progress: UIProgressView!
+    @IBOutlet weak var tapBar: CD_TopBar!
     
     
     lazy var webView: WKWebView = {
@@ -45,7 +46,8 @@ public class VC_Web: UIViewController {
         
         self.view.cd.add(self.webView)
         self.webView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(tapBar.snp.bottom)
         }
         
         switch self.webType {

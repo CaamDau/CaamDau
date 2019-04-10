@@ -3,6 +3,7 @@
 import UIKit
 import CD
 import Assets
+import Config
 import SnapKit
 
 public extension VC_Mine{
@@ -13,6 +14,7 @@ public extension VC_Mine{
 }
 
 public class VC_Mine: UIViewController {
+    @IBOutlet weak var tapBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
     var vm:VM_Mine = VM_Mine()
     
@@ -36,7 +38,7 @@ public class VC_Mine: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        self.cd.navigationBar(hidden: true)
         self.tableView.delegate = self
         self.tableView.cd
             .estimatedAll()
@@ -48,6 +50,7 @@ public class VC_Mine: UIViewController {
             }, model: modelMj)
             .beginRefreshing()
         
+        tapBar.delegate = self
     }
 }
 
@@ -85,5 +88,25 @@ extension VC_Mine:UITableViewDelegate,UITableViewDataSource {
     }
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+    }
+}
+
+
+extension VC_Mine: CD_TopBarProtocol {
+    public func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        switch item {
+        case .leftItem1:
+            let icon = CD_IconFont.tsearch(22)
+            return [.title([(txt: icon.text, font: icon.font, color: Config.color.txt_1, state: .normal),
+                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .highlighted),
+                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .selected)])]
+        case .rightItem1:
+            let icon = CD_IconFont.tshare(22)
+            return [.title([(txt: icon.text, font: icon.font, color: Config.color.txt_1, state: .normal),
+                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .highlighted),
+                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .selected)])]
+        default:
+            return nil
+        }
     }
 }

@@ -68,7 +68,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gct-8B-Dzc">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Of-Jz-RA2" customClass="CD_TopBar" customModule="CD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="_title" value="GitHub"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gct-8B-Dzc">
                                 <rect key="frame" x="0.0" y="64" width="375" height="2"/>
                                 <color key="trackTintColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
@@ -76,15 +83,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gct-8B-Dzc" firstAttribute="trailing" secondItem="YLo-Gu-0la" secondAttribute="trailing" id="5fD-Id-Qxv"/>
+                            <constraint firstAttribute="trailing" secondItem="9Of-Jz-RA2" secondAttribute="trailing" id="6pI-rS-7x7"/>
                             <constraint firstItem="gct-8B-Dzc" firstAttribute="leading" secondItem="YLo-Gu-0la" secondAttribute="leading" id="DMQ-VU-pVe"/>
-                            <constraint firstItem="gct-8B-Dzc" firstAttribute="top" secondItem="YLo-Gu-0la" secondAttribute="top" id="fKI-D2-ysz"/>
+                            <constraint firstItem="9Of-Jz-RA2" firstAttribute="top" secondItem="5BV-X0-h1u" secondAttribute="top" id="QSt-RG-Wjp"/>
+                            <constraint firstItem="gct-8B-Dzc" firstAttribute="bottom" secondItem="9Of-Jz-RA2" secondAttribute="bottom" id="fKI-D2-ysz"/>
+                            <constraint firstItem="9Of-Jz-RA2" firstAttribute="leading" secondItem="5BV-X0-h1u" secondAttribute="leading" id="umB-oW-phI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YLo-Gu-0la"/>
                     </view>
                     <navigationItem key="navigationItem" id="0UG-Ld-yYm">
                         <nil key="title"/>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="tapBar" destination="9Of-Jz-RA2" id="Uws-7e-if6"/>
                         <outlet property="view_progress" destination="gct-8B-Dzc" id="AO0-rd-taM"/>
                     </connections>
                 </viewController>

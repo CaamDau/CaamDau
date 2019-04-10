@@ -322,7 +322,7 @@ public func cd_topVC(_ vc: UIViewController? = nil) -> UIViewController? {
         {
             return topVC(select)
         }
-        if let presented = vc?.presentedViewController, let nvc = cd_visibleVC()?.navigationController {
+        if let _ = vc?.presentedViewController, let nvc = cd_visibleVC()?.navigationController {
          
             return topVC(nvc)
         }

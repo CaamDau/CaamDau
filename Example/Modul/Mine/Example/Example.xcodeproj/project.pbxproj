@@ -12,7 +12,6 @@
 		470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC4223BF024006292CE /* VC_Mine.swift */; };
 		470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC5223BF024006292CE /* VM_Mine.swift */; };
 		470C3DCB223BF025006292CE /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470C3DC7223BF025006292CE /* MineStoryboard.storyboard */; };
-		4718400B224BB72900AA1B7D /* CD_Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718400A224BB72900AA1B7D /* CD_Status.swift */; };
 		4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */; };
 		473ABC14223C82D9004CD694 /* VC_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC13223C82D9004CD694 /* VC_MineTableView.swift */; };
 		473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473ABC15223C82E7004CD694 /* VM_MineTableView.swift */; };
@@ -39,7 +38,6 @@
 		470C3DC4223BF024006292CE /* VC_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_Mine.swift; sourceTree = "<group>"; };
 		470C3DC5223BF024006292CE /* VM_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VM_Mine.swift; sourceTree = "<group>"; };
 		470C3DC7223BF025006292CE /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
-		4718400A224BB72900AA1B7D /* CD_Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_Status.swift; sourceTree = "<group>"; };
 		4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineCollection.swift; sourceTree = "<group>"; };
 		473ABC13223C82D9004CD694 /* VC_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_MineTableView.swift; sourceTree = "<group>"; };
 		473ABC15223C82E7004CD694 /* VM_MineTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineTableView.swift; sourceTree = "<group>"; };
@@ -112,14 +110,6 @@
 			path = ../Nib;
 			sourceTree = "<group>";
 		};
-		47184009224BB70D00AA1B7D /* TopBar */ = {
-			isa = PBXGroup;
-			children = (
-				4718400A224BB72900AA1B7D /* CD_Status.swift */,
-			);
-			path = TopBar;
-			sourceTree = "<group>";
-		};
 		473ABC19223CF3D6004CD694 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +141,6 @@
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
-				47184009224BB70D00AA1B7D /* TopBar */,
 				470C3DC1223BF024006292CE /* Classes */,
 				470C3DC6223BF025006292CE /* Nib */,
 				47FC34DE2238076F0022174D /* Example */,
@@ -309,6 +298,7 @@
 				"${BUILT_PRODUCTS_DIR}/CD/CD.framework",
 				"${BUILT_PRODUCTS_DIR}/Config/Config.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/LazyScroll/LazyScroll.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/M_Sign/M_Sign.framework",
@@ -332,6 +322,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Config.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LazyScroll.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M_Sign.framework",
@@ -368,7 +359,6 @@
 				4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */,
 				470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */,
 				473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */,
-				4718400B224BB72900AA1B7D /* CD_Status.swift in Sources */,
 				470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */,
 				470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */,
 				473ABC18223C8306004CD694 /* Views_MineTableView.swift in Sources */,

@@ -13,6 +13,7 @@ import Config
 import RxSwift
 import RxCocoa
 
+
 extension VC_MineTableView {
     static func show() -> VC_MineTableView {
         return VC_MineTableView.cd_storyboard(withBundle: "Mine", name: "MineStoryboard") as! VC_MineTableView
@@ -26,12 +27,13 @@ extension VC_MineTableView {
 
 class VC_MineTableView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tabbar: CD_TopBar!
     var vm:VM_MineTableView = VM_MineTableView()
     
     let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.cd.navigationBar(hidden: true)
         self.vm.blockRequest = { [weak self] in
             self?.tableView.reloadData()
             self?.tableView.cd
@@ -60,7 +62,7 @@ class VC_MineTableView: UIViewController {
             .asObservable()
             .subscribe(onNext: { [weak self](n) in
                 if let model = n.object as? CD_CountDown.Model {
-                    self?.title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
+                    self?.tabbar._title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
                 }
             }).disposed(by: disposeBag)
         /// 输入

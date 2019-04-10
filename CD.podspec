@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CD'
-  s.version          = '0.4.42'
+  s.version          = '0.5.42'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块插件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 模块插件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能插件，可快速集成使用以大幅减少基础工作量；附.各种类库使用示例demo.
@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
     all.dependency 'CD/TopBar'
+    all.dependency 'CD/FDFullscreenPopGesture'
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
     
@@ -84,17 +85,23 @@ Pod::Spec.new do |s|
       topbar.dependency 'CD/Extension'
       topbar.dependency 'CD/Chain'
       topbar.dependency 'CD/IconFont'
+      topbar.dependency 'CD/FDFullscreenPopGesture'
       topbar.dependency 'SnapKit', '~> 4.2.0'
   end
-  
   
   #s.subspec 'MVVM' do |vm|
   #  vm.source_files = 'CD/CD_MVVM/*'
   #end
   
+  # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CD/CD_MJRefresh/*.{swift}', 'CD/CD.swift'
     mj.dependency 'MJRefresh'
+  end
+  
+  s.subspec 'FDFullscreenPopGesture' do |fd|
+      fd.source_files = 'CD/CD_FDFullscreenPopGesture/*.{swift}', 'CD/CD.swift'
+      fd.dependency 'FDFullscreenPopGesture'
   end
   
   #s.resource_bundles = {

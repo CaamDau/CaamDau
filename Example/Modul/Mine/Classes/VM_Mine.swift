@@ -19,6 +19,7 @@ extension VM_Mine {
         case form = 0
         case other
         case me
+        case num
         case end
         
         var headerTitle:String {
@@ -110,6 +111,13 @@ extension VM_Mine{
                 VC_Web.push(.http("https://github.com/liucaide/CD/tree/master/CD/CD_RegEx"))
             }
             self.forms[Section.other.rawValue].append(row)
+        }
+        
+        do {
+            for item in 0..<100 {
+                let row = CD_RowClass<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))
+                self.forms[Section.num.rawValue].append(row)
+            }
         }
     }
     

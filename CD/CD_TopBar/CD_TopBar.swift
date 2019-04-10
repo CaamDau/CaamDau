@@ -18,7 +18,6 @@
 
 
 import UIKit
-import CD
 import SnapKit
 
 public protocol CD_TopBarProtocol: NSObjectProtocol {
