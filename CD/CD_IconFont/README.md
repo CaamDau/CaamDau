@@ -25,6 +25,7 @@ self.btn.cd.text(CD_IconFont.temoji(60).attributedString)
     
 self.btn.cd.iconfont(CD_IconFont.temoji(60), style: .image(.normal, color: UIColor.red, mode: .center))
 ```
+#### 配备[阿里矢量图标资源管理 代码自动化脚本](https://github.com/liucaide/CD/blob/master/PyToSwift/swift_iconfont.py)
 
 ## Author
 
