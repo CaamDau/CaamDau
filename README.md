@@ -17,6 +17,8 @@
 - ... 持续增新
 #### CD 辅助插件
 - [CD_TopBar：自定义导航栏](https://github.com/liucaide/CD/tree/master/CD/CD_TopBar) 
+  - 扩展依赖 [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture)
+  - 友情链接[EachNavigationBar 原生扩展](https://github.com/Pircate/EachNavigationBar)
 - [CD_IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CD/tree/master/CD/CD_IconFont) 
 - [CD_IBInspectable sb/xib 辅助](https://github.com/liucaide/CD/tree/master/CD/CD_IBInspectable) 
 - ... 持续增新
