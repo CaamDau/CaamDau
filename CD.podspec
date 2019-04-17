@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
     cd.dependency 'CD/CountDown'
     cd.dependency 'CD/Value'
     cd.dependency 'CD/RegEx'
+    cd.dependency 'CD/AppDelegate'
   end
   
   s.subspec 'All' do |all|
@@ -38,6 +39,10 @@ Pod::Spec.new do |s|
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
     
+  end
+  
+  s.subspec 'AppDelegate' do |app|
+      app.source_files = 'CD/CD_AppDelegate/*.{swift}'
   end
   
   s.subspec 'Extension' do |es|
@@ -111,4 +116,5 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'Then'
 end
