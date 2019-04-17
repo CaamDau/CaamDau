@@ -242,15 +242,50 @@ public extension CD where Base: UIView {
     }
     
     /// 背景渐变 默认横向渐变 point -> 0 - 1
+    /// let gradients:[(UIColor,Float)] = [(UIColor.red,0),(UIColor.yellow,1)]
+    /// view.cd.gradient(layer: gradients)
     @discardableResult
-    func gradient(layer gradient:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (CGPoint(x: 0, y: 0),CGPoint(x: 1, y: 0)), at: UInt32 = 0) -> CD {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = gradient.map{$0.color.cgColor}
-        gradientLayer.locations = gradient.map{NSNumber(value:$0.location)}
-        gradientLayer.startPoint = point.start
-        gradientLayer.endPoint = point.end
-        gradientLayer.frame = base.frame
-        base.layer.insertSublayer(gradientLayer, at: at)
+    func gradient(layer gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil) -> CD {
+        
+        func gradient(_ layer:CAGradientLayer) {
+            layer.colors = gradients.map{$0.color.cgColor}
+            layer.locations = gradients.map{NSNumber(value:$0.location)}
+            layer.startPoint = point.start
+            layer.endPoint = point.end
+            layer.frame = base.bounds
+        }
+        
+        base.layoutIfNeeded()
+        let layers:[CAGradientLayer] = base.layer.sublayers?.filter{$0.isKind(of: CAGradientLayer.self)}.map{$0} as? [CAGradientLayer] ?? []
+        if layers.count == 0 {
+            let layer = CAGradientLayer()
+            gradient(layer)
+            base.layer.insertSublayer(layer, at: at)
+        }else{
+            gradient(layers[updateIndex ?? 0])
+        }
+        return self
+    }
+    
+    /// 毛玻璃效果 view.blurEffect(UIColor.red.withAlphaComponent(0.5))
+    @discardableResult
+    func blurEffect(_ color:UIColor = UIColor.clear,  style:UIBlurEffect.Style = .light, block:((UIVisualEffectView) -> Void)? = nil) -> CD {
+        base.layoutIfNeeded()
+        base.backgroundColor = UIColor.clear
+        let blurEffect = UIBlurEffect(style: style)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.backgroundColor = color
+        blurEffectView.frame = base.bounds
+        base.addSubview(blurEffectView)
+        base.sendSubviewToBack(blurEffectView)
+        block?(blurEffectView)
+        return self
+    }
+    
+    ///
+    @discardableResult
+    func then(_ block:() -> Void) -> CD {
+        block()
         return self
     }
 }

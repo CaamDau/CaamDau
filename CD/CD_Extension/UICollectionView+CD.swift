@@ -59,6 +59,7 @@ public extension CD where Base: UICollectionView {
             }
         }
     }
+    
     func cell(_ id:String, _ index:IndexPath) -> UICollectionViewCell{
         return base.dequeueReusableCell(withReuseIdentifier: id, for: index)
     }
