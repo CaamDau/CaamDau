@@ -21,6 +21,7 @@ open class CD_TopCustomBar: UIView {
         super.init(coder: aDecoder)
         self.backgroundColor = UIColor.clear
     }
+    
     convenience public init(){
         self.init(frame: CGRect.zero)
     }

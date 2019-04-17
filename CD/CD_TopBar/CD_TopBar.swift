@@ -19,7 +19,6 @@
 
 import UIKit
 import SnapKit
-
 public protocol CD_TopBarProtocol: NSObjectProtocol {
     /// 更新按钮样式
     func update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
@@ -120,13 +119,13 @@ open class CD_TopBar: UIView {
     /// 状态栏
     public lazy var bar_status:CD_TopStatusBar = {
         return CD_TopStatusBar().cd
-            .background(UIColor.clear)
+            .background(_colorStatusBar)
             .build
     }()
     /// 导航栏
     public lazy var bar_navigation:CD_TopNavigationBar = {
         let bar =  CD_TopNavigationBar().cd
-            .background(UIColor.clear)
+            .background(_bgColorNavigationBar)
             .build
         bar.delegate = self
         return bar
@@ -223,6 +222,45 @@ open class CD_TopBar: UIView {
             bar_navigation._bgColor = _bgColorNavigationBar
         }
     }
+    
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorNormal:UIColor = CD_TopBar.Model.color_normal {
+        didSet{
+            bar_navigation._colorNormal = _colorNormal
+        }
+    }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorSelected:UIColor = CD_TopBar.Model.color_selected {
+        didSet{
+            bar_navigation._colorSelected = _colorSelected
+        }
+    }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorHighlighted:UIColor = CD_TopBar.Model.color_highlighted {
+        didSet{
+            bar_navigation._colorHighlighted = _colorHighlighted
+        }
+    }
+    /// 标题颜色
+    @IBInspectable open var _colorTitle:UIColor = CD_TopBar.Model.color_title {
+        didSet{
+            bar_navigation._colorTitle = _colorTitle
+        }
+    }
+    /// 副标题颜色
+    @IBInspectable open var _colorSubTitle:UIColor = CD_TopBar.Model.color_subTitle {
+        didSet{
+            bar_navigation._colorSubTitle = _colorSubTitle
+        }
+    }
+    /// Prompt标题颜色
+    @IBInspectable open var _colorPrompt:UIColor = CD_TopBar.Model.color_prompt {
+        didSet{
+            bar_status._colorPrompt = _colorPrompt
+        }
+    }
+    
+    
     //MARK:--- 宽高 ----------
     /// 状态栏高度
     @IBInspectable open var _heightStatusBar:CGFloat = CD_TopBar.Model.height_status {
@@ -236,12 +274,25 @@ open class CD_TopBar: UIView {
             updateStatusPrompt()
         }
     }
+    /// 状态栏 Prompt 部分 实际高度 - 在设置 Prompt 后有效
+    var heightStatusPrompt:CGFloat {
+        get{
+            return ((_prompt ?? "").isEmpty ? 0 : _heightStatusPrompt)
+        }
+    }
+    
     /// 自定义栏高度
     @IBInspectable open var _heightCustomBar:CGFloat = 0 {
         didSet{
             bar_custom.snp.updateConstraints { (make) in
                 make.height.equalTo(_heightCustomBar)
             }
+        }
+    }
+    /// TopBar 总高度
+    open var _heightTopBar:CGFloat {
+        get{
+            return _heightStatusBar + CD_TopBar.Model.height_navigation + heightStatusPrompt + _heightCustomBar
         }
     }
     
@@ -344,6 +395,7 @@ open class CD_TopBar: UIView {
         makeUI()
         
     }
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.makeUI()
@@ -366,25 +418,28 @@ private extension CD_TopBar {
         self.cd
             .background(CD_TopBar.Model.color_bg)
             .add(img_bg)
-            .add(bar_status)
             .add(bar_navigation)
             .add(bar_custom)
+            .add(bar_status)
+        
         
         self.makeLayout()
         self.makeNavigationBar()
     }
     func makeLayout() {
-        img_bg.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
         bar_status.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
             make.height.equalTo(_heightStatusBar)
         }
+        img_bg.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(bar_status)
+        }
+        
         bar_navigation.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(_heightStatusBar)
-            //make.top.equalTo(bar_status.snp.bottom)
+            //make.top.equalToSuperview().offset(_heightStatusBar)
+            make.top.equalTo(bar_status.snp.bottom)
             make.height.equalTo(CD_TopBar.Model.height_navigation)
         }
         bar_custom.snp.makeConstraints { (make) in
@@ -392,11 +447,13 @@ private extension CD_TopBar {
             make.top.equalTo(self.bar_navigation.snp.bottom)
             make.height.equalTo(_heightCustomBar)
         }
+        
     }
+    
     
     /// 更新状态栏的 Prompt
     func updateStatusPrompt() {
-        let h:CGFloat = ((_prompt ?? "").isEmpty ? 0 : _heightStatusPrompt)
+        let h = heightStatusPrompt
         let hh = _heightStatusBar + h
         
         bar_status.snp.updateConstraints { (make) in
@@ -406,11 +463,8 @@ private extension CD_TopBar {
         bar_status.lab_1.snp.updateConstraints { (make) in
             make.height.equalTo(h)
         }
-        
-        bar_navigation.snp.updateConstraints { (make) in
-            make.top.equalToSuperview().offset(hh)
-        }
     }
+    
     
     /// 暂时这样，导航栈第一个控制器 将左侧默认返回按钮置为空
     func makeNavigationBar(){
@@ -440,6 +494,7 @@ private extension CD_TopBar {
 extension CD_TopBar {
     public func reloadData() {
         self.bar_navigation.reloadData()
+        self.delegate?.topBarCustom()
     }
     public func reloadData(with item:CD_TopNavigationBar.Item, styles:[CD_TopNavigationBarItem.Item.Style]) {
         self.bar_navigation.reloadData(with: item, styles: styles)

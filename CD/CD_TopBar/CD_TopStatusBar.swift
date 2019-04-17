@@ -18,7 +18,7 @@ open class CD_TopStatusBar: UIView {
     public lazy var lab_1:UILabel = {
         let lab = UILabel().cd
             .text("")
-            .text(UIColor.black)
+            .text(_colorPrompt)
             .text(CD_TopBar.Model.font_prompt)
             .text(NSTextAlignment.center)
             .adjusts(true)
@@ -41,6 +41,13 @@ open class CD_TopStatusBar: UIView {
             self.backgroundColor = _colorBg
         }
     }
+    /// 副标题颜色
+    @IBInspectable open var _colorPrompt:UIColor = CD_TopBar.Model.color_prompt {
+        didSet{
+            lab_1.cd.text(_colorPrompt)
+        }
+    }
+    
     override public init(frame: CGRect) {
         super.init(frame: frame)
         makeUI()
@@ -55,7 +62,7 @@ open class CD_TopStatusBar: UIView {
     }
     
     func makeUI() {
-        self.backgroundColor = UIColor.red
+        //self.backgroundColor = UIColor.red
         self.cd.add(img_bg).add(lab_1)
         makeSnap()
     }

@@ -61,7 +61,9 @@ open class CD_TopNavigationBarItem: UIView {
     public lazy var btn_1:UIButton = {
         let btn = UIButton().cd
             .text("M1")
-            .text(UIColor.black)
+            .text(CD_TopBar.Model.color_normal, .normal)
+            .text(CD_TopBar.Model.color_selected, .selected)
+            .text(CD_TopBar.Model.color_highlighted, .highlighted)
             .tag(CD_TopNavigationBarItem.Item.item1.rawValue)
             //.background(UIColor.brown)
             .build
@@ -72,7 +74,9 @@ open class CD_TopNavigationBarItem: UIView {
     public lazy var btn_2:UIButton = {
         let btn = UIButton().cd
             .text("M2")
-            .text(UIColor.black)
+            .text(CD_TopBar.Model.color_normal, .normal)
+            .text(CD_TopBar.Model.color_selected, .selected)
+            .text(CD_TopBar.Model.color_highlighted, .highlighted)
             .tag(CD_TopNavigationBarItem.Item.item2.rawValue)
             //.background(UIColor.orange)
             .build
@@ -84,7 +88,9 @@ open class CD_TopNavigationBarItem: UIView {
     public lazy var btn_3:UIButton = {
         let btn = UIButton().cd
             .text("M3")
-            .text(UIColor.black)
+            .text(CD_TopBar.Model.color_normal, .normal)
+            .text(CD_TopBar.Model.color_selected, .selected)
+            .text(CD_TopBar.Model.color_highlighted, .highlighted)
             .tag(CD_TopNavigationBarItem.Item.item3.rawValue)
             //.background(UIColor.gray)
             .build
@@ -105,6 +111,70 @@ open class CD_TopNavigationBarItem: UIView {
         }
     }
     
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorNormal:UIColor = CD_TopBar.Model.color_normal {
+        didSet{
+            guard style != .valueNone else {return}
+            guard style != .valueTitle else {return}
+            guard self.subviews.contains(btn_1) else { return }
+            btn_1.cd.text(_colorNormal, .normal)
+            guard self.subviews.contains(btn_2) else { return }
+            btn_2.cd.text(_colorNormal, .normal)
+            guard self.subviews.contains(btn_3) else { return }
+            btn_3.cd.text(_colorNormal, .normal)
+        }
+    }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorSelected:UIColor = CD_TopBar.Model.color_selected {
+        didSet{
+            guard style != .valueNone else {return}
+            guard style != .valueTitle else {return}
+            guard self.subviews.contains(btn_1) else { return }
+            btn_1.cd.text(_colorSelected, .selected)
+            guard self.subviews.contains(btn_2) else { return }
+            btn_2.cd.text(_colorSelected, .selected)
+            guard self.subviews.contains(btn_3) else { return }
+            btn_3.cd.text(_colorSelected, .selected)
+        }
+    }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorHighlighted:UIColor = CD_TopBar.Model.color_highlighted {
+        didSet{
+            guard style != .valueNone else {return}
+            guard style != .valueTitle else {return}
+            guard self.subviews.contains(btn_1) else { return }
+            btn_1.cd.text(_colorHighlighted, .highlighted)
+            guard self.subviews.contains(btn_2) else { return }
+            btn_2.cd.text(_colorHighlighted, .highlighted)
+            guard self.subviews.contains(btn_3) else { return }
+            btn_3.cd.text(_colorHighlighted, .highlighted)
+        }
+    }
+    /// 标题颜色
+    @IBInspectable open var _colorTitle:UIColor = CD_TopBar.Model.color_title {
+        didSet{
+            guard style != .valueNone else {return}
+            guard style == .valueTitle else {return}
+            guard self.subviews.contains(btn_1) else { return }
+            btn_1.cd
+                .text(_colorTitle, .normal)
+                .text(_colorTitle, .selected)
+                .text(_colorTitle, .highlighted)
+        }
+    }
+    /// 副标题颜色
+    @IBInspectable open var _colorSubTitle:UIColor = CD_TopBar.Model.color_subTitle {
+        didSet{
+            guard style != .valueNone else {return}
+            guard style == .valueTitle else {return}
+            guard self.subviews.contains(btn_2) else { return }
+            btn_2.cd
+                .text(_colorTitle, .normal)
+                .text(_colorTitle, .selected)
+                .text(_colorTitle, .highlighted)
+        }
+    }
+    
     /// 按钮1 宽度
     @IBInspectable open var _width1:CGFloat = CD_TopBar.Model.height_navigation {
         didSet{
@@ -114,6 +184,7 @@ open class CD_TopNavigationBarItem: UIView {
             btn_1.snp.updateConstraints { (make) in
                 make.width.equalTo(_width1)
             }
+            
         }
     }
     /// 按钮2 宽度
@@ -137,6 +208,7 @@ open class CD_TopNavigationBarItem: UIView {
             btn_3.snp.updateConstraints { (make) in
                 make.width.equalTo(_width3)
             }
+            
         }
     }
     /// 按钮 内间距
@@ -148,10 +220,12 @@ open class CD_TopNavigationBarItem: UIView {
             btn_2.snp.updateConstraints { (make) in
                 make.left.equalTo(btn_1.snp.right).offset(_space)
             }
+            
             guard self.subviews.contains(btn_3) else { return }
             btn_3.snp.updateConstraints { (make) in
                 make.left.equalTo(btn_2.snp.right).offset(_space)
             }
+            
         }
     }
     /// 按钮top边距
@@ -163,14 +237,17 @@ open class CD_TopNavigationBarItem: UIView {
             btn_1.snp.updateConstraints { (make) in
                 make.top.equalToSuperview().offset(_spaceTop)
             }
+            
             guard self.subviews.contains(btn_2) else { return }
             btn_2.snp.updateConstraints { (make) in
                 make.top.equalToSuperview().offset(_spaceTop)
             }
+            
             guard self.subviews.contains(btn_3) else { return }
             btn_3.snp.updateConstraints { (make) in
                 make.top.equalToSuperview().offset(_spaceTop)
             }
+            
         }
     }
     /// 按钮两侧边距
@@ -313,14 +390,22 @@ extension CD_TopNavigationBarItem {
         btn_1.cd
             .text("")
             .text(CD_TopBar.Model.font_title)
+            .text(CD_TopBar.Model.color_title, .normal)
+            .text(CD_TopBar.Model.color_title, .selected)
+            .text(CD_TopBar.Model.color_title, .highlighted)
+        
         btn_2.cd
             .text("")
             .text(CD_TopBar.Model.font_subTitle)
+            .text(CD_TopBar.Model.color_subTitle, .normal)
+            .text(CD_TopBar.Model.color_subTitle, .selected)
+            .text(CD_TopBar.Model.color_subTitle, .highlighted)
         
         btn_2.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(0)
         }
+        
         btn_1.snp.remakeConstraints { (make) in
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(btn_2.snp.top)

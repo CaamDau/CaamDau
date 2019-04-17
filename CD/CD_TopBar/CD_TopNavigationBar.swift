@@ -131,6 +131,39 @@ open class CD_TopNavigationBar: UIView {
             self.backgroundColor = _bgColor
         }
     }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorNormal:UIColor = CD_TopBar.Model.color_normal {
+        didSet{
+            item_left._colorNormal = _colorNormal
+            item_right._colorNormal = _colorNormal
+        }
+    }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorSelected:UIColor = CD_TopBar.Model.color_selected {
+        didSet{
+            item_left._colorSelected = _colorSelected
+            item_right._colorSelected = _colorSelected
+        }
+    }
+    /// 左右导航标签颜色
+    @IBInspectable open var _colorHighlighted:UIColor = CD_TopBar.Model.color_highlighted {
+        didSet{
+            item_left._colorHighlighted = _colorHighlighted
+            item_right._colorHighlighted = _colorHighlighted
+        }
+    }
+    /// 标题颜色
+    @IBInspectable open var _colorTitle:UIColor = CD_TopBar.Model.color_title {
+        didSet{
+            item_centre._colorTitle = _colorTitle
+        }
+    }
+    /// 副标题颜色
+    @IBInspectable open var _colorSubTitle:UIColor = CD_TopBar.Model.color_subTitle {
+        didSet{
+            item_centre._colorSubTitle = _colorSubTitle
+        }
+    }
     
     //MARK:--- 间距 ----------
     /// item 内间距
@@ -315,6 +348,7 @@ extension CD_TopNavigationBar {
         
         makeWithStyle()
     }
+    
     
     func makeWithStyle(){
         guard self.style != .valueNone else {
