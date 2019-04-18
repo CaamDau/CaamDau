@@ -1,9 +1,8 @@
 # CD_TopBar
 
 > 自定义头部导航栏
-
-![](https://github.com/liucaide/CD/blob/master/images/91A3EA54-3F64-4BDA-AFFE-EC774AD126C1.png)
-![](https://github.com/liucaide/CD/blob/master/images/B9311AC5-0958-4CC5-8706-4C49E76DED24.png)
+<img src="https://github.com/liucaide/CD/blob/master/images/91A3EA54-3F64-4BDA-AFFE-EC774AD126C1.png" width="400" align=left />
+<img src="https://github.com/liucaide/CD/blob/master/images/B9311AC5-0958-4CC5-8706-4C49E76DED24.png" width="400" align=left />
 
 ## Installation
 
