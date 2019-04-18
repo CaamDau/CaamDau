@@ -1,16 +1,35 @@
-//Created  on 2019/4/18 by  LCD:https://github.com/liucaide .
+# CD_AppDelegate
 
-/***** 模块文档 *****
- *
- */
+> AppDelegate 解耦
 
+## Installation
 
+CD is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
+```ruby
+pod 'CD/AppDelegate'
+```
 
-import Foundation
-import CD
-import TabbarNavigation
+### AppDelegate
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    lazy var composite: CD_AppDelegateComposite = {
+        return CD_AppDelegateComposite([AppDelegate_VC(window),AppDelegate_UM()])
+    }()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return composite.application(application, didFinishLaunchingWithOptions:launchOptions)
+    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return composite.application(app, open: url, options: options)
+    }
+}
+
+```
+### AppDelegate Modul
+```
 class AppDelegate_VC: CD_AppDelegate {
     var window: UIWindow?
     init(_ win: UIWindow?) {
@@ -23,7 +42,8 @@ class AppDelegate_VC: CD_AppDelegate {
         return true
     }
 }
-
+```
+```
 class AppDelegate_UM: CD_AppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         return true
@@ -32,6 +52,8 @@ class AppDelegate_UM: CD_AppDelegate {
         return true
     }
 }
+```
+```
 class AppDelegate_Notifications: CD_AppDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         return true
@@ -40,3 +62,14 @@ class AppDelegate_Notifications: CD_AppDelegate {
         
     }
 }
+```
+
+- [参考](https://juejin.im/post/5bd0259d5188251a29719086#comment)
+
+## Author
+
+liucaide, 565726319@qq.com
+
+## License
+
+CD is available under the MIT license. See the LICENSE file for more info.

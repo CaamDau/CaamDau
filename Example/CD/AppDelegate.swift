@@ -14,36 +14,36 @@ import TabbarNavigation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    lazy var app: CD_AppDelegateComposite = {
+    lazy var composite: CD_AppDelegateComposite = {
         return CD_AppDelegateComposite([AppDelegate_VC(window),AppDelegate_UM()])
     }()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //window = UIWindow(frame: UIScreen.main.bounds)
-        return app.application(application, didFinishLaunchingWithOptions:launchOptions)
+        return composite.application(application, didFinishLaunchingWithOptions:launchOptions)
     }
-
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return composite.application(app, open: url, options: options)
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
-        app.applicationWillResignActive(application)
+        composite.applicationWillResignActive(application)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        app.applicationDidEnterBackground(application)
+        composite.applicationDidEnterBackground(application)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        app.applicationWillEnterForeground(application)
+        composite.applicationWillEnterForeground(application)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        app.applicationDidBecomeActive(application)
+        composite.applicationDidBecomeActive(application)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        app.applicationWillTerminate(application)
+        composite.applicationWillTerminate(application)
     }
-
-
 }
 
 
+extension
