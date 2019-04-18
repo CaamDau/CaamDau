@@ -27,7 +27,6 @@ Pod::Spec.new do |s|
     cd.dependency 'CD/CountDown'
     cd.dependency 'CD/Value'
     cd.dependency 'CD/RegEx'
-    cd.dependency 'CD/AppDelegate'
   end
   
   s.subspec 'All' do |all|
@@ -37,6 +36,7 @@ Pod::Spec.new do |s|
     all.dependency 'CD/TopBar'
     all.dependency 'CD/Page'
     all.dependency 'CD/FDFullscreenPopGesture'
+    all.dependency 'CD/AppDelegate'
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
     
