@@ -113,6 +113,13 @@ extension VM_Mine{
             self.forms[Section.other.rawValue].append(row)
         }
         
+        do{
+            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_Page", "分页"), frame: CGRect(h:45)) {
+                VC_Page.push()
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        
         do {
             for item in 0..<100 {
                 let row = CD_RowClass<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))

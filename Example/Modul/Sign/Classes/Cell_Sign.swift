@@ -2,7 +2,7 @@
 
 import UIKit
 import CD
-import M_Sign
+import User
 import Config
 
 //MARK:--- 输入 ----------

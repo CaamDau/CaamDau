@@ -1,4 +1,7 @@
 //Created  on 2018/02/27  by LCD :https://github.com/liucaide .
+/***** 模块文档 *****
+ * 登录注册页面 响应模型
+ */
 
 import Foundation
 import UIKit

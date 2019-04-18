@@ -4,35 +4,7 @@ platform :ios, '9.0'
 
 target 'Example' do
   
-  pod 'CD/All', :path => '~/Desktop/MyWorking/CDKit/CD/'
-  pod 'Assets', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  pod 'Config', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
   
-  # 图片
-  pod 'Kingfisher'
-  # 动画
-  pod 'IBAnimatable'
-  pod 'Hero'
-  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
-  
-  # HUD
-  pod 'Toast-Swift'
-  
-  # 阿里类
-  pod 'Tangram'
-  pod 'coobjc'
-  # 图表
-  #pod 'SwiftForms'
-  pod 'CollectionKit'
-  pod 'Charts'
-  #pod 'AAInfographics'
-  # 菜单
-  pod 'SideMenu'
-  # 加密
-  pod 'CryptoSwift'
-  # 存储
-  pod 'KeychainAccess'
-  
-  pod 'SwiftDate'
+  pod 'Demo', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Modul/'
   
 end

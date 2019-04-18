@@ -9,7 +9,7 @@ target 'Example' do
   pod 'Config', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
   pod 'Web', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Modul/'
   pod 'Sign', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Modul/'
-  pod 'M_Sign', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
+  pod 'User', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxDataSources'
@@ -17,5 +17,7 @@ target 'Example' do
   pod 'Tangram'
   # 阿里协程库
   #pod 'coobjc'
-  
+  pod 'Then', '~> 2.4.0'
+  pod 'Toast-Swift', '~> 4.0.1'
+  pod 'KeychainAccess'
 end

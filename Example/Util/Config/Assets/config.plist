@@ -5,33 +5,33 @@
 	<key>color</key>
 	<dict>
 		<key>main_1</key>
-		<string>5C86FF</string>
+		<string>FC511F</string>
 		<key>main_2</key>
-		<string>FF5500</string>
+		<string>FC981F</string>
 		<key>main_3</key>
-		<string>FF630F</string>
+		<string>1C9DFF</string>
 		<key>main_4</key>
-		<string>FFBF1C</string>
+		<string>1C9DFF</string>
 		<key>main_5</key>
-		<string>FFEEE6</string>
+		<string>3CCCFF</string>
 		<key>btnBgSelected</key>
-		<string>5C86FF</string>
+		<string>1C9DFF</string>
 		<key>btnBgNormal</key>
-		<string>5C86FF</string>
+		<string>1C9DFF</string>
 		<key>btnBgEnabledNo</key>
-		<string>#ededed</string>
+		<string>DE</string>
 		<key>btnBgEnabledYes</key>
-		<string>5C86FF</string>
+		<string>1C9DFF</string>
 		<key>btnBgHighlighted</key>
-		<string>5C86FF</string>
+		<string>1C9DFF</string>
 		<key>txt_1</key>
-		<string>#0</string>
+		<string>#3</string>
 		<key>txt_2</key>
 		<string>#6</string>
 		<key>txt_3</key>
 		<string>#9</string>
 		<key>txt_4</key>
-		<string>#b0</string>
+		<string>#1C9DFF</string>
 		<key>txt_5</key>
 		<string>#d4</string>
 		<key>bg</key>

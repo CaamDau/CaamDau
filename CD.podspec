@@ -35,6 +35,7 @@ Pod::Spec.new do |s|
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
     all.dependency 'CD/TopBar'
+    all.dependency 'CD/Page'
     all.dependency 'CD/FDFullscreenPopGesture'
     #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
@@ -92,6 +93,14 @@ Pod::Spec.new do |s|
       topbar.dependency 'CD/IconFont'
       topbar.dependency 'CD/FDFullscreenPopGesture'
       topbar.dependency 'SnapKit', '~> 4.2.0'
+  end
+  
+  s.subspec 'Page' do |page|
+      page.source_files = 'CD/CD_Page/Classes/*.{swift}', 'CD/CD.swift'
+      page.dependency 'CD/Extension'
+      page.dependency 'CD/Form'
+      page.dependency 'CD/Chain'
+      page.dependency 'SnapKit', '~> 4.2.0'
   end
   
   #s.subspec 'MVVM' do |vm|

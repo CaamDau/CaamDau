@@ -107,7 +107,7 @@ class View_MineCollectionFooter: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         view_line.cd.background(Config.color.bg)
-        lab.cd.text(Config.color.main_4)
+        lab.cd.text(Config.color.warning)
     }
     
 }
@@ -116,4 +116,14 @@ extension View_MineCollectionFooter: CD_RowUpdateProtocol {
     func row_update(_ data: NSAttributedString, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         lab.cd.text(data)
     }
+}
+
+
+class View_MineCollectionBg: UICollectionReusableView {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = UIColor.red
+    }
+    
 }

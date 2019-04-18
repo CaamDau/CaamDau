@@ -28,13 +28,13 @@ class Cell_MineCountDown:UITableViewCell{
         super.awakeFromNib()
         self.lab_hour.cd
             .text(Config.font.fontMedium(12))
-            .background(Config.color.main_1)
+            .background(Config.color.main_4)
         self.lab_minute.cd
             .text(Config.font.fontMedium(12))
-            .background(Config.color.main_1)
+            .background(Config.color.main_4)
         self.lab_second.cd
             .text(Config.font.fontMedium(12))
-            .background(Config.color.main_1)
+            .background(Config.color.main_4)
         
         self.view_space_W.constant = Config.fit.fit(10)
     }

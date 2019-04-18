@@ -1,9 +1,9 @@
 
 
 Pod::Spec.new do |s|
-  s.name             = 'Sign'
+  s.name             = 'User'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of .'
+  s.summary          = 'A '
 
 
 
@@ -20,16 +20,12 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'Sign/Classes/**/*'
+  s.source_files = 'User/**/*'
   
-  s.resource_bundles = {
-    'Sign' => ['Sign/Nib/*.{storyboard}']
-    
-  }
-
+ 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'CD'
-  s.dependency 'User'
-  s.dependency 'Config'
+  s.dependency 'KeychainAccess'
+  s.dependency 'CryptoSwift', '~> 0.15.0'
+  s.dependency 'CD/Extension'
 end

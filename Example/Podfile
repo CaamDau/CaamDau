@@ -20,7 +20,8 @@ target 'CD_Example' do
   
   pod 'Assets', :path => './Util/'
   pod 'Config', :path => './Util/'
-  pod 'M_Sign', :path => './Util/'
+  pod 'User', :path => './Util/'
+  pod 'HUD', :path => './Util/'
   
   # 阿里七巧板
   #pod 'Tangram'

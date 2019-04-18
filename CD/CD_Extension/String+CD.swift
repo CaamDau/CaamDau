@@ -41,7 +41,20 @@ public extension String {
 
 
 public extension String{
-    
+    /// base64编码
+    public var cd_base64Encoding:String {
+        let data = self.data(using:.utf8)
+        let base64 = data?.base64EncodedString()
+        return base64 ?? self
+    }
+    /// base64解码
+    public var cd_base64Decoding:String {
+        guard let data = Data(base64Encoded: self) else {
+            return self
+        }
+        let str = String(data: data , encoding: .utf8)
+        return str ?? self
+    }
 }
 
 

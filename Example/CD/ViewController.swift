@@ -8,31 +8,24 @@
 
 import UIKit
 import CD
-
 import Config
 
+
 class ViewController: UIViewController {
-    
-    
     
     lazy var vm:VM_ViewController = {
         return VM_ViewController()
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(Config.font.name)
-        print(Config.font.fitSizeiPhone320)
-        print(Config.font.fitSizeiPhone375)
-        print(Config.font.fitSizeiPhone414)
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
-
+    
+    
 }
 
 
@@ -56,21 +49,10 @@ extension ViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            switch indexPath.row {
-            case 0:
-                _ = UIAlertController(title: "提示", message: nil, preferredStyle: .alert).cd.action("取消") { (a) in
-                        print_cd(UIApplication.shared.keyWindow)
-                    }
-                    .action("确定") { (a) in
-                        print_cd(UIApplication.shared.delegate?.window)
-                }.show(self)
-                print_cd(UIApplication.shared.keyWindow)
-                print_cd(UIApplication.shared.delegate!.window!!)
-            default:
-                break
-            }
-        }
+        
     }
+
 }
 
+
+//MARK:--- <#设置#> ----------

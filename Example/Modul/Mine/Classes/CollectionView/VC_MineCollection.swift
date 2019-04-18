@@ -34,6 +34,7 @@ class VC_MineCollection: UIViewController {
         self.collectionView.cd
             .background(Config.color.bg)
             .register(self.vm.registerView)
+        
     }
 }
 
@@ -75,22 +76,25 @@ extension VC_MineCollection: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
         return vm.formsHeader[section].size
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
         return vm.formsFooter[section].size
     }
     
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if CD<UICollectionView>.CD_Kind.tHeader.stringValue == kind {
+        switch kind {
+        case CD<UICollectionView>.CD_Kind.tHeader.stringValue:
             let row = vm.formsHeader[indexPath.section]
             let v = collectionView.cd.view(row.viewId, kind, indexPath)
             row.bind(v)
             return v
-        }else{
+        default:
             let row = vm.formsFooter[indexPath.section]
             let v = collectionView.cd.view(row.viewId, kind, indexPath)
             row.bind(v)
             return v
         }
+        
     }
 }

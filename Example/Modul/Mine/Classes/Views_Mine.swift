@@ -37,7 +37,7 @@ class Cell_MineTitle:UITableViewCell{
         
         detailTextLabel?.cd
             .text(Config.font.fontRegular(12).fit())
-            .text(Config.color.txt_4)
+            .text(Config.color.txt_3)
     }
 }
 extension Cell_MineTitle:CD_RowUpdateProtocol{
@@ -62,6 +62,7 @@ class Cell_MineForm: UITableViewCell {
         
         self.btn_github.cd
             .text(Config.font.fontRegular(15).fit())
+            .background(Config.color.main_3)
     }
     var callBack: CD_RowCallBack?
     @IBAction func buttonClick(_ sender: Any) {

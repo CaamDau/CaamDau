@@ -11,6 +11,7 @@
 		4707FD7921E871080072257B /* Cell_MainNews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4707FD7721E871080072257B /* Cell_MainNews.xib */; };
 		4707FD7B21E873130072257B /* VM_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707FD7A21E873130072257B /* VM_ViewController.swift */; };
 		4707FD8A21E8C67C0072257B /* VC_ImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707FD8921E8C67C0072257B /* VC_ImageTest.swift */; };
+		470EC4E62268279A0027CBDD /* AppDelegate_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470EC4E52268279A0027CBDD /* AppDelegate_VC.swift */; };
 		5ACE8F91E3E6D798CDD9B22D /* Pods_CD_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7D441589387BC924BD8E43 /* Pods_CD_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -39,8 +40,10 @@
 		4707FD7721E871080072257B /* Cell_MainNews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_MainNews.xib; sourceTree = "<group>"; };
 		4707FD7A21E873130072257B /* VM_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ViewController.swift; sourceTree = "<group>"; };
 		4707FD8921E8C67C0072257B /* VC_ImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_ImageTest.swift; sourceTree = "<group>"; };
+		470EC4E52268279A0027CBDD /* AppDelegate_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate_VC.swift; sourceTree = "<group>"; };
 		4713C3DC2240B885007D3E29 /* CD.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CD.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4733EFCF223F3F44006F27A3 /* RegEx.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RegEx.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		474F8386226792A500FC6859 /* CryptoSwift.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CryptoSwift.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A158223A8B31001F07ED /* JSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A159223A8B31001F07ED /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A15A223A8B31001F07ED /* Date.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Date.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -97,6 +100,7 @@
 		47A0A157223A8B31001F07ED /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				474F8386226792A500FC6859 /* CryptoSwift.playground */,
 				47C5C983224603D300A35E00 /* ViewController.playground */,
 				4713C3DC2240B885007D3E29 /* CD.playground */,
 				4733EFCF223F3F44006F27A3 /* RegEx.playground */,
@@ -148,6 +152,7 @@
 			children = (
 				47D118F421D13BE0005AD155 /* Main */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				470EC4E52268279A0027CBDD /* AppDelegate_VC.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				4707FD7A21E873130072257B /* VM_ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -383,12 +388,14 @@
 				"${BUILT_PRODUCTS_DIR}/Assets/Assets.framework",
 				"${BUILT_PRODUCTS_DIR}/CD/CD.framework",
 				"${BUILT_PRODUCTS_DIR}/Config/Config.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Demo/Demo.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/HUD/HUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Home/Home.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/M_Sign/M_Sign.framework",
 				"${BUILT_PRODUCTS_DIR}/Mine/Mine.framework",
 				"${BUILT_PRODUCTS_DIR}/Models/Models.framework",
 				"${BUILT_PRODUCTS_DIR}/Publish/Publish.framework",
@@ -400,6 +407,9 @@
 				"${BUILT_PRODUCTS_DIR}/Sign/Sign.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TabbarNavigation/TabbarNavigation.framework",
+				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/User/User.framework",
 				"${BUILT_PRODUCTS_DIR}/Web/Web.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -409,12 +419,14 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Assets.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Config.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Demo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Home.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M_Sign.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mine.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Models.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Publish.framework",
@@ -426,6 +438,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sign.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TabbarNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/User.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +480,7 @@
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				4707FD8A21E8C67C0072257B /* VC_ImageTest.swift in Sources */,
 				4707FD7821E871080072257B /* Cell_MainNews.swift in Sources */,
+				470EC4E62268279A0027CBDD /* AppDelegate_VC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				4707FD7B21E873130072257B /* VM_ViewController.swift in Sources */,
 			);
