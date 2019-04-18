@@ -45,7 +45,7 @@
   - [通用型 基本资源、配置管理](https://github.com/liucaide/CD/tree/master/Example/Util)
     - [资源图片管理 Assets](https://github.com/liucaide/CD/tree/master/Example/Util/Assets)
     - [基本配置管理 Config <颜色配置、字体配置、字体适配、屏幕适配、基础图片配置...>](https://github.com/liucaide/CD/tree/master/Example/Util/Config)
-    - [登录页面响应模型+范例](https://github.com/liucaide/CD/tree/master/Example/Util/M_Sign)
+    - [登录页面响应模型+账号管理+范例](https://github.com/liucaide/CD/tree/master/Example/Util/User)
     - [登录页面响应模型 RxSwift扩展](https://github.com/liucaide/CD/tree/master/Example/Util/M_SignRx)
   - 项目业务模块
   - ......
