@@ -10,7 +10,6 @@ import UIKit
 import CD
 import KeychainAccess
 
-
 public class User {
     public struct Keys {
         fileprivate static let save:String = cd_appId() + "_user"

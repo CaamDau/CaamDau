@@ -98,6 +98,10 @@ public extension Config {
         public static var shadow:UIColor {
             return UIColor.cd_hex(colors["shadow"] ?? "#f0")
         }
+        
+        public static func hex(_ str:String) ->UIColor {
+            return UIColor.cd_hex(str)
+        }
     }
 }
 
@@ -243,30 +247,52 @@ public extension Config {
 }
 
 public extension Config {
+    
     /// 图片
-    struct image {
-        private static var images:[String : String] = {
-            return configPlist["image"] as? [String : String] ?? [:]
+    struct placeholder {
+        private static var placeholders:[String : String] = {
+            return configPlist["placeholder"] as? [String : String] ?? [:]
         }()
         
-        public static var placeholderUserIconBig:String {
-            return images["placeholderUserIconBig"] ?? ""
+        private static var placeholderUserIconBig:String {
+            return placeholders["userIconBig"] ?? ""
         }
-        public static var placeholderUserIconSmall:String {
-            return images["placeholderUserIconSmall"] ?? ""
+        private static var placeholderUserIconSmall:String {
+            return placeholders["userIconSmall"] ?? ""
         }
-        public static var placeholderBgBig:String {
-            return images["placeholderBgBig"] ?? ""
+        private static var placeholderBgBig:String {
+            return placeholders["imgBig"] ?? ""
         }
-        public static var placeholderBgSmall:String {
-            return images["placeholderBgSmall"] ?? ""
+        private static var placeholderBgSmall:String {
+            return placeholders["imgSmall"] ?? ""
         }
-        public static var placeholderBgBigRectangle:String {
-            return images["placeholderBgBigRectangle"] ?? ""
+        private static var placeholderBgBigRectangle:String {
+            return placeholders["imgBigRectangle"] ?? ""
         }
-        public static var placeholderBgSmallRectangle:String {
-            return images["placeholderBgSmallRectangle"] ?? ""
+        private static var placeholderBgSmallRectangle:String {
+            return placeholders["imgSmallRectangle"] ?? ""
         }
+        
+        
+        public static var iconBig:UIImage = {
+            return UIImage.cd_podImg(name:placeholderUserIconBig, forClass:Config.Help.self, from:"Config")
+        }()
+        public static var iconSmall:UIImage = {
+            return UIImage.cd_podImg(name:placeholderUserIconSmall, forClass:Config.Help.self, from:"Config")
+        }()
+        public static var imgBig:UIImage = {
+            return UIImage.cd_podImg(name:placeholderBgBig, forClass:Config.Help.self, from:"Config")
+        }()
+        
+        public static var imgSmall:UIImage = {
+            return UIImage.cd_podImg(name:placeholderBgSmall, forClass:Config.Help.self, from:"Config")
+        }()
+        public static var imgBigRectangle:UIImage = {
+            return UIImage.cd_podImg(name:placeholderBgBigRectangle, forClass:Config.Help.self, from:"Config")
+        }()
+        public static var imgSmallRectangle:UIImage = {
+            return UIImage.cd_podImg(name:placeholderBgSmallRectangle, forClass:Config.Help.self, from:"Config")
+        }()
     }
 }
 
