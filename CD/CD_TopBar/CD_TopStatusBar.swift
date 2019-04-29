@@ -10,7 +10,7 @@
 import UIKit
 import SnapKit
 
-@IBDesignable
+//@IBDesignable
 open class CD_TopStatusBar: UIView {
     public lazy var img_bg:UIImageView = {
         return UIImageView().cd.clips(true).build

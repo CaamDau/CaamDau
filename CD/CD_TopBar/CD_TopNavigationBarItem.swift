@@ -55,7 +55,7 @@ extension CD_TopNavigationBarItem {
 }
 
 //MARK:--- 主类 ----------
-@IBDesignable
+//@IBDesignable
 open class CD_TopNavigationBarItem: UIView {
     
     public lazy var btn_1:UIButton = {

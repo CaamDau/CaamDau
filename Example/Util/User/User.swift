@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import CD
 import KeychainAccess
-import CryptoSwift
 
 
 public class User {

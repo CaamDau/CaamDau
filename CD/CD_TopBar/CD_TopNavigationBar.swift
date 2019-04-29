@@ -52,7 +52,7 @@ extension CD_TopNavigationBar {
     }
 }
 
-@IBDesignable
+//@IBDesignable
 open class CD_TopNavigationBar: UIView {
     
     public lazy var img_bg:UIImageView = {

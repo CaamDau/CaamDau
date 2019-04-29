@@ -39,11 +39,7 @@ extension CD_TopBarProtocol {
     }
     public func super_topBarClick(_ item:CD_TopNavigationBar.Item) {
         if item == .leftItem1 {
-            if cd_visibleVC()?.presentingViewController != nil {
-                cd_visibleVC()?.dismiss(animated: true, completion: nil)
-            }else if cd_topVC()?.navigationController?.popViewController(animated: true) == nil  {
-                cd_visibleVC()?.dismiss(animated: true, completion: nil)
-            }
+            cd_pop()
         }
     }
     public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
@@ -66,7 +62,7 @@ extension CD_TopBarProtocol {
 }
 
 
-@IBDesignable
+//@IBDesignable
 open class CD_TopBar: UIView {
     /// 可变统一配置全局常量
     public struct Model {
@@ -513,7 +509,7 @@ extension CD_TopBar: CD_TopNavigationBarProtocol {
         if let de = self.delegate {
             de.didSelect(withTopBar: item)
         }
-        if let call = self.callBack {
+        else if let call = self.callBack {
             call(item)
         }else{
             self.super_topBarClick(item)

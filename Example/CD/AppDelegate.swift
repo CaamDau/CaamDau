@@ -45,5 +45,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-
-extension

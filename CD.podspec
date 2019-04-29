@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
     cd.dependency 'CD/CountDown'
     cd.dependency 'CD/Value'
     cd.dependency 'CD/RegEx'
+    cd.dependency 'CD/InputBox'
   end
   
   s.subspec 'All' do |all|
@@ -103,6 +104,14 @@ Pod::Spec.new do |s|
       page.dependency 'SnapKit', '~> 4.2.0'
   end
   
+  s.subspec 'InputBox' do |input|
+      input.source_files = 'CD/CD_InputBox/*.{swift}', 'CD/CD.swift'
+      input.dependency 'CD/Extension'
+      input.dependency 'CD/Chain'
+      input.dependency 'SnapKit', '~> 4.2.0'
+  end
+  
+  
   #s.subspec 'MVVM' do |vm|
   #  vm.source_files = 'CD/CD_MVVM/*'
   #end
@@ -110,7 +119,7 @@ Pod::Spec.new do |s|
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CD/CD_MJRefresh/*.{swift}', 'CD/CD.swift'
-    mj.dependency 'MJRefresh'
+    mj.dependency 'MJRefresh', '3.1.15.7'
   end
   
   s.subspec 'FDFullscreenPopGesture' do |fd|

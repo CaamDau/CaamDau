@@ -10,7 +10,7 @@
 import UIKit
 import SnapKit
 
-@IBDesignable
+//@IBDesignable
 open class CD_TopCustomBar: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)

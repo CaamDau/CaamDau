@@ -377,8 +377,27 @@ public func cd_iOS11ScrollViewAdjustmentBehavior() {
 }
 
 
+public func cd_push(_ vc:UIViewController) {
+    if let nvc = cd_visibleVC()?.navigationController {
+        vc.hidesBottomBarWhenPushed = true
+        nvc.pushViewController(vc, animated: true)
+    }else{
+        cd_visibleVC()?.present(vc, animated: true, completion: nil)
+    }
+}
 
-
+public func cd_pop() {
+    if let nvc = cd_visibleVC()?.navigationController, let _ = nvc.popViewController(animated: true) {
+    }else{
+        cd_visibleVC()?.dismiss(animated: true, completion: nil)
+    }
+    /*
+     if cd_visibleVC()?.presentingViewController != nil {
+     cd_visibleVC()?.dismiss(animated: true, completion: nil)
+     }else if cd_topVC()?.navigationController?.popViewController(animated: true) == nil  {
+     cd_visibleVC()?.dismiss(animated: true, completion: nil)
+     }*/
+}
 
 
 
