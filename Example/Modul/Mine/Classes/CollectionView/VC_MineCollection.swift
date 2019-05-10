@@ -39,7 +39,6 @@ class VC_MineCollection: UIViewController {
 }
 
 
-
 extension VC_MineCollection: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return vm.forms.count

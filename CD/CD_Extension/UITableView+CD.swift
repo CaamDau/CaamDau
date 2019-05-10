@@ -28,6 +28,31 @@ public extension CD where Base: UITableView {
         }
         return ce
     }
+    
+    func view(_ viewClass:AnyClass, id:String = "", bundleFrom:String = "") -> UITableViewHeaderFooterView? {
+        let identifier = id=="" ? String(describing: viewClass) : id
+        var cell = base.dequeueReusableHeaderFooterView(withIdentifier: identifier)
+        if cell == nil  {
+            if bundleFrom.count == 0 {
+                let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
+                if bundle == nil{
+                    base.register(viewClass, forHeaderFooterViewReuseIdentifier: identifier)
+                }else{
+                    let nib = UINib(nibName:identifier, bundle: nil)
+                    base.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
+                }
+            }else{
+                let nib = UINib(nibName:identifier, bundle: Bundle.cd_bundle(viewClass, bundleFrom))
+                base.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
+            }
+            cell = base.dequeueReusableHeaderFooterView(withIdentifier: identifier)
+        }
+        guard let ce = cell else {
+            assertionFailure("👉👉👉dequeueReusableHeaderFooterView 失败，请检查你的View  👻")
+            return nil
+        }
+        return ce
+    }
 }
 
 

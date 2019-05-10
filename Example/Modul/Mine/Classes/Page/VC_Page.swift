@@ -70,7 +70,7 @@ class VC_Page: UIViewController {
             make.top.equalTo(pageControl.snp.bottom)
         }
         
-        pageControl.register([.tCell(CD_PageControlTitle.self, nil, nil)])
+        //pageControl.register([.tCell(CD_PageControlTitle.self, nil, nil)])
         var form:[CD_RowProtocol] = []
         
         for item in 0..<20 {
@@ -123,7 +123,7 @@ extension VC_Page {
 
 extension VC_Page: CD_PageProtocol {
     func scroll(didScroll view: UIScrollView) {
-        
+        /*
         switch view {
         case pageControl.collectionView:
             let idx:Int = Int(pageVC.collectionView.contentOffset.x/cd_screenW())
@@ -136,7 +136,7 @@ extension VC_Page: CD_PageProtocol {
             }
         default:
             break
-        }
+        }*/
     }
     
     func scroll(didEndScrollingAnimation view: UIScrollView) {
@@ -144,14 +144,14 @@ extension VC_Page: CD_PageProtocol {
     }
     
     func scroll(didEndDecelerating view: UIScrollView) {
-        switch view {
+        /*switch view {
         case pageControl.collectionView:
             break
         default:
             let idx:Int = Int(view.contentOffset.x/cd_screenW())
             let indexPath = IndexPath(item: idx, section: 0)
             pageControl.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
+        }*/
         
     }
     

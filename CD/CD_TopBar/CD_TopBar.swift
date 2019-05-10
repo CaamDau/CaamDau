@@ -489,8 +489,9 @@ private extension CD_TopBar {
 
 extension CD_TopBar {
     public func reloadData() {
-        self.bar_navigation.reloadData()
         self.delegate?.topBarCustom()
+        self.bar_navigation.reloadData()
+        
     }
     public func reloadData(with item:CD_TopNavigationBar.Item, styles:[CD_TopNavigationBarItem.Item.Style]) {
         self.bar_navigation.reloadData(with: item, styles: styles)

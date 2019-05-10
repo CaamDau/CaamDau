@@ -15,7 +15,7 @@ public class CD_PageControl: UIView {
     public weak var delegate:CD_PageProtocol?
     
     lazy var scrollView: UIScrollView = {
-        let v = UICollectionView(frame: CGRect.zero)
+        let v = UIScrollView(frame: CGRect.zero)
         v.cd
             .shows(verticalScrollIndicator: false)
             .shows(horizontalScrollIndicator: false)

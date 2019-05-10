@@ -28,19 +28,18 @@ Pod::Spec.new do |s|
     cd.dependency 'CD/Value'
     cd.dependency 'CD/RegEx'
     cd.dependency 'CD/InputBox'
+    cd.dependency 'CD/Page'
+    cd.dependency 'CD/TopBar'
+    cd.dependency 'CD/AppDelegate'
+    cd.dependency 'CD/MVVM'
   end
   
   s.subspec 'All' do |all|
     all.dependency 'CD/Core'
     all.dependency 'CD/IconFont'
     all.dependency 'CD/IBInspectable'
-    all.dependency 'CD/TopBar'
-    all.dependency 'CD/Page'
     all.dependency 'CD/FDFullscreenPopGesture'
-    all.dependency 'CD/AppDelegate'
-    #all.dependency 'CD/MVVM'
     all.dependency 'CD/MJRefresh'
-    
   end
   
   s.subspec 'AppDelegate' do |app|
@@ -97,7 +96,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Page' do |page|
-      page.source_files = 'CD/CD_Page/Classes/*.{swift}', 'CD/CD.swift'
+      page.source_files = 'CD/CD_Page/Classes/*.{swift}'
       page.dependency 'CD/Extension'
       page.dependency 'CD/Form'
       page.dependency 'CD/Chain'
@@ -105,16 +104,21 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'InputBox' do |input|
-      input.source_files = 'CD/CD_InputBox/*.{swift}', 'CD/CD.swift'
+      input.source_files = 'CD/CD_InputBox/*.{swift}'
       input.dependency 'CD/Extension'
       input.dependency 'CD/Chain'
       input.dependency 'SnapKit', '~> 4.2.0'
   end
   
   
-  #s.subspec 'MVVM' do |vm|
-  #  vm.source_files = 'CD/CD_MVVM/*'
-  #end
+  s.subspec 'MVVM' do |vm|
+    vm.source_files = 'CD/CD_MVVM/*'
+    vm.dependency 'CD/Extension'
+    vm.dependency 'CD/Form'
+    vm.dependency 'CD/Chain'
+    vm.dependency 'CD/TopBar'
+    vm.dependency 'SnapKit', '~> 4.2.0'
+  end
   
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|

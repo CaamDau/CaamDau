@@ -120,6 +120,20 @@ extension VM_Mine{
             self.forms[Section.other.rawValue].append(row)
         }
         
+        do{
+            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
+                let vm = VM_BaseTab()
+                R_CDBaseTableViewController.push(vm)
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        do{
+            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_BaseCollectionViewController", "基础CollectionView"), frame: CGRect(h:45)) {
+                let vm = VM_BaseColle()
+                R_CDBaseCollectionViewController.push(vm)
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
         do {
             for item in 0..<100 {
                 let row = CD_RowClass<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))

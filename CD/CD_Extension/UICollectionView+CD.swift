@@ -23,7 +23,8 @@ public extension CD where Base: UICollectionView {
         
     }
     
-    func register(_ model:[CD_View]){
+    @discardableResult
+    func register(_ model:[CD_View]) -> CD {
         for (_, item) in model.enumerated() {
             switch item {
             case .tCell(let cellClass, let id, let from):
@@ -58,6 +59,7 @@ public extension CD where Base: UICollectionView {
                 }
             }
         }
+        return self
     }
     
     func cell(_ id:String, _ index:IndexPath) -> UICollectionViewCell{
