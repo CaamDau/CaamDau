@@ -22,10 +22,14 @@ pod 'CD/HUD'
   <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-153501%402x.png" width="20%" />
 </p>
 
+## Usage
 ```ruby
 
-CD_HUD().show(with:view, style:style, title: title, detail: detail, model: model)
+hud = CD_HUD().show(with:view, style:style, title: title, detail: detail, model: model)
+hud.remove()
 
+CD_HUD.show(with:view, style:style, title: title, detail: detail, model: model)
+CD_HUD.remove(for:view)
 ```
 
 ```ruby
