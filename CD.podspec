@@ -119,13 +119,13 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'HUD' do |hud|
-    hud.source_files = 'CD/CD_HUD/*'
+    hud.source_files = 'CD/CD_HUD/*.{swift}'
     hud.dependency 'CD/Core'
     hud.dependency 'SnapKit', '~> 4.2.0'
   end
   
   s.subspec 'MVVM' do |vm|
-    vm.source_files = 'CD/CD_MVVM/*'
+    vm.source_files = 'CD/CD_MVVM/*.{swift}'
     vm.dependency 'CD/Core'
     vm.dependency 'CD/TopBar'
     vm.dependency 'SnapKit', '~> 4.2.0'
