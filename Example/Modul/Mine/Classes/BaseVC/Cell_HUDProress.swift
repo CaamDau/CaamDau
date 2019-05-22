@@ -33,7 +33,7 @@ class Cell_HUDProress: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        /*
+        
         self.view_bg.cd
             .add(proress1)
             .add(proress2)
@@ -60,7 +60,7 @@ class Cell_HUDProress: UITableViewCell {
             make.width.height.equalTo(80)
         }
         lab_num.text = "\(step0.value)"
-        */
+        
         
     }
     func proressCycle3() {

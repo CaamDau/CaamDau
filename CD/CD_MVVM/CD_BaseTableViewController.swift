@@ -115,7 +115,7 @@ extension CD_BaseTableViewController: UITableViewDelegate,UITableViewDataSource 
         guard let row = vm?._form[indexPath.section][indexPath.row] else {
             return UITableViewCell()
         }
-        let cell = tableView.cd.cell(row.viewClass) ?? UITableViewCell()
+        let cell = tableView.cd.cell(row.viewClass, id:row.viewId, bundleFrom:row.bundleFrom) ?? UITableViewCell()
         row.bind(cell)
         return cell
     }
@@ -159,7 +159,7 @@ extension CD_BaseTableViewController: UITableViewDelegate,UITableViewDataSource 
         guard let row = vm?._formHeader[section] else {
             return nil
         }
-        guard let v = tableView.cd.view(row.viewClass) else {
+        guard let v = tableView.cd.view(row.viewClass, id:row.viewId, bundleFrom:row.bundleFrom) else {
             return nil
         }
         row.bind(v)
@@ -172,7 +172,7 @@ extension CD_BaseTableViewController: UITableViewDelegate,UITableViewDataSource 
         guard let row = vm?._formFooter[section] else {
             return nil
         }
-        guard let v = tableView.cd.view(row.viewClass) else {
+        guard let v = tableView.cd.view(row.viewClass, id:row.viewId, bundleFrom:row.bundleFrom) else {
             return nil
         }
         row.bind(v)

@@ -113,11 +113,11 @@ extension VM_HUD {
             self.form = (0..<Section.end.rawValue).map{_ in []}
         }
         do{//MARK:--- Config ----------
-            let row = CD_Row<Cell_HUDConfig>(data: "", frame: CGRect( h: UITableView.automaticDimension))
+            let row = CD_Row<Cell_HUDConfig>(data: "", frame: CGRect( h: UITableView.automaticDimension), bundleFrom: "Mine")
             form[Section.config.rawValue].append(row)
         }
         do{//MARK:--- Proress ----------
-            let row = CD_Row<Cell_HUDProress>(data: "", frame: CGRect(h:140))
+            let row = CD_Row<Cell_HUDProress>(data: "", frame: CGRect(h:140), bundleFrom: "Mine")
             form[Section.progress.rawValue].append(row)
         }
         
