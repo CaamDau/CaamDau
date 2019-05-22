@@ -137,7 +137,8 @@ public extension CD_HUD {
         case top
         case center
         case bottom
-        case custom(_ point:CGPoint)
+        /// offsetY > 0 以top为参照  < 0 以bottom为参照
+        case custom(_ offsetY:CGFloat)
     }
     
     public enum Animation {

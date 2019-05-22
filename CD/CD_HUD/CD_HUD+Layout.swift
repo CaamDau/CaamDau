@@ -81,6 +81,51 @@ extension CD_HUD {
         }
         makeContentViewLayoutDefault()
     }
+    
+    func makeHUDLayoutPositionCustom(_ offsetY:CGFloat) {
+        guard let supV = self.superview else { return }
+        if model._isEnabledMask {
+            self.snp.makeConstraints { (make) in
+                make.centerX.equalToSuperview()
+                make.left.top
+                    .greaterThanOrEqualToSuperview()
+                    .offset(model._margeMask)
+                if offsetY < 0 {
+                    make.centerY
+                        .equalTo(supV.snp.bottom).offset(offsetY)
+                }else if offsetY > 0{
+                    make.centerY
+                        .equalTo(supV.snp.top).offset(offsetY)
+                }else{
+                    make.centerY.equalToSuperview()
+                }
+            }
+            contentView?.snp.makeConstraints({ (make) in
+                make.edges.equalToSuperview()
+            })
+        }else{
+            self.snp.makeConstraints { (make) in
+                make.edges.equalToSuperview()
+            }
+            contentView?.snp.makeConstraints({ (make) in
+                make.centerX.equalToSuperview()
+                make.left.top
+                    .greaterThanOrEqualToSuperview()
+                    .offset(model._margeMask)
+                if offsetY < 0 {
+                    make.centerY
+                        .equalTo(self.snp.bottom).offset(offsetY)
+                }else if offsetY > 0{
+                    make.centerY
+                        .equalTo(self.snp.top).offset(offsetY)
+                }else{
+                    make.centerY.equalToSuperview()
+                }
+            })
+        }
+        makeContentViewLayoutDefault()
+    }
+    
     func makeContentViewLayoutDefault() {
         guard model._isSquare && model._axis == .vertical else { return }
         switch style {
@@ -105,6 +150,8 @@ extension CD_HUD {
             makeHUDLayoutPositionBottom()
         case .center:
             makeHUDLayoutPositionCenter()
+        case .custom(let offsetY):
+            makeHUDLayoutPositionCustom(offsetY)
         default:
             break
         }

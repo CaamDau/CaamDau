@@ -96,8 +96,23 @@ extension CD_HUD {
             makeLayoutAnimationFade(remove)
         case .center:
             makeLayoutAnimationFade(remove)
-        case .custom(_):
-            break
+        case .custom(let offsetY):
+            guard offsetY != 0 else {
+                makeLayoutAnimationFade(remove)
+                return
+            }
+            
+            guard let view = model._isEnabledMask ? self : contentView else { return }
+            view.superview?.layoutIfNeeded()
+            var value0 = view.layer.position.y + view.frame.size.height + model._offsetBottomY
+            var value1 = view.layer.position.y
+            if offsetY < 0  {
+                value0 = view.layer.position.y + view.frame.size.height - offsetY
+            }else{
+                value0 = view.layer.position.y - view.layer.position.y - view.frame.size.height
+            }
+            addAnimation(with: view, value:(value0,value1))
+            makeLayoutAnimationFade(remove)
         }
     }
     
@@ -129,8 +144,23 @@ extension CD_HUD {
             makeLayoutAnimationFade(remove)
         case .center:
             makeLayoutAnimationFade(remove)
-        case .custom(_):
-            break
+        case .custom(let offsetY):
+            guard offsetY != 0 else {
+                makeLayoutAnimationFade(remove)
+                return
+            }
+            
+            guard let view = model._isEnabledMask ? self : contentView else { return }
+            view.superview?.layoutIfNeeded()
+            var value0 = view.layer.position.y + view.frame.size.height + model._offsetBottomY
+            var value1 = view.layer.position.y
+            if offsetY < 0  {
+                value0 = view.layer.position.y + view.frame.size.height - offsetY
+            }else{
+                value0 = view.layer.position.y - view.layer.position.y - view.frame.size.height
+            }
+            addAnimation(with: view, value:(value0,value1))
+            makeLayoutAnimationFade(remove)
         }
     }
 }
