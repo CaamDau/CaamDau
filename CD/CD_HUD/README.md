@@ -9,16 +9,16 @@ it, simply add the following line to your Podfile:
 pod 'CD/HUD'
 ```
 <p>
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151106%402x.png" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151137%402x.png" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151145%402x.png" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151201%402x.png" width="25%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151106%402x.png" width="20%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151137%402x.png" width="20%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151145%402x.png" width="20%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151201%402x.png" width="20%" />
 </p>
 <p>
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151216%402x.png" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151345%402x.png" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-153426%402x.png" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-153501%402x.png" width="25%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151216%402x.png" width="20%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-151345%402x.png" width="20%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-153426%402x.png" width="20%" />
+  <img src="https://github.com/liucaide/CD/blob/master/images/QQ20190522-153501%402x.png" width="20%" />
 </p>
 
 ## Author
