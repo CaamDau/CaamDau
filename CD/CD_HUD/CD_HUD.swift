@@ -31,7 +31,7 @@ public class CD_HUD: UIView {
 
 extension CD_HUD {
     @discardableResult
-    func show(with supView:UIView? = cd_window(), style:CD_HUD.Style = .text, title:String = "", detail:String = "", model:CD_HUD.Model = CD_HUD.modelDefault) -> CD_HUD {
+    public func show(with supView:UIView? = cd_window(), style:CD_HUD.Style = .text, title:String = "", detail:String = "", model:CD_HUD.Model = CD_HUD.modelDefault) -> CD_HUD {
         self.style = style
         self.title = title
         self.detail = detail
@@ -39,7 +39,7 @@ extension CD_HUD {
         return self.show(with: supView)
     }
     @discardableResult
-    func show(with supView:UIView? = cd_window()) -> CD_HUD {
+    public func show(with supView:UIView? = cd_window()) -> CD_HUD {
         guard let view = supView else { return self }
         view.cd.add(self)
         makeUI()
@@ -67,7 +67,7 @@ extension CD_HUD {
     }
     
     @discardableResult
-    func remove(_ duration:TimeInterval = -1) -> CD_HUD {
+    public func remove(_ duration:TimeInterval = -1) -> CD_HUD {
         guard duration != 0 else {
             self.removeAnimation()
             return self
@@ -251,4 +251,31 @@ public extension CD where Base: UIView {
     }
 }
 
-
+public extension CD_HUD {
+    public static func show(_ view:UIView,
+                     style:CD_HUD.Style = .text,
+                     title:String = "",
+                     detail:String = "",
+                     model:CD_HUD.Model = CD_HUD.modelDefault,
+                     position:CD_HUD.Position = .center,
+                     duration:TimeInterval = -1) {
+        let v = CD_HUD()
+        v.show(with:view, style:style, title: title, detail: detail, model: model)
+        switch style {
+        case .text, .info, .succeed, .warning, .error:
+            v.remove(duration)
+        default:
+            break
+        }
+    }
+    
+    public static func remove(for view:UIView, duration:TimeInterval = 0, animation:Bool = true) {
+        view.subviews.forEach { (v) in
+            guard let vv = v as? CD_HUD else{return}
+            if !animation {
+                vv.model._hiddenAnimat = .none
+            }
+            vv.remove(duration)
+        }
+    }
+}
