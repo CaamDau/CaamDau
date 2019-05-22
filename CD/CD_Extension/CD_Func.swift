@@ -2,14 +2,16 @@
 
 import Foundation
 import UIKit
-import AdSupport
+//import AdSupport
 
 //MARK:--- 打印 ----------
+var cd_printOpen:Bool = true
 #if DEBUG
 public func print_cd(_ items: Any...){
-    print("---👉👉👉")
-    print(items)
-    print("----------  👻")
+    guard cd_printOpen else { return }
+    debugPrint("---👉👉👉")
+    debugPrint(items)
+    debugPrint("----------  👻")
 }
 #else
 public func print_cd(_ items: Any...){}
@@ -17,9 +19,10 @@ public func print_cd(_ items: Any...){}
 
 #if DEBUG
 public func print_address(_ value:AnyObject){
-    print("---👉👉👉 内存地址-->", value)
-    print(Unmanaged.passUnretained(value).toOpaque())
-    print("---------- 👻")
+    guard cd_printOpen else { return }
+    debugPrint("---👉👉👉 内存地址-->", value)
+    debugPrint(Unmanaged.passUnretained(value).toOpaque())
+    debugPrint("---------- 👻")
 }
 #else
 public func print_address(_ value:AnyObject){}
@@ -64,6 +67,18 @@ public func cd_systemV() -> String {
     return UIDevice.current.systemVersion
 }
 
+/// --- 导航栏高度
+public func cd_sysNavigationH() -> CGFloat {
+    if #available(iOS 11.0, *) {
+        return UIApplication.shared.statusBarFrame.size.height + (cd_visibleVC()?.navigationController?.navigationBar.frame.size.height ?? 44)
+    } else {
+        return 20.0 + (cd_visibleVC()?.navigationController?.navigationBar.frame.size.height ?? 44)
+    }
+}
+/// --- Tabbar栏高度
+public func cd_sysTabBarH() -> CGFloat {
+    return cd_visibleVC()?.tabBarController?.tabBar.frame.size.height ?? 59
+}
 
 /// --- tableView 等 组首尾 - 无
 public func cd_sectionMinH() -> CGFloat {
@@ -79,28 +94,30 @@ public func cd_isSimulator() -> Bool {
     #endif
 }
 
-/// ---
+/// --- NotificationCenter.default
 public func cd_notify() -> NotificationCenter {
     return NotificationCenter.default
 }
-/// ---
+/// --- UserDefaults.standard
 public func cd_userde() -> UserDefaults {
     return UserDefaults.standard
 }
-/// ---
+/// --- IDFA
+/*
 public func cd_IDFA() -> String {
     return ASIdentifierManager.shared().advertisingIdentifier.uuidString
-}
+}*/
 
-/// ---
+/// --- Date().timeIntervalSince1970
 public func cd_timestampNow() -> TimeInterval {
     return Date().timeIntervalSince1970
 }
 
-/// ---
+/// --- CFBundleShortVersionString
 public func cd_appVersion() -> String {
     return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
 }
+/// --- Bundle.main.bundleIdentifier
 public func cd_appId() -> String {
     return Bundle.main.bundleIdentifier ?? ""
 }
@@ -376,6 +393,9 @@ public func cd_iOS11ScrollViewAdjustmentBehavior() {
     }
 }
 
+public func cd_present(_ vc:UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
+    cd_visibleVC()?.present(vc, animated: animated, completion: completion)
+}
 
 public func cd_push(_ vc:UIViewController) {
     if let nvc = cd_visibleVC()?.navigationController {

@@ -48,7 +48,7 @@ public class CD_TextField: UIView {
     }
     @IBInspectable open var _placeholderAlignment:UIControl.ContentHorizontalAlignment = .left {
         didSet{
-            btn_placeholder.cd.content(_placeholderAlignment)
+            btn_placeholder.cd.contentAlignment(horizontal:_placeholderAlignment)
         }
     }
     
@@ -125,7 +125,7 @@ public class CD_TextField: UIView {
             .text(_colorPlaceholder, .normal)
             .text(_font)
             .text(UIColor.lightGray)
-            .content(_placeholderAlignment)
+            .contentAlignment(horizontal: _placeholderAlignment)
             .isUser(false)
             .build
     }()

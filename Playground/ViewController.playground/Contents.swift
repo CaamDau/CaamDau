@@ -2,136 +2,121 @@
   
 import UIKit
 import PlaygroundSupport
-import CD
 
-
-/*
+extension UIColor {
+    var cd_rgba:(CGFloat,CGFloat,CGFloat,CGFloat) {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 1
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return (r,g,b,a)
+    }
+}
 extension UIView {
-    /// 设置背景渐变 默认横向渐变 point -> 0 - 1
-    func gradientLayer(_ gradient:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (CGPoint(x: 0, y: 0),CGPoint(x: 1, y: 0))) {
+    /// 设置背景线性渐变 默认横向渐变 point -> 0 - 1
+    func gradient(layerAxial gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil) {
+        func gradient(_ layer:CAGradientLayer) {
+            self.layoutIfNeeded()
+            layer.colors = gradients.map{$0.color.cgColor}
+            layer.locations = gradients.map{NSNumber(value:$0.location)}
+            layer.startPoint = point.start
+            layer.endPoint = point.end
+            layer.frame = self.bounds
+        }
+        let layers:[CAGradientLayer] = self.layer.sublayers?.filter{$0.isKind(of: CAGradientLayer.self)}.map{$0} as? [CAGradientLayer] ?? []
+        if layers.count <= at {
+            let layer = CAGradientLayer()
+            gradient(layer)
+            self.layer.insertSublayer(layer, at: at)
+        }else{
+            gradient(layers[updateIndex ?? 0])
+        }
+    }
+    
+    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil) {
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = gradient.map{$0.color.cgColor}
-        gradientLayer.locations = gradient.map{NSNumber(value:$0.location)}
-        
-        gradientLayer.startPoint = point.start
-        gradientLayer.endPoint = point.end
-        
-        gradientLayer.frame = self.frame
-        self.layer.insertSublayer(gradientLayer, at: 0)
+        class CD_GradientLayer:CALayer {
+            var point: CGPoint = CGPoint.zero
+            var colorSpace = CGColorSpaceCreateDeviceRGB()
+            var locations:[CGFloat] = [0.0, 1.0]
+            var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
+            lazy var radius: CGFloat = {
+                return max(self.bounds.size.width, self.bounds.size.height)
+            }()
+            override func draw(in ctx: CGContext) {
+                guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locations.count) else {
+                    return
+                }
+                ctx.drawRadialGradient(gradient, startCenter: point, startRadius: 0, endCenter: point, endRadius: radius, options: .drawsAfterEndLocation)
+            }
+        }
+        func gradient(_ layer:CD_GradientLayer) {
+            self.layoutIfNeeded()
+            layer.locations = gradients.map{$0.location}
+            layer.colors =  Array(gradients.map({ (c) -> [CGFloat] in
+                let cc = c.color.cd_rgba
+                return [cc.0,cc.1,cc.2,cc.3]
+            }).joined())
+            layer.frame = self.bounds
+            layer.point = point
+            layer.radius = radius ?? max(self.bounds.size.width, self.bounds.size.height)
+            layer.setNeedsDisplay()
+        }
+        let layers:[CD_GradientLayer] = self.layer.sublayers?.filter{$0.isKind(of: CD_GradientLayer.self)}.map{$0} as? [CD_GradientLayer] ?? []
+        if layers.count <= at {
+            let layer = CD_GradientLayer()
+            gradient(layer)
+            self.layer.insertSublayer(layer, at: at)
+        }else{
+            gradient(layers[updateIndex ?? 0])
+        }
     }
 }
+
 
 class MyViewController : UIViewController {
     override func loadView() {
-        let view = UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 568))
         view.backgroundColor = .white
-
-        let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: 200, height: 40)
-        label.text = "Hello World!"
-        label.textColor = .black
-        view.addSubview(label)
-        
-        let gradientView = UIView(frame: CGRect(x: 0, y: 40, width: 200, height: 60))
-        view.addSubview(gradientView)
-        
-        gradientView.gradientLayer([(UIColor.red, 0.0),
-                                    (UIColor.yellow, 0.5),
-                                    (UIColor.blue, 1.0)])
-        
+        do{
+            let vv = UIView(frame: CGRect(x: 0, y: 40, width: 200, height: 60))
+            view.addSubview(vv)
+            vv.gradient(layerAxial: [(UIColor.red, 0.0),
+                                     (UIColor.yellow, 0.5),
+                                     (UIColor.blue, 1.0)], at:0)
+            
+            vv.gradient(layerAxial: [(UIColor.black, 0.0),
+                                     (UIColor.yellow, 0.5),
+                                     (UIColor.black, 1.0)], at:1)
+            
+            vv.gradient(layerAxial: [(UIColor.blue, 0.0),
+                                     (UIColor.gray, 0.5),
+                                     (UIColor.orange, 1.0)], updateIndex:1)
+        }
+        do{
+            let vvv = UIView(frame: CGRect(x: 100, y: 200, width: 200, height: 60))
+            view.addSubview(vvv)
+            let vv = UIView(frame: vvv.bounds)
+            vvv.addSubview(vv)
+            vv.gradient(layerRadial: [
+                (UIColor.black.withAlphaComponent(0.0), 0.0),
+                (UIColor.red.withAlphaComponent(0.6), 1.0)
+                ],point:CGPoint(x: 0, y: 30), radius:200, at:0)
+            
+            vv.gradient(layerRadial: [
+                (UIColor.black.withAlphaComponent(0.0), 0.0),
+                (UIColor.yellow.withAlphaComponent(0.6), 1.0)
+                ],point:CGPoint(x: 0, y: 30), radius:150, at:1)
+            
+            vv.gradient(layerRadial: [
+                (UIColor.black.withAlphaComponent(0.0), 0.0),
+                (UIColor.blue.withAlphaComponent(0.6), 1.0)
+                ],point:CGPoint(x: 0, y: 30), radius:100, at:2)
+            
+        }
         self.view = view
     }
 }
-// Present the view controller in the Live View window
-PlaygroundPage.current.liveView = MyViewController()
-*/
-
-public protocol CD_ViewModelDelegater {
-    var _form:[[CD_RowProtocol]] { get }
-    var _formHeader:[CD_RowProtocol] { get }
-    var _formFooter:[CD_RowProtocol] { get }
-    var _reloadData:((IndexPath)->Void)? { get }
-}
-
-class ViewModel {
-    
-}
-
-
-class MyViewController : UIViewController {
-    var vm:CD_ViewModelDelegater?
-    
-    lazy var tableView: UITableView = {
-        return UITableView(frame: CGRect(x: 0, y: 0, w: 320, h: 568), style: UITableView.Style.grouped).cd
-            .delegate(self)
-            .dataSource(self)
-            .build
-    }()
-    override func loadView() {
-        let view = UIView()
-        view.backgroundColor = .white
-        
-        view.addSubview(tableView)
-        
-        self.view = view
-    }
-}
-extension MyViewController: UITableViewDelegate,UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return vm?._form.count ?? 0
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm?._form[section].count ?? 0
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
-            return UITableViewCell()
-        }
-        let cell = tableView.cd.cell(row.viewClass) ?? UITableViewCell()
-        row.bind(cell)
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
-            return
-        }
-        row.didSelect?()
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
-            return 0
-        }
-        return row.h
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return vm?._formHeader[section].h ?? cd_sectionMinH()
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return vm?._formFooter[section].h ?? cd_sectionMinH()
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let row = vm?._formHeader[section] else {
-            return nil
-        }
-        guard let v = tableView.cd.view(row.viewClass) else {
-            return nil
-        }
-        row.bind(v)
-        return v
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let row = vm?._formFooter[section] else {
-            return nil
-        }
-        guard let v = tableView.cd.view(row.viewClass) else {
-            return nil
-        }
-        row.bind(v)
-        return v
-    }
-}
-
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()

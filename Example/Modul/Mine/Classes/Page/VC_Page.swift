@@ -176,9 +176,9 @@ extension VC_Page: CD_TopBarProtocol {
         topBar._colorSelected = UIColor.white
         topBar._colorHighlighted = UIColor.white
         let arr:[(UIColor,Float)] = [(Config.color.main_2.cd_alpha(1),0),(Config.color.main_1.cd_alpha(1),1)]
-        topBar.bar_status.cd.gradient(layer: arr)
+        topBar.bar_status.cd.gradient(layerAxial: arr)
         topBar.bar_navigation.cd
-            .gradient(layer: arr)
+            .gradient(layerAxial: arr)
         
         //tapBar._heightCustomBar = 40
         //tapBar.bar_custom.cd.background(UIColor.orange)

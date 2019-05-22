@@ -20,4 +20,5 @@ target 'Example' do
   pod 'Then', '~> 2.4.0'
   pod 'Toast-Swift', '~> 4.0.1'
   pod 'KeychainAccess'
+  pod 'Hero'
 end

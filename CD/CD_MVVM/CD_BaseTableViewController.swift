@@ -133,16 +133,24 @@ extension CD_BaseTableViewController: UITableViewDelegate,UITableViewDataSource 
         return row.h
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard section < (vm?._formHeader.count ?? 0) else {
-            return cd_sectionMinH()
+        if section < (vm?._formHeader.count ?? 0) {
+            return vm?._formHeader[section].h ?? cd_sectionMinH()
+        }else{
+            guard let count = vm?._form[section].count, count > 0, let top = vm?._form[section].first?.insets.top, top > 0 else {
+                return cd_sectionMinH()
+            }
+            return top
         }
-        return vm?._formHeader[section].h ?? cd_sectionMinH()
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard section < (vm?._formFooter.count ?? 0) else {
-            return cd_sectionMinH()
+        if section < (vm?._formFooter.count ?? 0) {
+            return vm?._formFooter[section].h ?? cd_sectionMinH()
+        }else{
+            guard let count = vm?._form[section].count, count > 0, let bottom = vm?._form[section].first?.insets.bottom, bottom > 0 else {
+                return cd_sectionMinH()
+            }
+            return bottom
         }
-        return vm?._formFooter[section].h ?? cd_sectionMinH()
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section < (vm?._formHeader.count ?? 0) else {

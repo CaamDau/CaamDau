@@ -149,7 +149,7 @@ extension VC_Mine:UITableViewDelegate,UITableViewDataSource {
         
         self.topBar.change(alpha: scrollView.contentOffset.y, maxOffset: tableViewHeaderHeight-topBar._heightTopBar) { [weak self](a) in
             let arr:[(UIColor,Float)] = [(Config.color.main_5.cd_alpha(a),0),(Config.color.main_4.cd_alpha(a),1)]
-            self?.topBar.cd.gradient(layer: arr,  updateIndex: 0)
+            self?.topBar.cd.gradient(layerAxial: arr,  updateIndex: 0)
         }
         
         do{ /// logo 缩小到标题栏
@@ -201,7 +201,7 @@ extension VC_Mine: CD_TopBarProtocol {
         let arr:[(UIColor,Float)] = [(Config.color.main_5.cd_alpha(0),0),(Config.color.main_4.cd_alpha(0),1)]
         //topBar.bar_status.cd.gradient(layer: arr)
         //topBar.bar_navigation.cd.gradient(layer: arr)
-        topBar.cd.gradient(layer: arr)
+        topBar.cd.gradient(layerAxial: arr)
         
         //topBar._heightCustomBar = 40
         //topBar.bar_custom.cd.background(UIColor.orange)
@@ -211,14 +211,14 @@ extension VC_Mine: CD_TopBarProtocol {
         switch item {
         case .leftItem1:
             let icon = CD_IconFont.tsearch(22)
-            return [.title([(txt: icon.text, font: icon.font, color: Config.color.txt_1, state: .normal),
-                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .highlighted),
-                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .selected)])]
+            return [.title([(txt: icon.text, font: icon.font, color: Config.color.hex("f"), state: .normal),
+                            (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .highlighted),
+                            (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .selected)])]
         case .rightItem1:
             let icon = CD_IconFont.tshare(22)
-            return [.title([(txt: icon.text, font: icon.font, color: Config.color.txt_1, state: .normal),
-                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .highlighted),
-                            (txt: icon.text, font: icon.font, color: Config.color.txt_3, state: .selected)])]
+            return [.title([(txt: icon.text, font: icon.font, color: Config.color.hex("f"), state: .normal),
+                            (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .highlighted),
+                            (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .selected)])]
         default:
             return nil
         }

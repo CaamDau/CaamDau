@@ -84,7 +84,7 @@ extension VM_BaseColle: CD_ViewModelDataSource {
             form.append([row,row,row,row,row,row,row,row,row,row,row,row])
         }
         
-        CD_CountDown.after(5) {[weak self] in
+        CD_CountDown.after(3) {[weak self] in
             self?.mjRefreshType = [.tEnd]
             self?.reloadData?()
         }

@@ -18,6 +18,7 @@ extension VM_Mine {
     enum Section:Int {
         case form = 0
         case other
+        //case hud
         case me
         case num
         case end
@@ -119,10 +120,16 @@ extension VM_Mine{
             }
             self.forms[Section.other.rawValue].append(row)
         }
-        
+        do{
+            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_HUD", "HUD"), frame: CGRect(h:45)) {
+                let vm = VM_HUD()
+                R_CDBaseTableViewController.push(vm)
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
         do{
             let row = CD_RowClass<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
-                let vm = VM_BaseTab()
+                let vm = VM_HUD()
                 R_CDBaseTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)

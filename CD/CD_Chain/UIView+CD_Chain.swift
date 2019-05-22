@@ -241,13 +241,14 @@ public extension CD where Base: UIView {
         return self
     }
     
-    /// 背景渐变 默认横向渐变 point -> 0 - 1
+    /// 背景线性渐变 默认横向渐变 point -> 0 - 1
     /// let gradients:[(UIColor,Float)] = [(UIColor.red,0),(UIColor.yellow,1)]
     /// view.cd.gradient(layer: gradients)
     @discardableResult
-    func gradient(layer gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil) -> CD {
+    func gradient(layerAxial gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil) -> CD {
         
         func gradient(_ layer:CAGradientLayer) {
+            base.layoutIfNeeded()
             layer.colors = gradients.map{$0.color.cgColor}
             layer.locations = gradients.map{NSNumber(value:$0.location)}
             layer.startPoint = point.start
@@ -255,10 +256,52 @@ public extension CD where Base: UIView {
             layer.frame = base.bounds
         }
         
-        base.layoutIfNeeded()
         let layers:[CAGradientLayer] = base.layer.sublayers?.filter{$0.isKind(of: CAGradientLayer.self)}.map{$0} as? [CAGradientLayer] ?? []
-        if layers.count == 0 {
+        if layers.count <= at {
             let layer = CAGradientLayer()
+            gradient(layer)
+            base.layer.insertSublayer(layer, at: at)
+        }else{
+            gradient(layers[updateIndex ?? 0])
+        }
+        return self
+    }
+    /// 放射性渐变
+    private class CD_GradientLayer:CALayer {
+        var point: CGPoint = CGPoint.zero
+        var colorSpace = CGColorSpaceCreateDeviceRGB()
+        var locations:[CGFloat] = [0.0, 1.0]
+        var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
+        lazy var radius: CGFloat = {
+            return max(self.bounds.size.width, self.bounds.size.height)
+        }()
+        override func draw(in ctx: CGContext) {
+            guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locations.count) else {
+                return
+            }
+            ctx.drawRadialGradient(gradient, startCenter: point, startRadius: 0, endCenter: point, endRadius: radius, options: .drawsAfterEndLocation)
+        }
+    }
+    /// 背景放射性渐变
+    @discardableResult
+    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil) -> CD {
+        
+        func gradient(_ layer:CD_GradientLayer) {
+            base.layoutIfNeeded()
+            layer.locations = gradients.map{$0.location}
+            layer.colors =  Array(gradients.map({ (c) -> [CGFloat] in
+                let cc = c.color.cd_rgba
+                return [cc.0,cc.1,cc.2,cc.3]
+            }).joined())
+            layer.frame = base.bounds
+            layer.point = point
+            layer.radius = radius ?? max(base.bounds.size.width, base.bounds.size.height)
+            layer.setNeedsDisplay()
+        }
+        
+        let layers:[CD_GradientLayer] = base.layer.sublayers?.filter{$0.isKind(of: CD_GradientLayer.self)}.map{$0} as? [CD_GradientLayer] ?? []
+        if layers.count <= at {
+            let layer = CD_GradientLayer()
             gradient(layer)
             base.layer.insertSublayer(layer, at: at)
         }else{
@@ -301,5 +344,40 @@ public extension CD where Base: UIView{
             }
         }while next != nil
         return nil
+    }
+    
+    /// 截图
+    var cutImage:UIImage? {
+        base.layoutIfNeeded()
+        UIGraphicsBeginImageContextWithOptions(base.frame.size, true, UIScreen.main.scale)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        base.layer.render(in: context)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
+
+public extension CD where Base: UIScrollView {
+    /// 截长图
+    var cutImageLong:UIImage? {
+        base.layoutIfNeeded()
+        let savedContentOffset = base.contentOffset
+        let savedFrame = base.frame
+        base.contentOffset = .zero
+        base.frame = CGRect(x: 0, y: 0, width: base.contentSize.width, height: base.contentSize.height)
+        guard let image = base.cd.cutImage else {
+            base.contentOffset = savedContentOffset
+            base.frame = savedFrame
+            return nil
+        }
+        base.contentOffset = savedContentOffset
+        base.frame = savedFrame
+        return image
     }
 }

@@ -27,25 +27,32 @@ Pod::Spec.new do |s|
     cd.dependency 'CD/CountDown'
     cd.dependency 'CD/Value'
     cd.dependency 'CD/RegEx'
-    cd.dependency 'CD/InputBox'
-    cd.dependency 'CD/Page'
-    cd.dependency 'CD/TopBar'
-    cd.dependency 'CD/AppDelegate'
-    cd.dependency 'CD/MVVM'
+  end
+  
+  s.subspec 'Module' do |mo|
+    mo.dependency 'CD/Core'
+    mo.dependency 'CD/IBInspectable'
+    mo.dependency 'CD/InputBox'
+    mo.dependency 'CD/IconFont'
+    #mo.dependency 'CD/Page'
+    mo.dependency 'CD/TopBar'
+    mo.dependency 'CD/AppDelegate'
+    
+    mo.dependency 'CD/MVVM'
+    mo.dependency 'CD/HUD'
   end
   
   s.subspec 'All' do |all|
     all.dependency 'CD/Core'
-    all.dependency 'CD/IconFont'
-    all.dependency 'CD/IBInspectable'
+    all.dependency 'CD/Module'
+    
     all.dependency 'CD/FDFullscreenPopGesture'
     all.dependency 'CD/MJRefresh'
+    
   end
   
-  s.subspec 'AppDelegate' do |app|
-      app.source_files = 'CD/CD_AppDelegate/*.{swift}'
-  end
   
+  # ---- 核心扩展
   s.subspec 'Extension' do |es|
       es.source_files = 'CD/CD_Extension/*.{swift}', 'CD/CD.swift'
       es.dependency 'CD/Form'
@@ -78,6 +85,11 @@ Pod::Spec.new do |s|
     regex.dependency 'CD/Value'
   end
   
+  # ---- 核心插件 组件
+  s.subspec 'AppDelegate' do |app|
+    app.source_files = 'CD/CD_AppDelegate/*.{swift}'
+  end
+  
   s.subspec 'IconFont' do |ifont|
       ifont.source_files = 'CD/CD_IconFont/Classes/*.{swift}'
       ifont.resource_bundles = {
@@ -88,8 +100,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'TopBar' do |topbar|
       topbar.source_files = 'CD/CD_TopBar/*.{swift}'
-      topbar.dependency 'CD/Extension'
-      topbar.dependency 'CD/Chain'
+      topbar.dependency 'CD/Core'
       topbar.dependency 'CD/IconFont'
       topbar.dependency 'CD/FDFullscreenPopGesture'
       topbar.dependency 'SnapKit', '~> 4.2.0'
@@ -97,25 +108,25 @@ Pod::Spec.new do |s|
   
   s.subspec 'Page' do |page|
       page.source_files = 'CD/CD_Page/Classes/*.{swift}'
-      page.dependency 'CD/Extension'
-      page.dependency 'CD/Form'
-      page.dependency 'CD/Chain'
+      page.dependency 'CD/Core'
       page.dependency 'SnapKit', '~> 4.2.0'
   end
   
   s.subspec 'InputBox' do |input|
       input.source_files = 'CD/CD_InputBox/*.{swift}'
-      input.dependency 'CD/Extension'
-      input.dependency 'CD/Chain'
+      input.dependency 'CD/Core'
       input.dependency 'SnapKit', '~> 4.2.0'
   end
   
+  s.subspec 'HUD' do |hud|
+    hud.source_files = 'CD/CD_HUD/*'
+    hud.dependency 'CD/Core'
+    hud.dependency 'SnapKit', '~> 4.2.0'
+  end
   
   s.subspec 'MVVM' do |vm|
     vm.source_files = 'CD/CD_MVVM/*'
-    vm.dependency 'CD/Extension'
-    vm.dependency 'CD/Form'
-    vm.dependency 'CD/Chain'
+    vm.dependency 'CD/Core'
     vm.dependency 'CD/TopBar'
     vm.dependency 'SnapKit', '~> 4.2.0'
   end

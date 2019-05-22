@@ -52,19 +52,12 @@ public extension CD where Base: UIButton {
     }
     
     @discardableResult
-    func content(_ horizontalAlignment: UIControl.ContentHorizontalAlignment) -> CD {
-        base.contentHorizontalAlignment = horizontalAlignment
-        return self
-    }
-    @discardableResult
-    func content(_ verticalAlignment: UIControl.ContentVerticalAlignment) -> CD {
-        base.contentVerticalAlignment = verticalAlignment
-        return self
-    }
-    
-    @discardableResult
-    func content(_ horizontal: UIControl.ContentHorizontalAlignment = .center, _ vertical: UIControl.ContentVerticalAlignment = .center) -> CD {
+    func contentAlignment(horizontal: UIControl.ContentHorizontalAlignment) -> CD {
         base.contentHorizontalAlignment = horizontal
+        return self
+    }
+    @discardableResult
+    func contentAlignment(vertical: UIControl.ContentVerticalAlignment) -> CD {
         base.contentVerticalAlignment = vertical
         return self
     }
