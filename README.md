@@ -16,6 +16,7 @@
 - [CD_RegEx：正则表达式](https://github.com/liucaide/CD/tree/master/CD/CD_RegEx)
 - ... 持续增新
 #### CD 辅助插件
+- [CD_HUD：提示窗](https://github.com/liucaide/CD/tree/master/CD/CD_HUD) 
 - [CD_TopBar：自定义导航栏](https://github.com/liucaide/CD/tree/master/CD/CD_TopBar) 
   - 扩展依赖 [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture)
   - 友情链接 [EachNavigationBar 原生扩展](https://github.com/Pircate/EachNavigationBar)
