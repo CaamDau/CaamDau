@@ -252,13 +252,13 @@ public extension CD where Base: UIView {
 }
 
 public extension CD_HUD {
-    public static func show(_ view:UIView,
-                     style:CD_HUD.Style = .text,
-                     title:String = "",
-                     detail:String = "",
-                     model:CD_HUD.Model = CD_HUD.modelDefault,
-                     position:CD_HUD.Position = .center,
-                     duration:TimeInterval = -1) {
+    public static func show(with view:UIView,
+                            style:CD_HUD.Style = .text,
+                            title:String = "",
+                            detail:String = "",
+                            model:CD_HUD.Model = CD_HUD.modelDefault,
+                            position:CD_HUD.Position = .center,
+                            duration:TimeInterval = -1) {
         let v = CD_HUD()
         v.show(with:view, style:style, title: title, detail: detail, model: model)
         switch style {
