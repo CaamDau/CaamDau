@@ -57,8 +57,8 @@ public extension CD where Base: UILabel {
 public extension CD where Base: UIButton {
     enum CD_IconFontStyle {
         case text(_ state:UIControl.State?)
-        case image(_ state:UIControl.State?, color:UIColor?, mode:UIImage.CD_IconFontMode?)
-        case bgImage(_ state:UIControl.State?, color:UIColor?, mode:UIImage.CD_IconFontMode?)
+        case image(_ state:UIControl.State?, color:UIColor?)
+        case bgImage(_ state:UIControl.State?, color:UIColor?)
     }
     @discardableResult
     func iconfont(_ font:CD_IconFontProtocol, style:CD_IconFontStyle = .text(.normal)) -> CD {
@@ -66,12 +66,10 @@ public extension CD where Base: UIButton {
         case let .text(state):
             base.titleLabel?.font = font.font
             base.setTitle(font.text, for: state ?? .normal)
-        case let .image(state, color, mode):
-            base.contentMode = .center
-            base.setImage(UIImage.cd_iconfont(font, color:color ?? base.tintColor, point: (mode ?? .center).point(font.size)), for: state ?? .normal)
-        case let .bgImage(state, color, mode):
-            base.contentMode = .center
-            base.setBackgroundImage(UIImage.cd_iconfont(font, color:color ?? base.tintColor, point: (mode ?? .center).point(font.size)), for: state ?? .normal)
+        case let .image(state, color):
+            base.setImage(UIImage.cd_iconfont(font, color:color ?? base.tintColor), for: state ?? .normal)
+        case let .bgImage(state, color):
+            base.setBackgroundImage(UIImage.cd_iconfont(font, color:color ?? base.tintColor), for: state ?? .normal)
         }
         return self
     }
@@ -79,59 +77,18 @@ public extension CD where Base: UIButton {
 
 public extension CD where Base: UIImageView {
     @discardableResult
-    func iconfont(_ font:CD_IconFontProtocol, color:UIColor = UIColor.lightGray, mode:UIImage.CD_IconFontMode = .center) -> CD {
-        base.contentMode = .center
-        base.image = UIImage.cd_iconfont(font, color:color, point: mode.point(font.size))
+    func iconfont(_ font:CD_IconFontProtocol, color:UIColor = UIColor.lightGray) -> CD {
+        base.image = UIImage.cd_iconfont(font, color:color)
         return self
     }
 }
 
 public extension UIImage {
-    enum CD_IconFontMode {
-        case center
-        case top
-        case bottom
-        case left
-        case right
-        case topLeft
-        case topRight
-        case bottomLeft
-        case bottomRight
-        
-        @discardableResult
-        public func point(_ size:CGFloat) -> CGPoint {
-            switch self {
-            case .center:
-                //return .zero
-                return CGPoint(x: size/2.0, y: size/2.0)
-            case .top:
-                return CGPoint(x: size/2.0, y: 0)
-            case .bottom:
-                return CGPoint(x: size/2.0, y: size)
-            case .left:
-                return CGPoint(x: 0, y: size/2.0)
-            case .right:
-                return CGPoint(x: size, y: size/2.0)
-            case .topLeft:
-                return CGPoint(x: 0, y: 0)
-            case .topRight:
-                return CGPoint(x: size, y: 0)
-            case .bottomLeft:
-                return CGPoint(x: 0, y: size)
-            case .bottomRight:
-                return CGPoint(x: size, y: size)
-            }
-        }
-    }
-    
     @discardableResult
     static func cd_iconfont(_ font:CD_IconFontProtocol, color:UIColor, point:CGPoint = .zero) -> UIImage {
         let scale = UIScreen.main.scale
         let size = font.size
-        UIGraphicsBeginImageContext(CGSize(width: size*scale, height: size*scale))
-        //let context = UIGraphicsGetCurrentContext()
-        //context!.setFillColor(color.cgColor)
-        
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: size, height: size),false,0)
         NSString(string: font.text).draw(at: point, withAttributes: [NSAttributedString.Key.font : font.font.fit(), NSAttributedString.Key.foregroundColor:color])
         
         guard let imageCG:CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage  else {

@@ -70,11 +70,11 @@ class VM_MineTableView {
                    ass.refresh_5,
                    ass.refresh_6,
                    ass.refresh_7]
-        m.down_imgIdle = [UIImage.cd_iconfont(CD_IconFont.temoji(60), color:Config.color.txt_5, point: UIImage.CD_IconFontMode.center.point(CD_IconFont.temoji(60).size))]
+        m.down_imgIdle = [UIImage.cd_iconfont(CD_IconFont.temoji(60), color:Config.color.txt_5)]
         
-        m.down_imgPulling = [UIImage.cd_iconfont(CD_IconFont.tpull_up(60), color:Config.color.txt_5, point: UIImage.CD_IconFontMode.center.point(CD_IconFont.tpull_up(60).size))]
+        m.down_imgPulling = [UIImage.cd_iconfont(CD_IconFont.tpull_up(60), color:Config.color.txt_5)]
         
-        m.down_imgWillRefresh = [UIImage.cd_iconfont(CD_IconFont.trefresh(60), color:Config.color.txt_5, point: UIImage.CD_IconFontMode.center.point(CD_IconFont.trefresh(60).size))]
+        m.down_imgWillRefresh = [UIImage.cd_iconfont(CD_IconFont.trefresh(60), color:Config.color.txt_5)]
         
         m.down_imgRefreshing = arr
         return m

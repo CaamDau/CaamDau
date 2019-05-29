@@ -226,7 +226,6 @@ public extension CD where Base: UIView {
              title:String = "",
              detail:String = "",
              model:CD_HUD.Model = CD_HUD.modelDefault,
-             position:CD_HUD.Position = .center,
              duration:TimeInterval = -1) -> CD {
         let v = CD_HUD()
         v.show(with:base, style:style, title: title, detail: detail, model: model)
@@ -257,7 +256,6 @@ public extension CD_HUD {
                             title:String = "",
                             detail:String = "",
                             model:CD_HUD.Model = CD_HUD.modelDefault,
-                            position:CD_HUD.Position = .center,
                             duration:TimeInterval = -1) {
         let v = CD_HUD()
         v.show(with:view, style:style, title: title, detail: detail, model: model)

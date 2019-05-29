@@ -44,6 +44,7 @@
 		4713C3DC2240B885007D3E29 /* CD.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CD.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4733EFCF223F3F44006F27A3 /* RegEx.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RegEx.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		474F8386226792A500FC6859 /* CryptoSwift.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CryptoSwift.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4760EFCD229E5E77009586A7 /* SKUPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SKUPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4766B499228EDF600058E91C /* CALayer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CALayer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A158223A8B31001F07ED /* JSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A159223A8B31001F07ED /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -102,6 +103,7 @@
 		47A0A157223A8B31001F07ED /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				4760EFCD229E5E77009586A7 /* SKUPlayground.playground */,
 				4766B499228EDF600058E91C /* CALayer.playground */,
 				47C491342278336F00DC876B /* MVVM.playground */,
 				474F8386226792A500FC6859 /* CryptoSwift.playground */,
@@ -411,7 +413,6 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/TabbarNavigation/TabbarNavigation.framework",
 				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/User/User.framework",
 				"${BUILT_PRODUCTS_DIR}/Web/Web.framework",
 			);
@@ -441,7 +442,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TabbarNavigation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/User.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web.framework",
 			);

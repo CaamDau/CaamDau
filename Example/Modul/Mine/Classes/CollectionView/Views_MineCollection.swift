@@ -68,10 +68,12 @@ class Cell_MineCollectionImage: UICollectionViewCell {
     }
 }
 extension Cell_MineCollectionImage: CD_RowUpdateProtocol {
-    typealias DataSource = (CD_IconFont, UIColor, UIImage.CD_IconFontMode)
-    func row_update(_ data: (CD_IconFont, UIColor, UIImage.CD_IconFontMode), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias DataSource = (CD_IconFont, UIColor, UIView.ContentMode)
+    func row_update(_ data: (CD_IconFont, UIColor, UIView.ContentMode), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         
-        self.img.cd.iconfont(data.0, color: data.1, mode: data.2)
+        self.img.cd
+            .iconfont(data.0, color: data.1)
+            .content(data.2)
         self.btn.cd.text("\(data.0)")
     }
 }
@@ -95,7 +97,7 @@ extension View_MineCollectionHeader: CD_RowUpdateProtocol {
             //.text(data.0.font)
             .text(data.2)
             .text(data.1)
-            .iconfont(data.0, style: .image(.normal, color: data.1, mode: .center))
+            .iconfont(data.0, style: .image(.normal, color: data.1))
     }
 }
 

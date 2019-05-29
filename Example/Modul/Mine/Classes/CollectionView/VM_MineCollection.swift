@@ -35,9 +35,9 @@ struct VM_MineCollection {
     
     lazy var formsHeader:[CD_RowProtocol] = {
         return (0..<Section.end.rawValue).map({ (i) -> CD_RowProtocol in
-            let icon = CD_IconFont.tlist(30)
+            let icon = CD_IconFont.tlist(15)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return CD_Row<View_MineCollectionHeader>.init(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: cd_screenW(), h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
+            return CD_Row<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: cd_screenW(), h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
         })
     }()
     
@@ -70,18 +70,20 @@ struct VM_MineCollection {
 
 extension VM_MineCollection {
     mutating func makeFormsValue0() {
-        let arr:[(CD_IconFont, UIImage.CD_IconFontMode)] = [
-            (CD_IconFont.temoji(100), UIImage.CD_IconFontMode.topLeft),
-            (CD_IconFont.tcamera(100), UIImage.CD_IconFontMode.top),
-            (CD_IconFont.tscan(100), UIImage.CD_IconFontMode.topRight),
-            (CD_IconFont.tcascades(100), UIImage.CD_IconFontMode.left),
-            (CD_IconFont.thome(100), UIImage.CD_IconFontMode.center),
-            (CD_IconFont.tmessage(100), UIImage.CD_IconFontMode.right),
-            (CD_IconFont.tdelete(100), UIImage.CD_IconFontMode.bottomLeft),
-            (CD_IconFont.twarn(100), UIImage.CD_IconFontMode.bottom),
-            (CD_IconFont.tlocation(100), UIImage.CD_IconFontMode.bottomRight)]
+        let ww:CGFloat = (cd_screenW()-20)/3
+        let www:CGFloat = 60
+        let arr:[(CD_IconFont, UIView.ContentMode)] = [
+            (CD_IconFont.temoji(www), .topLeft),
+            (CD_IconFont.tcamera(www), .top),
+            (CD_IconFont.tscan(www), .topRight),
+            (CD_IconFont.tcascades(www), .left),
+            (CD_IconFont.thome(www), .center),
+            (CD_IconFont.tmessage(www), .right),
+            (CD_IconFont.tdelete(www), .bottomLeft),
+            (CD_IconFont.twarn(www), .bottom),
+            (CD_IconFont.tlocation(www), .bottomRight)]
         for item in arr {
-            let row = CD_Row<Cell_MineCollectionImage>(data: (item.0,Config.color.main_2,item.1), frame: CGRect(x: 5, y: 5, w: (cd_screenW()-20)/3, h: (cd_screenW()-20)/3 + 30), bundleFrom: "Mine")
+            let row = CD_Row<Cell_MineCollectionImage>(data: (item.0,Config.color.main_2,item.1), frame: CGRect(x: 5, y: 5, w: ww, h: ww + 30), bundleFrom: "Mine")
             self.forms[Section.value0.rawValue].append(row)
         }
     }

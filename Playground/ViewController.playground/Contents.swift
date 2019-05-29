@@ -115,6 +115,22 @@ class MyViewController : UIViewController {
                 ],point:CGPoint(x: 0, y: 30), radius:100, at:2)
             
         }
+        
+        do{
+            let str = "国"
+            let lab = UILabel(frame: CGRect(x: 20, y: 300, width: 100, height: 30))
+            lab.text = str
+            view.addSubview(lab)
+            let str64 = str.data(using: String.Encoding.utf8, allowLossyConversion: true)?.base64EncodedString() ?? ""
+            
+            let data = Data(base64Encoded: str64)
+            let img = UIImage(data: data ?? Data())
+            let imageView = UIImageView(frame: CGRect(x: 20, y: 350, width: 100, height: 30))
+            imageView.backgroundColor = UIColor.red
+            imageView.image = img
+            view.addSubview(imageView)
+        }
+        
         self.view = view
     }
 }

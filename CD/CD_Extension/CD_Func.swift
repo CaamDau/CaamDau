@@ -397,19 +397,23 @@ public func cd_present(_ vc:UIViewController, animated: Bool = true, completion:
     cd_visibleVC()?.present(vc, animated: animated, completion: completion)
 }
 
-public func cd_push(_ vc:UIViewController) {
+public func cd_dismiss(_ animated: Bool = true, completion: (() -> Void)? = nil) {
+    cd_visibleVC()?.dismiss(animated: animated, completion: nil)
+}
+
+public func cd_push(_ vc:UIViewController, animated: Bool = true) {
     if let nvc = cd_visibleVC()?.navigationController {
         vc.hidesBottomBarWhenPushed = true
-        nvc.pushViewController(vc, animated: true)
+        nvc.pushViewController(vc, animated: animated)
     }else{
-        cd_visibleVC()?.present(vc, animated: true, completion: nil)
+        cd_visibleVC()?.present(vc, animated: animated, completion: nil)
     }
 }
 
-public func cd_pop() {
-    if let nvc = cd_visibleVC()?.navigationController, let _ = nvc.popViewController(animated: true) {
+public func cd_pop(_ animated: Bool = true) {
+    if let nvc = cd_visibleVC()?.navigationController, let _ = nvc.popViewController(animated: animated) {
     }else{
-        cd_visibleVC()?.dismiss(animated: true, completion: nil)
+        cd_visibleVC()?.dismiss(animated: animated, completion: nil)
     }
     /*
      if cd_visibleVC()?.presentingViewController != nil {
