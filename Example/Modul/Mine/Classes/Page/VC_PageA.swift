@@ -37,9 +37,7 @@ class VC_PageA: UIViewController {
        
     }
     
-    lazy var supVC:VC_Page? = {
-        return cd_visibleVC() as? VC_Page ?? nil
-    }()
+    
     
     lazy var assets: Assets = {
         return Assets()
@@ -77,11 +75,43 @@ extension VC_PageA: UITableViewDelegate, UITableViewDataSource {
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard let supVC = cd_visibleVC() as? VC_Page else {
+            return
+        }
         if velocity.y > 1.0 {
-            supVC?.hidden(navigationBar: true)
+            supVC.hidden(navigationBar: true)
         }else if velocity.y < -1.0 {
-            supVC?.hidden(navigationBar: false)
+            supVC.hidden(navigationBar: false)
         }
         
     }
 }
+
+extension VC_PageA: CD_PageViewControllerProtocol {
+    var scale: CGFloat {
+        get {
+            return 0
+        }
+        set {
+            
+        }
+    }
+    
+    static func initialize(withDataSource dataSource: Any?, config: Any?) -> UIViewController {
+        let vc = VC_PageA.show()
+        vc.dataSource = dataSource
+        vc.config = config
+        return vc
+    }
+    typealias DataSource = Any
+    typealias ConfigModel = Any
+    var config: ConfigModel? {
+        get { return nil }
+        set {}
+    }
+    var dataSource: DataSource? {
+        get { return nil }
+        set {}
+    }
+}
+

@@ -30,10 +30,10 @@ extension Cell_MainNews:CD_RowUpdateProtocol{
             .text(CD_IconFont.temoji(20).font)
             .text(CD_IconFont.temoji(20).text + "哈哈哈")
         
-        img.cd.iconfont(CD_IconFont.tpic_fill(60), color: UIColor.red, mode: .bottomLeft)
+        img.cd.iconfont(CD_IconFont.tpic_fill(60), color: UIColor.red)
         
         button.cd
-            .iconfont(CD_IconFont.tcart_fill(60), style: .image(.normal, color:UIColor.yellow, mode: .bottomRight))
+            .iconfont(CD_IconFont.tcart_fill(60), style: .image(.normal, color:UIColor.yellow))
         
         /*
         time_consuming("耗时->\(tag)：") { [weak self] in

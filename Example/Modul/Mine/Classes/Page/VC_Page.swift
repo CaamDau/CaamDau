@@ -34,14 +34,7 @@ class VC_Page: UIViewController {
     }()
     
     lazy var pageControl: CD_PageControl = {
-        return CD_PageControl()
-    }()
-    
-    lazy var line: UIView = {
-        return UIView().cd
-            .frame(x: 0, y: 38, w: 30, h: 2)
-            .background(UIColor.yellow)
-            .build
+        return CD_PageControl<CD_PageControlItem,CD_PageControlBuoy>(buoyConfig: CD_PageControlBuoy.Model())
     }()
     
     override func viewDidLoad() {
@@ -60,108 +53,78 @@ class VC_Page: UIViewController {
             make.top.equalTo(topBar.snp.bottom)
             make.height.equalTo(40)
         }
+        pageControl.layoutIfNeeded()
         
-        pageControl.addSubview(line)
         
         self.addChild(pageVC)
         self.view.addSubview(pageVC.view)
         pageVC.view.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(pageControl.snp.bottom)
+            //make.left.equalTo(pageControl.snp.right)
         }
         
-        //pageControl.register([.tCell(CD_PageControlTitle.self, nil, nil)])
-        var form:[CD_RowProtocol] = []
+        pageControl.delegate = self.pageVC
+        pageVC.delegate = self.pageControl
         
-        for item in 0..<20 {
-            var model = CD_PageControlTitle.Model()
-            model.titleNormal = "\(item)"
-            let row = CD_Row<CD_PageControlTitle>.init(data: model, frame: CGRect(x: 5, y: 0, w: CGFloat(40+item*3), h: 40), didSelect: {[weak self] in
-                self?.pageVC.didSelect(item)
-            })
-            form.append(row)
-        }
+        pageControl.dataSource = (0..<20).map({ (i) -> CD_PageControlItemDataSource in
+            var d = CD_PageControlItemDataSource()
+            d.id = i.stringValue
+            
+            d.title = "Title-\(i)"
+            return d
+        })
+        //pageVC._itemSize = CGSize(w: cd_screenW(), h: cd_screenH()-64-40)
+        pageVC._viewControllers =
+            [VC_PageA.initialize(withDataSource: [], config: nil),
+             VC_PageB.initialize(withDataSource: [], config: nil),
+             VC_PageC.initialize(withDataSource: [], config: nil),
+             VC_PageD.initialize(withDataSource: [], config: nil)]
         
-        pageControl._items = form
-        pageControl.delegate = self
+        pageVC.addViewController(VC_PageA.self)
+        pageVC.addViewController(VC_PageB.self, dataSource:"")
+        pageVC.addViewController(VC_PageC.self)
+        pageVC.addViewController(VC_PageD.self)
         
         
-        pageVC.delegate = self
-        pageVC._itemSize = CGSize(w: cd_screenW(), h: cd_screenH()-64-40)
-        pageVC._viewControllers = [VC_PageA.show(),
-                                   VC_PageB.show(),
-                                   VC_PageC.show(),
-                                   VC_PageD.show(),
-                                   VC_PageA.show(),
-                                   VC_PageB.show(),
-                                   VC_PageC.show(),
-                                   VC_PageD.show(),
-                                   VC_PageA.show(),
-                                   VC_PageB.show(),
-                                   VC_PageC.show(),
-                                   VC_PageD.show(),
-                                   VC_PageA.show(),
-                                   VC_PageB.show(),
-                                   VC_PageC.show(),
-                                   VC_PageD.show(),
-                                   VC_PageA.show(),
-                                   VC_PageB.show(),
-                                   VC_PageC.show(),
-                                   VC_PageD.show()]
+        
+        
+        pageVC.selectIndex = 2
         
     }
 }
 
 extension VC_Page {
     func hidden(navigationBar hidden: Bool) {
-        self.pageVC._itemSize = CGSize(w: cd_screenW(), h: cd_screenH()-(hidden ? 20 : 64)-40)
-        self.topBar.hidden(navigationBar: hidden) { (bool) in
-            
-        }
+//        self.topBar.hidden(navigationBar: hidden) { (bool) in
+//            
+//        }
+        //self.pageVC._itemSize = CGSize(w: cd_screenW(), h: cd_screenH()-(hidden ? 20 : 64)-40)
     }
 }
 
-extension VC_Page: CD_PageProtocol {
-    func scroll(didScroll view: UIScrollView) {
-        /*
-        switch view {
-        case pageControl.collectionView:
-            let idx:Int = Int(pageVC.collectionView.contentOffset.x/cd_screenW())
-            let indexPath = IndexPath(item: idx, section: 0)
-            if let cell = pageControl.collectionView.cellForItem(at: indexPath) {
-                print(cell.frame)
-                let ww = cell.frame.size.width
-                let xx = (ww-30.0)/2.0
-                line.frame.origin.x = cell.frame.origin.x + xx
-            }
-        default:
-            break
-        }*/
-    }
-    
-    func scroll(didEndScrollingAnimation view: UIScrollView) {
+
+extension VC_Page: CD_PageScrollProtocol {
+    func scroll(didScroll view: UIScrollView, offset: CGFloat) {
         
     }
     
-    func scroll(didEndDecelerating view: UIScrollView) {
-        /*switch view {
-        case pageControl.collectionView:
-            break
-        default:
-            let idx:Int = Int(view.contentOffset.x/cd_screenW())
-            let indexPath = IndexPath(item: idx, section: 0)
-            pageControl.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }*/
+    func scroll(didEndScrollingAnimation view: UIScrollView, index: Int) {
         
     }
     
-    func scroll(didEndDragging view: UIScrollView) {
+    func scroll(didEndDecelerating view: UIScrollView, index: Int) {
+        
+    }
+    
+    func scroll(didEndDragging view: UIScrollView, index: Int) {
         
     }
     
     func scroll(willBeginDragging view: UIScrollView) {
         
     }
+    
     
 }
 

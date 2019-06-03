@@ -70,7 +70,6 @@ class Cell_MineCollectionImage: UICollectionViewCell {
 extension Cell_MineCollectionImage: CD_RowUpdateProtocol {
     typealias DataSource = (CD_IconFont, UIColor, UIView.ContentMode)
     func row_update(_ data: (CD_IconFont, UIColor, UIView.ContentMode), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        
         self.img.cd
             .iconfont(data.0, color: data.1)
             .content(data.2)

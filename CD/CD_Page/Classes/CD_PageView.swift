@@ -10,9 +10,7 @@
 
 import Foundation
 import UIKit
-import SnapKit
-import CD
-
+/*
 public class CD_PageView: UIView {
     private static let identifier:String = "CD_PageViewUICollectionView"
     
@@ -119,3 +117,4 @@ extension CD_PageView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
+*/

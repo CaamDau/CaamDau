@@ -192,4 +192,27 @@ public extension CD where Base: UIScrollView {
         base.refreshControl = a
         return self
     }
+    
+    /// 右滑返回
+    @discardableResult
+    func panBack(_ gesture: UIGestureRecognizer, otherGesture:UIGestureRecognizer) -> Bool {
+        if base.contentOffset.x <= 0,
+            let delegate = otherGesture.delegate,
+            let fdFulls = NSClassFromString("_FDFullscreenPopGestureRecognizerDelegate").self,
+            delegate.isKind(of: fdFulls) {
+            return true
+        }
+        else if gesture == base.panGestureRecognizer,
+            let pan:UIPanGestureRecognizer = gesture as? UIPanGestureRecognizer {
+            let point = pan.translation(in: base)
+            let state = pan.state
+            if state == .began || state == .possible {
+                let location = pan.location(in: base)
+                if point.x >= 0 && location.x < 60 && base.contentOffset.x <= 0 {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }

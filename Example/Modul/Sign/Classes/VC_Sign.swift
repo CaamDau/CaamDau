@@ -36,8 +36,8 @@ public class VC_Sign: UIViewController {
         self.tableView.reloadData()
         
         self.btn_back.cd
-            .text(CD_IconFont.tback(20).font)
-            .text(CD_IconFont.tback(20).text)
+            .text(CD_IconFont.tclose(30).font)
+            .text(CD_IconFont.tclose(30).text)
             .text(UIColor.cd_hex("3"))
             .background(UIColor.cd_hex("f"))
     }

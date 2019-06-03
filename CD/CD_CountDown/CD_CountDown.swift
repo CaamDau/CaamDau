@@ -130,7 +130,7 @@ public extension CD_CountDown {
             }, qos: qos)
         case let .notification(id, time, second):
             CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in
-                NotificationCenter.default.post(name: NSNotification.Name(id), object: model)
+                NotificationCenter.default.post(name: Notification.Name(id), object: id, userInfo: [id:model])
             }, qos: qos)
         case let .callBack(id, time, second, block):
             CD_CountDown.make(id: id, remainTime: time, repeatSecond: second, mainThread: block, qos: qos)

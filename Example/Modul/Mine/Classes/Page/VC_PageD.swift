@@ -8,6 +8,7 @@
 
 
 import UIKit
+import CD
 extension VC_PageD {
     static func show() -> VC_PageD {
         return VC_PageD.cd_storyboard(withBundle: "Mine", name: "PageStoryboard") as! VC_PageD
@@ -36,3 +37,32 @@ class VC_PageD: UIViewController {
     }
 
 }
+
+extension VC_PageD: CD_PageViewControllerProtocol {
+    var scale: CGFloat {
+        get {
+            return 0
+        }
+        set {
+            
+        }
+    }
+    
+    static func initialize(withDataSource dataSource: Any?, config: Any?) -> UIViewController {
+        let vc = VC_PageD()
+        vc.dataSource = dataSource
+        vc.config = config
+        return vc
+    }
+    typealias DataSource = Any
+    typealias ConfigModel = Any
+    var config: ConfigModel? {
+        get { return nil }
+        set {}
+    }
+    var dataSource: DataSource? {
+        get { return nil }
+        set {}
+    }
+}
+

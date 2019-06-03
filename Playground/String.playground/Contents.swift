@@ -1,7 +1,7 @@
 //: [Previous](@previous)
 
 import Foundation
-
+import UIKit
 
 
 //MARK:--- 脚本 ----------
@@ -74,3 +74,33 @@ do{
      */
 }
 
+protocol CD_NotificationProtocol {
+    var name: NSNotification.Name { get }
+    func post(_ object:Any?, userInfo:[AnyHashable:Any]?)
+    func add(withSelector selector: Selector, observer: Any, object: Any?)
+    func add(withBlock object: Any?, queue: OperationQueue?, block:@escaping (Notification) -> Void) -> NSObjectProtocol
+    func remove(_ observer: Any, object:Any?)
+}
+extension CD_NotificationProtocol {
+    func post(_ object:Any? = nil, userInfo:[AnyHashable:Any]? = nil) {
+        NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
+    }
+    func add(withBlock object: Any? = nil, queue: OperationQueue? = .main, block: @escaping (Notification) -> Void) -> NSObjectProtocol {
+        return NotificationCenter.default.addObserver(forName: name, object: object, queue: queue, using: block)
+    }
+    func add(withSelector selector: Selector, observer: Any, object: Any? = nil) {
+        NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: object)
+    }
+    func remove(_ observer: Any, object:Any? = nil) {
+        NotificationCenter.default.removeObserver(observer, name: name, object: object)
+    }
+}
+
+enum NoticeUser:String {
+    case login = "login"
+}
+extension NoticeUser:CD_NotificationProtocol {
+    var name: Notification.Name {
+        return Notification.Name("user."+self.rawValue)
+    }
+}

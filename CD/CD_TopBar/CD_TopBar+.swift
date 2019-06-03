@@ -106,6 +106,24 @@ public extension CD_TopBar {
     public func hidden(navigationBar hidden:Bool, duration:TimeInterval = 0.3, needsUpdate:(() -> Void)? = nil, animations:(() -> Void)? = nil, completion:((Bool) -> Void)? = nil) {
         guard !self.hiddenNavigationBarAnimateStop else {return}
         self.hiddenNavigationBarAnimateStop = true
+        /*
+        func addAnimation(with view: UIView, value:(Any,Any)){
+            let animote = CABasicAnimation(keyPath: "position.y")
+            animote.duration = duration
+            animote.isRemovedOnCompletion = false
+            animote.fillMode = .forwards
+            animote.fromValue = hidden ? value.1 : value.0
+            animote.toValue = hidden ? value.0 : value.1
+            animote.timingFunction = CAMediaTimingFunction(name: .easeOut)
+            view.layer.add(animote, forKey: animote.keyPath)
+        }
+        
+        //self.superview?.layoutIfNeeded()
+        let value0 = self.bar_navigation.layer.position.y - CD_TopBar.Model.height_navigation
+        let value1 = self.bar_navigation.layer.position.y
+        addAnimation(with: self.bar_navigation, value:(value0,value1))
+        */
+        
         self.superview?.setNeedsLayout()
         self.bar_navigation.snp.updateConstraints { (make) in
             make.top.equalTo(bar_status.snp.bottom).offset(hidden ? -CD_TopBar.Model.height_navigation : 0)
