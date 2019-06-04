@@ -237,9 +237,9 @@ private class CD_StringSize {
     //从磁盘中读取缓存
     func readFontDictionaryFromDisk() {
         do {
-            let data = try Data.init(contentsOf: fileUrl)
-            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-            guard let dict = json as? [String: [String: CGFloat]] else {
+            guard let data = try? Data.init(contentsOf: fileUrl),
+                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                let dict = json as? [String: [String: CGFloat]] else {
                 return
             }
             fontDictionary = dict

@@ -124,6 +124,27 @@ extension CD_HUDActivityView {
                 .text(CD_IconFont.tloading(iconFontSize).text)
                 .text(CD_IconFont.tloading(iconFontSize).font)
             makeRotationAnimotion(label)
+        case .diamond:
+            self.cd.addArranged(subview: label)
+            label.cd
+                .text(model._colorActivity)
+                .text(CD_IconFont.tloading_80(iconFontSize).text)
+                .text(CD_IconFont.tloading_80(iconFontSize).font)
+            makeRotationAnimotion(label)
+        case .brush:
+            self.cd.addArranged(subview: label)
+            label.cd
+                .text(model._colorActivity)
+                .text(CD_IconFont.tloading_87(iconFontSize).text)
+                .text(CD_IconFont.tloading_87(iconFontSize).font)
+            makeRotationAnimotion(label)
+        case .roundEyes:
+            self.cd.addArranged(subview: label)
+            label.cd
+                .text(model._colorActivity)
+                .text(CD_IconFont.tLoading(iconFontSize).text)
+                .text(CD_IconFont.tLoading(iconFontSize).font)
+            makeRotationAnimotion(label)
         case .arrow:
             self.cd.addArranged(subview: label)
             label.cd
@@ -133,6 +154,7 @@ extension CD_HUDActivityView {
             makeRotationAnimotion(label)
         case .view(let vv):
             self.cd.addArranged(subview: vv)
+        
         }
     }
 }

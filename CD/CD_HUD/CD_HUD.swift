@@ -110,8 +110,15 @@ public extension CD_HUD {
             case activity
             /// 环
             case ring
+            /// 钻戒
+            case diamond
+            /// 毛笔墨
+            case brush
+            /// 写轮眼
+            case roundEyes
             /// refresh 箭头
             case arrow
+            
             /// 自定义 Gif 动画组
             case images(_ images:[UIImage], _ duration:TimeInterval, _ repeatCount:Int)
             /// 自定义 View
