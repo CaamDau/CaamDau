@@ -104,3 +104,9 @@ extension NoticeUser:CD_NotificationProtocol {
         return Notification.Name("user."+self.rawValue)
     }
 }
+
+
+
+(0.0...5.1).contains(1.1123)
+
+

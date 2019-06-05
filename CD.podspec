@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CD/IBInspectable'
     mo.dependency 'CD/InputBox'
     mo.dependency 'CD/IconFont'
-    mo.dependency 'CD/Page'
+    #mo.dependency 'CD/Page'
     mo.dependency 'CD/TopBar'
     mo.dependency 'CD/AppDelegate'
     

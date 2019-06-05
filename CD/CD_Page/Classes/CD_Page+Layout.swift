@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import CD
 
 extension CD_Page {
     static func makeLayout(withScrollView view:UIScrollView) {
@@ -351,14 +352,24 @@ extension CD_PageViewController {
 extension CD_PageControlItem {
     func makeLayoutLine(_ line:UIView, _ m:CD_PageControlItem.Model)  {
         line.snp.makeConstraints { (make) in
-            switch m.scrollDirection {
-            case .horizontal:
-                make.centerX.equalToSuperview()
-                make.bottom.equalToSuperview()
-            case .vertical:
+            switch m.linePosition {
+            case .left(let f):
+                make.left.equalToSuperview().offset(f)
                 make.centerY.equalToSuperview()
-                make.left.equalToSuperview()
+            case .right(let f):
+                make.centerY.equalToSuperview()
+                make.right.equalToSuperview().offset(f)
+            case .top(let f):
+                make.centerX.equalToSuperview()
+                make.top.equalToSuperview().offset(f)
+            case .center(let x, let y):
+                make.centerY.equalToSuperview().offset(y)
+                make.centerX.equalToSuperview().offset(x)
+            case .bottom(let f):
+                make.centerX.equalToSuperview()
+                make.bottom.equalToSuperview().offset(f)
             }
+            
             if case .auto = m.lineSize.w  {
                 make.width.equalToSuperview()
             }else{

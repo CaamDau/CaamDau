@@ -38,7 +38,7 @@ class VC_PageC: UIViewController {
 
 }
 
-extension VC_PageC: CD_PageViewControllerProtocol {
+extension VC_PageC: CD_UIViewControllerProtocol {
     var scale: CGFloat {
         get {
             return 0

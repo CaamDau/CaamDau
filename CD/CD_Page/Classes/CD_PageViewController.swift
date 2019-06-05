@@ -2,7 +2,7 @@
 
 /***** 模块文档 *****
  * 分页控制器 子控制器自由
- * 当然子控制器可遵循 CD_PageViewControllerProtocol 来统一制式 关联数据
+ * 当然子控制器应遵循 CD_UIProtocol 来统一制式 关联数据
  */
 
 
@@ -10,25 +10,10 @@
 
 import Foundation
 import UIKit
-
-//MARK:--- 提供 ----------
-public extension CD_PageViewController {
-    func addViewController<T:CD_PageViewControllerProtocol>(_ t:T.Type, dataSource:T.DataSource? = nil, config:T.ConfigModel? = nil) {
-        _viewControllers.append(t.initialize(withDataSource: dataSource, config: config))
-    }
-    
-    func makeViewControllers<T:CD_PageViewControllerProtocol>(_ vc:[(T.Type,T.DataSource?, T.ConfigModel?)]) {
-        _viewControllers = vc.map{$0.0.initialize(withDataSource: $0.1, config: $0.2)}
-    }
-}
+import CD
 
 public class CD_PageViewController: UIViewController {
-    private lazy var model:CD_Page.Model =  {
-        var m = CD_Page.Model()
-        m.marge = 0
-        m.space = 0
-        return m
-    }()
+    
     private var selfWidth:CGFloat {
         return self.view.bounds.size.width
     }
@@ -36,15 +21,18 @@ public class CD_PageViewController: UIViewController {
         return self.view.bounds.size.height
     }
     private var observer:NSObjectProtocol?
-    
+    private var contentOffsetBegin:CGFloat = 0
     public weak var delegate:CD_PageScrollProtocol?
     
-    public var _model:CD_Page.Model = CD_Page.Model() {
+    public var model:CD_Page.Model =  {
+        var m = CD_Page.Model()
+        m.marge = 0
+        m.space = 0
+        return m
+    }(){
         didSet{
-            var m = _model
-            m.marge = 0
-            m.space = 0
-            model = _model
+            updateScrollView()
+            updateLayoutScrollView()
         }
     }
     public var selectIndex:Int = 0 {
@@ -64,12 +52,14 @@ public class CD_PageViewController: UIViewController {
             .clips(true)
             .build
     }()
-    public var _viewControllers:[UIViewController] = [] {
+    
+    public var dataSource:[CD_RowVCProtocol] = [] {
         didSet{
             updateViewControllers()
+            reloadData()
         }
     }
-    
+    private var dataSourceSize:[(min:CGFloat, max:CGFloat, index:Int)] = []
     public override func viewDidLoad() {
         super.viewDidLoad()
         makeScrollView()
@@ -95,148 +85,176 @@ extension CD_PageViewController {
         self.view.layoutIfNeeded()
         updateLayoutScrollView()
     }
+    func updateScrollView()  {
+        scrollView.cd
+            .bounces(model.scrollBounces)
+            .isPaging(enabled: model.isScrollPaging)
+    }
     func updateViewControllers() {
         self.children.forEach { [weak self](vc) in
-            let bool =  self?._viewControllers.contains(vc) ?? true
+            let bool =  self?.dataSource.contains{$0.vc == vc} ?? true
             guard !bool else { return }
             vc.view.removeFromSuperview()
             vc.removeFromParent()
         }
         updateLayoutScrollView()
     }
+    
     func updateLayoutScrollView() {
-        let count = _viewControllers.count
-        switch model.scrollDirection {
-        case .horizontal:
-            scrollView.contentSize = CGSize(w: (CGFloat(count) * selfWidth), h: 0)
-            for (i,item) in _viewControllers.enumerated() {
-                debugPrint(item.view.frame)
-                item.view.frame = CGRect(x: CGFloat(i)*selfWidth, y: 0, w: selfWidth, h: selfHeight)
-            }
-        case .vertical:
-            scrollView.contentSize = CGSize(w: 0, h: (CGFloat(count) * selfHeight))
-            for (i,item) in _viewControllers.enumerated() {
-                debugPrint(item.view.frame)
-                item.view.frame = CGRect(x:0, y: CGFloat(i)*selfHeight, w: selfWidth, h: selfHeight)
-            }
-        }
-        //self.selectTo(false)
-    }
-    func reloadData() {
-        guard self.selectIndex < _viewControllers.count else { return }
-        for (i,item) in _viewControllers.enumerated() where (i == self.selectIndex || i == self.selectIndex+1 || i == self.selectIndex-1) && !self.children.contains(item) {
-            self.addChild(item)
+        var contentSize:CGSize = CGSize.zero
+        var offset:CGFloat = model.marge
+        let maxIndex = dataSource.count - 1
+        dataSourceSize.removeAll()
+        for (i,item) in dataSource.enumerated() {
             item.view.tag = i + model.offsetTag
-            item.view.backgroundColor = i%2==0 ? .red : .lightGray
-            scrollView.addSubview(item.view)
             switch model.scrollDirection {
             case .horizontal:
-                item.view.frame = CGRect(x: CGFloat(i)*selfWidth, y: 0, w: selfWidth, h: selfHeight)
+                var w = contentSize.width
+                w += item.autoLayout ? selfWidth : item.frame.size.width
+                item.view.frame = CGRect(x: offset, y: 0, w: item.autoLayout ? selfWidth : item.frame.size.width, h: item.autoLayout ? selfHeight : item.frame.size.height)
+                offset += item.view.frame.width + model.space
+                let min = item.view.frame.minX - (i == 0 ? model.marge : model.space)
+                let max = item.view.frame.maxX + (i == maxIndex ? model.marge : model.space/2.0)
+                dataSourceSize.append((min,max,i))
+                contentSize = CGSize(width: offset, height: 0)
             case .vertical:
-                item.view.frame = CGRect(x:0, y: CGFloat(i)*selfHeight, w: selfWidth, h: selfHeight)
+                var h = contentSize.height
+                h += item.autoLayout ? selfHeight : item.frame.size.height
+                item.view.frame = CGRect(x: 0, y: offset, w: item.autoLayout ? selfWidth : item.frame.size.width, h: item.autoLayout ? selfHeight : item.frame.size.height)
+                offset += item.view.frame.height + model.space
+                let min = item.view.frame.minY - (i == 0 ? model.marge : model.space)
+                let max = item.view.frame.maxY + (i == maxIndex ? model.marge : model.space/2.0)
+                dataSourceSize.append((min,max,i))
+                contentSize = CGSize(width: 0, height: offset)
             }
-            
-            self.selectTo(true)
+        }
+        scrollView.contentSize = contentSize
+    }
+    func reloadData() {
+        guard self.selectIndex < dataSource.count else { return }
+        let ss = (self.selectIndex-1...self.selectIndex+1)
+        for (i,item) in dataSource.enumerated() where ss.contains(i) && !self.children.contains(item.vc) {
+            self.addChild(item.vc)
+            //item.view.backgroundColor = i%2==0 ? .red : .lightGray
+            scrollView.addSubview(item.view)
+            if i == selectIndex {
+                scroll(toIndex:i, animated:false)
+            }
         }
     }
     
     func selectTo(_ animated:Bool) {
-        guard selectIndex < _viewControllers.count else { return }
-        guard let item = scrollView.viewWithTag(selectIndex + model.offsetTag) else { return }
-        let offset = item.frame.origin
-        /*
-        var offset = scrollView.contentOffset
+        if model.isScrollPaging {
+            scroll(toIndex: selectIndex, animated:animated)
+        }
+    }
+    func scroll(toIndex index:Int, animated:Bool = false) {
+        guard index < dataSourceSize.count else { return }
+        var offset:CGPoint = .zero
         switch model.scrollDirection {
         case .horizontal:
-            offset = CGPoint(x: CGFloat(selectIndex)*selfWidth, y: 0)
+            offset.x = dataSourceSize[index].min
+            offset.y = 0
         case .vertical:
-            offset = CGPoint(x: 0, y: CGFloat(selectIndex)*selfHeight)
-        }*/
-        self.scroll(toOffset: offset, animated: animated)
-    }
-    func scroll(toOffset offset:CGPoint, animated:Bool = false) {
+            offset.x = 0
+            offset.y = dataSourceSize[index].min
+        }
         self.scrollView.setContentOffset(offset, animated: animated)
         guard !animated else { return }
         scrollViewDidEndScrollingAnimation(self.scrollView)
     }
+    
 }
 
 extension CD_PageViewController: CD_PageControlProtocol {
     public func didSelect(withIndex index:Int) {
         guard self.selectIndex != index else {return}
-        let oldIndex = self.selectIndex
         self.selectIndex = index
-        guard index < _viewControllers.count else { return }
-        //guard let item = scrollView.viewWithTag(index + model.offsetTag) else { return }
-        //let offset = item.frame.origin
-        selectTo(abs(index-oldIndex)==1)
-        //self.scroll(toOffset: offset, animated: abs(index-oldIndex)==1)
+        scroll(toIndex:index)
+//        self.delegate?.scroll(didEndScrollingAnimation: scrollView, index:index, animotion:false)
     }
 }
 extension CD_PageViewController: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var offset = CGFloat(selectIndex)
+        var contentOffset:CGFloat = 0
+        var size:CGFloat = 0
+        var index = selectIndex
         switch model.scrollDirection {
         case .horizontal:
-            offset = scrollView.contentOffset.x / scrollView.frame.size.width
+            contentOffset = scrollView.contentOffset.x
+            index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
+            
+            if (0..<dataSource.count).contains(index) {
+                size = dataSource[index].view.frame.size.width
+            }else{
+                size = dataSource[selectIndex].view.frame.size.width
+            }
+            
         case .vertical:
-            offset = scrollView.contentOffset.y / scrollView.frame.size.height
+            contentOffset = scrollView.contentOffset.y
+            index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
+            if (0..<dataSource.count).contains(index) {
+                size = dataSource[index].view.frame.size.height
+            }else{
+                size = dataSource[selectIndex].view.frame.size.height
+            }
         }
-        self.delegate?.scroll(didScroll: scrollView, offset:offset)
+        let offsetRatio = contentOffset / size
+        
+        self.delegate?.scroll(didScroll: scrollView, contentOffset: contentOffset, offsetRatio: offsetRatio, size: size, index: index)
     }
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        var index:Int = selectIndex
+        var contentOffset = CGFloat(self.selectIndex)
         switch model.scrollDirection {
         case .horizontal:
-            index = Int(scrollView.contentOffset.x/scrollView.frame.size.width)
+            contentOffset = scrollView.contentOffset.x
         case .vertical:
-            index = Int(scrollView.contentOffset.y/scrollView.frame.size.height)
+            contentOffset = scrollView.contentOffset.y
         }
-        self.delegate?.scroll(didEndScrollingAnimation: scrollView, index:index)
+        let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
+        self.delegate?.scroll(didEndScrollingAnimation: scrollView, index:index, animotion:abs(index-selectIndex)==1)
         self.selectIndex = index
     }
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        var index:Int = selectIndex
+        var contentOffset = CGFloat(self.selectIndex)
         switch model.scrollDirection {
         case .horizontal:
-            index = Int(scrollView.contentOffset.x/scrollView.frame.size.width)
+            contentOffset = scrollView.contentOffset.x
         case .vertical:
-            index = Int(scrollView.contentOffset.y/scrollView.frame.size.height)
+            contentOffset = scrollView.contentOffset.y
         }
+        let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
         self.delegate?.scroll(didEndDecelerating: scrollView, index:index)
         self.selectIndex = index
         
     }
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        var contentOffset = CGFloat(self.selectIndex)
         switch model.scrollDirection {
         case .horizontal:
             if (scrollView.contentOffset.x == 0 || scrollView.contentOffset.x + scrollView.bounds.size.width == scrollView.contentSize.width) {
-                let index = Int(scrollView.contentOffset.x/scrollView.frame.size.width)
+                contentOffset = scrollView.contentOffset.x
+                let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
                 self.delegate?.scroll(didEndDragging: scrollView, index:index)
                 self.selectIndex = index
             }
         case .vertical:
             if (scrollView.contentOffset.y == 0 || scrollView.contentOffset.y + scrollView.bounds.size.height == scrollView.contentSize.height) {
-                let index = Int(scrollView.contentOffset.y/scrollView.frame.size.height)
+                
+                contentOffset = scrollView.contentOffset.y
+                let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
                 self.delegate?.scroll(didEndDragging: scrollView, index:index)
                 self.selectIndex = index
             }
         }
     }
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.delegate?.scroll(willBeginDragging: scrollView)
+        switch model.scrollDirection {
+        case .horizontal:
+            contentOffsetBegin = scrollView.contentOffset.x
+        case .vertical:
+            contentOffsetBegin = scrollView.contentOffset.y
+        }
+        self.delegate?.scroll(willBeginDragging: scrollView, offset:contentOffsetBegin)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

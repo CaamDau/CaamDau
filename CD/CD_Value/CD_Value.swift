@@ -424,5 +424,12 @@ extension Array:CD_Value {}
 extension String:CD_Value {}
 extension Double:CD_Value {}
 extension Float:CD_Value {}
+extension CGFloat:CD_Value {}
 extension Int:CD_Value {}
 extension Bool:CD_Value {}
+
+
+extension NSDictionary:CD_Value {}
+extension NSArray:CD_Value {}
+extension NSString:CD_Value {}
+extension NSNumber:CD_Value {}

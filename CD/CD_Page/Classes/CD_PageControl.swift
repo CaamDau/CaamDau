@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
-
+import CD
 
 extension CD_PageControl: CD_PageControlDataSource {
-    public func scrolling(_ offset:CGFloat){
-        let index:Int = Int(offset)
+    public func scrolling(_ offset:CGFloat, index:Int){
+        let index:Int = index
         let indexR:Int = index + 1
         let scaleR:CGFloat = offset - CGFloat(index)
         let scale:CGFloat = 1 - scaleR
@@ -85,7 +85,11 @@ extension CD_PageControl: CD_PageControlDataSource {
 public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageControlBuoyProtocol>: UIView where Item: UIView, Buoy: UIView {
     public weak var delegate:CD_PageControlProtocol?
     public weak var delegateScroll:CD_PageScrollProtocol?
-    public var model:CD_Page.Model = CD_Page.Model()
+    public var model:CD_Page.Model = CD_Page.Model() {
+        didSet{
+            reloadData()
+        }
+    }
     
     private var _dataSource:[Any] = [] {
         didSet{
@@ -121,8 +125,17 @@ public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageContro
         super.init(coder: aDecoder)
         makeUI()
     }
-    var itemConfig:Item.ConfigModel?
-    var buoyConfig:Buoy.ConfigModel?
+    var itemConfig:Item.ConfigModel? {
+        didSet{
+            reloadData()
+        }
+    }
+    var buoyConfig:Buoy.ConfigModel? {
+        didSet{
+            self.buoy?.config = buoyConfig
+            reloadData()
+        }
+    }
     public convenience init(frame: CGRect = .zero, itemConfig item:Item.ConfigModel? = nil, buoyConfig buoy:Buoy.ConfigModel? = nil, model:CD_Page.Model? = nil) {
         self.init(frame: CGRect.zero)
         self.model = model ?? CD_Page.Model()
@@ -160,40 +173,13 @@ extension CD_PageControl {
             itemView.addSubview(controlItem)
             
             CD_Page.layoutForEach(&marge, idx: i, scrollView: scrollView, itemView: itemView, item: controlItem, count: _dataSource.count, model: model)
-            /*
-            let offset = marge + (i==0 ? model.marge : model.space)
-            CD_Page.makeLayout(withItem: controlItem, offset: offset, model: model)
-            
-            self.scrollView.layoutIfNeeded()
-            switch model.scrollDirection {
-            case .horizontal:
-                marge = controlItem.frame.maxX
-            case .vertical:
-                marge = controlItem.frame.maxY
-            }
-            
-            if i == dataSource.count-1 {
-                CD_Page.updateLayout(withItemView: itemView, item: controlItem, model: model)
-                let maxW = marge+model.marge
-                switch model.scrollDirection {
-                case .horizontal:
-                    if maxW < self.frame.size.width {
-                        CD_Page.updateLayout(withScrollView: scrollView, maxW: maxW, model: model)
-                    }
-                case .vertical:
-                    if maxW < self.frame.size.height {
-                        CD_Page.updateLayout(withScrollView: scrollView, maxW: maxW, model: model)
-                    }
-                }
-            }
-            */
-            
         }
         
         
         itemView.cd.add(buoy)
-        itemView.layoutIfNeeded()
-        buoy?.scroll(endScroll: nil, index: index, animotion:false)
+        scrollView.layoutIfNeeded()
+        my_scrollViewDidEndScrolling(nil, index:index, animotion:false)
+        //buoy?.scroll(endScroll: nil, index: index, animotion:false)
     }
     func clickControl(withIndex idx:Int) {
         self.delegate?.didSelect(withIndex: idx)
@@ -204,44 +190,55 @@ extension CD_PageControl {
 
 //MARK:--- 默认的，后期再看怎么更好的将 item 部分拆出去 ----------
 extension CD_PageControl: CD_PageScrollProtocol {
-    func my_scrollViewDidEndScrolling(_ view: UIScrollView, index:Int) {
+    func my_scrollViewDidEndScrolling(_ view: UIScrollView?, index:Int, animotion:Bool) {
         // 浮漂部分
-        buoy?.scroll(endScroll: view, index: index, animotion:true)//abs(self.index-index)==1
+        let item = itemView.viewWithTag(index + model.offsetTag)
+        buoy?.scroll(endScroll: view, index:index, item:item, scrollDirection:model.scrollDirection, animotion:animotion)
         self.scrollDidEnd(index)
     }
     
-    public func scroll(didScroll view: UIScrollView, offset:CGFloat) {
+    public func scroll(didScroll view: UIScrollView, contentOffset:CGFloat, offsetRatio:CGFloat, size:CGFloat, index:Int) {
         
-        self.scrolling(offset)
-        buoy?.scroll(didScroll: view, offset:offset)
+        self.scrolling(offsetRatio, index: index)
+        
+        
+        func makeOffset() -> CGFloat {
+            let index:Int = index
+            let indexR:Int = index + 1
+            guard let item = itemView.viewWithTag(index+model.offsetTag) else {
+                return 0
+            }
+            guard indexR < itemView.subviews.count, let itemR = itemView.viewWithTag(indexR+model.offsetTag) else {
+                return 0
+            }
+            var offsetMax:CGFloat = 0
+            switch model.scrollDirection {
+            case .horizontal:
+                offsetMax = itemR.frame.size.width/2 + item.frame.size.width/2 + abs(CGFloat(itemR.frame.minX-item.frame.maxX))
+            case .vertical:
+                offsetMax = itemR.frame.size.height/2 + item.frame.size.height/2 + abs(CGFloat(itemR.frame.minY-item.frame.maxY))
+            }
+            return offsetMax/size
+        }
+        
+        buoy?.scroll(didScroll: view, contentOffset:contentOffset, offsetRatio:offsetRatio, size:size, index:index, offsetItemWidthScale: makeOffset(), scrollDirection:model.scrollDirection)
     }
     
-    public func scroll(didEndScrollingAnimation view: UIScrollView, index:Int) {
-        my_scrollViewDidEndScrolling(view, index:index)
+    public func scroll(didEndScrollingAnimation view: UIScrollView, index:Int, animotion:Bool) {
+        my_scrollViewDidEndScrolling(view, index:index, animotion:animotion)
     }
     
     public func scroll(didEndDecelerating view: UIScrollView, index:Int) {
-        my_scrollViewDidEndScrolling(view, index:index)
+        my_scrollViewDidEndScrolling(view, index:index, animotion:true)
     }
     
     public func scroll(didEndDragging view: UIScrollView, index:Int) {
-        switch model.scrollDirection {
-        case .horizontal:
-            my_scrollViewDidEndScrolling(view, index:index)
-            
-            if (view.contentOffset.x == 0 || view.contentOffset.x + view.bounds.size.width == view.contentSize.width) {
-                
-            }
-        case .vertical:
-            if (view.contentOffset.y == 0 || view.contentOffset.y + view.bounds.size.height == view.contentSize.height) {
-                my_scrollViewDidEndScrolling(view, index:index)
-            }
-        }
+        my_scrollViewDidEndScrolling(view, index:index, animotion:true)
         
     }
     
-    public func scroll(willBeginDragging view: UIScrollView) {
+    public func scroll(willBeginDragging view: UIScrollView, offset: CGFloat) {
         
-        buoy?.scroll(willBeginDragging: view)
+        buoy?.scroll(willBeginDragging: view, offset: offset)
     }
 }

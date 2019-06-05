@@ -9,7 +9,7 @@
 
 import Foundation
 import FDFullscreenPopGesture
-
+import CD
 public class CD_PageUICollectionView: UICollectionView, UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.cd.panBack(gestureRecognizer, otherGesture: otherGestureRecognizer)

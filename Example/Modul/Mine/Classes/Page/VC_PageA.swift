@@ -87,7 +87,7 @@ extension VC_PageA: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension VC_PageA: CD_PageViewControllerProtocol {
+extension VC_PageA: CD_UIViewControllerProtocol {
     var scale: CGFloat {
         get {
             return 0

@@ -8,7 +8,7 @@
 
 
 import UIKit
-
+import CD
 public struct CD_PageControlItemDataSource {
     public var id:String = ""
     public var title:String = ""
@@ -24,18 +24,25 @@ extension CD_PageControlItem {
         public var colorNormal:UIColor = UIColor.gray
         public var fontSelected: UIFont = UIFont.systemFont(ofSize: 15)
         public var fontNormal: UIFont = UIFont.systemFont(ofSize: 15)
-        public var scaleTransform:CGFloat = 0
+        public var scaleTransform:CGFloat = 1
+        
         public var lineColor:UIColor = UIColor.black
         public var lineRadiusClips:(CGFloat,Bool) = (1.5,true)
         public var lineSize:(w:CD_Page.Size,h:CD_Page.Size) = (w:CD_Page.Size.auto,h:CD_Page.Size.size(3))
-        
+        public var linePosition:Position = .top(0)
         public enum Animotion {
             case zoom
             case lineZoom
             case none
         }
-        public var animotion:Animotion = .none
-        public var scrollDirection:CD_Page.Model.ScrollDirection = .horizontal
+        public enum Position {
+            case left(_ offset:CGFloat)
+            case right(_ offset:CGFloat)
+            case top(_ offset:CGFloat)
+            case center(_ offsetX:CGFloat,_ offsetY:CGFloat)
+            case bottom(_ offset:CGFloat)
+        }
+        public var animotion:Animotion = .zoom
         public init() {}
     }
 }
@@ -114,6 +121,7 @@ public class CD_PageControlItem: UIButton {
                 .background(UIColor.black)
                 .corner(m.lineRadiusClips.0, clips: m.lineRadiusClips.1)
             makeLayoutLine(line,m)
+            self.layoutIfNeeded()
         default:
             break
         }
@@ -146,23 +154,22 @@ public class CD_PageControlItem: UIButton {
     private var fontSelected: UIFont = UIFont.systemFont(ofSize: 15)
     ///未选中字体
     private var fontNormal: UIFont = UIFont.systemFont(ofSize: 15)
-    private var scaleTransform:CGFloat = 1.0
+    private var scaleTransform:CGFloat = 1
     
     private var _scale:CGFloat = 1 {
         didSet{
-            guard let m = self._config else { return }
-            switch m.animotion {
-            case .zoom:
+            switch _config?.animotion {
+            case .some(.zoom):
                 transformSelf = _scale
-            case .lineZoom:
+            case .some(.lineZoom):
                 transformLine = _scale
             default:
                 break
             }
             if (_scale == 1.0) {
-                self.cd.text(fontSelected)
+                self.cd.text(fontSelected).text(colorSelected)
             }else if (_scale == 0.0){
-                self.cd.text(fontNormal)
+                self.cd.text(fontNormal).text(colorNormal)
             }
         }
     }
@@ -182,12 +189,19 @@ public class CD_PageControlItem: UIButton {
     }
     private var transformLine:CGFloat = 1 {
         didSet{
-            guard let mo = _config else { return }
+            guard let m = _config else { return }
             let trueScale = scaleTransform + (1 - scaleTransform) * transformLine
-            let xx = mo.scrollDirection == .horizontal ? trueScale : 1
-            let yy = mo.scrollDirection == .horizontal ? 1 : trueScale
+            var xx = trueScale
+            var yy = trueScale
+            switch m.linePosition {
+            case .left, .right:
+                xx = 1
+            case .top, .bottom:
+                yy = 1
+            case .center:
+                break
+            }
             line.transform = CGAffineTransform(scaleX: xx, y: yy)
-            
         }
     }
     
@@ -206,6 +220,7 @@ public class CD_PageControlItem: UIButton {
             fontSelected = m.fontSelected
             fontNormal = m.fontNormal
             scaleTransform = m.scaleTransform
+            _scale = 0
             makeLine()
         }
     }
