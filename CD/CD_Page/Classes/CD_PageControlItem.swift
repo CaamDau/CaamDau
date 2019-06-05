@@ -8,7 +8,7 @@
 
 
 import UIKit
-import CD
+
 public struct CD_PageControlItemDataSource {
     public var id:String = ""
     public var title:String = ""

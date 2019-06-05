@@ -10,7 +10,7 @@
 
 import Foundation
 import UIKit
-import CD
+
 
 public class CD_PageViewController: UIViewController {
     

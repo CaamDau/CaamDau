@@ -10,7 +10,6 @@
 import Foundation
 import UIKit
 import SnapKit
-import CD
 
 extension CD_Page {
     static func makeLayout(withScrollView view:UIScrollView) {

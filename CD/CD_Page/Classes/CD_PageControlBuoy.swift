@@ -9,7 +9,7 @@
 
 import Foundation
 import UIKit
-import CD
+
 public extension CD_PageControlBuoy {
     struct Model {
         public var frame:CGRect = CGRect(x: 0, y: 0, w: CD_Page.Size.auto.rawValue, h: 3)

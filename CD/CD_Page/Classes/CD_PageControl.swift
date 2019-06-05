@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import CD
+
 
 extension CD_PageControl: CD_PageControlDataSource {
     public func scrolling(_ offset:CGFloat, index:Int){
@@ -98,7 +98,7 @@ public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageContro
     }
     private var index:Int = 0
     
-    lazy var scrollView: CD_PageUIScrollView = {
+    public lazy var scrollView: CD_PageUIScrollView = {
         return CD_PageUIScrollView().cd
             .bounces(false)
             .shows(verticalScrollIndicator: false)
@@ -107,14 +107,14 @@ public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageContro
             .clips(true)
             .build
     }()
-    lazy var itemView: UIView = {
+    public lazy var itemView: UIView = {
         return UIView().cd
             .background(UIColor.orange)
             .clips(true)
             .build
     }()
     
-    var buoy: Buoy?
+    public var buoy: Buoy?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -125,12 +125,12 @@ public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageContro
         super.init(coder: aDecoder)
         makeUI()
     }
-    var itemConfig:Item.ConfigModel? {
+    public var itemConfig:Item.ConfigModel? {
         didSet{
             reloadData()
         }
     }
-    var buoyConfig:Buoy.ConfigModel? {
+    public var buoyConfig:Buoy.ConfigModel? {
         didSet{
             self.buoy?.config = buoyConfig
             reloadData()

@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+
 public struct CD_Page {
     public struct Model {
         /// View.tag 差值
@@ -39,7 +40,7 @@ public struct CD_Page {
     public enum Size {
         case auto
         case size(_ s:CGFloat)
-        var rawValue:CGFloat {
+        public var rawValue:CGFloat {
             switch self {
             case .auto:
                 return -88988
@@ -188,7 +189,7 @@ public struct CD_RowVC<T> where T:CD_UIViewControllerProtocol {
     var _config:T.ConfigModel?
     var _frame:CGRect
     var _autoLayout:Bool
-    init(dataSource:T.DataSource? = nil,
+    public init(dataSource:T.DataSource? = nil,
          config:T.ConfigModel? = nil,
          size:CGSize = .zero,
          autoLayout:Bool = true) {
@@ -244,7 +245,7 @@ public struct CD_RowView<T> where T:CD_UIViewProtocol {
     var _config:T.ConfigModel?
     var _frame:CGRect
     var _autoLayout:Bool
-    init(dataSource:T.DataSource? = nil,
+    public init(dataSource:T.DataSource? = nil,
          config:T.ConfigModel? = nil,
          size:CGSize = .zero,
          autoLayout:Bool = true) {
