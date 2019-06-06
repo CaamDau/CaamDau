@@ -2,8 +2,8 @@
 
 > 自定义头部导航栏
 <p>
-<img src="https://github.com/liucaide/CD/blob/master/images/91A3EA54-3F64-4BDA-AFFE-EC774AD126C1.png" width="300" align=left />
-<img src="https://github.com/liucaide/CD/blob/master/images/B9311AC5-0958-4CC5-8706-4C49E76DED24.png" width="360" align=centre />
+<img src="https://github.com/liucaide/Images/blob/master/CD/TopBar1.png" width="300" align=left />
+<img src="https://github.com/liucaide/Images/blob/master/CD/TopBar2.png" width="360" align=centre />
 </p>
 
 #
