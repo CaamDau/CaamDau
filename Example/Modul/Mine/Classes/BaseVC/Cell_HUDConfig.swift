@@ -153,7 +153,7 @@ class Cell_HUDConfig: UITableViewCell {
         case segmented_hidden:
             CD_HUD.modelDefault._hiddenAnimat = [.fade,.slide,.zoom, .none][idx]
         case segmented_loading:
-            VM_HUD.loadingStyle = [.activity,.ring,.arrow,.images(gif,0.3,0),.diamond,.brush,.roundEyes][idx]
+            VM_HUD.loadingStyle = [.activity,.ring,.arrow,.images(gif,0.8,0),.diamond,.brush,.roundEyes][idx]
         case segmented_infos:
             VM_HUD.infoStyle = [.info,.succeed,.warning,.error][idx]
         default:

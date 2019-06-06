@@ -88,17 +88,16 @@ public enum CD_IconFont {
     case tmy_fill(_ size:CGFloat)
     case ttriangle_down_fill(_ size:CGFloat)
     case ttriangle_up_fill(_ size:CGFloat)
-    case tloading_80(_ size:CGFloat)
+    case tload_diamond(_ size:CGFloat)
     case temoji_light(_ size:CGFloat)
     case tkeyboard_light(_ size:CGFloat)
     case tsort_light(_ size:CGFloat)
     case tattention_forbid(_ size:CGFloat)
     case tattention_forbid_fill(_ size:CGFloat)
     case tpic_light(_ size:CGFloat)
-    case tloading_87(_ size:CGFloat)
+    case tload_brush(_ size:CGFloat)
     case tusefull_fill(_ size:CGFloat)
     case tusefull(_ size:CGFloat)
-    case tloading_90(_ size:CGFloat)
     case thome_light(_ size:CGFloat)
     case tmy_light(_ size:CGFloat)
     case tcart_light(_ size:CGFloat)
@@ -129,7 +128,7 @@ public enum CD_IconFont {
     case tround_close_fill_light(_ size:CGFloat)
     case tlocation_light(_ size:CGFloat)
     case tsettings_light(_ size:CGFloat)
-    case tLoading(_ size:CGFloat)
+    case tload_eyes(_ size:CGFloat)
     case twarn_light(_ size:CGFloat)
 }
 
@@ -220,17 +219,16 @@ extension CD_IconFont:CD_IconFontProtocol{
              .tmy_fill(let size),
              .ttriangle_down_fill(let size),
              .ttriangle_up_fill(let size),
-             .tloading_80(let size),
+             .tload_diamond(let size),
              .temoji_light(let size),
              .tkeyboard_light(let size),
              .tsort_light(let size),
              .tattention_forbid(let size),
              .tattention_forbid_fill(let size),
              .tpic_light(let size),
-             .tloading_87(let size),
+             .tload_brush(let size),
              .tusefull_fill(let size),
              .tusefull(let size),
-             .tloading_90(let size),
              .thome_light(let size),
              .tmy_light(let size),
              .tcart_light(let size),
@@ -261,7 +259,7 @@ extension CD_IconFont:CD_IconFontProtocol{
              .tround_close_fill_light(let size),
              .tlocation_light(let size),
              .tsettings_light(let size),
-             .tLoading(let size),
+             .tload_eyes(let size),
              .twarn_light(let size):
             return size
         }
@@ -429,7 +427,7 @@ extension CD_IconFont:CD_IconFontProtocol{
             return ""
         case .ttriangle_up_fill:
             return ""
-        case .tloading_80:
+        case .tload_diamond:
             return ""
         case .temoji_light:
             return ""
@@ -443,14 +441,12 @@ extension CD_IconFont:CD_IconFontProtocol{
             return ""
         case .tpic_light:
             return ""
-        case .tloading_87:
+        case .tload_brush:
             return ""
         case .tusefull_fill:
             return ""
         case .tusefull:
             return ""
-        case .tloading_90:
-            return ""
         case .thome_light:
             return ""
         case .tmy_light:
@@ -511,11 +507,12 @@ extension CD_IconFont:CD_IconFontProtocol{
             return ""
         case .tsettings_light:
             return ""
-        case .tLoading:
+        case .tload_eyes:
             return ""
         case .twarn_light:
             return ""
         }
     }
 }
+
 

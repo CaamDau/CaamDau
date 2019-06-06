@@ -128,22 +128,22 @@ extension CD_HUDActivityView {
             self.cd.addArranged(subview: label)
             label.cd
                 .text(model._colorActivity)
-                .text(CD_IconFont.tloading_80(iconFontSize).text)
-                .text(CD_IconFont.tloading_80(iconFontSize).font)
+                .text(CD_IconFont.tload_diamond(iconFontSize).text)
+                .text(CD_IconFont.tload_diamond(iconFontSize).font)
             makeRotationAnimotion(label)
         case .brush:
             self.cd.addArranged(subview: label)
             label.cd
                 .text(model._colorActivity)
-                .text(CD_IconFont.tloading_87(iconFontSize).text)
-                .text(CD_IconFont.tloading_87(iconFontSize).font)
+                .text(CD_IconFont.tload_brush(iconFontSize).text)
+                .text(CD_IconFont.tload_brush(iconFontSize).font)
             makeRotationAnimotion(label)
         case .roundEyes:
             self.cd.addArranged(subview: label)
             label.cd
                 .text(model._colorActivity)
-                .text(CD_IconFont.tLoading(iconFontSize).text)
-                .text(CD_IconFont.tLoading(iconFontSize).font)
+                .text(CD_IconFont.tload_eyes(iconFontSize).text)
+                .text(CD_IconFont.tload_eyes(iconFontSize).font)
             makeRotationAnimotion(label)
         case .arrow:
             self.cd.addArranged(subview: label)
@@ -163,7 +163,7 @@ extension CD_HUDActivityView {
 extension CD_HUDActivityView {
     func makeRotationAnimotion(_ view:UIView) {
         let animote = CABasicAnimation(keyPath: "transform.rotation.z")
-        animote.duration = 1
+        animote.duration = 1.5
         animote.isRemovedOnCompletion = false
         animote.fillMode = .forwards
         animote.fromValue = 0
