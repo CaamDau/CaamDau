@@ -103,13 +103,13 @@ public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageContro
             .bounces(false)
             .shows(verticalScrollIndicator: false)
             .shows(horizontalScrollIndicator: false)
-            .background(UIColor.blue)
+            //.background(UIColor.blue)
             .clips(true)
             .build
     }()
     public lazy var itemView: UIView = {
         return UIView().cd
-            .background(UIColor.orange)
+            //.background(UIColor.orange)
             .clips(true)
             .build
     }()
@@ -149,7 +149,7 @@ public class CD_PageControl<Item: CD_PageControlItemProtocol, Buoy:CD_PageContro
 
 extension CD_PageControl {
     func makeUI() {
-        self.backgroundColor = UIColor.yellow
+        //self.backgroundColor = UIColor.yellow
         self.cd.add(scrollView)
         self.scrollView.cd.add(itemView)
         CD_Page.makeLayout(withScrollView: scrollView)
@@ -169,7 +169,7 @@ extension CD_PageControl {
                 self?.clickControl(withIndex:i)
             }
             controlItem.tag = i + model.offsetTag
-            controlItem.backgroundColor = i%2==0 ? .red : .lightGray
+            //controlItem.backgroundColor = i%2==0 ? .red : .lightGray
             itemView.addSubview(controlItem)
             
             CD_Page.layoutForEach(&marge, idx: i, scrollView: scrollView, itemView: itemView, item: controlItem, count: _dataSource.count, model: model)
