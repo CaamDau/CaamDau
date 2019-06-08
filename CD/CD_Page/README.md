@@ -13,10 +13,11 @@ pod 'CD/Page'
   <img src="https://github.com/liucaide/Images/blob/master/CD/page2.gif" width="25%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/page3.png" width="25%" />
 </p>
+
 ## Usage
 #### CD_PageControl 指示器
+
 ```ruby
-    
 lazy var pageControl: CD_PageControl = {
     return CD_PageControl<CD_PageControlItem,CD_PageControlBuoy>(itemConfig:CD_PageControlItem.Model(), buoyConfig: CD_PageControlBuoy.Model())
 }()
@@ -27,10 +28,9 @@ pageControl.dataSource = (0..<3).map({ (i) -> CD_PageControlItemDataSource in
     d.title = "Title-\(i)"
     return d
 })
-
-
 ```
 #### CD_PageViewController 分页控制器
+
 ```ruby
 lazy var pageVC: CD_PageViewController = {
     return CD_PageViewController()
