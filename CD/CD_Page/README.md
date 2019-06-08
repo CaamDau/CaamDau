@@ -9,11 +9,10 @@ it, simply add the following line to your Podfile:
 pod 'CD/Page'
 ```
 <p>
-  <img src="https://github.com/liucaide/CD/blob/master/images/page1.gif" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/page2.gif" width="25%" />
-  <img src="https://github.com/liucaide/CD/blob/master/images/page3.png" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/page1.gif" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/page2.gif" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/page3.png" width="25%" />
 </p>
-
 ## Usage
 #### CD_PageControl 指示器
 ```ruby
