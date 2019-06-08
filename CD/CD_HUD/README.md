@@ -20,8 +20,6 @@ pod 'CD/HUD'
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud1.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud2.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud3.png" width="20%" />
-  
-  
 </p>
 
 <p>
