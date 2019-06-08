@@ -16,17 +16,19 @@ pod 'CD/HUD'
 </p>
 
 <p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud14.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud1.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud2.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud3.png" width="20%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud4.png" width="20%" />
+  
+  
 </p>
 
 <p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud15.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud20.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud21.png" width="20%" />
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud22.png" width="20%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud23.png" width="20%" />
 </p>
 
 ## Usage
