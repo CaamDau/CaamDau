@@ -30,7 +30,7 @@ public extension CD where Base: UICollectionView {
             case .tCell(let cellClass, let id, let from):
                 let identifier = id ?? String(describing: cellClass)
                 let bundleFrom = from ?? ""
-                if bundleFrom.count == 0 {
+                if bundleFrom.isEmpty {
                     let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
                     if bundle == nil{
                         base.register(cellClass, forCellWithReuseIdentifier: identifier)
@@ -45,7 +45,7 @@ public extension CD where Base: UICollectionView {
             case .tView(let viewClass, let id, let kind, let from):
                 let identifier = id ?? String(describing: viewClass)
                 let bundleFrom = from ?? ""
-                if bundleFrom.count == 0 {
+                if bundleFrom.isEmpty {
                     let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
                     if bundle == nil{
                         base.register(viewClass, forSupplementaryViewOfKind: kind.stringValue, withReuseIdentifier: identifier)

@@ -61,7 +61,7 @@ class VC_MineTableView: UIViewController {
             .notification(Notification.Name(rawValue: "VC_MineTableView"), object: nil)
             .asObservable()
             .subscribe(onNext: { [weak self](n) in
-                if let model = n.object as? CD_CountDown.Model {
+                if let model = n.userInfo?["VC_MineTableView"] as? CD_CountDown.Model {
                     self?.tabbar._title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
                 }
             }).disposed(by: disposeBag)

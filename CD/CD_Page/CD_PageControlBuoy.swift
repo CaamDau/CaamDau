@@ -13,12 +13,11 @@ import UIKit
 public extension CD_PageControlBuoy {
     struct Model {
         public var frame:CGRect = CGRect(x: 0, y: 0, w: CD_Page.Size.auto.rawValue, h: 3)
-        public var lineColor:UIColor = UIColor.black
-        public var lineRadiusClips:(CGFloat,Bool) = (1.5,true)
-        public var style:LineStyle = .line(.bottom(0))
-        //public var scrollDirection:CD_Page.Model.ScrollDirection = .horizontal
-        
-        public enum LineStyle {
+        public var color:UIColor = UIColor.black
+        public var radiusClips:(CGFloat,Bool) = (1.5,true)
+        public var style:Style = .line(.bottom(0))
+        ///
+        public enum Style {
             case line(_ position:Position)
             case background(_ position:Position)
         }
@@ -29,7 +28,7 @@ public extension CD_PageControlBuoy {
             case top(_ offset:CGFloat)
             case bottom(_ offset:CGFloat)
         }
-        public var animotion:Animotion = .crawl
+        public var animotion:Animotion = .slide
         public enum Animotion {
             /// 平移滑动
             case slide
@@ -64,8 +63,11 @@ public class CD_PageControlBuoy: UIView {
             let h = model.frame.size.height == CD_Page.Size.auto.rawValue ? 0 : model.frame.size.height
             self.cd
                 .frame(CGRect(x: x, y: y, w: w, h: h))
-                .corner(model.lineRadiusClips.0, clips: model.lineRadiusClips.1)
-                .background(model.lineColor)
+                .corner(model.radiusClips.0, clips: model.radiusClips.1)
+                .background(model.color)
+            if case let .background = model.style {
+                self.superview?.sendSubviewToBack(self)
+            }
         }
     }
     

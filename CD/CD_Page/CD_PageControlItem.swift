@@ -29,7 +29,7 @@ extension CD_PageControlItem {
         public var lineColor:UIColor = UIColor.black
         public var lineRadiusClips:(CGFloat,Bool) = (1.5,true)
         public var lineSize:(w:CD_Page.Size,h:CD_Page.Size) = (w:CD_Page.Size.auto,h:CD_Page.Size.size(3))
-        public var linePosition:Position = .top(0)
+        public var linePosition:Position = .bottom(0)
         public enum Animotion {
             case zoom
             case lineZoom
@@ -118,7 +118,7 @@ public class CD_PageControlItem: UIButton {
             self.cd.add(line)
             self.bringSubviewToFront(line)
             line.cd
-                .background(UIColor.black)
+                .background(m.lineColor)
                 .corner(m.lineRadiusClips.0, clips: m.lineRadiusClips.1)
             makeLayoutLine(line,m)
             self.layoutIfNeeded()
@@ -158,6 +158,7 @@ public class CD_PageControlItem: UIButton {
     
     private var _scale:CGFloat = 1 {
         didSet{
+            transformColor = _scale
             switch _config?.animotion {
             case .some(.zoom):
                 transformSelf = _scale
@@ -174,7 +175,7 @@ public class CD_PageControlItem: UIButton {
         }
     }
     
-    private var transformSelf:CGFloat = 1 {
+    private var transformColor:CGFloat = 1 {
         didSet{
             if colorSelected != colorNormal {
                 let r = _normalRed + (_selectedRed - _normalRed) * transformSelf
@@ -183,6 +184,10 @@ public class CD_PageControlItem: UIButton {
                 let a = _normalAlpha + (_selectedAlpha - _normalAlpha) * transformSelf
                 self.cd.text(UIColor(red: r, green: g, blue: b, alpha: a))
             }
+        }
+    }
+    private var transformSelf:CGFloat = 1 {
+        didSet{
             let trueScale = scaleTransform + (1 - scaleTransform) * transformSelf
             transform = CGAffineTransform(scaleX: trueScale, y: trueScale)
         }

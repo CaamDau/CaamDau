@@ -48,7 +48,7 @@ public class CD_PageViewController: UIViewController {
             .shows(horizontalScrollIndicator: false)
             .delegate(self)
             .isPaging(enabled: true)
-            .background(UIColor.blue)
+            //.background(UIColor.blue)
             .clips(true)
             .build
     }()
@@ -110,8 +110,8 @@ extension CD_PageViewController {
             switch model.scrollDirection {
             case .horizontal:
                 var w = contentSize.width
-                w += item.autoLayout ? selfWidth : item.frame.size.width
-                item.view.frame = CGRect(x: offset, y: 0, w: item.autoLayout ? selfWidth : item.frame.size.width, h: item.autoLayout ? selfHeight : item.frame.size.height)
+                w += (item.autoLayout || item.frame.size.width<=0) ? selfWidth : item.frame.size.width
+                item.view.frame = CGRect(x: offset, y: 0, w: (item.autoLayout || item.frame.size.width<=0) ? selfWidth : item.frame.size.width, h: (item.autoLayout || item.frame.size.height<=0) ? selfHeight : item.frame.size.height)
                 offset += item.view.frame.width + model.space
                 let min = item.view.frame.minX - (i == 0 ? model.marge : model.space)
                 let max = item.view.frame.maxX + (i == maxIndex ? model.marge : model.space/2.0)
@@ -119,8 +119,8 @@ extension CD_PageViewController {
                 contentSize = CGSize(width: offset, height: 0)
             case .vertical:
                 var h = contentSize.height
-                h += item.autoLayout ? selfHeight : item.frame.size.height
-                item.view.frame = CGRect(x: 0, y: offset, w: item.autoLayout ? selfWidth : item.frame.size.width, h: item.autoLayout ? selfHeight : item.frame.size.height)
+                h += (item.autoLayout || item.frame.size.height<=0) ? selfHeight : item.frame.size.height
+                item.view.frame = CGRect(x: 0, y: offset, w: (item.autoLayout || item.frame.size.width<=0) ? selfWidth : item.frame.size.width, h: (item.autoLayout || item.frame.size.height<=0) ? selfHeight : item.frame.size.height)
                 offset += item.view.frame.height + model.space
                 let min = item.view.frame.minY - (i == 0 ? model.marge : model.space)
                 let max = item.view.frame.maxY + (i == maxIndex ? model.marge : model.space/2.0)

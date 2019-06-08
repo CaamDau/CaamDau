@@ -22,8 +22,8 @@ public extension UIFont {
     }*/
     
     ///IconFont name:font-family forClass:class  from: pod resource_bundles key
-    static func iconFont(name:String, size:CGFloat, forClass:AnyClass? = nil, from:String = "") -> UIFont {
-        if !from.isEmpty, let clas = forClass,  let bu = Bundle.cd_bundle(clas, from) {
+    static func iconFont(name:String, size:CGFloat, forClass:AnyClass? = nil, from:String? = nil) -> UIFont {
+        if let clas = forClass,  let bu = Bundle.cd_bundle(clas, from) {
             let path = String(format: "%@/%@.ttf", bu.bundlePath, name)
             return UIFont.iconFont(name: name, size: size, url:URL(fileURLWithPath: path))
         }

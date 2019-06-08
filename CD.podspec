@@ -108,7 +108,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Page' do |page|
-      page.source_files = 'CD/CD_Page/Classes/*.{swift}'
+      page.source_files = 'CD/CD_Page/*.{swift}'
       page.dependency 'CD/Core'
       page.dependency 'CD/FDFullscreenPopGesture'
       page.dependency 'SnapKit', '~> 4.2.0'

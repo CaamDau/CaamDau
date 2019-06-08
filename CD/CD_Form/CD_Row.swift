@@ -2,97 +2,7 @@
 
 /***** 模块文档 *****
  * CD_Row UI 排版组件
- 
- ******************** 示例 ********************
-class Cell_Form1: UITableViewCell {
-    var callBack:CD_RowCallBack?
-    @IBOutlet weak var lab_title: UILabel!
-    @IBOutlet weak var btn_r: UIButton!
-    @IBAction func clickButton(_ sender: UIButton) {
-        callBack?("点击了按钮")
-    }
-}
-extension Cell_Form1: CD_RowUpdateProtocol{
-    typealias DataSource = M_Form
-    func row_update(_ data: M_Form, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        lab_title.text = data.title
-        self.callBack = callBack
-    }
-}
-struct M_Form{
-    var title:String = "123"
-    init() {
-    }
-}
-class VM_Form {
-    var forms = [CD_RowProtocol]()
-    var block:(()->Void)? = nil
-    var data = M_Form()
-    func makeForm() {
-        forms.removeAll()
-        do{
-            let row = CD_RowClass<Cell_Form1>(data: data, frame: CGRect(h:80), callBack: { [weak self](any) in
-                print(any)
-            }) {
-                print("点击")
-            }
-            self.forms.append(row)
-        }
-        do{
-            for _ in 0..<30 {
-                let row = CD_Row<Cell_Form1>(data: M_Form(), frame: CGRect(h:80), callBack: { [weak self](any) in
-                    print(any)
-                }) {
-                    print("点击")
-                }
-                self.forms.append(row)
-            }
-        }
-        
-        block?()
-    }
-}
-class VC_Form: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    lazy var vm:VM_Form = {
-        var m = VM_Form()
-        m.makeForm()
-        return m
-    }()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        vm.block = { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-    
-}
-extension VC_Form:UITableViewDelegate,UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.forms.count
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return vm.forms[indexPath.row].h
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = vm.forms[indexPath.row]
-        let cell = tableView.cd.cell(row.viewClass) ?? UITableViewCell()
-        row.bind(cell)
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = vm.forms[indexPath.row]
-        row.didSelect?()
-    }
-}
 */
-
-
-
-
-
-
 
 
 
@@ -102,6 +12,414 @@ extension VC_Form:UITableViewDelegate,UITableViewDataSource{
 
 import UIKit
 import Foundation
+
+//MARK:-------------------- 新的 表单协议 --------------------
+
+public typealias CD_RowDidSelectBlock = () -> Void
+public typealias CD_RowCallBack = (Any?) -> Void
+public typealias CD_RowCompletionHandle = (Any?) -> (Any?)
+
+//MARK:--- UI 数据源和配置协议 ----------
+public typealias CD_UIDataSourceConfigModel = CD_UIDataSource & CD_UIConfigModel
+//MARK:--- UI 数据源协议， ----------
+public protocol CD_UIDataSource {
+    associatedtype DataSource
+    var dataSource:DataSource? { set get }
+    func row_update(dataSource data: DataSource)
+}
+extension CD_UIDataSource {
+    public var dataSource: DataSource? {
+        get { return nil }
+        set {}
+    }
+    func row_update(dataSource data: DataSource) {}
+}
+//MARK:--- UI 配置协议， ----------
+public protocol CD_UIConfigModel {
+    associatedtype ConfigModel
+    var config:ConfigModel? { set get }
+    func row_update(config data: ConfigModel)
+}
+extension CD_UIConfigModel {
+    public var config: ConfigModel? {
+        get { return nil }
+        set {}
+    }
+    func row_update(config data: ConfigModel){}
+}
+
+
+
+
+//MARK:--- UI 协议 ----------
+public protocol CD_UIProtocol {
+    var dataSource:Any? { set get }
+    var config:Any? { set get }
+    var bundleFrom:String? { get }
+    var autoLayout:Bool { get }
+    var frame:CGRect { set get }
+    var x:CGFloat { set get }
+    var y:CGFloat { set get }
+    var w:CGFloat { set get }
+    var h:CGFloat { set get }
+    var size:CGSize { set get }
+    var insets:UIEdgeInsets { set get }
+    var insetsTitle:UIEdgeInsets { set get }
+    var callBack:CD_RowCallBack?{ set get }
+    var tapBlock:CD_RowDidSelectBlock?{ set get }
+    func bind(_ obj: AnyObject)
+}
+
+extension CD_UIProtocol {
+    public var dataSource: Any? { set{} get{ return nil} }
+    public var config: Any? { set{} get{ return nil} }
+    public var bundleFrom: String? { return nil }
+    public var autoLayout: Bool { return true }
+    public var frame: CGRect { set{} get{ return .zero }}
+    public var x:CGFloat {
+        get{ return frame.origin.x }
+        set{ frame.origin.x = newValue }
+    }
+    public var y:CGFloat{
+        get{ return frame.origin.y }
+        set{ frame.origin.y = newValue }
+    }
+    public var w:CGFloat{
+        get{ return frame.size.width }
+        set{ frame.size.width = newValue }
+    }
+    public var h:CGFloat{
+        get{ return frame.size.height }
+        set{ frame.size.height = newValue }
+    }
+    public var size:CGSize{
+        get{ return frame.size }
+        set{ frame.size = newValue }
+    }
+    public var insets:UIEdgeInsets{ set{} get{ return .zero }}
+    public var insetsTitle:UIEdgeInsets{ set{} get{ return .zero }}
+    
+    public var callBack:CD_RowCallBack?{ set{} get{ return nil} }
+    public var tapBlock:CD_RowDidSelectBlock?{ set{} get{ return nil} }
+    
+    public func bind(_ obj: AnyObject) {
+        
+    }
+}
+
+//MARK:--- UI 控制器 ViewControllers 列表协议， ----------
+public protocol CD_RowVCProtocol: CD_UIProtocol {
+    var vc:UIViewController { get }
+    var view:UIView { get }
+    func row_push()
+}
+extension CD_RowVCProtocol {
+    public var view:UIView { get{ return vc.view} }
+    public func row_push() {
+        cd_push(vc)
+    }
+}
+
+public protocol CD_UIViewControllerProtocol: CD_UIDataSourceConfigModel {
+    /// UIViewController 使用此方法初始化
+    static func row_init(withDataSource dataSource:DataSource?, config:ConfigModel?, callBack:CD_RowCallBack?, tapBlock:CD_RowDidSelectBlock?) -> UIViewController
+    
+    
+}
+extension CD_UIViewControllerProtocol {
+//    public static func row_init(withDataSource dataSource:DataSource? = nil, config:ConfigModel? = nil, callBack:CD_RowCallBack? = nil, tapBlock:CD_RowDidSelectBlock? = nil) -> UIViewController {
+//        return UIViewController()
+//    }
+    public func row_update(config data: ConfigModel) {
+        
+    }
+    public func row_update(dataSource data: DataSource) {
+        
+    }
+}
+
+
+public protocol CD_RowViewProtocol: CD_UIProtocol {
+    var view:UIView { get }
+    func row_show(withSuperView vv:UIView, callBack:((UIView)->Void)?)
+}
+extension CD_RowViewProtocol {
+    public func row_show(withSuperView vv:UIView, callBack:((UIView)->Void)? = nil) {
+        vv.addSubview(view)
+        callBack?(view)
+    }
+}
+
+
+public protocol CD_UIViewProtocol: CD_UIDataSourceConfigModel {
+    /// UIView 使用此方法初始化
+    static func row_init(withDataSource dataSource:DataSource?, config:ConfigModel?, callBack:CD_RowCallBack?, tapBlock:CD_RowDidSelectBlock?) -> UIView
+    
+    
+}
+extension CD_UIViewProtocol {
+//    public static func row_init(withDataSource dataSource:DataSource? = nil, config:ConfigModel? = nil, callBack:CD_RowCallBack? = nil, tapBlock:CD_RowDidSelectBlock? = nil) -> UIView {
+//        return UIView()
+//    }
+    public func row_update(config data: ConfigModel) {
+        
+    }
+    public func row_update(dataSource data: DataSource) {
+        
+    }
+    
+    
+}
+
+
+//MARK:--- UI 控制器 ViewControllers 协议关联模型 ----------
+public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:UIViewController {
+    public var vc:UIViewController
+    public var dataSource:T.DataSource?
+    public var config:T.ConfigModel?
+    public var frame:CGRect
+    public var autoLayout:Bool
+    public init(dataSource:T.DataSource? = nil,
+                config:T.ConfigModel? = nil,
+                frame:CGRect = .zero,
+                autoLayout:Bool = true,
+                callBack:CD_RowCallBack? = nil,
+                tapBlock:CD_RowDidSelectBlock? = nil) {
+        self.vc = T.row_init(withDataSource: dataSource, config: config, callBack:callBack, tapBlock:tapBlock)
+        self.dataSource = dataSource
+        self.config = config
+        self.frame = frame
+        self.autoLayout = autoLayout
+    }
+    public func bind(_ obj: AnyObject) {
+        guard let item = obj as? T else {
+            return
+        }
+        if let m = config {
+            item.row_update(config: m)
+        }
+        if let d = dataSource {
+            item.row_update(dataSource:d)
+        }
+    }
+}
+
+
+//MARK:--- UI View 协议关联模型 ----------
+public struct CD_RowView<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView {
+    public var view:UIView
+    public var dataSource:T.DataSource?
+    public var config:T.ConfigModel?
+    public var frame:CGRect
+    public var autoLayout:Bool
+    public init(dataSource:T.DataSource? = nil,
+                config:T.ConfigModel? = nil,
+                frame:CGRect = .zero,
+                autoLayout:Bool = true,
+                callBack:CD_RowCallBack? = nil,
+                tapBlock:CD_RowDidSelectBlock? = nil) {
+        self.view = T.row_init(withDataSource: dataSource, config: config, callBack:callBack, tapBlock:tapBlock)
+        
+        self.dataSource = dataSource
+        self.config = config
+        self.frame = frame
+        self.autoLayout = autoLayout
+    }
+    
+    public func bind(_ obj: AnyObject) {
+        guard let item = obj as? T else {return}
+        if let m = config {
+            item.row_update(config: m)
+        }
+        if let d = dataSource {
+            item.row_update(dataSource:d)
+        }
+    }
+}
+/// CD_RowView 引用类型  一般用上面的 struct
+public class CD_RowViewClass<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView {
+    public var view:UIView
+    public var dataSource:T.DataSource?
+    public var config:T.ConfigModel?
+    public var frame:CGRect
+    public var autoLayout:Bool
+    public init(dataSource:T.DataSource? = nil,
+                config:T.ConfigModel? = nil,
+                frame:CGRect = .zero,
+                autoLayout:Bool = true,
+                callBack:CD_RowCallBack? = nil,
+                tapBlock:CD_RowDidSelectBlock? = nil) {
+        self.view = T.row_init(withDataSource: dataSource, config: config, callBack:callBack, tapBlock:tapBlock)
+        
+        self.dataSource = dataSource
+        self.config = config
+        self.frame = frame
+        self.autoLayout = autoLayout
+    }
+    
+    public func bind(_ obj: AnyObject) {
+        guard let item = obj as? T else {return}
+        if let m = config {
+            item.row_update(config: m)
+        }
+        if let d = dataSource {
+            item.row_update(dataSource:d)
+        }
+    }
+}
+
+
+//MARK:--- TableViewCell CollectionViewCell 协议 ----------
+public protocol CD_CellProtocol:CD_UIProtocol {
+    var cellId: String { get }
+    var cellClass:AnyClass { get }
+}
+//MARK:---  数据源更新协议 ---
+public protocol CD_RowCellUpdateProtocol:CD_UIDataSourceConfigModel {
+    func row_update(callBack block:CD_RowCallBack)
+}
+extension CD_RowCellUpdateProtocol {
+    public func row_update(config data: ConfigModel) {}
+    public func row_update(dataSource data: DataSource) {}
+    public func row_update(callBack block:CD_RowCallBack) {}
+}
+
+public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UIView {
+    public var cellId: String
+    public var cellClass:AnyClass
+    public var dataSource:T.DataSource?
+    public var config:T.ConfigModel?
+    public var bundleFrom:String?
+    public var frame:CGRect
+    public var insets:UIEdgeInsets
+    public var insetsTitle:UIEdgeInsets
+    public var callBack:CD_RowCallBack?
+    public var _didSelect:CD_RowDidSelectBlock?
+    /*
+     data  ：View Data 数据源
+     id    ：View Id 标识 输入空则默认以类名 viewClass 为标识
+     tag   ：View Tag 标签 - 同类不同数据源或同控件不同UI展示效果做区分
+     frame ：View frame 数据源
+     insets  ：View UIButton imageEdgeInsets | UICollectionView sectionInset
+     另 UICollectionView LineSpacing InteritemSpacing 使用 frame - x  y
+     insetsTitle  ：View UIButton titleEdgeInsets
+     bundleFrom ：View bundle 索引（组件化 | pod   nib 资源。。。。）
+     callBack ： View 类内执行回调
+     didSelect ： View 点击回调 UITableView | UICollectionView didSelectRow
+     */
+    public init(data: T.DataSource? = nil,
+                config:T.ConfigModel? = nil,
+                id: String? = nil,
+                frame: (x:CGFloat,y:CGFloat,w:CGFloat,h:CGFloat) = (0,0,0,0),
+                insets:UIEdgeInsets = .zero,
+                insetsTitle:UIEdgeInsets = .zero,
+                bundleFrom:String = "",
+                callBack:CD_RowCallBack? = nil,
+                didSelect:CD_RowDidSelectBlock? = nil) {
+        self.dataSource = data
+        self.config = config
+        self.cellClass = T.self
+        self.cellId = id ?? String(describing: T.self)
+        self.frame = CGRect(x: frame.x, y: frame.y, w: frame.w, h: frame.h)
+        self.bundleFrom = bundleFrom
+        self.insets = insets
+        self.insetsTitle = insetsTitle
+        self.callBack = callBack
+        self._didSelect = didSelect
+    }
+    
+    public func bind(_ obj: AnyObject) {
+        guard let item = obj as? T else {return}
+        if let m = config {
+            item.row_update(config: m)
+        }
+        if let d = dataSource {
+            item.row_update(dataSource:d)
+        }
+        if let back = callBack  {
+            item.row_update(callBack: back)
+        }
+    }
+}
+extension CD_RowCell {
+    public var tapBlock: CD_RowDidSelectBlock? {
+        get { return _didSelect}
+        set { _didSelect = newValue}
+    }
+}
+/// CD_RowCell 引用类型  一般用上面的 struct
+public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UIView {
+    public var cellId: String
+    public var cellClass:AnyClass
+    public var dataSource:T.DataSource?
+    public var config:T.ConfigModel?
+    public var bundleFrom:String?
+    public var frame:CGRect
+    public var insets:UIEdgeInsets
+    public var insetsTitle:UIEdgeInsets
+    public var callBack:CD_RowCallBack?
+    public var _didSelect:CD_RowDidSelectBlock?
+    /*
+     data  ：View Data 数据源
+     id    ：View Id 标识 输入空则默认以类名 viewClass 为标识
+     tag   ：View Tag 标签 - 同类不同数据源或同控件不同UI展示效果做区分
+     frame ：View frame 数据源
+     insets  ：View UIButton imageEdgeInsets | UICollectionView sectionInset
+     另 UICollectionView LineSpacing InteritemSpacing 使用 frame - x  y
+     insetsTitle  ：View UIButton titleEdgeInsets
+     bundleFrom ：View bundle 索引（组件化 | pod   nib 资源。。。。）
+     callBack ： View 类内执行回调
+     didSelect ： View 点击回调 UITableView | UICollectionView didSelectRow
+     */
+    public init(data: T.DataSource? = nil,
+                config:T.ConfigModel? = nil,
+                id: String? = nil,
+                frame: (x:CGFloat,y:CGFloat,w:CGFloat,h:CGFloat) = (0,0,0,0),
+                insets:UIEdgeInsets = .zero,
+                insetsTitle:UIEdgeInsets = .zero,
+                bundleFrom:String = "",
+                callBack:CD_RowCallBack? = nil,
+                didSelect:CD_RowDidSelectBlock? = nil) {
+        self.dataSource = data
+        self.config = config
+        self.cellClass = T.self
+        self.cellId = id ?? String(describing: T.self)
+        self.frame = CGRect(x: frame.x, y: frame.y, w: frame.w, h: frame.h)
+        self.bundleFrom = bundleFrom
+        self.insets = insets
+        self.insetsTitle = insetsTitle
+        self.callBack = callBack
+        self._didSelect = didSelect
+    }
+    
+    public func bind(_ obj: AnyObject) {
+        guard let item = obj as? T else {return}
+        if let m = config {
+            item.row_update(config: m)
+        }
+        if let d = dataSource {
+            item.row_update(dataSource:d)
+        }
+        if let back = callBack  {
+            item.row_update(callBack: back)
+        }
+    }
+}
+extension CD_RowCellClass {
+    public var tapBlock: CD_RowDidSelectBlock? {
+        get { return _didSelect}
+        set { _didSelect = newValue}
+    }
+}
+
+
+
+
+
+
+
+
+//MARK:--- ------------------- 旧的 表单 协议 --------------------
 
 //MARK:---  单元格配置协议 ---
 public protocol CD_RowProtocol {
@@ -134,8 +452,6 @@ public extension CD_RowUpdateProtocol{
 }
 
 //MARK:---  建设单元格模型 ---
-public typealias CD_RowDidSelectBlock = () -> Void
-public typealias CD_RowCallBack = (Any) -> Void
 public struct CD_Row<T> where T: UIView, T: CD_RowUpdateProtocol {
     public var data: T.DataSource
     public let id: String

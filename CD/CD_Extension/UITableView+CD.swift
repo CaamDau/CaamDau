@@ -8,7 +8,7 @@ public extension CD where Base: UITableView {
         let identifier = id=="" ? String(describing: cellClass) : id
         var cell = base.dequeueReusableCell(withIdentifier: identifier)
         if cell == nil  {
-            if bundleFrom.count == 0 {
+            if bundleFrom.isEmpty {
                 let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
                 if bundle == nil{
                     base.register(cellClass, forCellReuseIdentifier: identifier)
@@ -33,7 +33,7 @@ public extension CD where Base: UITableView {
         let identifier = id=="" ? String(describing: viewClass) : id
         var cell = base.dequeueReusableHeaderFooterView(withIdentifier: identifier)
         if cell == nil  {
-            if bundleFrom.count == 0 {
+            if bundleFrom.isEmpty {
                 let bundle = Bundle.main.path(forResource:identifier, ofType: "nib")
                 if bundle == nil{
                     base.register(viewClass, forHeaderFooterViewReuseIdentifier: identifier)

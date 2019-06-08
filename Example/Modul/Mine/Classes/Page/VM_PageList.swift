@@ -27,7 +27,7 @@ class VM_PageList {
 
 extension VM_PageList {
     func makeForm() {
-        for (i,item) in ["横向-横向","横向-纵向","纵向-纵向","纵向-横向"].enumerated() {
+        for (i,item) in ["默认-横向-横向","横向-纵向","纵向-纵向","纵向-横向"].enumerated() {
             let row = CD_Row<CD_TableViewCellBase>(data: CD_TableViewCellBase.Model(title:item), frame: CGRect(h:45), didSelect: {
                 VC_Page.push(VC_Page.Style(rawValue: i) ?? .hh)
             })
@@ -47,9 +47,7 @@ extension VM_PageList: CD_ViewModelTopBarDelegater {
         return nil
     }
     
-    var _topBarDidSelect: ((CD_TopBar, CD_TopNavigationBar.Item) -> Void)? {
-        return nil
-    }
+    
 }
 extension VM_PageList: CD_ViewModelRefreshDelegater {
     var _mjRefreshType: [CD_MJRefreshModel.RefreshType] {

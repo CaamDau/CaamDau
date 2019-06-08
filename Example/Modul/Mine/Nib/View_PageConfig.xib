@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="View_PageConfig" id="iN0-l3-epB" customClass="View_PageConfig" customModule="Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aLN-Xz-GIA">
+                    <rect key="frame" x="10" y="0.0" width="300" height="150"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="idR-tG-7VS">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZVC-X4-0Y9">
+                                    <rect key="frame" x="0.0" y="6.5" width="75" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVX-Pr-TAN">
+                                    <rect key="frame" x="75" y="0.0" width="75" height="30"/>
+                                    <state key="normal" title="增加"/>
+                                    <connections>
+                                        <action selector="dataClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="y9e-By-Xn1"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cup-yR-nHC">
+                                    <rect key="frame" x="150" y="0.0" width="75" height="30"/>
+                                    <state key="normal" title="减少"/>
+                                    <connections>
+                                        <action selector="dataClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="P79-5X-OU5"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgx-KL-gOS">
+                                    <rect key="frame" x="225" y="0.0" width="75" height="30"/>
+                                    <state key="normal" title="插入"/>
+                                    <connections>
+                                        <action selector="dataClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="xD3-3Y-so0"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="1Z2-OC-iNi"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sXL-VD-OdR">
+                            <rect key="frame" x="0.0" y="30" width="300" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="导航栏对齐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEY-sh-byW">
+                                    <rect key="frame" x="0.0" y="6.5" width="71.5" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VFC-hH-2WR">
+                                    <rect key="frame" x="180" y="1" width="120" height="29"/>
+                                    <segments>
+                                        <segment title="左/上"/>
+                                        <segment title="中"/>
+                                        <segment title="右/下"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="segmentClick:" destination="iN0-l3-epB" eventType="valueChanged" id="pSK-IM-BAY"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="gSl-LM-X11"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Rqb-sX-CQq">
+                            <rect key="frame" x="0.0" y="60" width="300" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="边距：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZ0-W7-fXs">
+                                    <rect key="frame" x="0.0" y="6.5" width="75" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="EuA-H1-iKj">
+                                    <rect key="frame" x="73" y="0.0" width="79" height="31"/>
+                                    <connections>
+                                        <action selector="sliderClick:" destination="iN0-l3-epB" eventType="valueChanged" id="jy4-NU-ED2"/>
+                                    </connections>
+                                </slider>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="间距：" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XvN-rJ-3ia">
+                                    <rect key="frame" x="150" y="6.5" width="75" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="yPG-iN-zC0">
+                                    <rect key="frame" x="223" y="0.0" width="79" height="31"/>
+                                    <connections>
+                                        <action selector="sliderClick:" destination="iN0-l3-epB" eventType="valueChanged" id="fTQ-cU-J1C"/>
+                                    </connections>
+                                </slider>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O6h-wg-S55">
+                            <rect key="frame" x="0.0" y="90" width="300" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标签切换动画" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCF-s3-47N">
+                                    <rect key="frame" x="0.0" y="6.5" width="86" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yuo-cr-Hov">
+                                    <rect key="frame" x="121" y="1" width="179" height="29"/>
+                                    <segments>
+                                        <segment title="标签缩放"/>
+                                        <segment title="下划线缩放"/>
+                                        <segment title="无"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="segmentClick:" destination="iN0-l3-epB" eventType="valueChanged" id="Y5n-AD-Dxu"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Uuc-pL-Rly">
+                            <rect key="frame" x="0.0" y="120" width="300" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浮漂切换动画" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eed-eS-IUC">
+                                    <rect key="frame" x="0.0" y="6.5" width="86" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="orr-Zj-JTj">
+                                    <rect key="frame" x="175" y="1" width="125" height="29"/>
+                                    <segments>
+                                        <segment title="移动"/>
+                                        <segment title="毛毛虫"/>
+                                        <segment title="无"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="segmentClick:" destination="iN0-l3-epB" eventType="valueChanged" id="THl-Z6-OXk"/>
+                                    </connections>
+                                </segmentedControl>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="aLN-Xz-GIA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="UxV-td-lyr"/>
+                <constraint firstItem="aLN-Xz-GIA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="V1T-0V-xMd"/>
+                <constraint firstItem="aLN-Xz-GIA" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="tVJ-hj-o36"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bar_alig" destination="VFC-hH-2WR" id="Lhu-WI-HvI"/>
+                <outlet property="bar_buoyAni" destination="orr-Zj-JTj" id="b2U-df-D21"/>
+                <outlet property="bar_itemAni" destination="yuo-cr-Hov" id="5OB-I1-jQb"/>
+                <outlet property="bar_marge" destination="EuA-H1-iKj" id="Uym-P9-AWK"/>
+                <outlet property="bar_space" destination="yPG-iN-zC0" id="XCo-vK-Z6d"/>
+            </connections>
+            <point key="canvasLocation" x="45" y="8.4507042253521121"/>
+        </view>
+    </objects>
+</document>

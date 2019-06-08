@@ -13,9 +13,9 @@ public extension UIViewController{
     }
     
     /// - from:bundle.url(forResource (s.resource_bundles -> key) ; name:storyboard name
-    static func cd_storyboard(withBundle from:String, name:String, id:String = "") -> UIViewController? {
-        let identifier = id == "" ? String(describing: self) : id
-        let storyboard = UIStoryboard(name: name, bundle: Bundle.cd_bundle(self, from))
+    static func cd_storyboard(withBundle from:String? = nil, name:String, id:String = "") -> UIViewController? {
+        let identifier = id.isEmpty ? String(describing: self) : id
+        let storyboard = UIStoryboard(name: name, bundle: Bundle.cd_bundle(self, from) ?? Bundle.main)
         return storyboard.instantiateViewController(withIdentifier: identifier)
     }
 }

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     lazy var composite: CD_AppDelegateComposite = {
-        return CD_AppDelegateComposite([AppDelegate_VC(window),AppDelegate_UM()])
+        return CD_AppDelegateComposite([AppDelegate_VC(window),AppDelegate_Config(),AppDelegate_UM()])
     }()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return composite.application(application, didFinishLaunchingWithOptions:launchOptions)

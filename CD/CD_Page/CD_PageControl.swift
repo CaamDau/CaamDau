@@ -178,6 +178,7 @@ extension CD_PageControl {
         
         itemView.cd.add(buoy)
         scrollView.layoutIfNeeded()
+        buoy?.config = buoyConfig
         my_scrollViewDidEndScrolling(nil, index:index, animotion:false)
         //buoy?.scroll(endScroll: nil, index: index, animotion:false)
     }

@@ -10,6 +10,7 @@
 import Foundation
 import CD
 import TabbarNavigation
+import Config
 
 class AppDelegate_VC: CD_AppDelegate {
     var window: UIWindow?
@@ -20,6 +21,17 @@ class AppDelegate_VC: CD_AppDelegate {
         let vc = VC_Tab.show()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
+        return true
+    }
+}
+class AppDelegate_Config: CD_AppDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        
+        CD_TopBar.Model.color_line = Config.color.line_1
+        CD_TopBar.Model.color_normal = Config.color.main_2
+        CD_TopBar.Model.back = .title([(CD_IconFont.tback_light(30).text,CD_IconFont.tback(30).font,Config.color.main_3,.normal), (CD_IconFont.tback(30).text,CD_IconFont.tback_light(30).font,.lightGray,.highlighted), (CD_IconFont.tback(30).text,CD_IconFont.tback_light(30).font,.lightGray,.selected)])
+        
         return true
     }
 }

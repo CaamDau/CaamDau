@@ -26,3 +26,8 @@ public extension UIEdgeInsets {
         self.init(top: t, left: l, bottom: b, right: r)
     }
 }
+public extension CGFloat {
+    static var auto:CGFloat {
+        return -66.66
+    }
+}

@@ -126,15 +126,16 @@ extension CD_Page {
         if idx == count-1 {
             CD_Page.updateLayout(withItemView: itemView, item: item, model: model)
             let maxW = marge+model.marge
+            
             switch model.scrollDirection {
             case .horizontal:
-                if let v = scrollView.superview, maxW < v.frame.size.width {
-                    CD_Page.updateLayout(withScrollView: scrollView, maxW: maxW, model: model)
-                }
+                guard let v = scrollView.superview else { return }
+                let www = maxW < v.frame.size.width ? maxW : v.frame.size.width
+                CD_Page.updateLayout(withScrollView: scrollView, maxW: www, model: model)
             case .vertical:
-                if let v = scrollView.superview, maxW < v.frame.size.height {
-                    CD_Page.updateLayout(withScrollView: scrollView, maxW: maxW, model: model)
-                }
+                guard let v = scrollView.superview else { return }
+                let www = maxW < v.frame.size.height ? maxW : v.frame.size.height
+                CD_Page.updateLayout(withScrollView: scrollView, maxW: www, model: model)
             }
         }
     }

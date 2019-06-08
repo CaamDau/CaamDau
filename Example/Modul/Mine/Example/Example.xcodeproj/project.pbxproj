@@ -12,6 +12,8 @@
 		470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC4223BF024006292CE /* VC_Mine.swift */; };
 		470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470C3DC5223BF024006292CE /* VM_Mine.swift */; };
 		470C3DCB223BF025006292CE /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 470C3DC7223BF025006292CE /* MineStoryboard.storyboard */; };
+		470D69C822A9032D00AEB4FC /* View_PageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470D69C722A9032D00AEB4FC /* View_PageConfig.swift */; };
+		470D69CA22A9034600AEB4FC /* View_PageConfig.xib in Resources */ = {isa = PBXBuildFile; fileRef = 470D69C922A9034600AEB4FC /* View_PageConfig.xib */; };
 		4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */; };
 		472676BC228A890A006AF7A7 /* VM_BaseColle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472676BA228A8909006AF7A7 /* VM_BaseColle.swift */; };
 		472676BD228A890A006AF7A7 /* VM_HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472676BB228A8909006AF7A7 /* VM_HUD.swift */; };
@@ -51,6 +53,8 @@
 		470C3DC4223BF024006292CE /* VC_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_Mine.swift; sourceTree = "<group>"; };
 		470C3DC5223BF024006292CE /* VM_Mine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VM_Mine.swift; sourceTree = "<group>"; };
 		470C3DC7223BF025006292CE /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
+		470D69C722A9032D00AEB4FC /* View_PageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View_PageConfig.swift; sourceTree = "<group>"; };
+		470D69C922A9034600AEB4FC /* View_PageConfig.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View_PageConfig.xib; sourceTree = "<group>"; };
 		4721BA1A223D0236007C3E2A /* VM_MineCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_MineCollection.swift; sourceTree = "<group>"; };
 		472676BA228A8909006AF7A7 /* VM_BaseColle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VM_BaseColle.swift; sourceTree = "<group>"; };
 		472676BB228A8909006AF7A7 /* VM_HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VM_HUD.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				473ABC21223CF905004CD694 /* View_MineCollectionHeader.xib */,
 				473ABC25223CF918004CD694 /* View_MineCollectionFooter.xib */,
 				47AB7B462261CAED009C3EE3 /* PageStoryboard.storyboard */,
+				470D69C922A9034600AEB4FC /* View_PageConfig.xib */,
 			);
 			name = Nib;
 			path = ../Nib;
@@ -182,6 +187,7 @@
 				47AB7B3E2261ADFC009C3EE3 /* VC_PageB.swift */,
 				47AB7B402261AE05009C3EE3 /* VC_PageC.swift */,
 				47AB7B422261AE0F009C3EE3 /* VC_PageD.swift */,
+				470D69C722A9032D00AEB4FC /* View_PageConfig.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 				473ABC1F223CF8E4004CD694 /* Cell_MineCollectionImage.xib in Resources */,
 				473ABC27223CF918004CD694 /* View_MineCollectionFooter.xib in Resources */,
 				473ABC23223CF905004CD694 /* View_MineCollectionHeader.xib in Resources */,
+				470D69CA22A9034600AEB4FC /* View_PageConfig.xib in Resources */,
 				4745AB2E2247BD89006E5461 /* View_Navi.xib in Resources */,
 				47FC34E5223807700022174D /* Main.storyboard in Resources */,
 			);
@@ -417,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47AB7B432261AE0F009C3EE3 /* VC_PageD.swift in Sources */,
+				470D69C822A9032D00AEB4FC /* View_PageConfig.swift in Sources */,
 				4745AB2A22479E87006E5461 /* VC_Navigation.swift in Sources */,
 				4745D374224E098F006A8ADE /* VC_TopBar.swift in Sources */,
 				47AB7B452261AEBF009C3EE3 /* VC_Page.swift in Sources */,

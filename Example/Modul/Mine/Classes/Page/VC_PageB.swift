@@ -38,21 +38,15 @@ class VC_PageB: UIViewController {
 
 }
 extension VC_PageB: CD_UIViewControllerProtocol {
-    var scale: CGFloat {
-        get {
-            return 0
-        }
-        set {
-            
-        }
-    }
-    
-    static func initialize(withDataSource dataSource: Any?, config: Any?) -> UIViewController {
-        let vc = VC_PageB()
+    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: CD_RowCallBack?, tapBlock: CD_RowDidSelectBlock?) -> UIViewController {
+        let vc = VC_PageB.show()
         vc.dataSource = dataSource
         vc.config = config
         return vc
     }
+    
+
+    
     typealias DataSource = Any
     typealias ConfigModel = Any
     var config: ConfigModel? {
