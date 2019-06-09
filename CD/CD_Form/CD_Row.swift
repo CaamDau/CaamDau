@@ -111,13 +111,9 @@ extension CD_UIProtocol {
 public protocol CD_RowVCProtocol: CD_UIProtocol {
     var vc:UIViewController { get }
     var view:UIView { get }
-    func row_push()
 }
 extension CD_RowVCProtocol {
     public var view:UIView { get{ return vc.view} }
-    public func row_push() {
-        cd_push(vc)
-    }
 }
 
 public protocol CD_UIViewControllerProtocol: CD_UIDataSourceConfigModel {
@@ -310,7 +306,7 @@ public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UI
     public init(data: T.DataSource? = nil,
                 config:T.ConfigModel? = nil,
                 id: String? = nil,
-                frame: (x:CGFloat,y:CGFloat,w:CGFloat,h:CGFloat) = (0,0,0,0),
+                frame:CGRect = .zero,
                 insets:UIEdgeInsets = .zero,
                 insetsTitle:UIEdgeInsets = .zero,
                 bundleFrom:String = "",
@@ -320,7 +316,7 @@ public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UI
         self.config = config
         self.cellClass = T.self
         self.cellId = id ?? String(describing: T.self)
-        self.frame = CGRect(x: frame.x, y: frame.y, w: frame.w, h: frame.h)
+        self.frame = frame
         self.bundleFrom = bundleFrom
         self.insets = insets
         self.insetsTitle = insetsTitle
@@ -374,7 +370,7 @@ public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T
     public init(data: T.DataSource? = nil,
                 config:T.ConfigModel? = nil,
                 id: String? = nil,
-                frame: (x:CGFloat,y:CGFloat,w:CGFloat,h:CGFloat) = (0,0,0,0),
+                frame: CGRect = .zero,
                 insets:UIEdgeInsets = .zero,
                 insetsTitle:UIEdgeInsets = .zero,
                 bundleFrom:String = "",
@@ -384,7 +380,7 @@ public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T
         self.config = config
         self.cellClass = T.self
         self.cellId = id ?? String(describing: T.self)
-        self.frame = CGRect(x: frame.x, y: frame.y, w: frame.w, h: frame.h)
+        self.frame = frame
         self.bundleFrom = bundleFrom
         self.insets = insets
         self.insetsTitle = insetsTitle

@@ -96,17 +96,16 @@ public class CD_TableViewCellBase: UITableViewCell{
     }
     func update(_ data: CD_TableViewCellBase.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         self.accessoryType = data.accType
-        self.textLabel?.cd
-            .text(data.title ?? "")
-            .text(data.titleColor ?? UIColor.black)
-            .text(data.titleFont ?? UIFont.systemFont(ofSize: 14))
-        self.detailTextLabel?.cd
-            .text(data.detail ?? "")
-            .text(data.detailColor ?? UIColor.black)
-            .text(data.detailFont ?? UIFont.systemFont(ofSize: 14))
+        self.textLabel?.text = data.title ?? ""
+        self.textLabel?.textColor = data.titleColor ?? UIColor.black
+        self.textLabel?.font = data.titleFont ?? UIFont.systemFont(ofSize: 14)
+            
+        self.detailTextLabel?.text = data.detail ?? ""
+        self.detailTextLabel?.textColor = data.detailColor ?? UIColor.lightGray
+        self.detailTextLabel?.font = data.detailFont ?? UIFont.systemFont(ofSize: 12)
         
         if let img = data.icon {
-            self.imageView?.cd.image(img)
+            self.imageView?.image = img
         }
         if let vv = data.accView {
             self.accessoryView = vv
