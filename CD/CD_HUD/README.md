@@ -49,6 +49,8 @@ cd_window()?.cd.hud(.loading(.images(images,0.3,0)), title: "HUD", detail: "Deta
 
 ```
 
+- 友情链接 [SwiftMessages](https://github.com/SwiftKickMobile/SwiftMessages)
+
 ## Author
 
 liucaide, 565726319@qq.com
