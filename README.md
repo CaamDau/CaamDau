@@ -24,6 +24,7 @@
 
 #### CD 辅助组件
 - [CD_HUD：提示窗组件](https://github.com/liucaide/CD/tree/master/CD/CD_HUD) 
+  - 友情链接 [SwiftMessages](https://github.com/SwiftKickMobile/SwiftMessages)
 - [CD_Page：分页导航控制组件](https://github.com/liucaide/CD/tree/master/CD/CD_Page) 
 - [CD_TopBar：自定义导航栏组件](https://github.com/liucaide/CD/tree/master/CD/CD_TopBar) 
   - 扩展依赖 [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture)
