@@ -439,6 +439,10 @@ do{
     CD_RegEx.match("123_a456", type: CD_RegEx.tPassword(CD_RegEx.Password.value2))
     CD_RegEx.match("123a@456", type: CD_RegEx.tPassword(CD_RegEx.Password.value2))
     
+    // 必须包含大小写字母和数字
+    CD_RegEx.match("1234567a", type: CD_RegEx.tPassword(CD_RegEx.Password.value3("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$")))
+    CD_RegEx.match("1234567aA_@", type: CD_RegEx.tPassword(CD_RegEx.Password.value3("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$")))
+    
     UIApplication.shared.open(URL(string: "wechat://")!, options: [:]) { (bool) in
         bool
     }

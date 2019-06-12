@@ -94,8 +94,6 @@ extension VC_PageA: CD_UIViewControllerProtocol {
         vc.config = config
         return vc
     }
-    
-
     typealias DataSource = Any
     typealias ConfigModel = Any
     var config: ConfigModel? {

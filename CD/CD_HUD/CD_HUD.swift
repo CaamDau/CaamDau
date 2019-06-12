@@ -118,7 +118,6 @@ public extension CD_HUD {
             case roundEyes
             /// refresh 箭头
             case arrow
-            
             /// 自定义 Gif 动画组
             case images(_ images:[UIImage], _ duration:TimeInterval, _ repeatCount:Int)
             /// 自定义 View

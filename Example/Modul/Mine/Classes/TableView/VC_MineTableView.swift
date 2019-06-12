@@ -67,6 +67,7 @@ class VC_MineTableView: UIViewController {
             }).disposed(by: disposeBag)
         /// 输入
         CD_CountDown.make(.notification("VC_MineTableView", 172800, 1), qos: .background)
+        
     }
     
     deinit {
