@@ -23,6 +23,8 @@ target 'CD_Example' do
   pod 'User', :path => './Util/'
   pod 'HUD', :path => './Util/'
   
+  #pod 'Alamofire'
+  #pod 'RxAlamofire'
   # 阿里七巧板
   #pod 'Tangram'
   # 阿里协程库

@@ -20,5 +20,7 @@ public class CD_PageUIScrollView: UIScrollView, UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.cd.panBack(gestureRecognizer, otherGesture: otherGestureRecognizer)
     }
+    
+    
 }
 

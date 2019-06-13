@@ -46,6 +46,7 @@
 		474F8386226792A500FC6859 /* CryptoSwift.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CryptoSwift.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4760EFCD229E5E77009586A7 /* SKUPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SKUPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4766B499228EDF600058E91C /* CALayer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CALayer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		4799B2DE22B251700085FA9B /* SwiftyJSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftyJSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A158223A8B31001F07ED /* JSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A159223A8B31001F07ED /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A15A223A8B31001F07ED /* Date.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Date.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -103,6 +104,7 @@
 		47A0A157223A8B31001F07ED /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				4799B2DE22B251700085FA9B /* SwiftyJSON.playground */,
 				4760EFCD229E5E77009586A7 /* SKUPlayground.playground */,
 				4766B499228EDF600058E91C /* CALayer.playground */,
 				47C491342278336F00DC876B /* MVVM.playground */,
@@ -295,6 +297,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -358,8 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CD_Tests/Pods-CD_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
@@ -369,8 +370,6 @@
 				"${BUILT_PRODUCTS_DIR}/iOSSnapshotTestCase/FBSnapshotTestCase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
@@ -386,8 +385,6 @@
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-CD_Example/Pods-CD_Example-frameworks.sh",
@@ -417,8 +414,6 @@
 				"${BUILT_PRODUCTS_DIR}/Web/Web.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Assets.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CD.framework",

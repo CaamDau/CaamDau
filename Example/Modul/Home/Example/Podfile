@@ -4,11 +4,16 @@ platform :ios, '9.0'
 
 target 'Example' do
   
-  pod 'CD/All'
   
+  
+  pod 'CD/All', :path => '~/Desktop/MyWorking/CDKit/CD/'
   pod 'Assets', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
   pod 'Config', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  
+  pod 'HUD', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'RxAlamofire'
   # 阿里七巧板
   #pod 'Tangram'
   # 阿里协程库

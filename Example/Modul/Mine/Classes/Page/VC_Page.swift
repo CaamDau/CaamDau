@@ -90,6 +90,7 @@ class VC_Page: UIViewController {
             m.scrollDirection = .vertical
             m.marge = 0
             m.space = 0
+            m.isScrollPaging = true
             pageVC.model = m
         case .vv:
             do{
