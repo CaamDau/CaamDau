@@ -10,10 +10,13 @@ target 'Example' do
   pod 'Assets', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
   pod 'Config', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
   pod 'HUD', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxDataSources'
-  pod 'RxAlamofire'
+  #pod 'RxSwift'
+  #pod 'RxCocoa'
+  #pod 'RxDataSources'
+  pod 'Alamofire', '4.8.2'
+  pod 'Cache', '5.2.0'
+  pod 'SwiftyJSON', '4.3.0'
+  pod 'CleanJSON'
   # 阿里七巧板
   #pod 'Tangram'
   # 阿里协程库

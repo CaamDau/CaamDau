@@ -18,14 +18,11 @@ target 'CD_Example' do
   pod 'Web', :path => './Modul/'
   pod 'TabbarNavigation', :path => './Modul/'
   
-  pod 'Assets', :path => './Util/'
-  pod 'Config', :path => './Util/'
-  pod 'User', :path => './Util/'
-  pod 'HUD', :path => './Util/'
+  pod 'Util', :path => './Util/'
   
-  pod 'Alamofire'
-  pod 'RxAlamofire'
-  pod 'SwiftyJSON'
+  #pod 'Alamofire'
+  #pod 'RxAlamofire'
+  #pod 'SwiftyJSON'
   # 阿里七巧板
   #pod 'Tangram'
   # 阿里协程库

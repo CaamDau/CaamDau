@@ -29,9 +29,8 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'CD/All'
   s.dependency 'Sign'
-  s.dependency 'Assets'
-  s.dependency 'Config'
-  s.dependency 'HUD'
+  s.dependency 'Util'
+  
   #s.dependency 'Web'
   #s.dependency 'SnapKit'
   #s.dependency 'RxSwift'

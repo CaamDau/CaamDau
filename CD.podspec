@@ -48,6 +48,7 @@ Pod::Spec.new do |s|
     
     all.dependency 'CD/FDFullscreenPopGesture'
     all.dependency 'CD/MJRefresh'
+    all.dependency 'CD/Net/All'
     
   end
   
@@ -145,6 +146,46 @@ Pod::Spec.new do |s|
       fd.source_files = 'CD/CD_FDFullscreenPopGesture/*.{swift}', 'CD/CD.swift'
       fd.dependency 'FDFullscreenPopGesture', '1.1'
   end
+  
+  s.subspec 'Net' do |net|
+    
+    net.subspec 'Core' do |core|
+      core.source_files = 'CD/CD_Net/*.{swift}'
+      core.dependency 'Alamofire', '4.8.2'
+    end
+    
+    net.subspec 'All' do |all|
+      all.dependency 'CD/Net/SwiftyJSON'
+      all.dependency 'CD/Net/Cache'
+      all.dependency 'CD/Net/Codable'
+    end
+    
+    net.subspec 'SwiftyJSON' do |json|
+      json.source_files = 'CD/CD_Net/SwiftyJSON/*.{swift}'
+      json.dependency 'CD/Net/Core'
+      json.dependency 'SwiftyJSON', '4.3.0'
+    end
+    
+    net.subspec 'Cache' do |cache|
+      cache.source_files = 'CD/CD_Net/Cache/*.{swift}'
+      cache.dependency 'CD/Net/Core'
+      cache.dependency 'Cache', '5.2.0'
+    end
+    
+    net.subspec 'Codable' do |codable|
+      codable.source_files = 'CD/CD_Net/Codable/*.{swift}'
+      codable.dependency 'CD/Net/Core'
+      codable.dependency 'CleanJSON'
+    end
+    
+  end
+  
+  
+  
+  
+  
+  
+  
   
   #s.resource_bundles = {
   #  'CD' => ['CD/Storyboards/*.{storyboard}']
