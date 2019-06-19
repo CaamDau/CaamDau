@@ -2,8 +2,7 @@
 
 import UIKit
 import CD
-import Assets
-import Config
+import Util
 import SnapKit
 
 public extension VC_Mine{

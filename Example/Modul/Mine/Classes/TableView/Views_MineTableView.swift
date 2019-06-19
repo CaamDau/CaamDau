@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 import CD
-import Config
-import Assets
+import Util
 
 //MARK:--- 标签 ----------
 class Cell_MineCountDown:UITableViewCell{

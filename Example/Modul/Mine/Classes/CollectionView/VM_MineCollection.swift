@@ -9,7 +9,7 @@
 
 import Foundation
 import CD
-import Config
+import Util
 
 extension VM_MineCollection {
     enum Section:Int {

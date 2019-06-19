@@ -8,7 +8,7 @@
 
 import UIKit
 import CD
-import Config
+import Util
 
 
 class ViewController: UIViewController {

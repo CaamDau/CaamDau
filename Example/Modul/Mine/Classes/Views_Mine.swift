@@ -9,7 +9,7 @@
 
 import Foundation
 import CD
-import Config
+import Util
 //MARK:--- 登录 ----------
 class Cell_MineSign:UITableViewCell{
     @IBOutlet weak var lab_title: UILabel!

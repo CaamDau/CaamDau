@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CD'
-  s.version          = '0.6.42'
+  s.version          = '0.7.42'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块插件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 模块插件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能插件，可快速集成使用以大幅减少基础工作量；附.各种类库使用示例demo.

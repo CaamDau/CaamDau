@@ -9,7 +9,7 @@
 
 import UIKit
 import CD
-import Config
+import Util
 import RxSwift
 import RxCocoa
 

@@ -2,7 +2,7 @@
 
 import UIKit
 import CD
-import User
+import Util
 
 struct VM_Sign {
     

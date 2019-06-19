@@ -3,8 +3,7 @@
 import Foundation
 import UIKit
 import CD
-import Assets
-import Config
+import Util
 
 class Cell_BaseTabTitle:UITableViewCell {
     lazy var btn: UIButton = {

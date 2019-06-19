@@ -10,8 +10,7 @@
 import Foundation
 import UIKit
 import CD
-import Config
-import Assets
+import Util
 
 extension VM_MineTableView {
     class Model {

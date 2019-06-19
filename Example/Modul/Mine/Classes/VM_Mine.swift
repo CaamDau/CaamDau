@@ -11,7 +11,7 @@ import Foundation
 import CD
 import Sign
 import Web
-import Config
+import Util
 
 //MARK:--- 分组 ----------
 extension VM_Mine {

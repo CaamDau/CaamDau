@@ -9,7 +9,7 @@
 
 import UIKit
 import CD
-import Config
+import Util
 
 extension VC_MineCollection {
     static func show() -> VC_MineCollection {

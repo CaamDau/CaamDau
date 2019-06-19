@@ -6,7 +6,7 @@
 
 import Foundation
 import CD
-import Config
+import Util
 
 //MARK:--- 接口 ----------
 struct R_PageList {

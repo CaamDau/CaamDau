@@ -9,8 +9,8 @@
 
 import UIKit
 import CD
-import Config
-import Assets
+import Util
+
 
 class Cell_MineCollectionLabel: UICollectionViewCell {
     

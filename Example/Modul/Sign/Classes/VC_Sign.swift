@@ -2,8 +2,7 @@
 
 import UIKit
 import CD
-import User
-import Config
+import Util
 public extension VC_Sign{
     static func show() -> VC_Sign{
         return VC_Sign.cd_storyboard(withBundle:"Sign", name:"SignStoryboard") as! VC_Sign

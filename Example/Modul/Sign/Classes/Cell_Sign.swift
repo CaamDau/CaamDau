@@ -2,8 +2,8 @@
 
 import UIKit
 import CD
-import User
-import Config
+import Util
+
 
 //MARK:--- 输入 ----------
 class Cell_SignInput: UITableViewCell {

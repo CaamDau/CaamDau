@@ -9,7 +9,7 @@
 
 import UIKit
 import CD
-import Assets
+import Util
 
 extension CD_HUD.Axis {
     var intValue:Int {
