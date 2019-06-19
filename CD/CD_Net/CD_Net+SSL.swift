@@ -18,7 +18,7 @@ public extension CD_Net {
     }
 
     //MARK:--- SSL认证 -----------------------------
-    func sslCertification(_ hosts:[String], p12:(name:String, pwd:String)) {
+    static func sslCertification(_ hosts:[String], p12:(name:String, pwd:String)) {
         let selfSignedHosts = hosts//["192.168.1.112", "www.hangge.com"]
         SessionManager.default.delegate.sessionDidReceiveChallenge = { session, challenge in
             //认证服务器（这里不使用服务器证书认证，只需地址是我们定义的几个地址即可信任）
@@ -36,7 +36,7 @@ public extension CD_Net {
             {
                 debugPrint("客户端证书认证！")
                 //获取客户端证书相关信息
-                let identityAndTrust:CD_Net.IdentityAndTrust = self.extractIdentity(p12);
+                let identityAndTrust:CD_Net.IdentityAndTrust = CD_Net.extractIdentity(p12);
                 let urlCredential:URLCredential = URLCredential(
                     identity: identityAndTrust.identityRef,
                     certificates: identityAndTrust.certArray as? [AnyObject],
@@ -54,7 +54,7 @@ public extension CD_Net {
     }
     
     //MARK:--- 双向认证 -----------------------------
-    func sslCertificationTwoWay(_ cerName:String ,p12:(name:String, pwd:String)) {
+    static func sslCertificationTwoWay(_ cerName:String ,p12:(name:String, pwd:String)) {
         
         SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) in
             //认证服务器
@@ -84,7 +84,7 @@ public extension CD_Net {
             {
                 debugPrint("客户端证书认证！")
                 //获取客户端证书相关信息
-                let identityAndTrust:CD_Net.IdentityAndTrust = self.extractIdentity(p12);
+                let identityAndTrust:CD_Net.IdentityAndTrust = CD_Net.extractIdentity(p12);
                 
                 let urlCredential:URLCredential = URLCredential(
                     identity: identityAndTrust.identityRef,
@@ -103,7 +103,7 @@ public extension CD_Net {
     }
     
     //MARK:--- 获取客户端证书相关信息 -----------------------------
-    fileprivate func extractIdentity(_ p12:(name:String, pwd:String)) -> CD_Net.IdentityAndTrust {
+    static fileprivate func extractIdentity(_ p12:(name:String, pwd:String)) -> CD_Net.IdentityAndTrust {
         
         var identityAndTrust:CD_Net.IdentityAndTrust!
         var securityError:OSStatus = errSecSuccess

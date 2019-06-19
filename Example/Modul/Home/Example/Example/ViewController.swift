@@ -25,7 +25,6 @@ class ViewController: UIViewController {
         reachability = CD_Net.reachability(block: { (status) in
             debugPrint("reachabilityStatus:",status)
         })
-        
     }
     
     func makeHttpbin() {
@@ -52,6 +51,8 @@ class ViewController: UIViewController {
                 debugPrint(error.code)
                 debugPrint(error.massage)
             })
+            .request()
+            .request(.json)
             .request(.data)
     }
     func make人民日报() {
