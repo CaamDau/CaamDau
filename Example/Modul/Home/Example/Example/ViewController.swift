@@ -38,22 +38,21 @@ class ViewController: UIViewController {
                 //debugPrint("Cache JSON:", json)
             })
             .toCache(when: {page == 1})
-            .mapModel(withCodable: M_Codable<M_CodableData>.self, succeed: { (m) in
-                debugPrint(m.code)
-                debugPrint(m.data.host)
-            })
-//            .mapModel(withSwiftyJSON: M_Test<M_T>.self, tag: 1)
-//            { (m) in
+//            .mapModel(withCodable: M_Codable<M_CodableData>.self, succeed: { (m) in
 //                debugPrint(m.code)
 //                debugPrint(m.data.host)
-//            }
+//            })
+            .mapModel(withSwiftyJSON: M_Test<M_T>.self, tag: 1)
+            { (m) in
+                debugPrint(m.code)
+                debugPrint(m.data.host)
+            }
             .failure({ (error) in
                 debugPrint(error.code)
                 debugPrint(error.massage)
             })
-            .request()
             .request(.json)
-            .request(.data)
+        
     }
     func make人民日报() {
         var page = 1
@@ -91,8 +90,8 @@ class ViewController: UIViewController {
             .method(.post)
             .parameters(pp)
             .onCache(completion: { (data) in
-                let json = JSON(data)
-                debugPrint("Cache JSON:", json)
+                //let json = JSON(data)
+                //debugPrint("Cache JSON:", json)
             })
             .toCache(when: {page == 1})
             .mapModel(withSwiftyJSON: M_Test<M_T>.self, tag: 1)

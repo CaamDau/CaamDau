@@ -151,6 +151,7 @@ Pod::Spec.new do |s|
     
     net.subspec 'Core' do |core|
       core.source_files = 'CD/CD_Net/*.{swift}'
+      core.dependency 'CD/Extension'
       core.dependency 'Alamofire', '4.8.2'
     end
     

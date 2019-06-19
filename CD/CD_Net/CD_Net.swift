@@ -27,14 +27,14 @@ extension CD_Net {
     }
     
     public struct Manager {
-        /// 超时时间 默认 15 秒
+        /// 超时时间 默认 10 秒
         public var timeoutInterval:TimeInterval = 10
         /// 默认 header
         public var headers:[String:String] = [:]
         /// 默认w网址
         public var baseURL:String = ""
         /// 开启控制台 print
-        public var log:Bool = true
+        public var log:Bool = false
         /// 返回数据样式 默认 json
         public var responseStyle:CD_Net.RequestStyle = .data
         /// method 默认 get
