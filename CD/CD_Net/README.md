@@ -39,8 +39,8 @@ pod 'CD/Net/Codable' #获取 Codable 功能
                 debugPrint(error.code)
                 debugPrint(error.massage)
             })
-            .request()
-            .request(.json)
+            //.request()
+            //.request(.json)
             .request(.data)
 ```
 ```ruby
