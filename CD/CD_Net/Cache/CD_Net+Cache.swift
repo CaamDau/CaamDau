@@ -8,9 +8,7 @@
 
 
 import Foundation
-import Alamofire
 import Cache
-import CD
 
 public extension CD_Net {
     func makeStorage() -> Storage<Data>? {

@@ -10,8 +10,6 @@
 
 import Foundation
 import SwiftyJSON
-import Cache
-import CD
 
 /// 一般来说，在开发中 都是 model先行的，并不一定先有明确的 json
 /// 同时，通用model需要达到 多模块的契合
