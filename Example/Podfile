@@ -4,7 +4,7 @@ platform :ios, '9.0'
 
 target 'CD_Example' do
   #pod 'CD', :path => '../'
-  pod 'CD/All', :path => '../'
+  pod 'Popois/All', :path => '../'
   #pod 'CD/Form', :path => '../'
   #pod 'CD/Extension', :path => '../'
   
