@@ -2,7 +2,7 @@
 
 import UIKit
 import CD
-import Assets
+import Util
 
 public class Cell_HomeNews: UITableViewCell {
     @IBOutlet weak var img: UIImageView!

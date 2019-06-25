@@ -2,8 +2,7 @@
 
 import UIKit
 import CD
-import Assets
-import Config
+import Util
 
 //MARK:--- 标签 ----------
 class Cell_HomeTitle: UITableViewCell {

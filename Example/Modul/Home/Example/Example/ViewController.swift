@@ -11,7 +11,9 @@ import UIKit
 import CD
 import Alamofire
 import SwiftyJSON
-import Cache
+import Cache 
+import ThirdSDK
+
 
 class ViewController: UIViewController {
     
@@ -25,6 +27,8 @@ class ViewController: UIViewController {
         reachability = CD_Net.reachability(block: { (status) in
             debugPrint("reachabilityStatus:",status)
         })
+        
+        
     }
     
     func makeHttpbin() {

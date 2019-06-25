@@ -8,6 +8,7 @@ target 'Example' do
   
   pod 'CD/All', :path => '~/Desktop/MyWorking/CDKit/CD/'
   pod 'Util', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
+  pod 'ThirdSDK', :path => '~/Desktop/MyWorking/CDKit/CD/Example/ThirdSDK/'
   
   #pod 'RxSwift'
   #pod 'RxCocoa'

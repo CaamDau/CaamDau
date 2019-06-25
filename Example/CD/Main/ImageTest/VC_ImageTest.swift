@@ -2,7 +2,7 @@
 
 import UIKit
 import CD
-import Assets
+import Util
 
 class Cell_ImageTest: UICollectionViewCell {
     

@@ -1,0 +1,6 @@
+module UnionPay {
+    header "Classes/UPPaymentControl.h"
+    export *
+}
+
+

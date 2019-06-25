@@ -10,7 +10,7 @@
 import Foundation
 import CD
 import TabbarNavigation
-import Config
+import Util
 
 class AppDelegate_VC: CD_AppDelegate {
     var window: UIWindow?
