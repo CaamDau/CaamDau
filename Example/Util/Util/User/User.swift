@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-import CD
+
+import CaamDau
 import KeychainAccess
 
 public class User {

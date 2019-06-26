@@ -8,10 +8,10 @@
 
 
 import UIKit
-import CD
+import CaamDau
 import Util
-import RxSwift
-import RxCocoa
+//import RxSwift
+//import RxCocoa
 
 
 extension VC_MineTableView {
@@ -30,7 +30,7 @@ class VC_MineTableView: UIViewController {
     @IBOutlet weak var tabbar: CD_TopBar!
     var vm:VM_MineTableView = VM_MineTableView()
     
-    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.cd.navigationBar(hidden: true)
@@ -54,25 +54,22 @@ class VC_MineTableView: UIViewController {
         
         makeCounDown()
     }
-    
+    var obs:NSObjectProtocol?
     func makeCounDown(){
         /// 输出
-        NotificationCenter.default.rx
-            .notification(Notification.Name(rawValue: "VC_MineTableView"), object: nil)
-            .asObservable()
-            .subscribe(onNext: { [weak self](n) in
-                if let model = n.userInfo?["VC_MineTableView"] as? CD_CountDown.Model {
-                    self?.tabbar._title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
-                }
-            }).disposed(by: disposeBag)
+        obs = cd_notify().addObserver(forName: Notification.Name(rawValue: "VC_MineTableView"), object: nil, queue: nil, using: { [weak self](n) in
+            if let model = n.userInfo?["VC_MineTableView"] as? CD_Timer.Model {
+                self?.tabbar._title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
+            }
+        })
         /// 输入
-        CD_CountDown.make(.notification("VC_MineTableView", 172800, 1), qos: .background)
+        CD_Timer.make(.notification("VC_MineTableView", 172800, 1), qos: .background)
         
     }
     
     deinit {
         //如果不需要保持 可以移除
-        //CD_CountDown.remove("VC_MineTableView")
+        //CD_Timer.remove("VC_MineTableView")
     }
 }
 

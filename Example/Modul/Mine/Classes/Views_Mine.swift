@@ -8,7 +8,7 @@
 
 
 import Foundation
-import CD
+import CaamDau
 import Util
 //MARK:--- 登录 ----------
 class Cell_MineSign:UITableViewCell{

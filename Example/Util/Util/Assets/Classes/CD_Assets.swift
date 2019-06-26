@@ -1,7 +1,8 @@
 //Created  on 2018/12/11  by LCD :https://github.com/liucaide .
 
 import Foundation
-import CD
+
+import CaamDau
 /*
  分析 资源图片的使用场景
  1、资源图片多，

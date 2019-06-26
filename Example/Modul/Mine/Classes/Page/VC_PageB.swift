@@ -8,7 +8,7 @@
 
 
 import UIKit
-import CD
+import CaamDau
 extension VC_PageB {
     static func show() -> VC_PageB {
         return VC_PageB.cd_storyboard(withBundle: "Mine", name: "PageStoryboard") as! VC_PageB

@@ -8,7 +8,7 @@
 
 
 import UIKit
-import CD
+import CaamDau
 class Cell_HUDProress: UITableViewCell {
     @IBOutlet weak var lab_num: UILabel!
     @IBOutlet weak var step0: UIStepper!
@@ -65,14 +65,14 @@ class Cell_HUDProress: UITableViewCell {
     }
     func proressCycle3() {
         guard proress2.progress < 100 else {return}
-        CD_CountDown.after(2) {[weak self] in
+        CD_Timer.after(2) {[weak self] in
             self?.proress3.progress += 10
             self?.proressCycle3()
         }
     }
     func proressCycle4() {
         guard proress4.progress < 100 else {return}
-        CD_CountDown.after(2) {[weak self] in
+        CD_Timer.after(2) {[weak self] in
             self?.proress4.progress += 15
             self?.proressCycle4()
         }

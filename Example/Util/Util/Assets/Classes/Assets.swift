@@ -1,7 +1,8 @@
 
     import Foundation
     import UIKit
-    import CD
+    
+import CaamDau
 
     public class Assets {
         public init(){}

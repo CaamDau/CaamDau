@@ -32,13 +32,13 @@ Pod::Spec.new do |s|
   s.subspec 'User' do |user|
     user.source_files = 'Util/User/**/*'
     user.dependency 'KeychainAccess', '~> 3.2.0'
-    user.dependency 'CD/Extension'
+    user.dependency 'CaamDau'
   end
 
   # 提示窗
   s.subspec 'HUD' do |hud|
     hud.source_files = 'Util/HUD/**/*'
-    hud.dependency 'CD/HUD'
+    hud.dependency 'CaamDau/HUD'
   end
 
   # 全局基本配置
@@ -47,19 +47,19 @@ Pod::Spec.new do |s|
     config.resource_bundles = {
       'Config' => ['Util/Config/Assets/*.{plist,xcassets}']
     }
-    config.dependency 'CD/Extension'
+    config.dependency 'CaamDau'
   end
 
   # 网络基本配置
   s.subspec 'Net' do |net|
     net.source_files = 'Util/Net/**/*'
-    net.dependency 'CD/Net/All'
+    net.dependency 'CaamDau/Net/All'
   end
 
   # 通用实施扩展 - ImageView Button ... 
   s.subspec 'Extension' do |ex|
     ex.source_files = 'Util/Extension/**/*'
-    ex.dependency 'CD/Extension'
+    ex.dependency 'CaamDau'
   end
 
   # 加密
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
     ass.resource_bundles = {
       'Assets' => ['Util/Assets/Assets/*.{xcassets}']
     }
-    ass.dependency 'CD/Extension'
+    ass.dependency 'CaamDau'
   end
 
   # 导航、Tab 图片资源
@@ -83,7 +83,7 @@ Pod::Spec.new do |s|
   #   tabass.resource_bundles = {
   #     'TabAssets' => ['Util/TabAssets/Assets/*.{xcassets}']
   #   }
-  #   tabass.dependency 'CD/Extension'
+  #   tabass.dependency 'CaamDau/Extension'
   # end
 
   # 购物车、商品详情、订单、图片资源
@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   #   carass.resource_bundles = {
   #     'CartAssets' => ['Util/CartAssets/Assets/*.{xcassets}']
   #   }
-  #   carass.dependency 'CD/Extension'
+  #   carass.dependency 'CaamDau/Extension'
   # end
 
   # 个人中心资源
@@ -101,7 +101,7 @@ Pod::Spec.new do |s|
   #   carass.resource_bundles = {
   #     'MineAssets' => ['Util/MineAssets/Assets/*.{xcassets}']
   #   }
-  #   carass.dependency 'CD/Extension'
+  #   carass.dependency 'CaamDau/Extension'
   # end
 
 

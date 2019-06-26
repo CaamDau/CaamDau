@@ -9,7 +9,7 @@
 
 import Foundation
 import UIKit
-import CD
+import CaamDau
 import Util
 
 extension VM_MineTableView {
@@ -21,7 +21,7 @@ extension VM_MineTableView {
         var num:Int!
         var open:Bool!
         
-        var down:CD_CountDown.Model?
+        var down:CD_Timer.Model?
         
         init(_ id:String, _ img:UIImage, _ time:TimeInterval, _ second:Double, _ num:Int, _ open:Bool) {
             self.id = id
@@ -33,7 +33,7 @@ extension VM_MineTableView {
         }
         
         deinit {
-            CD_CountDown.remove(self.id)
+            CD_Timer.remove(self.id)
         }
     }
 }
@@ -95,7 +95,7 @@ class VM_MineTableView {
         }
         
         
-        CD_CountDown.after(2) {[weak self] in
+        CD_Timer.after(2) {[weak self] in
             self?.blockRequest?()
         }
     }

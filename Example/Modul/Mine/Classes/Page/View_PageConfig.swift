@@ -8,7 +8,7 @@
 
 
 import UIKit
-import CD
+import CaamDau
 class View_PageConfig: UIView {
     @IBOutlet weak var bar_alig: UISegmentedControl!
     @IBOutlet weak var bar_marge: UISlider!

@@ -8,7 +8,7 @@
 
 
 import UIKit
-import CD
+import CaamDau
 import Util
 
 extension VC_Page {
@@ -176,7 +176,7 @@ class VC_Page: UIViewController {
         }
         
         
-        CD_CountDown.after(0.01) {
+        CD_Timer.after(0.01) {
             self.pageVC.selectIndex = 2
         }
         

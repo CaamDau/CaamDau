@@ -1,7 +1,7 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+import CaamDau
 import Util
 import SnapKit
 
@@ -73,7 +73,7 @@ public class VC_Mine: UIViewController {
             .estimatedAll()
             //.content(inset: UIEdgeInsets(top: topBar._heightStatusBar, left: 0, bottom: 0, right: 0))
             /*.headerMJGifWithModel({ [weak self] in
-                CD_CountDown.after(3, {[weak self] in
+                CD_Timer.after(3, {[weak self] in
                     self?.tableView.cd.endRefreshing()
                     self?.tableView.reloadData()
                 })

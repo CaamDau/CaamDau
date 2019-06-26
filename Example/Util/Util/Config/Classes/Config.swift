@@ -2,7 +2,8 @@
 
 import Foundation
 import UIKit
-import CD
+
+import CaamDau
 
 
 public struct Config{

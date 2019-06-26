@@ -8,7 +8,8 @@
 
 
 import Foundation
-import CD
+
+import CaamDau
 
 
 public class App_HUD: CD_AppDelegate {

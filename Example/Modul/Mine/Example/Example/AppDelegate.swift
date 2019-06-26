@@ -8,7 +8,7 @@
 
 
 import UIKit
-import CD
+import CaamDau
 
 class AppDelegate_VC: CD_AppDelegate {
     

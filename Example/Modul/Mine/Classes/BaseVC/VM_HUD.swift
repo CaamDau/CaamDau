@@ -2,7 +2,7 @@
 
 import Foundation
 import UIKit
-import CD
+import CaamDau
 import Util
 
 class Cell_BaseTabTitle:UITableViewCell {
@@ -184,7 +184,7 @@ extension VM_HUD {
             }
             form[Section.custom.rawValue].append(row)
         }
-        CD_CountDown.after(0.5) {[weak self] in
+        CD_Timer.after(0.5) {[weak self] in
             self?.mjRefreshType = [.tEnd]
             self?.reloadData?()
         }
@@ -201,7 +201,7 @@ extension VM_HUD {
                     cd_window()?.cd.hud_remove(2)
                     return
                 }
-                CD_CountDown.after(2) {[weak pro] in
+                CD_Timer.after(2) {[weak pro] in
                     pro?.progress += 10
                     proressCycle()
                 }
@@ -222,7 +222,7 @@ extension VM_HUD {
                     cd_window()?.cd.hud_remove(2)
                     return
                 }
-                CD_CountDown.after(2) {[weak pro] in
+                CD_Timer.after(2) {[weak pro] in
                     pro?.progress += 10
                     proressCycle()
                 }
@@ -282,7 +282,7 @@ extension VM_HUD: CD_ViewModelDataSource {
         makeFrom(refresh)
     }
     
-    var _collectionRegisters: [CD<UICollectionView>.CD_View] {
+    var _collectionRegisters: [CaamDau<UICollectionView>.CD_View] {
         return []
     }
     

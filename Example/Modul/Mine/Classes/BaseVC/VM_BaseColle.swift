@@ -2,7 +2,7 @@
 
 import Foundation
 import UIKit
-import CD
+import CaamDau
 import Util
 
 class Cell_BaseColleTitle:UICollectionViewCell {
@@ -65,7 +65,7 @@ extension VM_BaseColle: CD_ViewModelRefreshDelegater {
 }
 
 extension VM_BaseColle: CD_ViewModelCollectionViewDelegater {
-    var _collectionRegisters: [CD<UICollectionView>.CD_View] {
+    var _collectionRegisters: [CaamDau<UICollectionView>.CD_View] {
         return [.tCell(Cell_BaseColleTitle.self, nil, nil),
                 .tView(Header_BaseCollectionReusableView.self, nil, .tHeader, nil)]
     }
@@ -83,7 +83,7 @@ extension VM_BaseColle: CD_ViewModelDataSource {
             form.append([row,row,row,row,row,row,row,row,row,row,row,row])
         }
         
-        CD_CountDown.after(3) {[weak self] in
+        CD_Timer.after(3) {[weak self] in
             self?.mjRefreshType = [.tEnd]
             self?.reloadData?()
         }

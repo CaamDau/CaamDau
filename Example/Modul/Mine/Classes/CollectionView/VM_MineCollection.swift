@@ -8,7 +8,7 @@
 
 
 import Foundation
-import CD
+import CaamDau
 import Util
 
 extension VM_MineCollection {
@@ -49,7 +49,7 @@ struct VM_MineCollection {
         })
     }()
     
-    lazy var registerView:[CD<UICollectionView>.CD_View] = {
+    lazy var registerView:[CaamDau<UICollectionView>.CD_View] = {
         return [.tCell(Cell_MineCollectionImage.self, nil, "Mine"),
                 .tCell(Cell_MineCollectionLabel.self, nil, nil),
                 .tView(View_MineCollectionHeader.self, nil, .tHeader, "Mine"),

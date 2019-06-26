@@ -1,7 +1,8 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+
+import CaamDau
 import Util
 public extension VC_Sign{
     static func show() -> VC_Sign{

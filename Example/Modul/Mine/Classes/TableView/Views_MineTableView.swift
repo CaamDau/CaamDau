@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import CD
+import CaamDau
 import Util
 
 //MARK:--- 标签 ----------
@@ -40,18 +40,18 @@ class Cell_MineCountDown:UITableViewCell{
     }
     
     @IBAction func countdownClick(_ sender: UIButton) {
-        CD_CountDown.make(CD_CountDown.Style.delegate(self, self.model!.id, self.model!.time!, self.model!.second!))
+        CD_Timer.make(CD_Timer.Style.delegate(self, self.model!.id, self.model!.time!, self.model!.second!))
         
     }
 }
 
-extension Cell_MineCountDown:CD_CountDownProtocol{
-    func cd_countDown(withModel model: CD_CountDown.Model, id:String) {
+extension Cell_MineCountDown:CD_TimerProtocol{
+    func cd_countDown(withModel model: CD_Timer.Model, id:String) {
         if self.model?.id == id {
             makeDown(model)
         }
     }
-    func makeDown(_ model:CD_CountDown.Model) {
+    func makeDown(_ model:CD_Timer.Model) {
         self.lab_day.cd.text(model.day > 0 ? "\(model.day)天" : "")
         self.lab_hour.cd.text(model.hour > 9 ? "\(model.hour)" : "0\(model.hour)")
         self.lab_minute.cd.text(model.minute > 9 ? "\(model.minute)" : "0\(model.minute)")

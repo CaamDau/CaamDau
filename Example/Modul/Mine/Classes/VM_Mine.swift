@@ -8,7 +8,7 @@
 
 
 import Foundation
-import CD
+import CaamDau
 import Sign
 import Web
 import Util
@@ -96,7 +96,7 @@ extension VM_Mine{
         
         // --------- IconFont CountDown ----------
         do{
-            let row = CD_Row<Cell_MineTitle>(data: ("CD_CountDown","计时器"), frame: CGRect(h:45)) {
+            let row = CD_Row<Cell_MineTitle>(data: ("CD_Timer","计时器"), frame: CGRect(h:45)) {
                 VC_MineTableView.push()
             }
             self.forms[Section.other.rawValue].append(row)
