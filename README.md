@@ -19,26 +19,18 @@
 
 #### CaamDau 核心组件
 - [Form：UI排版组件—使UI排版更加直观、易扩展、易维护](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Form)
-- [Chain：链式调用组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Chain)
-- [Extension：便利性扩展](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Extension)
-- [Value：基本数据类型转换](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Value) 
+- [Extension：便利性扩展&链式](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Extension)
 - [RegEx：正则表达式](https://github.com/liucaide/CaamDau/tree/master/CaamDau/RegEx)
-- ... 持续增新
-
-#### CaamDau 辅助组件
+- [Value：基本数据类型转换](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Value) 
+- [Timer：计时管理组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/CountDown)
+- [AppDelegate：AppDelegate解耦方案](https://github.com/liucaide/CaamDau/tree/master/CaamDau/AppDelegate)
 - [HUD：提示窗组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/HUD) 
-  - 友情链接 [SwiftMessages](https://github.com/SwiftKickMobile/SwiftMessages)
 - [Page：分页导航控制组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Page) 
 - [TopBar：自定义导航栏组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/TopBar) 
-  - 扩展依赖 [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture)
-  - 友情链接 [EachNavigationBar 原生扩展](https://github.com/Pircate/EachNavigationBar)
-- [AppDelegate：AppDelegate解耦方案](https://github.com/liucaide/CaamDau/tree/master/CaamDau/AppDelegate)
-- [CountDown：计时管理组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/CountDown) 
 - [MVVM：MVVM ](https://github.com/liucaide/CaamDau/tree/master/CaamDau/MVVM)
 - [IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IconFont) 
 - [InputBox：输入框扩展组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/InputBox) 
 - [IBInspectable sb/xib 辅助](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IBInspectable) 
-
 - ... 持续增新
 
 #### 第三方扩展组件
@@ -72,7 +64,9 @@
 
 - 友情链接
   - [JianweiWangs](https://github.com/JianweiWangs)
+	- 
   - [Pircate](https://github.com/Pircate)
+  - [EachNavigationBar 原生扩展](https://github.com/Pircate/EachNavigationBar)
 
 ## Example
 

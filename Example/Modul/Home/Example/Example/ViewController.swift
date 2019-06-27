@@ -14,7 +14,6 @@ import SwiftyJSON
 import Cache 
 import ThirdSDK
 
-
 class ViewController: UIViewController {
     
     

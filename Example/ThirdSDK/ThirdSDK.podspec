@@ -26,7 +26,8 @@ Pod::Spec.new do |s|
 #  }
 
   s.subspec 'Core' do |core|
-    #core.dependency 'ThirdSDK/Ali'
+    core.dependency 'ThirdSDK/BaiduUp'
+    core.dependency 'ThirdSDK/Alipay'
     #core.dependency 'ThirdSDK/Wechat'
     core.dependency 'ThirdSDK/UnionPay'
     #core.dependency 'ThirdSDK/UM'
@@ -35,13 +36,21 @@ Pod::Spec.new do |s|
     #core.dependency 'ThirdSDK/Baidu'
     #core.dependency 'ThirdSDK/BaiduMap'
   end
-
+  
+  s.subspec 'BaiduUp' do |bdu|
+    bdu.source_files = 'ThirdSDK/BaiduUploader/Classes/**/*'
+    bdu.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '"-ObjC"' }
+    bdu.ios.vendored_frameworks = 'ThirdSDK/BaiduUploader/Frameworks/*.framework'
+    bdu.preserve_paths = 'ThirdSDK/BaiduUploader/Frameworks/module.modulemap'
+  end
+  
   # 阿里-支付宝
-  s.subspec 'Ali' do |ali|
-    ali.source_files = 'ThirdSDK/Ali/*'
-    ali.dependency 'AlipaySDK-iOS'
+  s.subspec 'Alipay' do |ali|
+    ali.source_files = 'ThirdSDK/Alipay/Classes/**/*'
+    ali.pod_target_xcconfig = { 'OTHER_LDFLAGS' => '"-ObjC"' }
+    ali.ios.vendored_frameworks = 'ThirdSDK/Alipay/Frameworks/*.framework'
+    ali.preserve_paths = 'ThirdSDK/Alipay/Frameworks/module.modulemap'
     ali.dependency 'CD/AppDelegate'
-    ali.preserve_paths = 'ThirdSDK/Ali/module.modulemap'
   end
 
   # 微信
@@ -53,13 +62,13 @@ Pod::Spec.new do |s|
   
   # 银联
   s.subspec 'UnionPay' do |unionpay|
-    unionpay.source_files = 'ThirdSDK/UnionPay/Classes/**/*'
-    unionpay.vendored_libraries = 'ThirdSDK/UnionPay/lib/*.a'
-    #unionpay.public_header_files = 'ThirdSDK/UnionPay/*.h'
-    unionpay.preserve_paths = 'ThirdSDK/UnionPay/module.modulemap'
+    unionpay.source_files = 'ThirdSDK/UnionPay/Classes/**/*', 'ThirdSDK/UnionPay/lib/*.h'
     unionpay.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
     unionpay.frameworks = 'SystemConfiguration', 'CFNetwork'
     unionpay.ios.library = 'c++', 'z'
+    unionpay.vendored_libraries = 'ThirdSDK/UnionPay/lib/*.a'
+    unionpay.public_header_files = 'ThirdSDK/UnionPay/lib/*.h'
+    unionpay.preserve_paths = 'ThirdSDK/UnionPay/lib/module.modulemap'
     unionpay.dependency 'CD/AppDelegate'
   end
 
