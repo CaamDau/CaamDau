@@ -13,7 +13,7 @@ import KeychainAccess
 
 public class User {
     public struct Keys {
-        fileprivate static let save:String = cd_appId() + "_user"
+        fileprivate static let save:String = CD.appId + "_user"
         fileprivate static let saveStyle:String = "_saveStyle"
         fileprivate static let accountList:String = "_accountList"
         fileprivate static let accountIndex:String = "_accountIndex"
@@ -56,7 +56,7 @@ public class User {
             guard statusNotification else {
                 return
             }
-            cd_notify().post(name: NSNotification.Name(User.Keys.statusNotificationName), object: signStatus)
+            CD.notice.post(name: NSNotification.Name(User.Keys.statusNotificationName), object: signStatus)
         }
     }
 }

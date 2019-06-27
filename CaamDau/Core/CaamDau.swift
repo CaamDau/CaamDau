@@ -25,4 +25,4 @@ public extension CaamDauCompatible {
 extension NSObject: CaamDauCompatible {}
 
 
-struct cd {}
+

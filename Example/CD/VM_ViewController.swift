@@ -1,7 +1,7 @@
 //Created  on 2019/1/11  by LCD :https://github.com/liucaide .
 
 import Foundation
-import CD
+import CaamDau
 import Home
 
 struct M_MainNews {

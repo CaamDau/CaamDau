@@ -65,11 +65,11 @@ public extension Notification {
         Notification.cd_post(notificationName: .cd_name(str), object: object, userInfo: userInfo)
     }
     static func cd_post(notificationName name:Notification.Name, object:Any? = nil, userInfo:[AnyHashable : Any]? = nil) {
-        cd_notify().post(name: name, object: object, userInfo: userInfo)
+        CD.notice.post(name: name, object: object, userInfo: userInfo)
     }
 }
 public extension Notification.Name {
     static func cd_name(_ name:String) -> Notification.Name {
-        return Notification.Name(cd_appId() + "." + name)
+        return Notification.Name(CD.appId + "." + name)
     }
 }

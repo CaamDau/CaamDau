@@ -4,7 +4,7 @@ platform :ios, '9.0'
 
 target 'Example' do
   
-  pod 'CaamDau/All', :path => '~/Desktop/MyWorking/CDKit/CaamDau/'
+  pod 'CaamDau', :path => '~/Desktop/MyWorking/CDKit/CaamDau/'
   pod 'Util', :path => '~/Desktop/MyWorking/CDKit/CaamDau/Example/Util/'
   pod 'Web', :path => '~/Desktop/MyWorking/CDKit/CaamDau/Example/Modul/'
   pod 'Sign', :path => '~/Desktop/MyWorking/CDKit/CaamDau/Example/Modul/'

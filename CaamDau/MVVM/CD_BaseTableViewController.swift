@@ -14,7 +14,7 @@ public struct R_CDBaseTableViewController {
     public static func push(_ vm:CD_ViewModelTableViewProtocol) {
         let vc = CD_BaseTableViewController()
         vc.vm = vm
-        cd_push(vc)
+        CD.push(vc)
     }
 }
 
@@ -134,20 +134,20 @@ extension CD_BaseTableViewController: UITableViewDelegate,UITableViewDataSource 
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section < (vm?._formHeader.count ?? 0) {
-            return vm?._formHeader[section].h ?? cd_sectionMinH()
+            return vm?._formHeader[section].h ?? CD.sectionMinH
         }else{
             guard let count = vm?._form[section].count, count > 0, let top = vm?._form[section].first?.insets.top, top > 0 else {
-                return cd_sectionMinH()
+                return CD.sectionMinH
             }
             return top
         }
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section < (vm?._formFooter.count ?? 0) {
-            return vm?._formFooter[section].h ?? cd_sectionMinH()
+            return vm?._formFooter[section].h ?? CD.sectionMinH
         }else{
             guard let count = vm?._form[section].count, count > 0, let bottom = vm?._form[section].first?.insets.bottom, bottom > 0 else {
-                return cd_sectionMinH()
+                return CD.sectionMinH
             }
             return bottom
         }

@@ -17,13 +17,13 @@ public class Assets {
         print_cd("Assets deinit")
     }
     public lazy var logo_200:UIImage = {
-        return UIImage.cd_podImg(name:"logo_launch", forClass: Assets.self)
+        return UIImage.cd_bundle("logo_launch", forClass: Assets.self)
     }()
 }
 //MARK:--- 夜间模式 ----------
 public class AssetsDark {
     public init(){}
-    public let logo_200:UIImage = UIImage.cd_podImg(name:"logo_launch", forClass: Assets.self)
+    public let logo_200:UIImage = UIImage.cd_bundle("logo_launch", forClass: Assets.self)
 }
 */
 
@@ -34,13 +34,13 @@ public enum AssetsImg {
     public var light:UIImage{
         switch self {
         case .logo_0:
-            return UIImage.cd_podImg(name:"launchScreen", forClass: Assets.self)
+            return UIImage.cd_bundle("launchScreen", forClass: Assets.self)
         }
     }
     public var dark:UIImage{
         switch self {
         case .logo_0:
-            return UIImage.cd_podImg(name:"launchScreen", forClass: Assets.self)
+            return UIImage.cd_bundle("launchScreen", forClass: Assets.self)
         }
     }
 }
@@ -52,6 +52,6 @@ public class AssetsShare {
     }
     public static let share = AssetsShare()
     
-    public let logo_60:UIImage = UIImage.cd_podImg(name:"launchScreen1", forClass: Assets.self)
+    public let logo_60:UIImage = UIImage.cd_bundle("launchScreen1", forClass: Assets.self)
 }
 */

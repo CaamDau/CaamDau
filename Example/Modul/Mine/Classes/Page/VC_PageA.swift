@@ -13,7 +13,7 @@ import Util
 
 extension VC_PageA {
     static func show() -> VC_PageA {
-        return VC_PageA.cd_storyboard(withBundle: "Mine", name: "PageStoryboard") as! VC_PageA
+        return VC_PageA.cd_storyboard( "PageStoryboard", from: "Mine") as! VC_PageA
     }
 }
 class VC_PageA: UIViewController {
@@ -75,7 +75,7 @@ extension VC_PageA: UITableViewDelegate, UITableViewDataSource {
     
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        guard let supVC = cd_visibleVC() as? VC_Page else {
+        guard let supVC = CD.visibleVC as? VC_Page else {
             return
         }
         if velocity.y > 1.0 {

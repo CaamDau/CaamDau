@@ -39,7 +39,7 @@ extension CD_TopBarProtocol {
     }
     public func super_topBarClick(_ item:CD_TopNavigationBar.Item) {
         if item == .leftItem1 {
-            cd_pop()
+            CD.pop()
         }
     }
     public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
@@ -68,7 +68,7 @@ open class CD_TopBar: UIView {
     public struct Model {
         /// 状态栏 高度
         public static var height_status:CGFloat = {
-            return (CD_Device.mode == .iPhoneX ? 44 : 20) //刘海高度大约 34
+            return (CD.Device.mode == .iPhoneX ? 44 : 20) //刘海高度大约 34
         }()
         /// 状态栏 prompt 高度
         public static var height_prompt:CGFloat = 20
@@ -466,20 +466,20 @@ private extension CD_TopBar {
     func makeNavigationBar(){
         
         /*
-        if cd_visibleVC()?.presentingViewController == nil {
+        if CD.visibleVC?.presentingViewController == nil {
             
         }else{
             
         }
-        if cd_topVC()?.navigationController?.viewControllers.count == 1 {
+        if CD.topVC?.navigationController?.viewControllers.count == 1 {
             bar_navigation.item_left.btn_1.cd
                 .text("").text(CD_TopBar.Model.font_title)
         }
         
         CD_Timer.after(2) {
             print("cd_1-->")
-            print("cd_visVC-->",cd_visibleVC())
-            print("cd_topVC-->",cd_topVC())
+            print("cd_visVC-->",CD.visibleVC)
+            print("cd_topVC-->",CD.topVC)
         }*/
         
         

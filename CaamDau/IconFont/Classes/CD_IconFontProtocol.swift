@@ -89,7 +89,7 @@ public extension UIImage {
         let scale = UIScreen.main.scale
         let size = font.size
         UIGraphicsBeginImageContextWithOptions(CGSize(width: size, height: size),false,0)
-        NSString(string: font.text).draw(at: point, withAttributes: [NSAttributedString.Key.font : font.font.fit(), NSAttributedString.Key.foregroundColor:color])
+        NSString(string: font.text).draw(at: point, withAttributes: [NSAttributedString.Key.font : font.font.cd_fit(), NSAttributedString.Key.foregroundColor:color])
         
         guard let imageCG:CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage  else {
             assertionFailure("👉👉👉CGImage - 失败  👻")

@@ -238,6 +238,6 @@ public extension CD_RegEx {
     }
     
     static func match(_ string:String, pattern:String) -> Bool {
-        return CD.makeRegEx(pattern)?.cd.match(string) ?? false
+        return CaamDau.makeRegEx(pattern)?.cd.match(string) ?? false
     }
 }

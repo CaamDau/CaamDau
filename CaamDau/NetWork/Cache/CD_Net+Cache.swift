@@ -12,7 +12,7 @@ import Cache
 
 public extension CD_Net {
     func makeStorage() -> Storage<Data>? {
-        return try? Storage<Data>(diskConfig: DiskConfig(name: cd_appId()), memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10), transformer: TransformerFactory.forData())
+        return try? Storage<Data>(diskConfig: DiskConfig(name: CD.appId), memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10), transformer: TransformerFactory.forData())
     }
     
     /// 默认使用 url ,相同url 增加 key 标识
@@ -48,7 +48,7 @@ public extension CD_Net {
     
     static func removeAllCacheData() {
         DispatchQueue.global(qos: .default).async {
-            let storage = try? Storage<Data>(diskConfig: DiskConfig(name: cd_appId()), memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10), transformer: TransformerFactory.forData())
+            let storage = try? Storage<Data>(diskConfig: DiskConfig(name: CD.appId), memoryConfig: MemoryConfig(expiry: .never, countLimit: 10, totalCostLimit: 10), transformer: TransformerFactory.forData())
             try? storage?.removeAll()
         }
     }

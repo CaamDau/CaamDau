@@ -64,7 +64,7 @@ public class CD_PageViewController: UIViewController {
         super.viewDidLoad()
         makeScrollView()
         
-        observer = cd_notify().addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main, using: { [weak self](n) in
+        observer = CD.notice.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main, using: { [weak self](n) in
             self?.updateLayoutScrollView()
             self?.selectTo(false)
         })

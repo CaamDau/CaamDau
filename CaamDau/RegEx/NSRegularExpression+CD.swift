@@ -9,7 +9,7 @@
 
 import Foundation
 
-public extension CD where Base: NSTextCheckingResult {
+public extension CaamDau where Base: NSTextCheckingResult {
     /// 返回匹配字符串
     @discardableResult
     func string(in string:String) -> String {
@@ -43,11 +43,11 @@ public extension CD where Base: NSTextCheckingResult {
 
 public extension NSRegularExpression {
     static func cd_init(_ pattern: String, options: NSRegularExpression.Options = []) -> NSRegularExpression? {
-        return CD.makeRegEx(pattern, options:options)
+        return CaamDau.makeRegEx(pattern, options:options)
     }
 }
 
-public extension CD where Base: NSRegularExpression {
+public extension CaamDau where Base: NSRegularExpression {
     /// 初始化 NSRegularExpression
     /// .caseInsensitive 忽略字母、不区分大小写的\n
     /// .allowCommentsAndWhitespace 忽略空格、# -
@@ -112,6 +112,6 @@ public extension CD where Base: NSRegularExpression {
 
 public extension String {
     func cd_regex(_ pattern:String) -> Bool {
-        return CD.makeRegEx(pattern)?.cd.match(self) ?? false
+        return CaamDau.makeRegEx(pattern)?.cd.match(self) ?? false
     }
 }

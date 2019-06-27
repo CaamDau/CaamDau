@@ -13,13 +13,13 @@ import Util
 
 extension VC_Page {
     static func show() -> VC_Page {
-        return VC_Page.cd_storyboard(withBundle: "Mine", name: "MineStoryboard") as! VC_Page
+        return VC_Page.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Page
     }
     static func push(_ style:Style) {
         let vc = VC_Page.show()
         vc.style = style
         vc.hidesBottomBarWhenPushed = true
-        cd_visibleVC()?.navigationController?.pushViewController(vc, animated: true)
+        CD.visibleVC?.navigationController?.pushViewController(vc, animated: true)
     }
     enum Style:Int {
         case hh = 0
@@ -245,7 +245,7 @@ extension VC_Page {
 //        self.topBar.hidden(navigationBar: hidden) { (bool) in
 //            
 //        }
-        //self.pageVC._itemSize = CGSize(w: cd_screenW(), h: cd_screenH()-(hidden ? 20 : 64)-40)
+        //self.pageVC._itemSize = CGSize(w: CD.screenW, h: cd_screenH()-(hidden ? 20 : 64)-40)
     }
 }
 

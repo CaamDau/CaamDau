@@ -133,7 +133,7 @@ public enum CD_IconFont {
 
 extension CD_IconFont:CD_IconFontProtocol{
     public var font:UIFont {
-        return UIFont.iconFont(name: "cd_iconfont", size: self.size, forClass: CD_IconFont.Help.self, from: "IconFont")
+        return UIFont.iconFont("cd_iconfont", size: self.size, forClass: CD_IconFont.Help.self, from: "IconFont")
     }
     
     public var size: CGFloat {

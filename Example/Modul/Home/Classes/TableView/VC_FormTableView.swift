@@ -1,16 +1,15 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+import CaamDau
 
 extension VC_FormTableView{
     static func show() -> VC_FormTableView{
-        return VC_FormTableView.cd_storyboard(withBundle:"Home", name:"HomeStoryboard") as! VC_FormTableView
+        return VC_FormTableView.cd_storyboard("HomeStoryboard", from: "Home") as! VC_FormTableView
     }
     static func push(){
         let vc = VC_FormTableView.show()
-        vc.hidesBottomBarWhenPushed = true
-        cd_topVC()?.navigationController?.pushViewController(vc, animated: true)
+        CD.push(vc)
     }
 }
 

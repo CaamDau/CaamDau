@@ -85,7 +85,7 @@ extension CD_PageView {
         self.cd.add(scrollView)
         CD_Page.makeLayout(withScrollView: scrollView)
         updateLayoutScrollView()
-        observer = cd_notify().addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main, using: { [weak self](n) in
+        observer = CD.notice.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: OperationQueue.main, using: { [weak self](n) in
             self?.updateLayoutScrollView()
             self?.selectTo(false)
         })

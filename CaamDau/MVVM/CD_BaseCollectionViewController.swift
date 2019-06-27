@@ -13,7 +13,7 @@ public struct R_CDBaseCollectionViewController {
     public static func push(_ vm:CD_ViewModelCollectionViewProtocol) {
         let vc = CD_BaseCollectionViewController()
         vc.vm = vm
-        cd_push(vc)
+        CD.push(vc)
     }
 }
 

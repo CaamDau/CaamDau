@@ -3,11 +3,21 @@
 import Foundation
 import UIKit
 
+public extension CaamDau where Base: UIFont {
+    var fit:UIFont {
+        base.withSize(base.pointSize+UIFont.cd_fontFitSizeRatio)
+        return base
+    }
+    func fit(_ size:CGFloat) -> UIFont {
+        base.withSize(base.pointSize+size)
+        return base
+    }
+}
 
 public extension UIFont {
     public static var cd_fontFitSizeRatio:CGFloat = 0
-    func fit() -> UIFont {
-        return self.withSize(self.pointSize+UIFont.cd_fontFitSizeRatio)
+    func cd_fit(_ size:CGFloat = UIFont.cd_fontFitSizeRatio) -> UIFont {
+        return self.withSize(self.pointSize+size)
     }
     
     //MARK:--- IconFont ----------
@@ -22,10 +32,10 @@ public extension UIFont {
     }*/
     
     ///IconFont name:font-family forClass:class  from: pod resource_bundles key
-    static func iconFont(name:String, size:CGFloat, forClass:AnyClass? = nil, from:String? = nil) -> UIFont {
+    static func iconFont(_ name:String, size:CGFloat, forClass:AnyClass? = nil, from:String? = nil) -> UIFont {
         if let clas = forClass,  let bu = Bundle.cd_bundle(clas, from) {
             let path = String(format: "%@/%@.ttf", bu.bundlePath, name)
-            return UIFont.iconFont(name: name, size: size, url:URL(fileURLWithPath: path))
+            return UIFont.iconFont(name, size: size, url:URL(fileURLWithPath: path))
         }
         else if let font = UIFont(name: name, size: size){
             return font
@@ -36,12 +46,12 @@ public extension UIFont {
                 assertionFailure("👉👉👉IconFont-请确认\(name).ttf 和 font-family是否配置正确  👻")
                 return UIFont.systemFont(ofSize: size)
             }
-            return UIFont.iconFont(name: name, size: size, url:url)
+            return UIFont.iconFont(name, size: size, url:url)
         }
     }
     
     ///IconFont name:font-family url: Bundle url
-    static func iconFont(name:String, size:CGFloat, url:URL) -> UIFont {
+    static func iconFont(_ name:String, size:CGFloat, url:URL) -> UIFont {
         guard let data = try? Data(contentsOf: url) else {
             assertionFailure("👉👉👉IconFont- 失败  👻")
             return UIFont.systemFont(ofSize: size)

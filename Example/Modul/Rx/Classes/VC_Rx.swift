@@ -1,13 +1,13 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+import CaamDau
 
 
 
 public extension VC_Rx{
     static func show() -> VC_Rx{
-        return VC_Rx.cd_storyboard(withBundle:"Rx", name: "RxStoryboard") as! VC_Rx
+        return VC_Rx.cd_storyboard("RxStoryboard", from: "Rx") as! VC_Rx
     }
 }
 

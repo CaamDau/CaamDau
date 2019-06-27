@@ -16,12 +16,11 @@ import Util
 
 extension VC_MineTableView {
     static func show() -> VC_MineTableView {
-        return VC_MineTableView.cd_storyboard(withBundle: "Mine", name: "MineStoryboard") as! VC_MineTableView
+        return VC_MineTableView.cd_storyboard( "MineStoryboard", from: "Mine") as! VC_MineTableView
     }
     static func push() {
         let vc = VC_MineTableView.show()
-        vc.hidesBottomBarWhenPushed = true
-        cd_topVC()?.navigationController?.pushViewController(vc, animated: true)
+        CD.push(vc)
     }
 }
 
@@ -57,7 +56,7 @@ class VC_MineTableView: UIViewController {
     var obs:NSObjectProtocol?
     func makeCounDown(){
         /// 输出
-        obs = cd_notify().addObserver(forName: Notification.Name(rawValue: "VC_MineTableView"), object: nil, queue: nil, using: { [weak self](n) in
+        obs = CD.notice.addObserver(forName: Notification.Name(rawValue: "VC_MineTableView"), object: nil, queue: nil, using: { [weak self](n) in
             if let model = n.userInfo?["VC_MineTableView"] as? CD_Timer.Model {
                 self?.tabbar._title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
             }

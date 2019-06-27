@@ -13,12 +13,12 @@ import Util
 
 extension VC_MineCollection {
     static func show() -> VC_MineCollection {
-        return VC_MineCollection.cd_storyboard(withBundle: "Mine", name: "MineStoryboard") as! VC_MineCollection
+        return VC_MineCollection.cd_storyboard("MineStoryboard", from: "Mine") as! VC_MineCollection
     }
     static func push() {
         let vc = VC_MineCollection.show()
         vc.hidesBottomBarWhenPushed = true
-        cd_topVC()?.navigationController?.pushViewController(vc, animated: true)
+        CD.push(vc)
     }
 }
 
@@ -34,7 +34,6 @@ class VC_MineCollection: UIViewController {
         self.collectionView.cd
             .background(Config.color.bg)
             .register(self.vm.registerView)
-        
     }
 }
 

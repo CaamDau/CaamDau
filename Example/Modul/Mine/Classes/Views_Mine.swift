@@ -16,7 +16,7 @@ class Cell_MineSign:UITableViewCell{
     override func awakeFromNib() {
         super.awakeFromNib()
         lab_title.cd
-            .text(Config.font.fontMedium(15).fit())
+            .text(Config.font.fontMedium(15).cd_fit())
             .text(Config.color.main_1)
     }
 }
@@ -32,11 +32,11 @@ class Cell_MineTitle:UITableViewCell{
     override func awakeFromNib() {
         super.awakeFromNib()
         textLabel?.cd
-            .text(Config.font.fontRegular(15).fit())
+            .text(Config.font.fontRegular(15).cd_fit())
             .text(Config.color.txt_1)
         
         detailTextLabel?.cd
-            .text(Config.font.fontRegular(12).fit())
+            .text(Config.font.fontRegular(12).cd_fit())
             .text(Config.color.txt_3)
     }
 }
@@ -57,11 +57,11 @@ class Cell_MineForm: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.lab_title.cd
-            .text(Config.font.fontRegular(15).fit())
+            .text(Config.font.fontRegular(15).cd_fit())
             .text(Config.color.txt_1)
         
         self.btn_github.cd
-            .text(Config.font.fontRegular(15).fit())
+            .text(Config.font.fontRegular(15).cd_fit())
             .background(Config.color.main_3)
     }
     var callBack: CD_RowCallBack?

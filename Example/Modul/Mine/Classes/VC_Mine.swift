@@ -8,7 +8,7 @@ import SnapKit
 public extension VC_Mine{
     
     static func show() -> VC_Mine{
-        return VC_Mine.cd_storyboard(withBundle:"Mine", name:"MineStoryboard") as! VC_Mine
+        return VC_Mine.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Mine
     }
 }
 
@@ -37,7 +37,7 @@ public class VC_Mine: UIViewController {
     
     var tableViewHeaderHeight:CGFloat = 220
     lazy var tableViewHeader: UIView = {
-        let vv = UIView(frame: CGRect(w: cd_screenW(), h: tableViewHeaderHeight))
+        let vv = UIView(frame: CGRect(w: CD.screenW, h: tableViewHeaderHeight))
         vv.addSubview(tableViewHeaderImgBg)
         tableViewHeaderImgBg.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -82,6 +82,12 @@ public class VC_Mine: UIViewController {
             .table(headerView: tableViewHeader)
         
         topBar.delegate = self
+        
+        
+        _ = CD.window
+        _ = CD.window
+        _ = CD.window
+        _ = CD.window
     }
 }
 

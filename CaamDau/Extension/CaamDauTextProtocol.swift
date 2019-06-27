@@ -10,14 +10,14 @@
 import Foundation
 import UIKit
 
-public protocol CDTextProtocol {
+public protocol CaamDauTextProtocol {
     /// T: String、NSAttributedString、UIColor、NSTextAlignment、UIFont、、
-    //func setText<T>(_ t: T?, _ state:UIControl.State?)
+    func setText<T>(_ t: T?, _ state:UIControl.State?)
 }
 
-extension CDTextProtocol {
+extension CaamDauTextProtocol {
     /// T: String、NSAttributedString、UIColor、NSTextAlignment、UIFont、、
-    func setText<T>(_ t: T?, _ state:UIControl.State?){
+    public func setText<T>(_ t: T?, _ state:UIControl.State?){
         switch self {
         case let ui as UILabel:
             switch t {
@@ -84,7 +84,7 @@ extension CDTextProtocol {
 }
 
 
-public extension CaamDau where Base: CDTextProtocol {
+public extension CaamDau where Base: CaamDauTextProtocol {
     /// T: String、NSAttributedString、UIColor、NSTextAlignment、UIFont、、 state -> button use
     @discardableResult
     func text<T>(_ t: T?, _ state:UIControl.State? = .normal) -> CaamDau {
@@ -93,7 +93,7 @@ public extension CaamDau where Base: CDTextProtocol {
     }
 }
 
-extension UILabel: CDTextProtocol {}
-extension UIButton: CDTextProtocol {}
-extension UITextField: CDTextProtocol {}
-extension UITextView: CDTextProtocol {}
+extension UILabel: CaamDauTextProtocol {}
+extension UIButton: CaamDauTextProtocol {}
+extension UITextField: CaamDauTextProtocol {}
+extension UITextView: CaamDauTextProtocol {}

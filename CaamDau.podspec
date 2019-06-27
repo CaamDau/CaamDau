@@ -17,19 +17,20 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
   # s.source_files = 'CaamDau/**/*'
   
-  s.default_subspec = 'Core'
+  s.default_subspec = 'All'
   
   s.subspec 'Core' do |co|
     co.source_files = 'CaamDau/Core/*.swift',
     'CaamDau/Extension/*.swift',
     'CaamDau/Form/*.{swift}',
     'CaamDau/IBInspectable/*.{swift}',
-    'CaamDau/Timer/*.{swift}',
-    'CaamDau/Value/*.{swift}', 'CaamDau/RegEx/*.{swift}'
+    'CaamDau/RegEx/*.{swift}'
   end
   
   s.subspec 'Module' do |mo|
     mo.dependency 'CaamDau/Core'
+    mo.dependency 'CaamDau/Timer'
+    mo.dependency 'CaamDau/Value'
     mo.dependency 'CaamDau/InputBox'
     mo.dependency 'CaamDau/IconFont'
     mo.dependency 'CaamDau/Page'
@@ -47,13 +48,17 @@ Pod::Spec.new do |s|
     all.dependency 'CaamDau/FDFullscreenPopGesture'
     all.dependency 'CaamDau/MJRefresh'
     all.dependency 'CaamDau/Net/All'
-    
   end
   
-  
-  # ---- 核心扩展
-  
   # ---- 核心插件 组件
+  s.subspec 'Timer' do |t|
+    t.source_files = 'CaamDau/Timer/*.{swift}'
+  end
+  
+  s.subspec 'Value' do |v|
+    v.source_files = 'CaamDau/Value/*.{swift}'
+  end
+  
   s.subspec 'AppDelegate' do |app|
     app.source_files = 'CaamDau/AppDelegate/*.{swift}'
   end
@@ -116,11 +121,12 @@ Pod::Spec.new do |s|
   s.subspec 'Net' do |net|
     
     net.subspec 'Core' do |core|
-      core.source_files = 'CaamDau/NetWork/*.{swift}'
+      core.source_files = 'CaamDau/NetWork/Core/*'
       core.dependency 'Alamofire', '4.8.2'
     end
     
     net.subspec 'All' do |all|
+      all.dependency 'CaamDau/Net/Core'
       all.dependency 'CaamDau/Net/SwiftyJSON'
       all.dependency 'CaamDau/Net/Cache'
       all.dependency 'CaamDau/Net/Codable'

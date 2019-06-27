@@ -1,7 +1,7 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+import CaamDau
 import Util
 
 //MARK:--- 标签 ----------
@@ -12,11 +12,11 @@ class Cell_HomeTitle: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.lab_title.cd
-            .text(Config.font.font(14).fit())
+            .text(Config.font.font(14).cd.fit)
             .text(Config.color.txt_1)
         
         self.btn_github.cd
-            .text(Config.font.font(14).fit())
+            .text(Config.font.font(14).cd.fit)
     }
     var callBack: CD_RowCallBack?
     @IBAction func buttonClick(_ sender: Any) {
@@ -44,7 +44,7 @@ extension View_Header: CD_RowUpdateProtocol {
         self.textLabel?.cd
             .text(data)
             .text(Config.color.txt_2)
-            .text(Config.font.fontBold(13).fit())
+            .text(Config.font.fontBold(13).cd.fit)
     }
     
 }

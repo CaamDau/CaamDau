@@ -3,15 +3,15 @@
 import Foundation
 import UIKit
 
-public protocol CDViewProtocol {
+public protocol CaamDauViewProtocol {
     /// T: UIView、UIGestureRecognizer、NSLayoutConstraint、[NSLayoutConstraint]、、
     func addT<T>(_ t: T?)
 }
-extension CDViewProtocol {
+extension CaamDauViewProtocol {
     func addT<T>(_ t: T?){}
 }
 
-public extension CaamDau where Base: CDViewProtocol {
+public extension CaamDau where Base: CaamDauViewProtocol {
     @discardableResult
     public func add<T>(_ t: T?) -> CaamDau {
         base.addT(t)
@@ -19,7 +19,7 @@ public extension CaamDau where Base: CDViewProtocol {
     }
 }
 
-extension UIView: CDViewProtocol {
+extension UIView: CaamDauViewProtocol {
     public func addT<T>(_ t: T?) {
         switch t {
         case let subview as UIView :
@@ -386,9 +386,9 @@ public extension CaamDau where Base: UIScrollView {
 
 
 public extension UIView{
-    static func cd_loadNib(whthBundle from:String? = nil, nibName:String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> [Any]? {
+    static func cd_loadNib(_ name:String? = nil, from:String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> [Any]? {
         let bundle = Bundle.cd_bundle(self, from) ?? Bundle.main
-        return bundle.loadNibNamed(nibName ?? String(describing: self), owner: owner, options: options)
+        return bundle.loadNibNamed(name ?? String(describing: self), owner: owner, options: options)
     }
 }
 

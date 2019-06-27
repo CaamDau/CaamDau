@@ -6,7 +6,7 @@ import CaamDau
 import Util
 public extension VC_Sign{
     static func show() -> VC_Sign{
-        return VC_Sign.cd_storyboard(withBundle:"Sign", name:"SignStoryboard") as! VC_Sign
+        return VC_Sign.cd_storyboard("SignStoryboard", from: "Sign") as! VC_Sign
     }
     
     @discardableResult
@@ -15,7 +15,7 @@ public extension VC_Sign{
         let vc = VC_Sign.show()
         vc.canBack = canBack
         vc.blockEnd = blockEnd
-        let pvc = cd_visibleVC()
+        let pvc = CD.visibleVC
         pvc?.present(vc, animated: true, completion: nil)
         return false
     }

@@ -4,7 +4,7 @@ import RxCocoa
 import Alamofire
 import RxAlamofire
 import SwiftyJSON
-import CD
+import CaamDau
 
 
 /// 一般来说，在开发中 都是 model先行的，并不一定先有明确的 json

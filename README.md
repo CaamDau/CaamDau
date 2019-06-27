@@ -1,4 +1,6 @@
-![](https://github.com/liucaide/Images/blob/master/CD/caamdau.png)
+<p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/caamdau.png" align=centre />
+</p>
 
 [![CI Status](https://img.shields.io/travis/liucaide/CaamDau.svg?style=flat)](https://travis-ci.org/liucaide/CaamDau)
 [![Version](https://img.shields.io/cocoapods/v/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)

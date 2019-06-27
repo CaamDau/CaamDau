@@ -123,26 +123,26 @@ extension VM_HUD {
         
         do{//MARK:--- HUD ----------
             let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Title"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:10)) {
-                cd_window()?.cd.hud(.text, title:VM_HUD.title)
+                CD.window?.cd.hud(.text, title:VM_HUD.title)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
             let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Title-Detail"), frame: CGRect( h: 50)) {
-                cd_window()?.cd.hud(.text, title:VM_HUD.title, detail:"\((0..<500).map{_ in VM_HUD.detail}.joined())")
+                CD.window?.cd.hud(.text, title:VM_HUD.title, detail:"\((0..<500).map{_ in VM_HUD.detail}.joined())")
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{
             let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Loading"), frame: CGRect( h: 50)) {
-                cd_window()?.cd.hud(.loading(VM_HUD.loadingStyle), title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
+                CD.window?.cd.hud(.loading(VM_HUD.loadingStyle), title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
             let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Infos"), frame: CGRect( h: 50)) {
-                cd_window()?.cd.hud(VM_HUD.infoStyle, title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
+                CD.window?.cd.hud(VM_HUD.infoStyle, title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
             }
             form[Section.hud.rawValue].append(row)
         }
@@ -159,7 +159,7 @@ extension VM_HUD {
                  image.heightAnchor.constraint(equalToConstant: 30).isActive = true
                  image.widthAnchor.constraint(equalTo: image.heightAnchor, multiplier: 1).isActive = true
                  */
-                cd_window()?.cd.hud(.custom(image), title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(3)
+                CD.window?.cd.hud(.custom(image), title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(3)
             }
             
             form[Section.hud.rawValue].append(row)
@@ -198,7 +198,7 @@ extension VM_HUD {
             func proressCycle() {
                 guard let pp = pro else { return }
                 guard pp.progress < 100 else {
-                    cd_window()?.cd.hud_remove(2)
+                    CD.window?.cd.hud_remove(2)
                     return
                 }
                 CD_Timer.after(2) {[weak pro] in
@@ -206,7 +206,7 @@ extension VM_HUD {
                     proressCycle()
                 }
             }
-            cd_window()?.cd.hud(.progress(.default(model: CD_HUDProgressView.Model(), handler: { (vv) in
+            CD.window?.cd.hud(.progress(.default(model: CD_HUDProgressView.Model(), handler: { (vv) in
                 pro = vv
                 proressCycle()
             })), title: VM_HUD.title, detail: VM_HUD.detail)
@@ -219,7 +219,7 @@ extension VM_HUD {
             pro.model = model
             func proressCycle() {
                 guard pro.progress < 100 else {
-                    cd_window()?.cd.hud_remove(2)
+                    CD.window?.cd.hud_remove(2)
                     return
                 }
                 CD_Timer.after(2) {[weak pro] in
@@ -227,7 +227,7 @@ extension VM_HUD {
                     proressCycle()
                 }
             }
-            cd_window()?.cd.hud(.progress(.view(pro)), title: VM_HUD.title, detail: VM_HUD.detail)
+            CD.window?.cd.hud(.progress(.view(pro)), title: VM_HUD.title, detail: VM_HUD.detail)
             proressCycle()
         }
     }
@@ -272,7 +272,7 @@ extension VM_HUD {
                 break
             }
         }
-        cd_window()?.cd.hud(.text, title: "HUD", detail: "自定义动画", model: model).hud_remove(3)
+        CD.window?.cd.hud(.text, title: "HUD", detail: "自定义动画", model: model).hud_remove(3)
     }
 }
 

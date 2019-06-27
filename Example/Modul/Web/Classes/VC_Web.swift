@@ -6,14 +6,14 @@ import WebKit
 import SnapKit
 public extension VC_Web{
     class func show() -> VC_Web{
-        return VC_Web.cd_storyboard(withBundle:"Web", name:"WebStoryboard") as! VC_Web
+        return VC_Web.cd_storyboard("WebStoryboard", from: "Web") as! VC_Web
     }
     
     class func push(_ style:VC_Web.Style){
         let vc = VC_Web.show()
         vc.webType = style
         vc.hidesBottomBarWhenPushed = true
-        cd_topVC()?.navigationController?.pushViewController(vc, animated: true)
+        CD.push(vc)
     }
 }
 

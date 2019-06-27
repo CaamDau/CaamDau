@@ -2,7 +2,6 @@
 
 import Foundation
 import UIKit
-
 import CaamDau
 
 
@@ -158,7 +157,7 @@ public extension Config {
         }
         /// 此方法需要在App启动时 运行 设置，如果需要更高级的管理，可自行扩展
         public static func setFontFitSizeRatio(){
-            switch CD_DeviceFit.mode {
+            switch CD.DeviceFit.mode {
             case .iPad:
                 UIFont.cd_fontFitSizeRatio = fitSizeiPad
             case .iPhone320:
@@ -180,52 +179,52 @@ public extension Config {
         public static func font(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontMedium(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameMedium, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.medium)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontBold(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontThin(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameThin, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.thin)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontRegular(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameRegular, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontSemibold(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameSemibold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontUltralight(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameUltralight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.ultraLight)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontLight(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameLight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontHeavy(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameHeavy, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.heavy)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
         public static func fontBlack(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
             let font = UIFont(name: nameBlack, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.black)
-            return fit ? font.fit() : font
+            return fit ? font.cd_fit() : font
         }
     }
 }
@@ -242,7 +241,7 @@ public extension Config {
         }
         
         public static func fit(_ f:CGFloat) -> CGFloat {
-            return (f/widthAxure)*cd_screenW()
+            return (f/widthAxure)*CD.screenW
         }
     }
 }
@@ -276,23 +275,23 @@ public extension Config {
         
         
         public static var iconBig:UIImage = {
-            return UIImage.cd_podImg(name:placeholderUserIconBig, forClass:Config.Help.self, from:"Config")
+            return UIImage.cd_bundle(placeholderUserIconBig, forClass:Config.Help.self, from:"Config")
         }()
         public static var iconSmall:UIImage = {
-            return UIImage.cd_podImg(name:placeholderUserIconSmall, forClass:Config.Help.self, from:"Config")
+            return UIImage.cd_bundle(placeholderUserIconSmall, forClass:Config.Help.self, from:"Config")
         }()
         public static var imgBig:UIImage = {
-            return UIImage.cd_podImg(name:placeholderBgBig, forClass:Config.Help.self, from:"Config")
+            return UIImage.cd_bundle(placeholderBgBig, forClass:Config.Help.self, from:"Config")
         }()
         
         public static var imgSmall:UIImage = {
-            return UIImage.cd_podImg(name:placeholderBgSmall, forClass:Config.Help.self, from:"Config")
+            return UIImage.cd_bundle(placeholderBgSmall, forClass:Config.Help.self, from:"Config")
         }()
         public static var imgBigRectangle:UIImage = {
-            return UIImage.cd_podImg(name:placeholderBgBigRectangle, forClass:Config.Help.self, from:"Config")
+            return UIImage.cd_bundle(placeholderBgBigRectangle, forClass:Config.Help.self, from:"Config")
         }()
         public static var imgSmallRectangle:UIImage = {
-            return UIImage.cd_podImg(name:placeholderBgSmallRectangle, forClass:Config.Help.self, from:"Config")
+            return UIImage.cd_bundle(placeholderBgSmallRectangle, forClass:Config.Help.self, from:"Config")
         }()
     }
 }

@@ -11,9 +11,9 @@ public extension CaamDau where Base: UIImage {
 public extension UIImage{
     ///- forClass:class  from: pod resource_bundles key
     ///- from:bundle.url(forResource ‘(pod s.resource_bundles -> key)’
-    static func cd_podImg(name:String, forClass:AnyClass, from:String = "") -> UIImage {
-        let fromPod = from.isEmpty ? String(describing: forClass) : from
-        return UIImage(named: name, in: Bundle.cd_bundle(forClass, fromPod), compatibleWith: nil) ?? UIImage()
+    static func cd_bundle(_ name:String, forClass:AnyClass, from:String = "") -> UIImage {
+        let from = from.isEmpty ? String(describing: forClass) : from
+        return UIImage(named: name, in: Bundle.cd_bundle(forClass, from), compatibleWith: nil) ?? UIImage()
     }
     
     

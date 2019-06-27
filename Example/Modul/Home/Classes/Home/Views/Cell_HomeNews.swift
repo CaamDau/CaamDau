@@ -1,7 +1,7 @@
 //Created  on 2019/1/10  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+import CaamDau
 import Util
 
 public class Cell_HomeNews: UITableViewCell {

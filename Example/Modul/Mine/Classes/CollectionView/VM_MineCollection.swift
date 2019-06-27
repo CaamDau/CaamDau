@@ -37,7 +37,7 @@ struct VM_MineCollection {
         return (0..<Section.end.rawValue).map({ (i) -> CD_RowProtocol in
             let icon = CD_IconFont.tlist(15)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return CD_Row<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: cd_screenW(), h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
+            return CD_Row<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: CD.screenW, h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
         })
     }()
     
@@ -45,7 +45,7 @@ struct VM_MineCollection {
         return (0..<Section.end.rawValue).map({ (i) -> CD_RowProtocol in
             let icon = CD_IconFont.tlist(20)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return CD_Row<View_MineCollectionFooter>.init(data: attributedString(i), frame: CGRect(w: cd_screenW(), h: 40), bundleFrom: "Mine")
+            return CD_Row<View_MineCollectionFooter>.init(data: attributedString(i), frame: CGRect(w: CD.screenW, h: 40), bundleFrom: "Mine")
         })
     }()
     
@@ -70,7 +70,7 @@ struct VM_MineCollection {
 
 extension VM_MineCollection {
     mutating func makeFormsValue0() {
-        let ww:CGFloat = (cd_screenW()-20)/3
+        let ww:CGFloat = (CD.screenW-20)/3
         let www:CGFloat = 60
         let arr:[(CD_IconFont, UIView.ContentMode)] = [
             (CD_IconFont.temoji(www), .topLeft),
@@ -92,7 +92,7 @@ extension VM_MineCollection {
                                  CD_IconFont.tcamera(60),
                                  CD_IconFont.tscan(60)]
         for item in arr {
-            let row = CD_Row<Cell_MineCollectionLabel>(data: (item,Config.color.txt_1), frame: CGRect(x: 5, y: 5, w: (cd_screenW()-20)/3, h: (cd_screenW()-20)/3 + 20), bundleFrom: "Mine")
+            let row = CD_Row<Cell_MineCollectionLabel>(data: (item,Config.color.txt_1), frame: CGRect(x: 5, y: 5, w: (CD.screenW-20)/3, h: (CD.screenW-20)/3 + 20), bundleFrom: "Mine")
             self.forms[v.rawValue].append(row)
         }
     }

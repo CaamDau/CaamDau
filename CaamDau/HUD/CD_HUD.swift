@@ -31,7 +31,7 @@ public class CD_HUD: UIView {
 
 extension CD_HUD {
     @discardableResult
-    public func show(with supView:UIView? = cd_window(), style:CD_HUD.Style = .text, title:String = "", detail:String = "", model:CD_HUD.Model = CD_HUD.modelDefault) -> CD_HUD {
+    public func show(with supView:UIView? = CD.window, style:CD_HUD.Style = .text, title:String = "", detail:String = "", model:CD_HUD.Model = CD_HUD.modelDefault) -> CD_HUD {
         self.style = style
         self.title = title
         self.detail = detail
@@ -39,7 +39,7 @@ extension CD_HUD {
         return self.show(with: supView)
     }
     @discardableResult
-    public func show(with supView:UIView? = cd_window()) -> CD_HUD {
+    public func show(with supView:UIView? = CD.window) -> CD_HUD {
         guard let view = supView else { return self }
         view.cd.add(self)
         makeUI()
@@ -174,9 +174,9 @@ public extension CD_HUD {
         /// 动画时长
         public var _animoteDuration = 0.2
         /// Position .top 下 顶部边距
-        public var _offsetTopY:CGFloat = cd_sysNavigationH()
+        public var _offsetTopY:CGFloat = CD.sysNavigationH
         /// Position .bottom 下 底部边距
-        public var _offsetBottomY:CGFloat = cd_sysTabBarH()
+        public var _offsetBottomY:CGFloat = CD.sysTabBarH
         
         /// contentView 布局样式
         public var _position:CD_HUD.Position = .center

@@ -1,13 +1,13 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CD
+import CaamDau
 
 public extension VC_Home{
     static func show() -> VC_Home{
         //return VC_Home.cd_storyboard(name: "HomeStoryboard") as! VC_Home
         
-        return VC_Home.cd_storyboard(withBundle:"Home", name:"HomeStoryboard") as! VC_Home
+        return VC_Home.cd_storyboard("HomeStoryboard", from: "Home") as! VC_Home
     }
 }
 

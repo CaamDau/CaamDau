@@ -64,14 +64,14 @@ extension View_PageConfig {
 }
 extension View_PageConfig: CD_UIViewProtocol {
     static func row_init(withDataSource dataSource: View_PageConfig.Model?, config: Any?, callBack: CD_RowCallBack?, tapBlock: CD_RowDidSelectBlock?) -> UIView {
-        let v = View_PageConfig.cd_loadNib(whthBundle: "Mine")?.first as? View_PageConfig ?? View_PageConfig()
+        let v = View_PageConfig.cd_loadNib(from:"Mine")?.first as? View_PageConfig ?? View_PageConfig()
         v.callBack = callBack
         v.model = dataSource ?? View_PageConfig.Model()
         return v
     }
     
     static func show() -> View_PageConfig {
-        return View_PageConfig.cd_loadNib(whthBundle: "Mine")?.first as? View_PageConfig ?? View_PageConfig()
+        return View_PageConfig.cd_loadNib(from: "Mine")?.first as? View_PageConfig ?? View_PageConfig()
     }
     
     

@@ -109,4 +109,3 @@ extension NoticeUser:CD_NotificationProtocol {
 
 (0.0...5.1).contains(1.1123)
 
-
