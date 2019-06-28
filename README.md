@@ -27,7 +27,7 @@
 - [HUD：提示窗组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/HUD) 
 - [Page：分页导航控制组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Page) 
 - [TopBar：自定义导航栏组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/TopBar) 
-- [MVVM：MVVM ](https://github.com/liucaide/CaamDau/tree/master/CaamDau/MVVM)
+- [ViewModel 协议 ](https://github.com/liucaide/CaamDau/tree/master/CaamDau/MVVM)
 - [IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IconFont) 
 - [InputBox：输入框扩展组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/InputBox) 
 - [IBInspectable sb/xib 辅助](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IBInspectable) 
@@ -64,9 +64,9 @@
 
 - 友情链接
   - [JianweiWangs](https://github.com/JianweiWangs)
-	- 
   - [Pircate](https://github.com/Pircate)
-  - [EachNavigationBar 原生扩展](https://github.com/Pircate/EachNavigationBar)
+    - [EachNavigationBar 原生扩展](https://github.com/Pircate/EachNavigationBar)
+    - [CleanJSON](https://github.com/Pircate/CleanJSON)
 
 ## Example
 
@@ -80,9 +80,10 @@ CaamDau is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CaamDau'  # 只引入CaamDau核心插件
+pod 'CaamDau'
+```
+```ruby
 pod 'CaamDau/Core'  # 只引入CaamDau核心插件
-
 pod 'CaamDau/Module'  # 引入CaamDau核心插件+辅助插件
 ```
 ```ruby
@@ -91,9 +92,8 @@ pod 'CaamDau/All' # 引入CaamDau所有插件
 ```ruby
 # 引入CaamDau单项插件
 pod 'CaamDau/Form'
-pod 'CaamDau/Chain'
 pod 'CaamDau/Extension'
-pod 'CaamDau/CountDown'
+pod 'CaamDau/Timer'
 pod 'CaamDau/Value'
 pod 'CaamDau/RegEx'
 
@@ -104,6 +104,7 @@ pod 'CaamDau/IconFont'
 pod 'CaamDau/IBInspectable'
 
 pod 'CaamDau/MJRefresh'
+pod 'CaamDau/Net/Core'
 ```
 ## Author
 
