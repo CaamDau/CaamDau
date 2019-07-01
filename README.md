@@ -41,12 +41,9 @@
 - 
 
 #### 附录
-- [Python 自动化工具集](https://github.com/liucaide/CaamDau/tree/master/PyToSwift)
-  - [图片资源管理类](https://github.com/liucaide/CaamDau/blob/master/PyToSwift/swift_assets.py)
-  - [阿里矢量图标资源管理类](https://github.com/liucaide/CaamDau/blob/master/PyToSwift/swift_iconfont.py)
-  - [基础配置资源管理类](https://github.com/liucaide/CaamDau/blob/master/PyToSwift/swift_config.py)
-  - MVVM<Form> 代码模板
-  - MVVM<Form> Rx 代码模板
+-[Python 自动化工具集](https://github.com/liucaide/SapSapSeoi)
+  - [图片资源管理类](https://github.com/liucaide/SapSapSeoi/swift_assets.py)
+  - [阿里矢量图标资源管理类](https://github.com/liucaide/SapSapSeoi/swift_iconfont.py)
   
 - Form 场景使用示例
     - [Form 之于UITableView](https://github.com/liucaide/CaamDau/tree/master/Example/Modul/Mine/Classes)
