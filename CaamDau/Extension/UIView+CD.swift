@@ -76,7 +76,7 @@ public extension CaamDau where Base: UIView {
         return self
     }
     @discardableResult
-    func background(_ color: UIColor) -> CaamDau {
+    func background(_ color: UIColor?) -> CaamDau {
         base.backgroundColor = color
         return self
     }
@@ -161,6 +161,11 @@ public extension CaamDau where Base: UIView {
         return self
     }
     
+    @discardableResult
+    func shadow(_ path: CGPath) -> CaamDau {
+        base.layer.shadowPath = path
+        return self
+    }
     
     @discardableResult
     func shadow(_ color: UIColor) -> CaamDau {

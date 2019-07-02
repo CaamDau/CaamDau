@@ -10,7 +10,7 @@
 import Foundation
 
 public protocol CD_TimerProtocol {
-    func cd_countDown(withModel model:CD_Timer.Model, id:String)
+    func cd_timer(withModel model:CD_Timer.Model, id:String)
 }
 
 public class CD_Timer {
@@ -126,7 +126,7 @@ public extension CD_Timer {
         switch style {
         case let .delegate(d, id, time, second):
             CD_Timer.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in
-                d.cd_countDown(withModel: model, id:id)
+                d.cd_timer(withModel: model, id:id)
             }, qos: qos)
         case let .notification(id, time, second):
             CD_Timer.make(id: id, remainTime: time, repeatSecond: second, mainThread: { (model) in
