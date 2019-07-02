@@ -20,6 +20,10 @@ import Foundation
 public protocol CaamDauUserDefaultsProtocol {
     var name: String { get }
     var value:Any? {get}
+    var string:String? {get}
+    var bool:Bool {get}
+    var dictionary:[String:Any]? {get}
+    var array:[Any]? {get}
     func save(_ value:Any?)
     func remove()
 }
@@ -28,6 +32,20 @@ extension CaamDauUserDefaultsProtocol {
     public var value:Any? {
         return UserDefaults.standard.value(forKey: name)
     }
+    public var string:String? {
+        return UserDefaults.standard.string(forKey: name)
+    }
+    public var bool:Bool {
+        return UserDefaults.standard.bool(forKey: name)
+    }
+    public var dictionary:[String:Any]? {
+        return UserDefaults.standard.dictionary(forKey: name)
+    }
+    public var array:[Any]? {
+        return UserDefaults.standard.array(forKey: name)
+    }
+    
+    
     public func save(_ value:Any?) {
         UserDefaults.standard.set(value, forKey: name)
         UserDefaults.standard.synchronize()
