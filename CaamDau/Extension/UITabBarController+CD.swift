@@ -15,7 +15,6 @@ public extension CaamDau where Base: UITabBarController {
     @discardableResult
     func add(_ vc:UIViewController) -> CaamDau {
         base.addChild(vc)
-        
         return self
     }
     

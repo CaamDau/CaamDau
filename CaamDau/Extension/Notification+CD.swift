@@ -35,14 +35,15 @@ NoticeUser.login.post("123", userInfo: ["id":"456"])
 
 import Foundation
 
-protocol CD_NotificationProtocol {
-    var name: NSNotification.Name { get }
+public protocol CaamDauNotificationProtocol {
+    var name: Notification.Name { get }
     func post(_ object:Any?, userInfo:[AnyHashable:Any]?)
     func add(withSelector selector: Selector, observer: Any, object: Any?)
     func add(withBlock object: Any?, queue: OperationQueue?, block:@escaping (Notification) -> Void) -> NSObjectProtocol
     func remove(_ observer: Any, object:Any?)
 }
-extension CD_NotificationProtocol {
+
+public extension CaamDauNotificationProtocol {
     func post(_ object:Any? = nil, userInfo:[AnyHashable:Any]? = nil) {
         NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
     }
@@ -57,8 +58,11 @@ extension CD_NotificationProtocol {
     }
 }
 //MARK:--- RxSwift 扩展 ----------
-extension CD_NotificationProtocol {
+extension CaamDauNotificationProtocol {
 }
+
+
+
 
 public extension Notification {
     static func cd_post(name str:String, object:Any? = nil, userInfo:[AnyHashable : Any]? = nil) {
