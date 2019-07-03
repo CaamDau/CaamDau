@@ -54,13 +54,13 @@ public struct CD_MJRefreshModel {
     
     
     /// 上拉闲置状态 文字
-    public var up_txtIdle = ""
+    public var up_txtIdle = "上拉加载更多"
     /// 上拉提示松开状态 文字
-    public var up_txtPulling = ""
+    public var up_txtPulling = "放手是一种态度"
     /// 上拉即将刷新状态
-    public var up_txtWillRefresh = ""
+    public var up_txtWillRefresh = "拼命加载中..."
     /// 上拉松开正在刷新状态
-    public var up_txtRefreshing = ""
+    public var up_txtRefreshing = "拼命加载中..."
     /// 上拉数据加载完毕状态
     public var up_txtNoMoreData = "没有更多数据"
     

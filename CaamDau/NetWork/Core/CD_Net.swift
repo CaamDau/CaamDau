@@ -39,6 +39,8 @@ extension CD_Net {
         public var responseStyle:CD_Net.RequestStyle = .data
         /// method 默认 get
         public var method:Alamofire.HTTPMethod = .get
+        /// encoding 默认 default
+        public var encoding:ParameterEncoding = URLEncoding.default
     }
     
     public struct UploadParam {
@@ -108,6 +110,7 @@ public class CD_Net {
         self.log = CD_Net.config.log
         self.responseStyle = CD_Net.config.responseStyle
         self.method = CD_Net.config.method
+        self.encoding = CD_Net.config.encoding
     }
 }
 
