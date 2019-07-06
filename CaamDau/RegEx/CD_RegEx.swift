@@ -27,7 +27,7 @@ public extension CD_RegEx {
         /// 匹配自定义
         case value3(_ pattern:String)
         
-        var patternValue:String {
+        public var patternValue:String {
             switch self {
             case .value0:
                 return "^\\w{6,20}$"
@@ -51,7 +51,7 @@ public extension CD_RegEx {
         /// 自定义匹配
         case value3(_ pattern:String)
         
-        var patternValue:String {
+        public var patternValue:String {
             switch self {
             case .value0:
                 return "^.{2，12}$"
@@ -72,7 +72,7 @@ public extension CD_RegEx {
         case zh_hk
         case zh_tw
         
-        var patternValue:String {
+        public var patternValue:String {
             switch self {
             case .zh_cn:
                 return "^[1-9]{2}[0-9]{4}[1-3]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}[0-9]{3}([0-9]|X|x)$"
@@ -134,7 +134,9 @@ public enum CD_RegEx {
     /// emoji 默认 \uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]
     case tEmoji(_ pattern:String?)
     
-    var patternValue:String {
+    case tValue(_ pattern:String?)
+    
+    public var patternValue:String {
         switch self {
         case .tLower:
             return "^[a-z]+$"
@@ -168,6 +170,8 @@ public enum CD_RegEx {
             return p ?? "^\\d*\\.?\\d{0,2}$"
         case .tEmoji(let p):
             return p ?? "\\uD83C[\\uDF00-\\uDFFF]|\\uD83D[\\uDC00-\\uDE4F]"
+        case .tValue(let p):
+            return p ?? ""
         }
     }
 }
