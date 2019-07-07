@@ -37,7 +37,7 @@ public extension CD_Net {
         }
         return self
     }
-}
+} 
 
 public extension Data {
     func mapCodableModel<T:Codable>(_ t:T.Type) -> T? {
