@@ -204,6 +204,19 @@ public struct CD {
     public static var appId:String {
         return Bundle.main.bundleIdentifier ?? ""
     }
+    
+    public static func appUrlScheme(_ match:String) -> String {
+        guard let info = Bundle.main.infoDictionary else { return match }
+        let urlTypes = info.arrayValue("CFBundleURLTypes")
+        for item in urlTypes {
+            guard let j = item as? [String:Any] else { break }
+            guard let s = j.arrayValue("CFBundleURLSchemes").first as? String else { break }
+            guard s.hasPrefix(match) else { break }
+            return s
+        }
+        return match
+    }
+    
     /// app 安装日期
     public static var appCreatDate:Date? {
         guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else {
