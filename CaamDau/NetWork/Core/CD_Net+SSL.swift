@@ -94,7 +94,7 @@ public extension CD_Net {
         var items : CFArray?
         securityError = SecPKCS12Import(PKCS12Data, options, &items)
         if securityError == errSecSuccess {
-            let certItems:CFArray = items as CFArray!
+            let certItems:CFArray = items!
             let certItemsArray:Array = certItems as Array
             let dict:AnyObject? = certItemsArray.first;
             if let certEntry:Dictionary = dict as? Dictionary<String, AnyObject> {

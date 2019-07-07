@@ -20,8 +20,8 @@ public extension CD_Net {
     func onCache(withData key:String = "", completion:((Data) ->Void)?) -> Self {
         let urlPath = (self.baseURL + self.path) + (key.isEmpty ? "" : ("."+key))
         let storage = self.makeStorage()
-        if let data = try? storage?.object(forKey: urlPath), let res = data {
-            completion?(res)
+        if let data = try? storage?.object(forKey: urlPath) {
+            completion?(data)
         }
         return self
     }
