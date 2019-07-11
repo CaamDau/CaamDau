@@ -94,6 +94,7 @@ extension CD_PageControlBuoy: CD_PageControlBuoyProtocol {
         
         guard let model = config else { return }
         let minus = contentOffset - offsetBegin < 0
+        guard !(!minus && scale == 0) else { return }
         let offset = (contentOffset - offsetBegin) * scale
         switch model.animotion {
         case .slide:
@@ -138,10 +139,8 @@ extension CD_PageControlBuoy: CD_PageControlBuoyProtocol {
             let auto = model.frame.size.width == CD_Page.Size.auto.rawValue
             f.origin.x = auto
                 ? itemFrame.minX
-                : (itemFrame.maxX-itemFrame.minX-f.size.width)/2.0 + itemFrame.minX
-            f.size.width = auto
-                ? item.frame.size.width
-                : model.frame.size.width
+                : ((itemFrame.maxX-itemFrame.minX - model.frame.size.width)/2.0 + itemFrame.minX)
+            f.size.width = auto ? item.frame.size.width : model.frame.size.width
             switch position {
             case .top(let ff):
                 f.origin.y = superV.frame.minY+ff
@@ -156,7 +155,7 @@ extension CD_PageControlBuoy: CD_PageControlBuoyProtocol {
             let auto = model.frame.size.height == CD_Page.Size.auto.rawValue
             f.origin.y = auto
                 ? itemFrame.minY
-                : (itemFrame.maxY-itemFrame.minY-f.size.height)/2.0 + itemFrame.minY
+                : ((itemFrame.maxY - itemFrame.minY - model.frame.size.height)/2.0 + itemFrame.minY)
             f.size.height = auto
                 ? item.frame.size.height
                 : model.frame.size.height
@@ -175,7 +174,7 @@ extension CD_PageControlBuoy: CD_PageControlBuoyProtocol {
             let auto = model.frame.size.width == CD_Page.Size.auto.rawValue
             f.origin.x = auto
                 ? itemFrame.minX
-                : (itemFrame.maxX-itemFrame.minX-f.size.width)/2.0 + itemFrame.minX
+                : ((itemFrame.maxX - itemFrame.minX - model.frame.size.width)/2.0 + itemFrame.minX)
             f.size.width = auto
                 ? item.frame.size.width
                 : model.frame.size.width
@@ -194,7 +193,7 @@ extension CD_PageControlBuoy: CD_PageControlBuoyProtocol {
             let auto = model.frame.size.height == CD_Page.Size.auto.rawValue
             f.origin.y = auto
                 ? itemFrame.minY
-                : (itemFrame.maxY-itemFrame.minY-f.size.height)/2.0 + itemFrame.minY
+                : ((itemFrame.maxY - itemFrame.minY - model.frame.size.height)/2.0 + itemFrame.minY)
             f.size.height = auto
                 ? item.frame.size.height
                 : model.frame.size.height

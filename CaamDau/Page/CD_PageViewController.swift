@@ -207,9 +207,9 @@ extension CD_PageViewController: UIScrollViewDelegate {
         var contentOffset = CGFloat(self.selectIndex)
         switch model.scrollDirection {
         case .horizontal:
-            contentOffset = scrollView.contentOffset.x
+            contentOffset = scrollView.contentOffset.x + 1
         case .vertical:
-            contentOffset = scrollView.contentOffset.y
+            contentOffset = scrollView.contentOffset.y + 1
         }
         let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
         self.delegate?.scroll(didEndScrollingAnimation: scrollView, index:index, animotion:abs(index-selectIndex)==1)
@@ -219,9 +219,9 @@ extension CD_PageViewController: UIScrollViewDelegate {
         var contentOffset = CGFloat(self.selectIndex)
         switch model.scrollDirection {
         case .horizontal:
-            contentOffset = scrollView.contentOffset.x
+            contentOffset = scrollView.contentOffset.x + 1
         case .vertical:
-            contentOffset = scrollView.contentOffset.y
+            contentOffset = scrollView.contentOffset.y + 1
         }
         let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
         self.delegate?.scroll(didEndDecelerating: scrollView, index:index)
@@ -233,7 +233,7 @@ extension CD_PageViewController: UIScrollViewDelegate {
         switch model.scrollDirection {
         case .horizontal:
             if (scrollView.contentOffset.x == 0 || scrollView.contentOffset.x + scrollView.bounds.size.width == scrollView.contentSize.width) {
-                contentOffset = scrollView.contentOffset.x
+                contentOffset = scrollView.contentOffset.x  + 1
                 let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
                 self.delegate?.scroll(didEndDragging: scrollView, index:index)
                 self.selectIndex = index
@@ -241,7 +241,7 @@ extension CD_PageViewController: UIScrollViewDelegate {
         case .vertical:
             if (scrollView.contentOffset.y == 0 || scrollView.contentOffset.y + scrollView.bounds.size.height == scrollView.contentSize.height) {
                 
-                contentOffset = scrollView.contentOffset.y
+                contentOffset = scrollView.contentOffset.y + 1
                 let index = dataSourceSize.filter{($0.min..<$0.max).contains(contentOffset)}.map{$0.index}.first ?? selectIndex
                 self.delegate?.scroll(didEndDragging: scrollView, index:index)
                 self.selectIndex = index

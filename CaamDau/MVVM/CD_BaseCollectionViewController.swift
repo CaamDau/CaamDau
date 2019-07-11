@@ -169,7 +169,7 @@ extension CD_BaseCollectionViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
         if let count = vm?._formFooter.count, count > section {
-            return vm!._formHeader[section].size
+            return vm!._formFooter[section].size
         }else{
             return .zero
         }
