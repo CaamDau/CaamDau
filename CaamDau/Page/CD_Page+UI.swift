@@ -12,19 +12,13 @@ import FDFullscreenPopGesture
 
 
 //MARK:--- 手势同时识别 实现 多个 ScrollView 层叠联动 ----------
-public protocol CD_RecognizeSimultaneously: UIGestureRecognizerDelegate {
-}
-extension CD_RecognizeSimultaneously {
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-}
+
 
 
 @IBDesignable
 public class CD_PageUICollectionView: UICollectionView {
 }
-extension CD_PageUICollectionView: CD_RecognizeSimultaneously {
+extension CD_PageUICollectionView: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.cd.panBack(gestureRecognizer, otherGesture: otherGestureRecognizer)
     }
@@ -33,7 +27,7 @@ extension CD_PageUICollectionView: CD_RecognizeSimultaneously {
 @IBDesignable
 public class CD_PageUIScrollView: UIScrollView {
 }
-extension CD_PageUIScrollView: CD_RecognizeSimultaneously {
+extension CD_PageUIScrollView: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return self.cd.panBack(gestureRecognizer, otherGesture: otherGestureRecognizer)
     }
@@ -45,16 +39,28 @@ extension CD_PageUIScrollView: CD_RecognizeSimultaneously {
 
 @IBDesignable
 public class CD_RecognizeSimultaneouslyScrollView: UIScrollView {}
-extension CD_RecognizeSimultaneouslyScrollView: CD_RecognizeSimultaneously {}
+extension CD_RecognizeSimultaneouslyScrollView: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
 
 @IBDesignable
 public class CD_RecognizeSimultaneouslyCollectionView: UICollectionView {}
-extension CD_RecognizeSimultaneouslyCollectionView: CD_RecognizeSimultaneously {}
+extension CD_RecognizeSimultaneouslyCollectionView: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
 
 
 @IBDesignable
 public class CD_RecognizeSimultaneouslyTableView: UITableView {}
-extension CD_RecognizeSimultaneouslyTableView: CD_RecognizeSimultaneously {}
+extension CD_RecognizeSimultaneouslyTableView: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+}
 
 
 @IBDesignable
@@ -75,5 +81,8 @@ public class CD_IgnoreHeaderTouchTableView: UITableView {
 @IBDesignable
 public class CD_IgnoreHeaderTouchRecognizeSimultaneouslTableView: CD_IgnoreHeaderTouchTableView {
 }
-extension CD_IgnoreHeaderTouchRecognizeSimultaneouslTableView: CD_RecognizeSimultaneously {
+extension CD_IgnoreHeaderTouchRecognizeSimultaneouslTableView: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }
