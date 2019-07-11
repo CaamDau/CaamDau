@@ -76,6 +76,11 @@ class VC_Page: UIViewController {
                 make.left.right.bottom.equalToSuperview()
                 make.top.equalTo(pageControl.snp.bottom)
             }
+            do{
+//                var m = self.pageControl.buoyConfig
+//                m?.frame = CGRect(x: 0, y: 0, w: 30, h: 3)
+//                pageControl.buoyConfig = m
+            }
         case .hv:
             pageControl.snp.makeConstraints { (make) in
                 make.left.right.equalToSuperview()
@@ -95,8 +100,9 @@ class VC_Page: UIViewController {
         case .vv:
             do{
                 var m = CD_PageControlBuoy.Model()
-                m.frame = CGRect(x: 0, y: 0, w: 3, h: CD_Page.Size.auto.rawValue)
-                m.style = .line(.right(0))
+                m.frame = CGRect(x: 0, y: 0, w: 30, h: 10)
+                m.style = .background(.left(0))
+                m.animotion = .crawl
                 pageControl.buoyConfig = m
             }
             do{
@@ -125,8 +131,9 @@ class VC_Page: UIViewController {
         case .vh:
             do{
                 var m = CD_PageControlBuoy.Model()
-                m.frame = CGRect(x: 0, y: 0, w: 3, h: CD_Page.Size.auto.rawValue)
-                m.style = .line(.right(0))
+                m.frame = CGRect(x: 0, y: 0, w: 3, h: 10)
+                m.style = .background(.left(0))
+                m.animotion = .crawl
                 pageControl.buoyConfig = m
             }
             do{

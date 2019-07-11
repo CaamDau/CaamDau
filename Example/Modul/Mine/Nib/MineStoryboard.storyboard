@@ -1026,11 +1026,13 @@
         <!--Tab Bar Controller-->
         <scene sceneID="bst-Yk-gn7">
             <objects>
-                <tabBarController id="fnR-w4-G6u" sceneMemberID="viewController">
+                <tabBarController id="fnR-w4-G6u" customClass="CD_TabBarController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iFY-be-2BB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="2bV-KR-iBy" kind="relationship" relationship="viewControllers" id="8Cy-fd-Xzz"/>

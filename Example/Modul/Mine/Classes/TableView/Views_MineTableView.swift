@@ -46,7 +46,7 @@ class Cell_MineCountDown:UITableViewCell{
 }
 
 extension Cell_MineCountDown:CD_TimerProtocol{
-    func cd_countDown(withModel model: CD_Timer.Model, id:String) {
+    func cd_timer(withModel model: CD_Timer.Model, id:String) {
         if self.model?.id == id {
             makeDown(model)
         }
