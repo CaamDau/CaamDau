@@ -60,7 +60,7 @@ open class CD_TopNavigationBarItem: UIView {
     
     public lazy var btn_1:UIButton = {
         let btn = UIButton().cd
-            .text("M1")
+            .text("")
             .text(CD_TopBar.Model.color_normal, .normal)
             .text(CD_TopBar.Model.color_selected, .selected)
             .text(CD_TopBar.Model.color_highlighted, .highlighted)
@@ -73,7 +73,7 @@ open class CD_TopNavigationBarItem: UIView {
     }()
     public lazy var btn_2:UIButton = {
         let btn = UIButton().cd
-            .text("M2")
+            .text("")
             .text(CD_TopBar.Model.color_normal, .normal)
             .text(CD_TopBar.Model.color_selected, .selected)
             .text(CD_TopBar.Model.color_highlighted, .highlighted)
@@ -87,7 +87,7 @@ open class CD_TopNavigationBarItem: UIView {
     
     public lazy var btn_3:UIButton = {
         let btn = UIButton().cd
-            .text("M3")
+            .text("")
             .text(CD_TopBar.Model.color_normal, .normal)
             .text(CD_TopBar.Model.color_selected, .selected)
             .text(CD_TopBar.Model.color_highlighted, .highlighted)
