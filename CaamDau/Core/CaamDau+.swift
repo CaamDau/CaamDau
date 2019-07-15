@@ -289,9 +289,9 @@ public struct CD {
             UICollectionView.appearance().contentInsetAdjustmentBehavior = .never
             
             UITableView.appearance().contentInsetAdjustmentBehavior = .never
-            UITableView.appearance().estimatedRowHeight = 0
-            UITableView.appearance().estimatedSectionHeaderHeight = 0
-            UITableView.appearance().estimatedSectionFooterHeight = 0
+            UITableView.appearance().estimatedRowHeight = 0.001
+            UITableView.appearance().estimatedSectionHeaderHeight = 0.001
+            UITableView.appearance().estimatedSectionFooterHeight = 0.001
         } else {
             
         }
