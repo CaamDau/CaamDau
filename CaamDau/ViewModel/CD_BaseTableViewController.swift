@@ -21,10 +21,9 @@ public struct R_CDBaseTableViewController {
 
 class CD_BaseTableViewController: UIViewController {
     var vm:CD_ViewModelTableViewProtocol?
+    var delegateData:CD_UITableViewDelegateData?
     lazy var tableView: UITableView = {
         return UITableView(frame: CGRect.zero, style: UITableView.Style.grouped).cd
-            .delegate(self)
-            .dataSource(self)
             .build
     }()
     lazy var topBar: CD_TopBar = {
@@ -36,7 +35,6 @@ class CD_BaseTableViewController: UIViewController {
         makeUI()
         makeLayout()
         makeReloadData()
-        
         topBar.delegate = self
         vm?._tableViewCustom?(tableView)
     }
@@ -47,6 +45,8 @@ class CD_BaseTableViewController: UIViewController {
             .add(tableView)
             .add(topBar)
         
+        delegateData = CD_UITableViewDelegateData(vm)
+        tableView.cd.delegate(delegateData).dataSource(delegateData)
         
     }
     
@@ -102,82 +102,6 @@ class CD_BaseTableViewController: UIViewController {
         self.tableView.cd.mjRefreshTypes(vm!._mjRefreshType)
     }
     
-}
-
-extension CD_BaseTableViewController: UITableViewDelegate,UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return vm?._form.count ?? 0
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm?._form[section].count ?? 0
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
-            return UITableViewCell()
-        }
-        let cell = tableView.cd.cell(row.viewClass, id:row.viewId, bundleFrom:row.bundleFrom) ?? UITableViewCell()
-        row.bind(cell)
-        return cell
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
-            return
-        }
-        row.didSelect?()
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
-            return 0
-        }
-        return row.h
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section < (vm?._formHeader.count ?? 0) {
-            return vm?._formHeader[section].h ?? CD.sectionMinH
-        }else{
-            guard let count = vm?._form[section].count, count > 0, let top = vm?._form[section].first?.insets.top, top > 0 else {
-                return CD.sectionMinH
-            }
-            return top
-        }
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section < (vm?._formFooter.count ?? 0) {
-            return vm?._formFooter[section].h ?? CD.sectionMinH
-        }else{
-            guard let count = vm?._form[section].count, count > 0, let bottom = vm?._form[section].first?.insets.bottom, bottom > 0 else {
-                return CD.sectionMinH
-            }
-            return bottom
-        }
-    }
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section < (vm?._formHeader.count ?? 0) else {
-            return nil
-        }
-        guard let row = vm?._formHeader[section] else {
-            return nil
-        }
-        guard let v = tableView.cd.view(row.viewClass, id:row.viewId, bundleFrom:row.bundleFrom) else {
-            return nil
-        }
-        row.bind(v)
-        return v
-    }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard section < (vm?._formFooter.count ?? 0) else {
-            return nil
-        }
-        guard let row = vm?._formFooter[section] else {
-            return nil
-        }
-        guard let v = tableView.cd.view(row.viewClass, id:row.viewId, bundleFrom:row.bundleFrom) else {
-            return nil
-        }
-        row.bind(v)
-        return v
-    }
 }
 
 extension CD_BaseTableViewController: CD_TopBarProtocol {
