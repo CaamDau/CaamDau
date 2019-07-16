@@ -6,14 +6,14 @@ CD is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/RegEx'
+pod 'CaamDau/RegEx'
 ```
 
 #### 初始化
 ```
 NSRegularExpression.cd_init(pattern)
 or
-CD.makeRegEx(pattern)
+CaamDau.makeRegEx(pattern)
 ```
 #### NSRegularExpression 示例
 ```
@@ -21,12 +21,12 @@ CD.makeRegEx(pattern)
 do{//验证一个邮箱地址的格式是否正确。
     let pattern = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
     let email = "dsfddf@qq.163.com"
-    if (CD.makeRegEx(pattern)?.cd.match(allIn: email)) != nil {
+    if (CaamDau.makeRegEx(pattern)?.cd.match(allIn: email)) != nil {
         _ = true
     }else{
         _ = false
     }
-    if CD.makeRegEx(pattern)!.cd.match(email) {
+    if CaamDau.makeRegEx(pattern)!.cd.match(email) {
         _ = true
     }else{
         _ = false
@@ -36,7 +36,7 @@ do{//验证一个邮箱地址的格式是否正确。
 do{// 获取第一个匹配结果
     let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
     let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    if let text = CD.makeRegEx(pattern)?.cd.match(firstIn: str) {
+    if let text = CaamDau.makeRegEx(pattern)?.cd.match(firstIn: str) {
         //print(text.cd.range(in: str))
         text.cd.string(in: str)
         text.cd.captures(in: str)
@@ -50,7 +50,7 @@ do{// 获取第一个匹配结果
 do{// 获取所有匹配结果
     let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
     let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    if let text = CD.makeRegEx(pattern)?.cd.match(allIn: str) {
+    if let text = CaamDau.makeRegEx(pattern)?.cd.match(allIn: str) {
         text.map{$0.cd.string(in: str)}
         text.map{$0.cd.captures(in: str)![0]}
         text.map{$0.cd.captures(in: str)![1]}
@@ -62,16 +62,16 @@ do{// 获取所有匹配结果
 do{// ----- 字符串替换
     let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
     let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 1)
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***")
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 9)
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 1)
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***")
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 9)
 }
 do{//捕获组替换
     let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
     let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 1)
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2")
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 9)
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 1)
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2")
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 9)
 }
 ```
 #### CD_RegEx 示例

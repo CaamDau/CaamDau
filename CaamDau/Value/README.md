@@ -6,7 +6,7 @@ CD is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/Value'
+pod 'CaamDau/Value'
 ```
 > 基本数据类型转换更便捷
 #### 
