@@ -134,6 +134,11 @@ Pod::Spec.new do |s|
     rr.source_files = 'CaamDau/Router/*.{swift}'
   end
   
+  s.subspec 'Router' do |rr|
+    rr.source_files = 'CaamDau/Router/*.{swift}'
+  end
+  
+  
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CaamDau/MJRefresh/*.{swift}'
