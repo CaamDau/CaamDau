@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
     core.dependency 'CaamDau/Timer'
     core.dependency 'CaamDau/Value'
     core.dependency 'CaamDau/AppDelegate'
+    core.dependency 'CaamDau/Router'
   end
   
   s.subspec 'Module' do |mo|
@@ -39,7 +40,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CaamDau/TopBar'
     mo.dependency 'CaamDau/AppDelegate'
     
-    mo.dependency 'CaamDau/MVVM'
+    mo.dependency 'CaamDau/ViewModel'
     mo.dependency 'CaamDau/HUD'
   end
   
@@ -121,13 +122,18 @@ Pod::Spec.new do |s|
     hud.dependency 'SnapKit', '4.2.0'
   end
   
-  s.subspec 'MVVM' do |vm|
-    vm.source_files = 'CaamDau/MVVM/*.{swift}'
+  s.subspec 'ViewModel' do |vm|
+    vm.source_files = 'CaamDau/ViewModel/*.{swift}'
     vm.dependency 'CaamDau/Core'
     vm.dependency 'CaamDau/TopBar'
     vm.dependency 'CaamDau/MJRefresh'
     vm.dependency 'SnapKit', '~> 4.2.0'
   end
+  
+  s.subspec 'Router' do |rr|
+    rr.source_files = 'CaamDau/Router/*.{swift}'
+  end
+  
   
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
