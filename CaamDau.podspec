@@ -24,7 +24,6 @@ Pod::Spec.new do |s|
     core.dependency 'CaamDau/Extension'
     core.dependency 'CaamDau/Form'
     core.dependency 'CaamDau/RegEx'
-    core.dependency 'CaamDau/Timer'
     core.dependency 'CaamDau/Value'
     core.dependency 'CaamDau/AppDelegate'
     core.dependency 'CaamDau/Router'
