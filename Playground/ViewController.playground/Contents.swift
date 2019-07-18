@@ -74,13 +74,210 @@ extension UIView {
     }
 }
 
+extension UIImage {
+    /// - 由颜色 生成图片
+    static func cd_color(_ color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context?.setFillColor(color.cgColor)
+        context?.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
+
+class BeView:UIView {
+    override func draw(_ rect: CGRect) {
+        let p = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 50, height: 50))
+        UIColor.blue.setFill()
+        p.fill()
+    }
+}
+
+public struct UIRectSide : OptionSet {
+    
+    public let rawValue: Int
+    
+    public static let left = UIRectSide(rawValue: 1 << 0)
+    
+    public static let top = UIRectSide(rawValue: 1 << 1)
+    
+    public static let right = UIRectSide(rawValue: 1 << 2)
+    
+    public static let bottom = UIRectSide(rawValue: 1 << 3)
+    
+    public static let all: UIRectSide = [.top, .right, .left, .bottom]
+    
+    
+    
+    public init(rawValue: Int) {
+        
+        self.rawValue = rawValue;
+        
+    }
+    
+}
+
+extension UIView{
+    ///画虚线边框
+    func drawDashLine(strokeColor: UIColor, lineWidth: CGFloat = 1, lineLength: Int = 10, lineSpacing: Int = 5, corners: UIRectSide) {
+        
+        let shapeLayer = CAShapeLayer()
+        
+        shapeLayer.bounds = self.bounds
+        
+        shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
+        
+        shapeLayer.fillColor = UIColor.blue.cgColor
+        
+        shapeLayer.strokeColor = strokeColor.cgColor
+        
+        
+        
+        shapeLayer.lineWidth = lineWidth
+        
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        
+        
+        
+        //每一段虚线长度 和 每两段虚线之间的间隔
+        
+        shapeLayer.lineDashPattern = [NSNumber(value: lineLength), NSNumber(value: lineSpacing)]
+        
+        
+        
+        let path = CGMutablePath()
+        
+        if corners.contains(.left) {
+            
+            path.move(to: CGPoint(x: 0+lineWidth, y: self.layer.bounds.height))
+            
+            path.addLine(to: CGPoint(x: 0+lineWidth, y: 0))
+            
+        }
+        
+        if corners.contains(.top){
+            
+            path.move(to: CGPoint(x: 0, y: 0+lineWidth))
+            
+            path.addLine(to: CGPoint(x: self.layer.bounds.width, y: 0+lineWidth))
+            
+        }
+        
+        if corners.contains(.right){
+            
+            path.move(to: CGPoint(x: self.layer.bounds.width-lineWidth, y: 0))
+            
+            path.addLine(to: CGPoint(x: self.layer.bounds.width-lineWidth, y: self.layer.bounds.height))
+            
+        }
+        
+        if corners.contains(.bottom){
+            
+            path.move(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height-lineWidth))
+            
+            path.addLine(to: CGPoint(x: 0, y: self.layer.bounds.height-lineWidth))
+            
+        }
+        
+        shapeLayer.path = path
+        
+        self.layer.addSublayer(shapeLayer)
+        
+    }
+    
+    ///画实线边框
+    
+    func drawLine(strokeColor: UIColor, lineWidth: CGFloat = 1, corners: UIRectSide) {
+        
+        
+        
+        if corners == UIRectSide.all {
+            
+            self.layer.borderWidth = lineWidth
+            
+            self.layer.borderColor = strokeColor.cgColor
+            
+        }else{
+            
+            let shapeLayer = CAShapeLayer()
+            
+            shapeLayer.bounds = self.bounds
+            
+            shapeLayer.anchorPoint = CGPoint(x: 0, y: 0)
+            
+            shapeLayer.fillColor = UIColor.blue.cgColor
+            
+            shapeLayer.strokeColor = strokeColor.cgColor
+            
+            
+            
+            shapeLayer.lineWidth = lineWidth
+            
+            shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+            
+            
+            
+            let path = CGMutablePath()
+            
+            
+            
+            if corners.contains(.left) {
+                
+                path.move(to: CGPoint(x: 0, y: self.layer.bounds.height))
+                
+                path.addLine(to: CGPoint(x: 0, y: 0))
+                
+            }
+            
+            if corners.contains(.top){
+                
+                path.move(to: CGPoint(x: 0, y: 0))
+                
+                path.addLine(to: CGPoint(x: self.layer.bounds.width, y: 0))
+                
+            }
+            
+            if corners.contains(.right){
+                
+                path.move(to: CGPoint(x: self.layer.bounds.width, y: 0))
+                
+                path.addLine(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height))
+                
+            }
+            
+            if corners.contains(.bottom){
+                
+                path.move(to: CGPoint(x: self.layer.bounds.width, y: self.layer.bounds.height))
+                
+                path.addLine(to: CGPoint(x: 0, y: self.layer.bounds.height))
+                
+            }
+            
+            
+            
+            shapeLayer.path = path
+            
+            self.layer.addSublayer(shapeLayer)
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
+}
 
 class MyViewController : UIViewController {
     override func loadView() {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 568))
         view.backgroundColor = .white
         do{
-            let vv = UIView(frame: CGRect(x: 0, y: 40, width: 200, height: 60))
+            let vv = UIView(frame: CGRect(x: 0, y: 20, width: 150, height: 50))
             view.addSubview(vv)
             vv.gradient(layerAxial: [(UIColor.red, 0.0),
                                      (UIColor.yellow, 0.5),
@@ -95,7 +292,7 @@ class MyViewController : UIViewController {
                                      (UIColor.orange, 1.0)], updateIndex:1)
         }
         do{
-            let vvv = UIView(frame: CGRect(x: 100, y: 200, width: 200, height: 60))
+            let vvv = UIView(frame: CGRect(x: 160, y: 20, width: 150, height: 50))
             view.addSubview(vvv)
             let vv = UIView(frame: vvv.bounds)
             vvv.addSubview(vv)
@@ -118,17 +315,53 @@ class MyViewController : UIViewController {
         
         do{
             let str = "国"
-            let lab = UILabel(frame: CGRect(x: 20, y: 300, width: 100, height: 30))
+            let lab = UILabel(frame: CGRect(x: 0, y: 100, width: 150, height: 30))
             lab.text = str
             view.addSubview(lab)
             let str64 = str.data(using: String.Encoding.utf8, allowLossyConversion: true)?.base64EncodedString() ?? ""
             
             let data = Data(base64Encoded: str64)
             let img = UIImage(data: data ?? Data())
-            let imageView = UIImageView(frame: CGRect(x: 20, y: 350, width: 100, height: 30))
+            let imageView = UIImageView(frame: CGRect(x: 10, y: 150, width: 100, height: 30))
             imageView.backgroundColor = UIColor.red
             imageView.image = img
+            
+            imageView.drawDashLine(strokeColor: UIColor.black, lineWidth: 1, lineLength: 3, lineSpacing: 2, corners: [.left, .bottom, .right, .top])
+            imageView.layer.cornerRadius = 6
+            imageView.clipsToBounds = true
             view.addSubview(imageView)
+            
+        }
+        do{
+            let imgView = BeView(frame: CGRect(x: 160, y: 100, width: 150, height: 30))
+            
+            let size = imgView.bounds.size
+            let width = size.width
+            let height = size.height
+            
+            let path = UIBezierPath()
+            path.move(to: CGPoint(x: 0, y: height))
+            path.addLine(to: CGPoint(x: 0 , y: height+3))
+            path.addLine(to: CGPoint(x: width/2-3, y: height+3))
+            path.addLine(to: CGPoint(x: width/2, y: height+6))
+            path.addLine(to: CGPoint(x: width/2+3, y: height+3))
+            path.addLine(to: CGPoint(x:width, y: height))
+            
+            path.addLine(to: CGPoint(x: width, y: height+3))
+            path.addLine(to: CGPoint(x:width, y: height))
+            path.addLine(to: CGPoint(x: width/2+3, y: height))
+            path.addLine(to: CGPoint(x: width/2, y: height+3))
+            path.addLine(to: CGPoint(x: width/2-3, y: height))
+           path.addLine(to: CGPoint(x: 0, y: height))
+            path.close()
+            
+            imgView.layer.shadowPath = path.cgPath
+            imgView.layer.shadowColor = UIColor.black.cgColor
+            imgView.layer.shadowOpacity = 1
+            imgView.layer.shadowRadius = 3
+            imgView.layer.shadowOffset = CGSize(width: 0, height: 0)
+            
+            view.addSubview(imgView)
         }
         
         self.view = view
@@ -136,3 +369,26 @@ class MyViewController : UIViewController {
 }
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()
+
+/*
+UIBezierPath *maskPath=[[UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)] bezierPathByReversingPath];
+CAShapeLayer *border = [CAShapeLayer layer];
+// 线条颜色
+border.strokeColor = [UIColor hexStringToColor:@"#999999"].CGColor;
+border.masksToBounds = YES;
+
+border.fillColor = nil;
+border.path = maskPath.CGPath;
+border.frame = view.bounds;
+
+border.lineWidth = 1;
+border.lineCap = @"square";
+// 第一个是 线条长度 第二个是间距 nil时为实线
+border.lineDashPattern = @[@6, @4];
+[view.layer addSublayer:border];
+---------------------
+作者：haluRay
+来源：CSDN
+原文：https://blog.csdn.net/qq_31258413/article/details/77834667
+版权声明：本文为博主原创文章，转载请附上博文链接！
+*/
