@@ -8,8 +8,9 @@
 
 
 import Foundation
-//MARK:--- 针对旧的表单协议 CD_RowProtocol ----------
-public class CD_UICollectionViewDelegateData: NSObject {
+
+//MARK:--- 针对新的表单协议 CD_CellProtocol ----------
+public class CD_CollectionViewDelegateDataSource: NSObject {
     public var vm:CD_ViewModelCollectionViewProtocol?
     private override init(){}
     public init(_ vm:CD_ViewModelCollectionViewProtocol?) {
@@ -17,71 +18,71 @@ public class CD_UICollectionViewDelegateData: NSObject {
     }
 }
 
-extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CD_CollectionViewDelegateDataSource: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return vm?._form.count ?? 0
+        return vm?._forms.count ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vm?._form[section].count ?? 0
+        return vm?._forms[section].count ?? 0
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return vm?._form[indexPath.section][indexPath.row].size ?? .zero
+        return vm?._forms[indexPath.section][indexPath.row].size ?? .zero
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
+        guard let row = vm?._forms[indexPath.section][indexPath.row] else {
             return collectionView.cd.cell(CD_CollectionViewCellNone.id, indexPath)
         }
-        let cell = collectionView.cd.cell(row.viewId, indexPath)
+        let cell = collectionView.cd.cell(row.cellId, indexPath)
         row.bind(cell)
         return cell
     }
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let row = vm?._form[indexPath.section][indexPath.row] else {
+        guard let row = vm?._forms[indexPath.section][indexPath.row] else {
             return
         }
-        row.didSelect?()
+        row.tapBlock?()
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if let count = vm?._formHeader.count, count > section {
-            return vm!._formHeader[section].y
+        if let count = vm?._formHeaders.count, count > section {
+            return vm!._formHeaders[section].y
         }else{
-            return vm?._form[section].first?.y ?? 0
+            return vm?._forms[section].first?.y ?? 0
         }
         
     }
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if let count = vm?._formHeader.count, count > section {
-            return vm!._formHeader[section].x
+        if let count = vm?._formHeaders.count, count > section {
+            return vm!._formHeaders[section].x
         }else{
-            return vm?._form[section].first?.x ?? 0
+            return vm?._forms[section].first?.x ?? 0
         }
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if let count = vm?._formHeader.count, count > section {
-            return vm!._formHeader[section].insets
+        if let count = vm?._formHeaders.count, count > section {
+            return vm!._formHeaders[section].insets
         }else{
-            return vm?._form[section].first?.insets ?? .zero
+            return vm?._forms[section].first?.insets ?? .zero
         }
     }
     
     
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
-        if let count = vm?._formHeader.count, count > section {
-            return vm!._formHeader[section].size
+        if let count = vm?._formHeaders.count, count > section {
+            return vm!._formHeaders[section].size
         }else{
             return .zero
         }
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
-        if let count = vm?._formFooter.count, count > section {
-            return vm!._formFooter[section].size
+        if let count = vm?._formFooters.count, count > section {
+            return vm!._formFooters[section].size
         }else{
             return .zero
         }
@@ -91,17 +92,17 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case CaamDau<UICollectionView>.CD_Kind.tHeader.stringValue:
-            guard let count = vm?._formHeader.count, count > indexPath.section, let row = vm?._formHeader[indexPath.section] else {
+            guard let count = vm?._formHeaders.count, count > indexPath.section, let row = vm?._formHeaders[indexPath.section] else {
                 return collectionView.cd.view(CD_CollectionReusableViewNone.id, kind, indexPath)
             }
-            let v = collectionView.cd.view(row.viewId, kind, indexPath)
+            let v = collectionView.cd.view(row.cellId, kind, indexPath)
             row.bind(v)
             return v
         default:
-            guard let count = vm?._formFooter.count, count > indexPath.section, let row = vm?._formFooter[indexPath.section] else {
+            guard let count = vm?._formFooters.count, count > indexPath.section, let row = vm?._formFooters[indexPath.section] else {
                 return collectionView.cd.view(CD_CollectionReusableViewNone.id, kind, indexPath)
             }
-            let v = collectionView.cd.view(row.viewId, kind, indexPath)
+            let v = collectionView.cd.view(row.cellId, kind, indexPath)
             row.bind(v)
             return v
         }
