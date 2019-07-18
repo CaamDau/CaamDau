@@ -21,8 +21,26 @@ public protocol CD_ViewModelDataSource {
     
     var _reloadData:(()->Void)? { set get }
     var _reloadDataIndexPath:(([IndexPath],UITableView.RowAnimation)->Void)? { set get }
-    
+    var _reloadSections:((IndexSet,UITableView.RowAnimation)->Void)? { set get }
     func requestData(_ refresh:Bool)
+}
+extension CD_ViewModelDataSource {
+    public var _reloadDataIndexPath: (([IndexPath], UITableView.RowAnimation) -> Void)? {
+        get {
+            return nil
+        }
+        set(newValue) {
+            
+        }
+    }
+    public var _reloadSections:((IndexSet,UITableView.RowAnimation)->Void)? {
+        get {
+            return nil
+        }
+        set(newValue) {
+            
+        }
+    }
 }
 
 public protocol CD_ViewModelRefreshDelegater {
