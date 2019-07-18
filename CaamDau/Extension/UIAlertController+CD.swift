@@ -3,6 +3,13 @@
 import Foundation
 import UIKit
 
+public extension UIAlertController {
+    @discardableResult
+    static func cd_init(title: String? = nil, message: String? = nil, style : UIAlertController.Style = .alert) -> UIAlertController {
+        return UIAlertController(title: title, message: message, preferredStyle: style)
+    }
+}
+
 public extension CaamDau where Base: UIAlertController {
     
     @discardableResult
