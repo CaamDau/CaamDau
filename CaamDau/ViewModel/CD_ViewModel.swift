@@ -15,6 +15,10 @@ public typealias CD_ViewModelTableViewProtocol = (CD_ViewModelDataSource & CD_Vi
 public typealias CD_ViewModelCollectionViewProtocol = (CD_ViewModelDataSource & CD_ViewModelRefreshDelegater & CD_ViewModelTopBarDelegater & CD_ViewModelCollectionViewDelegater)
 
 public protocol CD_ViewModelDataSource {
+    var _forms:[[CD_CellProtocol]] { get }
+    var _formHeaders:[CD_CellProtocol] { get }
+    var _formFooters:[CD_CellProtocol] { get }
+    
     var _form:[[CD_RowProtocol]] { get }
     var _formHeader:[CD_RowProtocol] { get }
     var _formFooter:[CD_RowProtocol] { get }
@@ -25,6 +29,13 @@ public protocol CD_ViewModelDataSource {
     func requestData(_ refresh:Bool)
 }
 extension CD_ViewModelDataSource {
+    public var _forms:[[CD_CellProtocol]] { get{return []} }
+    public var _formHeaders:[CD_CellProtocol] { get{return []} }
+    public var _formFooters:[CD_CellProtocol] { get{return []} }
+    
+    public var _form:[[CD_RowProtocol]] { get{return []} }
+    public var _formHeader:[CD_RowProtocol] { get{return []} }
+    public var _formFooter:[CD_RowProtocol] { get{return []} }
     public var _reloadDataIndexPath: (([IndexPath], UITableView.RowAnimation) -> Void)? {
         get {
             return nil
