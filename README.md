@@ -43,8 +43,8 @@
 
 #### 附录
 -[Python 自动化工具集](https://github.com/liucaide/SapSapSeoi)
-  - [图片资源管理类](https://github.com/liucaide/SapSapSeoi/swift_assets.py)
-  - [阿里矢量图标资源管理类](https://github.com/liucaide/SapSapSeoi/swift_iconfont.py)
+  - [图片资源管理类](https://github.com/liucaide/SapSapSeoi/blob/master/swift/swift_assets.py)
+  - [阿里矢量图标资源管理类](https://github.com/liucaide/SapSapSeoi/blob/master/swift/swift_iconfont.py)
   
 - Form 场景使用示例
     - [Form 之于UITableView](https://github.com/liucaide/CaamDau/tree/master/Example/Modul/Mine/Classes)
