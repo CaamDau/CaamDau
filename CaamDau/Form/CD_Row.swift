@@ -272,12 +272,12 @@ public protocol CD_CellProtocol:CD_UIProtocol {
 }
 //MARK:---  数据源更新协议 ---
 public protocol CD_RowCellUpdateProtocol:CD_UIDataSourceConfigModel {
-    func row_update(callBack block:CD_RowCallBack)
+    func row_update(callBack block:CD_RowCallBack?)
 }
 extension CD_RowCellUpdateProtocol {
     public func row_update(config data: ConfigModel) {}
     public func row_update(dataSource data: DataSource) {}
-    public func row_update(callBack block:CD_RowCallBack) {}
+    public func row_update(callBack block:CD_RowCallBack?) {}
 }
 
 public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UIView {
