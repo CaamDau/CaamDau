@@ -8,7 +8,6 @@
 
 
 import UIKit
-import CaamDau
 
 //@IBDesignable
 public class CD_TextView: UIView {
