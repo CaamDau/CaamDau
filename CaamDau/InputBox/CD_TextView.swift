@@ -172,8 +172,19 @@ public class CD_TextView: UIView {
     
     open var blockEditing:((_ text: UITextView, _ event:UIControl.Event)->Void)?
     open var blockShouldChangeText:((_ text: UITextView, _ range: NSRange, _ string: String) -> Bool)?
-    open var blockShouldInteractTextAttachment:((_ text: UITextView, _ attachment:NSTextAttachment, _ range: NSRange, _ interaction: UITextItemInteraction) -> Bool)?
-    open var blockShouldInteractURL:((_ text: UITextView, _ url:URL, _ range: NSRange, _ interaction: UITextItemInteraction) -> Bool)?
+    
+    //@available(iOS 10.0, *)
+    //open var interact:Interact?
+    open var interact:Any?
+    
+}
+
+extension CD_TextView {
+    @available(iOS 10.0, *)
+    public struct Interact {
+        public var blockShouldInteractTextAttachment:((_ text: UITextView, _ attachment:NSTextAttachment, _ range: NSRange, _ interaction: UITextItemInteraction) -> Bool)?
+        public var blockShouldInteractURL:((_ text: UITextView, _ url:URL, _ range: NSRange, _ interaction: UITextItemInteraction) -> Bool)?
+    }
 }
 
 
@@ -188,6 +199,13 @@ extension CD_TextView {
         }
         placeholderView.snp.makeConstraints { (make) in
             make.edges.equalTo(textView)
+        }
+        
+        
+        if #available(iOS 10.0, *) {
+            interact = Interact()
+        } else {
+            
         }
     }
 }
@@ -204,11 +222,19 @@ extension CD_TextView: UITextViewDelegate {
         blockEditing?(textView, .editingDidEnd)
     }
     
+    @available(iOS 10.0, *)
     public func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return blockShouldInteractTextAttachment?(textView, textAttachment, characterRange, interaction) ?? true
+        guard let interact = interact as? Interact else {
+            return true
+        }
+        return interact.blockShouldInteractTextAttachment?(textView, textAttachment, characterRange, interaction) ?? true
     }
+    @available(iOS 10.0, *)
     public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return blockShouldInteractURL?(textView, URL, characterRange, interaction) ?? true
+        guard let interact = interact as? Interact else {
+            return true
+        }
+        return interact.blockShouldInteractURL?(textView, URL, characterRange, interaction) ?? true
     }
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return blockShouldChangeText?(textView, range, text) ?? true
