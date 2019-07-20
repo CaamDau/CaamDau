@@ -71,10 +71,16 @@ public extension CD_ViewModelRefreshDelegater {
 
 public protocol CD_ViewModelTableViewDelegater {
     var _tableViewCustom:((UITableView)->Void)? { get }
+    var _safeAreaLayout:Bool { get }
 }
 public extension CD_ViewModelTableViewDelegater {
     public var _tableViewCustom:((UITableView)->Void)? {
         return { _ in
+        }
+    }
+    public var _safeAreaLayout:Bool {
+        get{
+            return true
         }
     }
 }
@@ -83,6 +89,7 @@ public extension CD_ViewModelTableViewDelegater {
 public protocol CD_ViewModelCollectionViewDelegater {
     var _collectionRegisters:[CaamDau<UICollectionView>.CD_View] { get }
     var _collectionViewCustom:((UICollectionView)->Void)? { get }
+    var _safeAreaLayout:Bool { get }
 }
 public extension CD_ViewModelCollectionViewDelegater {
     public var _collectionRegisters:[CaamDau<UICollectionView>.CD_View] {
@@ -90,6 +97,11 @@ public extension CD_ViewModelCollectionViewDelegater {
     }
     public var _collectionViewCustom:((UICollectionView)->Void)? {
         return { _ in
+        }
+    }
+    public var _safeAreaLayout:Bool {
+        get{
+            return true
         }
     }
 }

@@ -144,8 +144,17 @@ class CD_BaseTableViewController: UIViewController {
         }
         
         tableView.snp.makeConstraints { (make) in
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(topBar.snp.bottom)
+            guard let safeArea = vm?._safeAreaLayout, safeArea else {
+                make.bottom.equalToSuperview()
+                return
+            }
+            if #available(iOS 11.0, *) {
+                make.left.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            } else {
+                make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
+            }
         }
     }
     
