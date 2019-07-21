@@ -57,7 +57,7 @@ public extension CaamDau where Base: UICollectionView {
 
 
 public extension CaamDau where Base: UICollectionView {
-    public enum CD_Kind:Int {
+    public enum Kind:Int {
         case tHeader = 0
         case tFooter = 1
         
@@ -70,14 +70,14 @@ public extension CaamDau where Base: UICollectionView {
             }
         }
     }
-    public enum CD_View {
+    public enum View {
         case tCell(_ cellClass:AnyClass, _ id:String?, _ bundleFrom:String?)
-        case tView(_ viewClass:AnyClass, _ id:String?, _ kind:CD_Kind, _ bundleFrom:String?)
+        case tView(_ viewClass:AnyClass, _ id:String?, _ kind:Kind, _ bundleFrom:String?)
         
     }
     
     @discardableResult
-    func register(_ model:[CD_View]) -> CaamDau {
+    func register(_ model:[View]) -> CaamDau {
         for (_, item) in model.enumerated() {
             switch item {
             case .tCell(let cellClass, let id, let from):
@@ -118,7 +118,7 @@ public extension CaamDau where Base: UICollectionView {
     func cell(_ id:String, _ index:IndexPath) -> UICollectionViewCell{
         return base.dequeueReusableCell(withReuseIdentifier: id, for: index)
     }
-    func view(_ id:String,_ kind:CD_Kind, _ index:IndexPath) -> UICollectionReusableView{
+    func view(_ id:String,_ kind:Kind, _ index:IndexPath) -> UICollectionReusableView{
         return base.dequeueReusableSupplementaryView(ofKind: kind.stringValue, withReuseIdentifier: id, for: index)
     }
     func view(_ id:String,_ kind:String, _ index:IndexPath) -> UICollectionReusableView{

@@ -15,12 +15,18 @@ public typealias CD_ViewModelTableViewProtocol = (CD_ViewModelDataSource & CD_Vi
 public typealias CD_ViewModelCollectionViewProtocol = (CD_ViewModelDataSource & CD_ViewModelRefreshDelegater & CD_ViewModelTopBarDelegater & CD_ViewModelCollectionViewDelegater)
 
 public protocol CD_ViewModelDataSource {
+    /// 使用新的 Row 协议 CD_CellProtocol
     var _forms:[[CD_CellProtocol]] { get }
+    /// 使用新的 Row 协议 CD_CellProtocol
     var _formHeaders:[CD_CellProtocol] { get }
+    /// 使用新的 Row 协议 CD_CellProtocol
     var _formFooters:[CD_CellProtocol] { get }
     
+    /// 使用旧的的 Row 协议 CD_CellProtocol
     var _form:[[CD_RowProtocol]] { get }
+    /// 使用旧的的 Row 协议 CD_CellProtocol
     var _formHeader:[CD_RowProtocol] { get }
+    /// 使用旧的的 Row 协议 CD_CellProtocol
     var _formFooter:[CD_RowProtocol] { get }
     
     var _reloadData:(()->Void)? { set get }
@@ -36,6 +42,14 @@ extension CD_ViewModelDataSource {
     public var _form:[[CD_RowProtocol]] { get{return []} }
     public var _formHeader:[CD_RowProtocol] { get{return []} }
     public var _formFooter:[CD_RowProtocol] { get{return []} }
+    public var _reloadData:(()->Void)? {
+        get {
+            return nil
+        }
+        set(newValue) {
+            
+        }
+    }
     public var _reloadDataIndexPath: (([IndexPath], UITableView.RowAnimation) -> Void)? {
         get {
             return nil
@@ -52,6 +66,7 @@ extension CD_ViewModelDataSource {
             
         }
     }
+    public func requestData(_ refresh:Bool) {}
 }
 
 public protocol CD_ViewModelRefreshDelegater {
@@ -65,6 +80,9 @@ public extension CD_ViewModelRefreshDelegater {
     }
     public var _mjRefreshModel: CD_MJRefreshModel {
         return CD_MJRefresh.shared.model
+    }
+    public var _mjRefreshType:[CD_MJRefreshModel.RefreshType] {
+        return []
     }
 }
 
@@ -87,12 +105,12 @@ public extension CD_ViewModelTableViewDelegater {
 
 
 public protocol CD_ViewModelCollectionViewDelegater {
-    var _collectionRegisters:[CaamDau<UICollectionView>.CD_View] { get }
+    var _collectionRegisters:[CaamDau<UICollectionView>.View] { get }
     var _collectionViewCustom:((UICollectionView)->Void)? { get }
     var _safeAreaLayout:Bool { get }
 }
 public extension CD_ViewModelCollectionViewDelegater {
-    public var _collectionRegisters:[CaamDau<UICollectionView>.CD_View] {
+    public var _collectionRegisters:[CaamDau<UICollectionView>.View] {
         return []
     }
     public var _collectionViewCustom:((UICollectionView)->Void)? {

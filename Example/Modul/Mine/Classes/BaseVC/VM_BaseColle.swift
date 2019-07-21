@@ -65,7 +65,7 @@ extension VM_BaseColle: CD_ViewModelRefreshDelegater {
 }
 
 extension VM_BaseColle: CD_ViewModelCollectionViewDelegater {
-    var _collectionRegisters: [CaamDau<UICollectionView>.CD_View] {
+    var _collectionRegisters: [CaamDau<UICollectionView>.View] {
         return [.tCell(Cell_BaseColleTitle.self, nil, nil),
                 .tView(Header_BaseCollectionReusableView.self, nil, .tHeader, nil)]
     }
