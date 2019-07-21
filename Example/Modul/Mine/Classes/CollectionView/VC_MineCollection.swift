@@ -82,7 +82,7 @@ extension VC_MineCollection: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case CaamDau<UICollectionView>.CD_Kind.tHeader.stringValue:
+        case CaamDau<UICollectionView>.Kind.tHeader.stringValue:
             let row = vm.formsHeader[indexPath.section]
             let v = collectionView.cd.view(row.viewId, kind, indexPath)
             row.bind(v)

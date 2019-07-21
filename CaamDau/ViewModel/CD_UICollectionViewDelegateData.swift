@@ -93,7 +93,7 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
     
     public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
-        case CaamDau<UICollectionView>.CD_Kind.tHeader.stringValue:
+        case CaamDau<UICollectionView>.Kind.tHeader.stringValue:
             guard let count = vm?._formHeader.count, count > indexPath.section, let row = vm?._formHeader[indexPath.section] else {
                 return collectionView.cd.view(CD_CollectionReusableViewNone.id, kind, indexPath)
             }

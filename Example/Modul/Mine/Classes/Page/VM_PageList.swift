@@ -82,7 +82,7 @@ extension VM_PageList: CD_ViewModelDataSource {
         
     }
     
-    var _collectionRegisters: [CaamDau<UICollectionView>.CD_View] {
+    var _collectionRegisters: [CaamDau<UICollectionView>.View] {
         return []
     }
     

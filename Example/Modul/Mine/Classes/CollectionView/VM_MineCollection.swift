@@ -49,7 +49,7 @@ struct VM_MineCollection {
         })
     }()
     
-    lazy var registerView:[CaamDau<UICollectionView>.CD_View] = {
+    lazy var registerView:[CaamDau<UICollectionView>.View] = {
         return [.tCell(Cell_MineCollectionImage.self, nil, "Mine"),
                 .tCell(Cell_MineCollectionLabel.self, nil, nil),
                 .tView(View_MineCollectionHeader.self, nil, .tHeader, "Mine"),

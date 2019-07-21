@@ -282,7 +282,7 @@ extension VM_HUD: CD_ViewModelDataSource {
         makeFrom(refresh)
     }
     
-    var _collectionRegisters: [CaamDau<UICollectionView>.CD_View] {
+    var _collectionRegisters: [CaamDau<UICollectionView>.View] {
         return []
     }
     
