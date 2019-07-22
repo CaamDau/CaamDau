@@ -6,12 +6,12 @@ import UIKit
 
 public extension CaamDau where Base: UIImageView {
     @discardableResult
-    func image(_ a:UIImage) -> CaamDau {
+    func image(_ a:UIImage?) -> CaamDau {
         base.image = a
         return self
     }
     @discardableResult
-    func highlighted(_ image:UIImage) -> CaamDau {
+    func highlighted(_ image:UIImage?) -> CaamDau {
         base.highlightedImage = image
         return self
     }
@@ -21,13 +21,13 @@ public extension CaamDau where Base: UIImageView {
         return self
     }
     @discardableResult
-    func animation(_ images:[UIImage]) -> CaamDau {
+    func animation(_ images:[UIImage]?) -> CaamDau {
         base.animationImages = images
         return self
     }
     
     @discardableResult
-    func highlighted(_ animationImages:[UIImage]) -> CaamDau {
+    func highlighted(_ animationImages:[UIImage]?) -> CaamDau {
         base.highlightedAnimationImages = animationImages
         return self
     }
