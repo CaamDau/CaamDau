@@ -40,7 +40,7 @@ extension CD_Net {
         /// 开启控制台 print
         public var log:Bool = false
         /// 开启控制台 print
-        public var logHandler:((DataResponse<Any>?, [String:String]?, [String:Any]?)->Void)? = nil
+        public var logHandler:((Any?, [String:String]?, [String:Any]?)->Void)? = nil
         /// 返回数据样式 默认 json
         public var responseStyle:CD_Net.RequestStyle = .data
         /// method 默认 get
@@ -128,7 +128,7 @@ extension CD_Net {
     func logPrint<T>(_ res:DataResponse<T>) {
         guard log else { return }
         if let logHandler = CD_Net.config.logHandler {
-            logHandler(res as? DataResponse<Any>, headers, parameters)
+            logHandler(res, headers, parameters)
         }else{
             debugPrint("---👉👉👉", res.request?.url ?? "")
             debugPrint("Headers：", headers ?? "")
