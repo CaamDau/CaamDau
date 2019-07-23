@@ -14,17 +14,16 @@ public func += <key, value> ( cd_one: inout Dictionary<key, value>, cd_two: Dict
 }
 
 var callback:(([String:Any]?) -> [String:Any]?)? = { p -> [String:Any]? in
-    if var ppp = p {
-        let pt:[String:Any] = ["1":"3", "2":4]
-        ppp += pt
-        return ppp
-    }
-    return p
+    var ppp = p ?? [:]
+    let pt:[String:Any] = ["1":"3", "2":4]
+    ppp += pt
+    return ppp
 }
 
-var pp:[String:Any]? = ["1":2]
-
-if callback != nil {
-    pp = callback?(pp)
-}
+var pp:[String:Any]?
+pp?.isEmpty
+pp = callback?(pp) ?? pp
 pp
+pp?.isEmpty
+pp = [:]
+pp?.isEmpty

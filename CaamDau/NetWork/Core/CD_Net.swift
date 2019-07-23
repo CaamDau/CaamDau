@@ -257,20 +257,9 @@ public extension CD_Net {
         path = t
         return self
     }
-    
-    /// subjoin 增补接口通用参数，默认开启增补
-    /// callback 参数补充操作，如进行参数签名
     @discardableResult
-    func parameters(_ t:[String:Any]?, subjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
+    func parameters(_ t:[String:Any]?) -> Self {
         parameters = t
-        if subjoin, !CD_Net.config.parametersSubjoin.isEmpty {
-            var pp =  parameters ?? [:]
-            pp += CD_Net.config.parametersSubjoin
-            parameters = pp
-        }
-        if (handler != nil) {
-            parameters = handler?(parameters)
-        }
         return self
     }
     @discardableResult
@@ -339,16 +328,35 @@ public extension CD_Net {
         return self
     }
     
+    /// 发出请求
+    /// isSubjoin 是否增补接口通用参数，默认开启增补
+    /// handler 参数补充操作，如进行参数签名， 默认使用全局 CD_Net.config.parametersHandler
     @discardableResult
-    func request(_ style:CD_Net.RequestStyle = .data) -> Self {
+    func request(_ style:CD_Net.RequestStyle = .data, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
         responseStyle = style
+        subjoinParameters(isSubjoin, handler)
         requestTo()
         return self
     }
     
+    
+    
+    /// 发出上传请求
+    /// isSubjoin 是否增补接口通用参数，默认开启增补
+    /// handler 参数补充操作，如进行参数签名， 默认使用全局 CD_Net.config.parametersHandler
     @discardableResult
-    func upload(_ style:CD_Net.RequestStyle = .data) -> Self {
+    func upload(_ style:CD_Net.RequestStyle = .data, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
         uploadFormData(style)
         return self
+    }
+    
+    private func subjoinParameters(_ subjoin:Bool, _ handler:(([String:Any]?) -> [String:Any]?)?) {
+        if subjoin, !CD_Net.config.parametersSubjoin.isEmpty {
+            var paramet =  parameters ?? [:]
+            paramet += CD_Net.config.parametersSubjoin
+            parameters = paramet
+        }
+        parameters = handler?(parameters) ?? parameters
+        
     }
 }
