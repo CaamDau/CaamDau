@@ -219,8 +219,7 @@ extension CD_Net {
     }
     
     /// 上传 MultipartFormData 类型的文件数据，
-    func uploadFormData(_ style:CD_Net.RequestStyle = .data) {
-        responseStyle = style
+    func uploadFormData() {
         let url = (self.baseURL + self.path)
         SessionManager.default.upload(multipartFormData: { (formData) in
             for item in self.uploadParameters {
@@ -337,8 +336,7 @@ public extension CD_Net {
     /// isSubjoin 是否增补接口通用参数，默认开启增补
     /// handler 参数补充操作，如进行参数签名， 默认使用全局 CD_Net.config.parametersHandler
     @discardableResult
-    func request(_ style:CD_Net.RequestStyle = CD_Net.config.responseStyle, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
-        responseStyle = style
+    func request(isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
         subjoinParameters(isSubjoin, handler)
         requestTo()
         return self
@@ -350,8 +348,9 @@ public extension CD_Net {
     /// isSubjoin 是否增补接口通用参数，默认开启增补
     /// handler 参数补充操作，如进行参数签名， 默认使用全局 CD_Net.config.parametersHandler
     @discardableResult
-    func upload(_ style:CD_Net.RequestStyle = CD_Net.config.responseStyle, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
-        uploadFormData(style)
+    func upload(isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
+        subjoinParameters(isSubjoin, handler)
+        uploadFormData()
         return self
     }
     
