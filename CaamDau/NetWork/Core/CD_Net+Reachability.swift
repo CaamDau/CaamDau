@@ -20,7 +20,7 @@ public extension CD_Net {
 }
 
 
-public extension CD_Net {
+public extension CD_Net.Error {
     static func massageFor(_ code:Int) -> String? {
         switch code {
         case -88888:

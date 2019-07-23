@@ -26,7 +26,7 @@ extension CD_Net {
         public let massage:String
         public init(code:Int, massage:String) {
             self.code = code
-            self.massage = massage
+            self.massage = massage.isEmpty ? (CD_Net.Error.massageFor(code) ?? "") : massage
         }
     }
     
@@ -143,8 +143,7 @@ extension CD_Net {
                     self.cache?(da)
                 }
             }else{
-                let err = CD_Net.Error(code: statusCode ?? -88888, massage: "")
-                self.failure?(CD_Net.Error(code: err.code, massage: err.localizedDescription))
+                self.failure?(CD_Net.Error(code: statusCode ?? -88888, massage: ""))
             }
         case .failure(let error):
             let err = error as NSError
