@@ -337,7 +337,7 @@ public extension CD_Net {
     /// isSubjoin 是否增补接口通用参数，默认开启增补
     /// handler 参数补充操作，如进行参数签名， 默认使用全局 CD_Net.config.parametersHandler
     @discardableResult
-    func request(_ style:CD_Net.RequestStyle = .data, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
+    func request(_ style:CD_Net.RequestStyle = CD_Net.config.responseStyle, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
         responseStyle = style
         subjoinParameters(isSubjoin, handler)
         requestTo()
@@ -350,7 +350,7 @@ public extension CD_Net {
     /// isSubjoin 是否增补接口通用参数，默认开启增补
     /// handler 参数补充操作，如进行参数签名， 默认使用全局 CD_Net.config.parametersHandler
     @discardableResult
-    func upload(_ style:CD_Net.RequestStyle = .data, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
+    func upload(_ style:CD_Net.RequestStyle = CD_Net.config.responseStyle, isSubjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
         uploadFormData(style)
         return self
     }
