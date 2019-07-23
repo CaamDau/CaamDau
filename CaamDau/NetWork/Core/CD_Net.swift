@@ -41,6 +41,10 @@ extension CD_Net {
         public var method:Alamofire.HTTPMethod = .get
         /// encoding 默认 default
         public var encoding:ParameterEncoding = URLEncoding.default
+        /// subjoin 增补接口通用参数，默认开启增补
+        public var parametersSubjoin:[String:Any] = [:]
+        /// 入参前 操作，如参数签名
+        public var parametersHandler:(([String:Any]?) -> [String:Any]?)? = nil
     }
     
     public struct UploadParam {
@@ -249,9 +253,20 @@ public extension CD_Net {
         path = t
         return self
     }
+    
+    /// subjoin 增补接口通用参数，默认开启增补
+    /// callback 参数补充操作，如进行参数签名
     @discardableResult
-    func parameters(_ t:[String:Any]?) -> Self {
+    func parameters(_ t:[String:Any]?, subjoin:Bool = true, handler:(([String:Any]?) -> [String:Any]?)? = CD_Net.config.parametersHandler) -> Self {
         parameters = t
+        if subjoin, !CD_Net.config.parametersSubjoin.isEmpty {
+            var pp =  parameters ?? [:]
+            pp += CD_Net.config.parametersSubjoin
+            parameters = pp
+        }
+        if (handler != nil) {
+            parameters = handler?(parameters)
+        }
         return self
     }
     @discardableResult
