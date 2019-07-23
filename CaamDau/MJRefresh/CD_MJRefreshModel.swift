@@ -71,7 +71,7 @@ public struct CD_MJRefreshModel {
     /// 上拉刷新状态的Label是否隐藏
     public var up_txtHidden:Bool = false
     /// 上拉文字和图片间的距离
-    public var up_leftInset:CGFloat = 0
+    public var up_leftInset:CGFloat = 15
     /// 下拉菊花样式
     public var up_activityStyle:UIActivityIndicatorView.Style = .gray
     
