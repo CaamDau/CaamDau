@@ -24,6 +24,10 @@ extension CD_Net {
     public struct Error: Swift.Error {
         public let code:Int
         public let massage:String
+        public init(code:Int, massage:String) {
+            self.code = code
+            self.massage = massage
+        }
     }
     
     public struct Manager {
