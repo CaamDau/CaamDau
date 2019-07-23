@@ -151,9 +151,11 @@ class CD_BaseTableViewController: UIViewController {
                 return
             }
             if #available(iOS 11.0, *) {
-                make.left.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+                make.bottom.equalToSuperview()
+                //make.left.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             } else {
-                make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
+                make.bottom.equalToSuperview()
+                //make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
             }
         }
     }
