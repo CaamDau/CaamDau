@@ -52,7 +52,7 @@ pod 'CD/Net/Codable' #获取 Codable 功能
                 return p
         }
         // - 登录登出  接口增补参数配置
-        if !User.shared.info.userid.isEmpty {
+        if !User.shared.token.isEmpty {
             CD_Net.config.parametersSubjoin = ["token":User.shared.token]
         }
 
@@ -100,6 +100,9 @@ pod 'CD/Net/Codable' #获取 Codable 功能
         })
 ```
 
+- SwiftyJSON 更高的灵活性
+```
+```
 
 ## Author
 
