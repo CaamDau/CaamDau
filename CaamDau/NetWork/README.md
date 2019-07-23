@@ -6,12 +6,12 @@ CD is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/Net/Core' #主要网络功能
+pod 'CaamDau/Net/Core' #主要网络功能
 
-pod 'CD/Net/All' #CD_Net 所有功能
-pod 'CD/Net/SwiftyJSON' #获取 SwiftyJSON 功能
-pod 'CD/Net/Cache'  #获取 Cache功能
-pod 'CD/Net/Codable' #获取 Codable 功能
+pod 'CaamDau/Net/All' #CD_Net 所有功能
+pod 'CaamDau/Net/SwiftyJSON' #获取 SwiftyJSON 功能
+pod 'CaamDau/Net/Cache'  #获取 Cache功能
+pod 'CaamDau/Net/Codable' #获取 Codable 功能
 ```
 #### Alamofire 使用 更便捷
 
