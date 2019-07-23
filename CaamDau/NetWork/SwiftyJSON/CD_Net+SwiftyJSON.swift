@@ -16,7 +16,7 @@ import SwiftyJSON
 public protocol CD_SwiftyJSONProtocol {
     /// model 遵循 此协议，使用SwiftyJSON 进行转模型
     /// 多模块通用可根据 tag，实现不同 json <key> 转同一模型
-    init(_ json:JSON, tag:Int?)
+    init(_ json:JSON, tag:CD_SwiftyJSONTagProtocol?)
     
     func toData() -> Data
 }
@@ -26,10 +26,13 @@ extension CD_SwiftyJSONProtocol {
     }
 }
 
+public protocol CD_SwiftyJSONTagProtocol {
+    var tag:Int? { get }
+}
 
 public extension CD_Net {
     @discardableResult
-    func mapModels<J:CD_SwiftyJSONProtocol>(withSwiftyJSON t:J.Type, tag:Int? = nil, succeed:(([J]) ->Void)?) -> Self {
+    func mapModels<J:CD_SwiftyJSONProtocol>(withSwiftyJSON t:J.Type, tag:CD_SwiftyJSONTagProtocol? = nil, succeed:(([J]) ->Void)?) -> Self {
         success = { res in
             let jsons = JSON(res).arrayValue
             let model = jsons.compactMap{J($0, tag: tag)}
@@ -45,7 +48,7 @@ public extension CD_Net {
     }
     
     @discardableResult
-    func mapModel<J:CD_SwiftyJSONProtocol>(withSwiftyJSON t:J.Type, tag:Int? = nil, succeed:((J) ->Void)?) -> Self {
+    func mapModel<J:CD_SwiftyJSONProtocol>(withSwiftyJSON t:J.Type, tag:CD_SwiftyJSONTagProtocol? = nil, succeed:((J) ->Void)?) -> Self {
         success = { res in
             let json = JSON(res)
             let model = J(json, tag: tag)
@@ -57,11 +60,11 @@ public extension CD_Net {
 
 
 public extension Data {
-    func mapSwiftJSONModel<J:CD_SwiftyJSONProtocol>(_ t:J.Type, tag:Int? = nil) -> J {
+    func mapSwiftJSONModel<J:CD_SwiftyJSONProtocol>(_ t:J.Type, tag:CD_SwiftyJSONTagProtocol? = nil) -> J {
         let json = JSON(self)
         return J(json, tag: tag)
     }
-    func mapSwiftJSONModels<J:CD_SwiftyJSONProtocol>(_ t:J.Type, tag:Int? = nil) -> [J] {
+    func mapSwiftJSONModels<J:CD_SwiftyJSONProtocol>(_ t:J.Type, tag:CD_SwiftyJSONTagProtocol? = nil) -> [J] {
         let jsons = JSON(self).arrayValue
         return jsons.compactMap{J($0, tag: tag)}
     }
