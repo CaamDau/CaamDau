@@ -87,7 +87,7 @@ pod 'CD/Net/Codable' #获取 Codable 功能
             .responseStyle(.json)
             .request()
             //.request(isSubjoin: false, handler:nil)
-            // isSubjoin: 默认增补userid等通用参数, handler: 增补操作 如参数签名
+            // isSubjoin: 默认增补token等通用参数, handler: 增补操作 如参数签名
             // 不需要增补的接口设为 false 即可
             
 ```
