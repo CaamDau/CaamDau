@@ -171,8 +171,8 @@ extension CD_UIViewProtocol {
 //MARK:--- UI 控制器 ViewControllers 协议关联模型 ----------
 public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:UIViewController {
     public var vc:UIViewController
-    public var dataSource:T.DataSource?
-    public var config:T.ConfigModel?
+    public var _dataSource:T.DataSource?
+    public var _config:T.ConfigModel?
     public var frame:CGRect
     public var autoLayout:Bool
     public init(dataSource:T.DataSource? = nil,
@@ -182,8 +182,8 @@ public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:U
                 callBack:CD_RowCallBack? = nil,
                 tapBlock:CD_RowDidSelectBlock? = nil) {
         self.vc = T.row_init(withDataSource: dataSource, config: config, callBack:callBack, tapBlock:tapBlock)
-        self.dataSource = dataSource
-        self.config = config
+        self._dataSource = dataSource
+        self._config = config
         self.frame = frame
         self.autoLayout = autoLayout
     }
@@ -191,11 +191,28 @@ public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:U
         guard let item = obj as? T else {
             return
         }
-        if let m = config {
+        if let m = _config {
             item.row_update(config: m)
         }
-        if let d = dataSource {
+        if let d = _dataSource {
             item.row_update(dataSource:d)
+        }
+    }
+    
+    public var dataSource: Any? {
+        set{
+            _dataSource = newValue as! T.DataSource
+        }
+        get{
+            return _dataSource
+        }
+    }
+    public var config: Any? {
+        set{
+            _config = newValue as! T.ConfigModel
+        }
+        get{
+            return _config
         }
     }
 }
@@ -204,8 +221,8 @@ public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:U
 //MARK:--- UI View 协议关联模型 ----------
 public struct CD_RowView<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView {
     public var view:UIView
-    public var dataSource:T.DataSource?
-    public var config:T.ConfigModel?
+    public var _dataSource:T.DataSource?
+    public var _config:T.ConfigModel?
     public var frame:CGRect
     public var autoLayout:Bool
     public init(dataSource:T.DataSource? = nil,
@@ -216,19 +233,36 @@ public struct CD_RowView<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView
                 tapBlock:CD_RowDidSelectBlock? = nil) {
         self.view = T.row_init(withDataSource: dataSource, config: config, callBack:callBack, tapBlock:tapBlock)
         
-        self.dataSource = dataSource
-        self.config = config
+        self._dataSource = dataSource
+        self._config = config
         self.frame = frame
         self.autoLayout = autoLayout
     }
     
     public func bind(_ obj: AnyObject) {
         guard let item = obj as? T else {return}
-        if let m = config {
+        if let m = _config {
             item.row_update(config: m)
         }
-        if let d = dataSource {
+        if let d = _dataSource {
             item.row_update(dataSource:d)
+        }
+    }
+    
+    public var dataSource: Any? {
+        set{
+            _dataSource = newValue as! T.DataSource
+        }
+        get{
+            return _dataSource
+        }
+    }
+    public var config: Any? {
+        set{
+            _config = newValue as! T.ConfigModel
+        }
+        get{
+            return _config
         }
     }
 }
