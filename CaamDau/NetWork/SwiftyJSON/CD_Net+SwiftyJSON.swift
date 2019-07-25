@@ -30,7 +30,7 @@ public protocol CD_SwiftyJSONTagProtocol {
     var key:String {get}
 }
 extension CD_SwiftyJSONTagProtocol {
-    //public var key:String { return "" }
+    public var key:String { return "" }
 }
 
 public extension CD_Net {
