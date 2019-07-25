@@ -27,12 +27,10 @@ extension CD_SwiftyJSONProtocol {
 }
 
 public protocol CD_SwiftyJSONTagProtocol {
-    var tag:Int? { get }
-    var key:String? {get}
+    var key:String {get}
 }
 extension CD_SwiftyJSONTagProtocol {
-    public var tag:Int? { return nil }
-    public var key:String? { return nil }
+    //public var key:String { return "" }
 }
 
 public extension CD_Net {
