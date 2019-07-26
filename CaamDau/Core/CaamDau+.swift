@@ -287,11 +287,11 @@ public struct CD {
         if #available(iOS 11.0, *) {
             UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
             UICollectionView.appearance().contentInsetAdjustmentBehavior = .never
-            
+            /// 高度自适应会失效，需要高度自适应的tableView 需重新设置
             UITableView.appearance().contentInsetAdjustmentBehavior = .never
-            UITableView.appearance().estimatedRowHeight = 0.001
-            UITableView.appearance().estimatedSectionHeaderHeight = 0.001
-            UITableView.appearance().estimatedSectionFooterHeight = 0.001
+            UITableView.appearance().estimatedRowHeight = 0
+            UITableView.appearance().estimatedSectionHeaderHeight = 0
+            UITableView.appearance().estimatedSectionFooterHeight = 0
         } else {
             
         }
