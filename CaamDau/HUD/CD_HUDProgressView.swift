@@ -91,7 +91,7 @@ public class CD_HUDProgressView: UIView {
             .bounds(CGRect( w: bounds.size.width - model.lineWidth*2, h: bounds.size.width - model.lineWidth*2))
             .center(self.center)
             .text(NSTextAlignment.center)
-            .text("\(progress)%")
+            .text(String(format: "%.1f", progress) + "%")
         trackLayer.path = path.cgPath
         progressLayer.path = path.cgPath
         progressLayer.strokeStart = 0
@@ -110,7 +110,7 @@ extension CD_HUDProgressView {
         return angle/180.0 * CGFloat.pi
     }
     private func updateProgress(_ pro: CGFloat, duration: Double) {
-        lab_num.cd.text("\(pro)%")
+        lab_num.cd.text(String(format: "%.1f", pro) + "%")
         CATransaction.begin()
         CATransaction.setDisableActions(false)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name:
