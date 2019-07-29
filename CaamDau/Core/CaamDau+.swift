@@ -211,7 +211,7 @@ public struct CD {
         for item in urlTypes {
             guard let j = item as? [String:Any] else { break }
             guard let s = j.arrayValue("CFBundleURLSchemes").first as? String else { break }
-            guard s.hasPrefix(match) else { break }
+            guard s.hasPrefix(match) else { continue }
             return s
         }
         return match
