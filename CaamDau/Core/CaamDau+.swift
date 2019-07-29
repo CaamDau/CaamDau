@@ -209,8 +209,8 @@ public struct CD {
         guard let info = Bundle.main.infoDictionary else { return match }
         let urlTypes = info.arrayValue("CFBundleURLTypes")
         for item in urlTypes {
-            guard let j = item as? [String:Any] else { break }
-            guard let s = j.arrayValue("CFBundleURLSchemes").first as? String else { break }
+            guard let j = item as? [String:Any] else { continue }
+            guard let s = j.arrayValue("CFBundleURLSchemes").first as? String else { continue }
             guard s.hasPrefix(match) else { continue }
             return s
         }
