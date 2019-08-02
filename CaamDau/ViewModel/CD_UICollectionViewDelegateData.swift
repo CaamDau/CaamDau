@@ -19,7 +19,48 @@ public class CD_UICollectionViewDelegateData: NSObject {
         self.vm = vm
     }
 }
-
+extension CD_UICollectionViewDelegateData {
+    public func makeReloadData(_ collectionView:UICollectionView) {
+        vm?._reloadData = {[weak self] in
+            collectionView.reloadData()
+            collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
+            collectionView.reloadItems(at: indexPath)
+            collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        guard let refresh = vm?._mjRefresh else {
+            return
+        }
+        
+        if refresh.header {
+            if refresh.headerGif {
+                collectionView.cd.headerMJGifWithModel({[weak self] in
+                    self?.vm?.requestData(true)
+                    }, model: vm!._mjRefreshModel)
+            }else{
+                collectionView.cd.headerMJWithModel({[weak self] in
+                    self?.vm?.requestData(true)
+                    }, model: vm!._mjRefreshModel)
+            }
+        }
+        if refresh.footer {
+            if refresh.footerGif {
+                collectionView.cd.footerMJGifAutoWithModel({[weak self] in
+                    self?.vm?.requestData(false)
+                    }, model: vm!._mjRefreshModel)
+            }else{
+                collectionView.cd.footerMJAutoWithModel({[weak self] in
+                    self?.vm?.requestData(false)
+                    }, model: vm!._mjRefreshModel)
+            }
+        }
+        
+        collectionView.cd.mjRefreshTypes(vm!._mjRefreshType)
+    }
+}
 extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return vm?._form.count ?? 0
@@ -140,7 +181,7 @@ class CD_BaseCollectionViewController: UIViewController {
         super.viewDidLoad()
         makeUI()
         makeLayout()
-        makeReloadData()
+        delegateData?.makeReloadData(collectionView)
         topBar.delegate = self
         vm?._collectionViewCustom?(collectionView)
     }
@@ -178,46 +219,7 @@ class CD_BaseCollectionViewController: UIViewController {
         }
     }
     
-    func makeReloadData() {
-        vm?._reloadData = {[weak self] in
-            self?.collectionView.reloadData()
-            self?.collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
-        }
-        
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
-            self?.collectionView.reloadItems(at: indexPath)
-            self?.collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
-        }
-        
-        guard let refresh = vm?._mjRefresh else {
-            return
-        }
-        
-        if refresh.header {
-            if refresh.headerGif {
-                self.collectionView.cd.headerMJGifWithModel({[weak self] in
-                    self?.vm?.requestData(true)
-                    }, model: vm!._mjRefreshModel)
-            }else{
-                self.collectionView.cd.headerMJWithModel({[weak self] in
-                    self?.vm?.requestData(true)
-                    }, model: vm!._mjRefreshModel)
-            }
-        }
-        if refresh.footer {
-            if refresh.footerGif {
-                self.collectionView.cd.footerMJGifAutoWithModel({[weak self] in
-                    self?.vm?.requestData(false)
-                    }, model: vm!._mjRefreshModel)
-            }else{
-                self.collectionView.cd.footerMJAutoWithModel({[weak self] in
-                    self?.vm?.requestData(false)
-                    }, model: vm!._mjRefreshModel)
-            }
-        }
-        
-        self.collectionView.cd.mjRefreshTypes(vm!._mjRefreshType)
-    }
+    
     
 }
 

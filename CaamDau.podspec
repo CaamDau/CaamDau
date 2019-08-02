@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   # s.source_files = 'CaamDau/**/*'
   
-  s.default_subspec = 'All'
+  s.default_subspec = 'Module'
   
   s.subspec 'Core' do |core|
     core.dependency 'CaamDau/Extension'

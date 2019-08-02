@@ -57,6 +57,41 @@ public extension String{
     }
 }
 
+//MARK:---------- 汉字转拼音
+extension String {
+    /// 只转拼音
+    func cd_pinyin(remove diacritics:Bool = true)->String{
+        let mutableString = NSMutableString(string: self)
+        CFStringTransform(mutableString  as CFMutableString, nil, kCFStringTransformToLatin, false)
+        if diacritics {
+            CFStringTransform(mutableString, nil, kCFStringTransformStripDiacritics, false)
+        }
+        return String(mutableString)
+        //mutableString.folding(options: .diacriticInsensitive, locale: .current)
+        //CFStringTransform(mutableString, nil, kCFStringTransformStripCombiningMarks, false)
+        //string = string.capitalized
+        // 首字母大写
+        //var str1 = string.replacingOccurrences(of: " ", with: "")
+        //str1 = str1.capitalized
+        //return str1
+    }
+    /// 转拼音 取首字母
+    func cd_pinyinFirst(_ clear:Bool = true, capitalized:Bool = true, placeholder:String = "#")->String{
+        guard !self.isEmpty else { return placeholder }
+        var f = self
+        if clear {
+            f = f.replacingOccurrences(of: " ", with: "")
+        }
+        guard !f.isEmpty else { return placeholder }
+        f = String(f.first!)
+        f = f.cd_pinyin()
+        if capitalized {
+            f = f.capitalized
+        }
+        return String(f.first!)
+    }
+}
+
 
 //MARK:--- 字符串宽高计算 ----------
 public extension String {
