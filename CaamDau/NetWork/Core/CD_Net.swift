@@ -55,23 +55,24 @@ extension CD_Net {
     
     public struct UploadParam {
         ///Data数据流
-        var fileData = Data()
+        public var fileData = Data()
         ///文件的FileURL
-        var fileURL:URL?
+        public var fileURL:URL?
         ///服务器对应的参数名称
-        var serverName = ""
+        public var serverName = ""
         ///文件的名称(上传到服务器后，服务器保存的文件名)
-        var filename = ""
+        public var filename = ""
         ///文件的MIME类型
         ///(image/png,image/jpg,application/octet-stream/video/mp4等)
-        var mimeType = "image/png"
+        public var mimeType = "image/png"
         ///文件类型
-        var type:Style = .data
+        public var type:Style = .data
         
-        enum Style {
+        public enum Style {
             case data
             case file
         }
+        public init(){}
     }
 }
 extension CD_Net.Error: LocalizedError {
