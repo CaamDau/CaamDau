@@ -16,7 +16,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => '' }
   
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'Demo/Classes/**/*'
   
