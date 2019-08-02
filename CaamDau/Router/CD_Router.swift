@@ -57,8 +57,10 @@ public protocol CD_RouterProtocol {
     func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any])->Void)?)
 }
 extension CD_RouterProtocol {
-    func router() {
+    public func router() {
         router(nil, callback: nil)
+    }
+    public func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any])->Void)? = nil) {
     }
 }
 
