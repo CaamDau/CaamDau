@@ -19,6 +19,49 @@ public class CD_TableViewDelegateDataSource: NSObject {
         self.vm = vm
     }
 }
+extension CD_TableViewDelegateDataSource {
+    public func makeReloadData(_ tableView:UITableView) {
+        vm?._reloadData = {[weak self] in
+            tableView.reloadData()
+            tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
+            tableView.reloadRows(at: indexPath, with: animation)
+            tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        guard let refresh = vm?._mjRefresh else {
+            return
+        }
+        
+        if refresh.header {
+            if refresh.headerGif {
+                tableView.cd.headerMJGifWithModel({[weak self] in
+                    self?.vm?.requestData(true)
+                    }, model: vm!._mjRefreshModel)
+            }else{
+                tableView.cd.headerMJWithModel({[weak self] in
+                    self?.vm?.requestData(true)
+                    }, model: vm!._mjRefreshModel)
+            }
+        }
+        if refresh.footer {
+            if refresh.footerGif {
+                tableView.cd.footerMJGifAutoWithModel({[weak self] in
+                    self?.vm?.requestData(false)
+                    }, model: vm!._mjRefreshModel)
+            }else{
+                tableView.cd.footerMJAutoWithModel({[weak self] in
+                    self?.vm?.requestData(false)
+                    }, model: vm!._mjRefreshModel)
+            }
+        }
+        
+        tableView.cd.mjRefreshTypes(vm!._mjRefreshType)
+    }
+}
+
 extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return vm?._forms.count ?? 0
@@ -121,7 +164,7 @@ class CD_TableViewController: UIViewController {
         super.viewDidLoad()
         makeUI()
         makeLayout()
-        makeReloadData()
+        delegateData?.makeReloadData(tableView)
         topBar.delegate = self
         vm?._tableViewCustom?(tableView)
     }
@@ -157,47 +200,6 @@ class CD_TableViewController: UIViewController {
                 //make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
             }
         }
-    }
-    
-    func makeReloadData() {
-        vm?._reloadData = {[weak self] in
-            self?.tableView.reloadData()
-            self?.tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
-        }
-        
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
-            self?.tableView.reloadRows(at: indexPath, with: animation)
-            self?.tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
-        }
-        
-        guard let refresh = vm?._mjRefresh else {
-            return
-        }
-        
-        if refresh.header {
-            if refresh.headerGif {
-                self.tableView.cd.headerMJGifWithModel({[weak self] in
-                    self?.vm?.requestData(true)
-                    }, model: vm!._mjRefreshModel)
-            }else{
-                self.tableView.cd.headerMJWithModel({[weak self] in
-                    self?.vm?.requestData(true)
-                    }, model: vm!._mjRefreshModel)
-            }
-        }
-        if refresh.footer {
-            if refresh.footerGif {
-                self.tableView.cd.footerMJGifAutoWithModel({[weak self] in
-                    self?.vm?.requestData(false)
-                    }, model: vm!._mjRefreshModel)
-            }else{
-                self.tableView.cd.footerMJAutoWithModel({[weak self] in
-                    self?.vm?.requestData(false)
-                    }, model: vm!._mjRefreshModel)
-            }
-        }
-        
-        self.tableView.cd.mjRefreshTypes(vm!._mjRefreshType)
     }
     
 }

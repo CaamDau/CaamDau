@@ -171,9 +171,118 @@ public extension CaamDau where Base: UITextView {
     
 }
 
-
-
-
+public class CD_TextDelegate: NSObject {
+    class func textLimit(_ match:(regex:CD_RegEx, max:Int), text:String?, range: NSRange,  string: String) -> Bool {
+        return CD_TextDelegate.textLimit((text: text, pattern: match.regex.patternValue, max: match.max), range: range, string: string)
+    }
+    class func textLimit(_ match:(text:String?, pattern:String, max:Int), range: NSRange,  string: String) -> Bool {
+        guard let text = match.text  else { return true }
+        guard let r = Range.init(range, in: text) else { return true }
+        let new = text.replacingCharacters(in: r, with: string)
+        guard new.count <= match.max else { return false }
+        return CD_RegEx.match(new, pattern: match.pattern)
+    }
+    
+    var textFieldEditing:((UITextField, UIControl.Event)->Void)?
+    var textFieldShouldClear:(( UITextField) -> Bool)?
+    var textFieldShouldReturn:((UITextField) -> Bool)?
+    var textFieldShouldChangeCharacters:((UITextField, NSRange, String) -> Bool)?
+    
+    var textViewEditing:((UITextView, UIControl.Event)->Void)?
+    var textViewShouldClear:(( UITextView) -> Bool)?
+    var textViewShouldReturn:((UITextView) -> Bool)?
+    var textViewShouldChangeText:((UITextView, NSRange, String) -> Bool)?
+    
+    init(textField editing:((UITextField, UIControl.Event)->Void)? = nil,
+         shouldClear:(( UITextField) -> Bool)? = nil,
+         shouldReturn:((UITextField) -> Bool)? = nil,
+         shouldChangeCharacters:((UITextField, NSRange, String) -> Bool)? = nil) {
+        textFieldEditing = editing
+        textFieldShouldClear = shouldClear
+        textFieldShouldReturn = shouldReturn
+        textFieldShouldChangeCharacters = shouldChangeCharacters
+    }
+    
+    init(textView editing:((UITextView, UIControl.Event)->Void)? = nil,
+         shouldClear:(( UITextView) -> Bool)? = nil,
+         shouldReturn:((UITextView) -> Bool)? = nil,
+         shouldChangeText:((UITextView, NSRange, String) -> Bool)? = nil) {
+        textViewEditing = editing
+        textViewShouldClear = shouldClear
+        textViewShouldReturn = shouldReturn
+        textViewShouldChangeText = shouldChangeText
+    }
+}
+extension CD_TextDelegate: UITextFieldDelegate {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return textFieldShouldChangeCharacters?(textField,range,string) ?? true
+    }
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        textFieldEditing?(textField, .editingDidEnd)
+    }
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
+        textFieldEditing?(textField, .editingDidBegin)
+    }
+    public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return textFieldShouldClear?(textField) ?? true
+    }
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textFieldShouldReturn?(textField) ?? true
+    }
+    public func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    @available(iOS 10.0, *)
+    public func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        
+    }
+}
+extension CD_TextDelegate: UITextViewDelegate {
+    public func textViewDidChange(_ textView: UITextView) {
+        textViewEditing?(textView, .editingChanged)
+    }
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        textViewEditing?(textView, .editingDidEnd)
+    }
+    public func textViewDidBeginEditing(_ textView: UITextView) {
+        textViewEditing?(textView, .editingDidBegin)
+    }
+    public func textViewDidChangeSelection(_ textView: UITextView) {
+        
+    }
+    
+    public func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return true
+    }
+    public func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return true
+    }
+    
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        return textViewShouldChangeText?(textView, range, text) ?? true
+    }
+    
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        return true
+    }
+    
+    public func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
+        return true
+    }
+    
+    @available(iOS 10.0, *)
+    public func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return true
+    }
+    @available(iOS 10.0, *)
+    public func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return true
+    }
+}
 
 protocol CDTextInputTraitsProtocol:UITextInputTraits {
     //func inputTraits()

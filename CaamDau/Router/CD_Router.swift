@@ -51,6 +51,20 @@ class VC_Detail: UIViewController {
 
 import Foundation
 public protocol CD_RouterProtocol {
+    
     func router()
+    /// 入参、回参 模糊，自由度更好
+    func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any])->Void)?)
 }
-public enum CD_Router {}
+extension CD_RouterProtocol {
+    func router() {
+        router(nil, callback: nil)
+    }
+}
+
+
+public enum CD_Router {
+    
+}
+
+
