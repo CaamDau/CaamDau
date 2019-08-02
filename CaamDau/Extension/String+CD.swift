@@ -58,7 +58,7 @@ public extension String{
 }
 
 //MARK:---------- 汉字转拼音
-extension String {
+public extension String {
     /// 只转拼音
     func cd_pinyin(remove diacritics:Bool = true)->String{
         let mutableString = NSMutableString(string: self)
