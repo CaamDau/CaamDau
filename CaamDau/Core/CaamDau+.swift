@@ -205,6 +205,11 @@ public struct CD {
         return Bundle.main.bundleIdentifier ?? ""
     }
     
+    public static func atoz(_ capitalized:Bool = false) -> [String] {
+        let az = (97...122).compactMap{String(UnicodeScalar($0))}
+        return capitalized ? az.compactMap{$0.capitalized} : az
+    }
+    
     public static func appUrlScheme(_ match:String) -> String {
         guard let info = Bundle.main.infoDictionary else { return match }
         let urlTypes = info.arrayValue("CFBundleURLTypes")
