@@ -128,6 +128,23 @@ public class CD_TextView: UIView {
             return textView.textContainerInset
         }
     }
+    
+    
+    var _textAlignment:NSTextAlignment = .left {
+        didSet{
+            placeholderView.cd.text(_textAlignment)
+            textView.cd.text(_textAlignment)
+        }
+    }
+    @IBInspectable open var textAlignment:NSTextAlignment {
+        set{
+            _textAlignment = newValue
+        }
+        get{
+            return textView.textAlignment
+        }
+    }
+    
     var _keyboardType:UIKeyboardType = .default {
         didSet{
             textView.cd.keyboardType(_keyboardType)
