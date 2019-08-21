@@ -3,6 +3,8 @@
 import Foundation
 
 public class CD_TableViewCellBase: UITableViewCell{
+    public static let id:String = "CD_CollectionViewCellNone"
+    public static let bundle:String = "CaamDau"
     public struct Model {
         let icon:UIImage?
         let title:String?
