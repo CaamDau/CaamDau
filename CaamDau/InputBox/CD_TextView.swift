@@ -193,7 +193,7 @@ public class CD_TextView: UIView {
     //@available(iOS 10.0, *)
     //open var interact:Interact?
     open var interact:Any?
-    
+    var observes:[NSObjectProtocol] = []
 }
 
 extension CD_TextView {
@@ -224,6 +224,11 @@ extension CD_TextView {
         } else {
             
         }
+        
+        observes.append(textView.observe(\.text, options: [.new, .old], changeHandler: { [weak self](tab, change) in
+            guard let tt = self?.textView.text else{return}
+            self?.placeholderView.cd.isHidden(!tt.isEmpty)
+        }))
     }
 }
 
@@ -256,4 +261,66 @@ extension CD_TextView: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return blockShouldChangeText?(textView, range, text) ?? true
     }
+}
+
+
+
+
+
+//MARK:--- UITextView ----------
+public extension CaamDau where Base: CD_TextView {
+    
+    @discardableResult
+    func delegate(_ d:UITextViewDelegate? = nil) -> CaamDau {
+        base.textView.delegate = d
+        return self
+    }
+    
+    @discardableResult
+    func allows(editingTextAttributes b:Bool) -> CaamDau {
+        base.textView.allowsEditingTextAttributes = b
+        return self
+    }
+    @discardableResult
+    func typing(attributes b:[NSAttributedString.Key : Any]) -> CaamDau {
+        base.textView.typingAttributes = b
+        return self
+    }
+    
+    @discardableResult
+    func isEditable(_ e: Bool) -> CaamDau {
+        base.textView.isEditable = e
+        return self
+    }
+    
+    @discardableResult
+    func isSelectable(_ s: Bool) -> CaamDau {
+        base.textView.isSelectable = s
+        return self
+    }
+    
+    @discardableResult
+    func text(containerInset c: UIEdgeInsets) -> CaamDau {
+        base.textContainerInset = c
+        return self
+    }
+    
+    @discardableResult
+    func data(detectorTypes d: UIDataDetectorTypes) -> CaamDau {
+        base.textView.dataDetectorTypes = d
+        return self
+    }
+    
+    @discardableResult
+    func returnKeyType(_ a:UIReturnKeyType) -> CaamDau {
+        base.returnKeyType = a
+        return self
+    }
+    
+    @discardableResult
+    func keyboardType(_ type:UIKeyboardType) -> CaamDau {
+        base.keyboardType = type
+        return self
+    }
+    
 }
