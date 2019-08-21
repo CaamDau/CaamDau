@@ -25,7 +25,7 @@ public extension CD_Net.Error {
         switch code {
         case -88888:
             return "服务器错误"
-        case 404:
+        case 404, 502:
             return "服务器错误"
         case -1:
             return "未知错误"
