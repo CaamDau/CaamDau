@@ -27,13 +27,17 @@ public extension CD_Net {
     }
     
     @discardableResult
-    func toCache(withData key:String = "", when:()->Bool = {true}) -> Self {
-        guard when() else { return self}
+    func toCache(withData key:String = "", when:@escaping (Data)->Bool = {_ in true}, customCache:((Data)->Data)? = nil) -> Self {
         self.cache = { [weak self]res in
+            guard when(res) else {return}
             guard let self = self else { return }
             let urlPath = (self.baseURL + self.path) + (key.isEmpty ? "" : ("."+key))
             let storage = self.makeStorage()
-            try? storage?.setObject(res, forKey: urlPath)
+            if let custom = customCache?(res) {
+                try? storage?.setObject(custom, forKey: urlPath)
+            }else{
+                try? storage?.setObject(res, forKey: urlPath)
+            }
         }
         return self
     }
