@@ -172,15 +172,18 @@ public extension CaamDau where Base: UITextView {
 }
 
 public class CD_TextDelegate: NSObject {
-    public class func textLimit(_ match:(regex:CD_RegEx, max:Int), text:String?, range: NSRange,  string: String) -> Bool {
+    public class func textLimit(_ match:(regex:CD_RegEx, max:Int?), text:String?, range: NSRange,  string: String) -> Bool {
         return CD_TextDelegate.textLimit((text: text, pattern: match.regex.patternValue, max: match.max), range: range, string: string)
     }
-    public class func textLimit(_ match:(text:String?, pattern:String, max:Int), range: NSRange,  string: String) -> Bool {
+    public class func textLimit(_ match:(text:String?, pattern:String?, max:Int?), range: NSRange,  string: String) -> Bool {
         guard let text = match.text  else { return true }
+        guard let pattern = match.pattern  else { return true }
         guard let r = Range.init(range, in: text) else { return true }
         let new = text.replacingCharacters(in: r, with: string)
-        guard new.count <= match.max else { return false }
-        return CD_RegEx.match(new, pattern: match.pattern)
+        let bool = CD_RegEx.match(new, pattern: pattern)
+        guard let max = match.max else { return bool }
+        guard new.count <= max else { return false }
+        return bool
     }
     
     var textFieldEditing:((UITextField, UIControl.Event)->Void)?
