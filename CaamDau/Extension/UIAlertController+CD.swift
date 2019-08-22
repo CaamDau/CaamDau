@@ -13,12 +13,12 @@ public extension UIAlertController {
 public extension CaamDau where Base: UIAlertController {
     
     @discardableResult
-    func show(_ vc:UIViewController, block:(()->Void)? = nil) -> CaamDau {
+    func show(_ vc:UIViewController? = CD.visibleVC, block:(()->Void)? = nil) -> CaamDau {
         if base.title == nil && base.message == nil && base.actions.count == 0 {
-            assertionFailure("💀 👻大哥！你别什么东西都不放💀 👻")
+            assertionFailure("👻💀大哥！你别什么东西都不放💀👻")
             return self
         }
-        vc.present(base, animated: true, completion: block)
+        vc?.present(base, animated: true, completion: block)
         return self
     }
     

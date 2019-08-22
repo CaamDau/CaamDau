@@ -352,7 +352,7 @@ public extension CaamDau where Base: UIView{
     }
     
     /// 截图
-    var cutImage:UIImage? {
+    public var cutImage:UIImage? {
         base.layoutIfNeeded()
         UIGraphicsBeginImageContextWithOptions(base.frame.size, true, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else {
@@ -370,7 +370,7 @@ public extension CaamDau where Base: UIView{
 
 public extension CaamDau where Base: UIScrollView {
     /// 截长图
-    var cutImageLong:UIImage? {
+    public var cutImageLong:UIImage? {
         base.layoutIfNeeded()
         let savedContentOffset = base.contentOffset
         let savedFrame = base.frame
@@ -391,7 +391,7 @@ public extension CaamDau where Base: UIScrollView {
 
 
 public extension UIView{
-    static func cd_loadNib(_ name:String? = nil, from:String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> [Any]? {
+    public static func cd_loadNib(_ name:String? = nil, from:String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> [Any]? {
         let bundle = Bundle.cd_bundle(self, from) ?? Bundle.main
         return bundle.loadNibNamed(name ?? String(describing: self), owner: owner, options: options)
     }

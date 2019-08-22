@@ -172,10 +172,10 @@ public extension CaamDau where Base: UITextView {
 }
 
 public class CD_TextDelegate: NSObject {
-    class func textLimit(_ match:(regex:CD_RegEx, max:Int), text:String?, range: NSRange,  string: String) -> Bool {
+    public class func textLimit(_ match:(regex:CD_RegEx, max:Int), text:String?, range: NSRange,  string: String) -> Bool {
         return CD_TextDelegate.textLimit((text: text, pattern: match.regex.patternValue, max: match.max), range: range, string: string)
     }
-    class func textLimit(_ match:(text:String?, pattern:String, max:Int), range: NSRange,  string: String) -> Bool {
+    public class func textLimit(_ match:(text:String?, pattern:String, max:Int), range: NSRange,  string: String) -> Bool {
         guard let text = match.text  else { return true }
         guard let r = Range.init(range, in: text) else { return true }
         let new = text.replacingCharacters(in: r, with: string)
@@ -193,7 +193,7 @@ public class CD_TextDelegate: NSObject {
     var textViewShouldReturn:((UITextView) -> Bool)?
     var textViewShouldChangeText:((UITextView, NSRange, String) -> Bool)?
     
-    init(textField editing:((UITextField, UIControl.Event)->Void)? = nil,
+    public init(textField editing:((UITextField, UIControl.Event)->Void)? = nil,
          shouldClear:(( UITextField) -> Bool)? = nil,
          shouldReturn:((UITextField) -> Bool)? = nil,
          shouldChangeCharacters:((UITextField, NSRange, String) -> Bool)? = nil) {
@@ -203,7 +203,7 @@ public class CD_TextDelegate: NSObject {
         textFieldShouldChangeCharacters = shouldChangeCharacters
     }
     
-    init(textView editing:((UITextView, UIControl.Event)->Void)? = nil,
+    public init(textView editing:((UITextView, UIControl.Event)->Void)? = nil,
          shouldClear:(( UITextView) -> Bool)? = nil,
          shouldReturn:((UITextView) -> Bool)? = nil,
          shouldChangeText:((UITextView, NSRange, String) -> Bool)? = nil) {
