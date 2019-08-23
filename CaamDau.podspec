@@ -86,7 +86,7 @@ Pod::Spec.new do |s|
   s.subspec 'IconFont' do |ifont|
       ifont.source_files = 'CaamDau/IconFont/Classes/*.{swift}'
       ifont.resource_bundles = {
-          'IconFont' => ['CaamDau/IconFont/Assets/*.{ttf}']
+          'CaamDauIconFont' => ['CaamDau/IconFont/Assets/*.{ttf}']
       }
       ifont.dependency 'CaamDau/Extension'
   end
@@ -108,9 +108,16 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'InputBox' do |input|
-      input.source_files = 'CaamDau/InputBox/*.{swift}'
+      input.source_files = 'CaamDau/InputBox/Classes/*.{swift}'
       input.dependency 'CaamDau/Core'
+<<<<<<< HEAD
       input.dependency 'SnapKit'
+=======
+      input.dependency 'SnapKit', '4.2.0'
+      input.resource_bundles = {
+        'CaamDauInputBox' => ['CaamDau/InputBox/Nib/*.{xib}']
+      }
+>>>>>>> master
   end
   
   s.subspec 'HUD' do |hud|
