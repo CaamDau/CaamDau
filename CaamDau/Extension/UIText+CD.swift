@@ -171,20 +171,11 @@ public extension CaamDau where Base: UITextView {
     
 }
 
+
+
+
 public class CD_TextDelegate: NSObject {
-    public class func textLimit(_ match:(regex:CD_RegEx, max:Int?), text:String?, range: NSRange,  string: String) -> Bool {
-        return CD_TextDelegate.textLimit((text: text, pattern: match.regex.patternValue, max: match.max), range: range, string: string)
-    }
-    public class func textLimit(_ match:(text:String?, pattern:String?, max:Int?), range: NSRange,  string: String) -> Bool {
-        guard let text = match.text  else { return true }
-        guard let pattern = match.pattern  else { return true }
-        guard let r = Range.init(range, in: text) else { return true }
-        let new = text.replacingCharacters(in: r, with: string)
-        let bool = CD_RegEx.match(new, pattern: pattern)
-        guard let max = match.max else { return bool }
-        guard new.count <= max else { return false }
-        return bool
-    }
+    
     
     var textFieldEditing:((UITextField, UIControl.Event)->Void)?
     var textFieldShouldClear:(( UITextField) -> Bool)?
@@ -287,6 +278,116 @@ extension CD_TextDelegate: UITextViewDelegate {
     }
 }
 
+public protocol CD_TextProtocol:NSObjectProtocol {
+    var txt:String {set get}
+}
+extension UITextField: CD_TextProtocol {
+    public var txt: String {
+        get {
+            return self.text ?? ""
+        }
+        set {
+            self.text = newValue
+        }
+    }
+}
+extension UITextView: CD_TextProtocol {
+    public var txt: String {
+        get {
+            return self.text
+        }
+        set {
+            self.text = newValue
+        }
+    }
+}
+
+extension CD_TextDelegate {
+    public enum Limit {
+        /// 价格 decimal:小数点后位数限制 minus: 是否支持负数
+        case tPrice(_ decimal:UInt, _ minus:Bool?)
+        /// 数值
+        case tInt(_ zero:Bool, _ minus:Bool?)
+        /// 字母数字组合 lower: true(小写), false(大写)  nil(大小写混合)
+        /// int:是否加入数字组合
+        case tLetter(_ int:Bool, _ lower:Bool?)
+        /// 定义正则匹配限制
+        case tRegEx(_ pattern:String)
+        ///
+        case none
+        
+        func limitOutput(_ max:Int?, _ textInput:CD_TextProtocol, _ range: NSRange,  _ string: String, _ newText:String) -> Bool {
+            switch self {
+            case .tPrice(let decimal, let minus):
+                let minus:Bool = minus ?? false
+                var ints = (0..<10).map{$0.stringValue} + [".", ""]
+                var pattern = "^[1-9]\\d*\\.?\\d{0,\(decimal)}$"
+                if let max = max {
+                    if newText.contains(".") {
+                        pattern = "^[1-9]\\d{0,\(max-1)}\\.?\\d{0,\(decimal)}$"
+                    }else{
+                        pattern = "^[1-9]\\d{0,\(max-1)}$"
+                    }
+                }
+                if minus {
+                    ints += ["-"]
+                    pattern[1..<1] = "-?"
+                }
+                guard ints.contains(string) else { return false }
+                if textInput.txt.isEmpty && string != "." {
+                    return true
+                }
+                return CD_RegEx.match(newText, pattern: pattern)
+            case .tInt(let zero, let minus):
+                let minus:Bool = minus ?? false
+                var ints = (0..<10).map{$0.stringValue} + [""]
+                var pattern = zero ? "^\\d*$" : "^[1-9]\\d*$"
+                if let max = max {
+                    pattern = zero ? "^\\d{0,\(max)}$" : "^[1-9]\\d{0,\(max-1)}$"
+                }
+                if minus {
+                    ints += ["-"]
+                    pattern[1..<1] = "-?"
+                }
+                guard ints.contains(string) else { return false }
+                return CD_RegEx.match(newText, pattern: pattern)
+            case .tLetter(let int, let lower):
+                var pattern = lower==nil ? "^[a-zA-Z]*$" : (lower! ? "^[a-z]*$" : "^[A-Z]*$")
+                if let max = max {
+                    let count = pattern.count
+                    pattern[count-2..<count-1] = "{0,\(max)}"
+                }
+                if int {
+                    pattern[2..<2] = "\\d"
+                }
+                return CD_RegEx.match(newText, pattern: pattern)
+            case .tRegEx(let pattern):
+                let bool = CD_RegEx.match(newText, pattern: pattern)
+                guard let max = max else { return bool }
+                guard newText.count <= max else { return false }
+                return true
+            case .none:
+                guard let max = max else { return true }
+                guard newText.count <= max else { return false }
+                return true
+            }
+        }
+        
+        public func limit(_ max:Int?, textInput:CD_TextProtocol, range: NSRange,  string: String, custom:((_ max:Int?, _ textInput:CD_TextProtocol, _ range: NSRange,  _ string: String, _ newText:String)->Bool)? = nil) -> Bool {
+            guard !string.isEmpty else { return true }
+            guard let r = Range.init(range, in: textInput.txt) else { return true }
+            let new = textInput.txt.replacingCharacters(in: r, with: string)
+            var bool = custom?(max, textInput, range, string, new) ?? true
+            bool = limitOutput(max, textInput, range, string, new)
+            return bool
+        }
+    }
+}
+
+
+
+
+
 protocol CDTextInputTraitsProtocol:UITextInputTraits {
     //func inputTraits()
     
@@ -331,3 +432,5 @@ protocol CDTextInputTraitsProtocol:UITextInputTraits {
     @available(iOS 12.0, *)
     @NSCopying optional public var passwordRules: UITextInputPasswordRules? { get set } // default is nil*/
 }
+
+
