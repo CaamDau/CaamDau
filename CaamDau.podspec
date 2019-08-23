@@ -110,14 +110,10 @@ Pod::Spec.new do |s|
   s.subspec 'InputBox' do |input|
       input.source_files = 'CaamDau/InputBox/Classes/*.{swift}'
       input.dependency 'CaamDau/Core'
-<<<<<<< HEAD
       input.dependency 'SnapKit'
-=======
-      input.dependency 'SnapKit', '4.2.0'
       input.resource_bundles = {
         'CaamDauInputBox' => ['CaamDau/InputBox/Nib/*.{xib}']
       }
->>>>>>> master
   end
   
   s.subspec 'HUD' do |hud|
@@ -139,11 +135,6 @@ Pod::Spec.new do |s|
   s.subspec 'Router' do |rr|
     rr.source_files = 'CaamDau/Router/*.{swift}'
   end
-  
-  s.subspec 'Router' do |rr|
-    rr.source_files = 'CaamDau/Router/*.{swift}'
-  end
-  
   
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
