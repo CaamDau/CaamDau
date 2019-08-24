@@ -18,22 +18,29 @@ Pod::Spec.new do |s|
   s.swift_version = '4.2'
   # s.source_files = 'CaamDau/**/*'
   
-  s.default_subspec = 'Module'
+  s.default_subspec = 'Core'
+  
+  s.subspec 'Core' do |ex|
+    ex.source_files = 'CaamDau/Core/*.swift',
+    'CaamDau/Extension/*.swift',
+    'CaamDau/RegEx/*.{swift}'
+    ex.dependency 'CaamDau/Value'
+    ex.dependency 'CaamDau/Form'
+  end
   
   s.subspec 'Module' do |mo|
     mo.dependency 'CaamDau/Core'
     
+    mo.dependency 'CaamDau/IBInspectable'
     mo.dependency 'CaamDau/Timer'
-    mo.dependency 'CaamDau/Value'
     mo.dependency 'CaamDau/InputBox'
     mo.dependency 'CaamDau/IconFont'
     mo.dependency 'CaamDau/Page'
     mo.dependency 'CaamDau/TopBar'
     mo.dependency 'CaamDau/AppDelegate'
     mo.dependency 'CaamDau/Router'
-    
-    mo.dependency 'CaamDau/ViewModel'
     mo.dependency 'CaamDau/HUD'
+    mo.dependency 'CaamDau/ViewModel'
   end
   
   s.subspec 'All' do |all|
@@ -45,15 +52,6 @@ Pod::Spec.new do |s|
   end
   
   # ---- 核心插件 组件
-  
-  s.subspec 'Core' do |ex|
-    ex.source_files = 'CaamDau/Core/*.swift',
-    'CaamDau/Extension/*.swift',
-    'CaamDau/RegEx/*.{swift}'
-    ex.dependency 'CaamDau/Value'
-    ex.dependency 'CaamDau/Form'
-  end
-  
   s.subspec 'IBInspectable' do |ib|
     ib.source_files = 'CaamDau/IBInspectable/*.{swift}'
   end
