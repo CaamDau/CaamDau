@@ -173,7 +173,7 @@ public extension CaamDau where Base: UITextView {
 
 
 
-
+//MARK:--- CD_TextDelegate : TextField TextView 的代理 ----------
 public class CD_TextDelegate: NSObject {
     
     
@@ -306,7 +306,7 @@ extension CD_TextDelegate {
     public enum Limit {
         /// 价格 decimal:小数点后位数限制 minus: 是否支持负数
         case tPrice(_ decimal:UInt, _ minus:Bool?)
-        /// 数值
+        /// 数值 zero：是否支持0开头，minus: 是否支持负数
         case tInt(_ zero:Bool, _ minus:Bool?)
         /// 字母数字组合 lower: true(小写), false(大写)  nil(大小写混合)
         /// int:是否加入数字组合

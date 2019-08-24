@@ -79,6 +79,8 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'CaamDau'
+
+pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
 ```
 ```ruby
 pod 'CaamDau/Core'  # 只引入CaamDau核心插件
