@@ -8,6 +8,7 @@
 
 
 import UIKit
+import SnapKit
 
 extension CD_InputBoxPopping {
     public struct Model {
