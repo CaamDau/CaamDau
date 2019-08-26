@@ -61,7 +61,11 @@ public extension CaamDau where Base: UIButton {
         base.contentVerticalAlignment = vertical
         return self
     }
-    
+    @discardableResult
+    func imageViewContent(_ mode: UIView.ContentMode) -> CaamDau {
+        base.imageView?.contentMode = mode
+        return self
+    }
     @discardableResult
     func reverses(_ titleShadowWhenHighlighted: Bool) -> CaamDau {
         base.reversesTitleShadowWhenHighlighted = titleShadowWhenHighlighted
@@ -96,9 +100,10 @@ public extension CaamDau where Base: UIButton {
         let view = UIView()
         view.tag = -8668
         if bgViewFrame == .zero {
-            view.frame = bgViewFrame
-        }else{
+            base.superview?.layoutIfNeeded()
             view.frame = base.bounds
+        }else{
+            view.frame = bgViewFrame
         }
         if bgViewColor == .clear {
             view.backgroundColor = bgViewColor
