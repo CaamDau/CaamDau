@@ -62,7 +62,7 @@ extension CD_RouterProtocol {
         router(nil, callback: nil)
     }
     public func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any]?)->Void)? = nil) {
-        let handle = CD_Router.shared.routerHandle?(self, param)
+        let handle = CD_Router.shared.routerHandler?(self, param)
         callback?(handle)
         
     }
@@ -72,5 +72,5 @@ extension CD_RouterProtocol {
 public class CD_Router {
     private init(){}
     public static let shared = CD_Router()
-    public var routerHandle:((CD_RouterProtocol, [AnyHashable:Any]?)->[AnyHashable:Any]?)?
+    public var routerHandler:((CD_RouterProtocol, [AnyHashable:Any]?)->[AnyHashable:Any]?)?
 }
