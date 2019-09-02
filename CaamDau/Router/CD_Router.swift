@@ -4,69 +4,73 @@
  * 提供一个路由协议
  * 自定义一个路由管理器，遵循此协议
  * 举个栗子:
+*
+/// 组件化 声明路由表， 遵循 CD_RouterProtocol 协议
+/// 这个时候，在单一组件中只需引用路由表，不需要引用所要路由的页面，
+/// 路由管理器，组员自行维护，使用枚举，更便于管理，或可进行参数强关联，可传递任意参数
+enum Router {
+    /// 组员A开发Order 模块，
+    /// 只声明路由模块，路由走统一 CD_Router.shared.routerHandle 配置
+    enum Order:CD_RouterProtocol {
+        case list
+        case detail
+        case create(_ id:String) // 参数强关联，需求变更后，同时所有调用者知晓变更
+    }
  
-func test() {
-    ///
-    CD_Router.CD.t商品详情(id: "") { }.router()
-}
-extension CD_Router {
-    // 路由管理器，组员自行维护，使用枚举可进行参数强关联，可传递任意参数
-    // 一旦需求变动，需要维护路由，可同时知晓需要修改的其他地方
-    enum CD { //组员 CD 开发的页面
-        case t商品详情(id:String, callback:(()->Void)?)
-    }
-    enum ZS { //组员 ZS 开发的页面
-        case t订单详情(id:String, callback:(()->Void)?)
-    }
-    enum LS { //组员 LS 开发的页面
-        case t结算(id:String, callback:(()->Void)?)
-    }
-}
-extension CD_Router.CD: CD_RouterProtocol {
-    // 每个组员自己开发的页面自己管理路由
-    func router() {
-        switch self {
-        case let .t商品详情(id, callback):
-            R_Detail.push(id, callback:callback)
-        default:
-            break
+    /// 组员B 开发Pay 模块，
+    /// 声明路由模块, 并同时配置路由
+    enum Pay:CD_RouterProtocol {
+        case pay
+        case payLater
+        
+        func router(_ param: [AnyHashable : Any]? = nil, callback: (([AnyHashable : Any]?) -> Void)? = nil) {
+            print("重写了， 不走 CD_Router.shared.routerHandle")
         }
     }
 }
-/// 详情页面 只暴露路由方法
-public struct R_Detail {
-    static func push(_ id:String, callback:(()->Void)?) {
-        let vc = VC_Detail()
-        vc.id = id
-        vc.callback = callback
-        CD.push(vc)
-    }
-}
-/// 详情页面 不暴露任何内容
-class VC_Detail: UIViewController {
-    var id:String?, callback:(()->Void)?
-}
-*/
 
+/// 统一路由配置，在主工程中配置，或者作为页面路由组件 在主工程导入即可
+CD_Router.shared.routerHandle = { (t, p) -> [AnyHashable:Any]? in
+    switch t {
+    case Router.Order.list:
+        print(t, "->", p)
+        return ["status":4]
+    default:
+        print(t, "->", p)
+    }
+    print(t, "->", p)
+    return nil
+}
+
+Router.Order.list.router(["id":123]) { (p) in
+    print(p)
+}
+Router.Order.detail.router(["id":989], callback: nil)
+Router.Pay.pay.router(["order":"KKK78473874837"], callback: nil)
+
+*/
 
 import Foundation
 public protocol CD_RouterProtocol {
     
     func router()
     /// 入参、回参 模糊，自由度更好
-    func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any])->Void)?)
+    func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any]?)->Void)?)
 }
 extension CD_RouterProtocol {
     public func router() {
         router(nil, callback: nil)
     }
-    public func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any])->Void)? = nil) {
+    public func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any]?)->Void)? = nil) {
+        let handle = CD_Router.shared.routerHandle?(self, param)
+        callback?(handle)
+        
     }
 }
 
 
-public enum CD_Router {
-    
+public class CD_Router {
+    private init(){}
+    public static let shared = CD_Router()
+    public var routerHandle:((CD_RouterProtocol, [AnyHashable:Any]?)->[AnyHashable:Any]?)?
 }
-
-
