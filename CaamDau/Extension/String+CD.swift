@@ -137,12 +137,14 @@ private class CD_StringSize {
     //fontDictionary的value是一个Dictionary，存储对应字体的各种字符对应的宽度及字体的单行高度，例如{"0":10.3203125, "Z":10.4140625, "国":16.32, "singleLineHeight":19.09375}
     var fontDictionary = [String: [String: CGFloat]]()
     var numsNeedToSave = 0//更新的数据的条数
-    var fileUrl: URL = {//fontDictionary在磁盘中的存储路径
+    var fileUrl: URL? = {//fontDictionary在磁盘中的存储路径
         let manager = FileManager.default
-        var filePath = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-        filePath!.appendPathComponent("cd_stringSize_font_dictionary.json")
-        print_cd("cd_stringSize_font_dictionary.json的路径是===\(filePath!)")
-        return filePath!
+        guard var filePath = manager.urls(for: .documentDirectory, in: .userDomainMask).first else{
+            return nil
+        }
+        filePath.appendPathComponent("cdstringfontdictionary.json")
+        //print_cd("cd_stringSize_font_dictionary.json的路径是===\(filePath!)")
+        return filePath
     }()
     
     init() {
@@ -247,7 +249,7 @@ private class CD_StringSize {
         return widthDictionary
     }
     
-    let queue = DispatchQueue(label: "com.CD_StringSize.queue")
+    let queue = DispatchQueue(label: "com.cd.stringsize.queue")
     //存储fontDictionary到磁盘
     @objc func saveFontDictionaryToDisk() {
         guard numsNeedToSave > 0 else {
@@ -262,8 +264,10 @@ private class CD_StringSize {
                 } else {
                     data = try? JSONSerialization.data(withJSONObject: self.fontDictionary, options: .prettyPrinted)
                 }
-                try data?.write(to: self.fileUrl)
-                print_cd("font_dictionary存入磁盘,font_dictionary=\("self.fontDictionary")")
+                guard let url = self.fileUrl else{
+                    return
+                }
+                try data?.write(to: url)
             }  catch {
                 print_cd("font_dictionary存储失败error=\(error)")
             }
@@ -271,17 +275,16 @@ private class CD_StringSize {
     }
     //从磁盘中读取缓存
     func readFontDictionaryFromDisk() {
-        do {
-            guard let data = try? Data.init(contentsOf: fileUrl),
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-                let dict = json as? [String: [String: CGFloat]] else {
-                return
-            }
-            fontDictionary = dict
-            //print_cd(fontDictionary)
-            print_cd("font_dictionarys读取成功,font_dictionarys=\("fontDictionary")")
-        } catch {
-            print_cd("第一次运行时font_dictionary不存在或者读取失败")
+        guard let url = fileUrl else {
+            return
         }
+        guard let data = try? Data.init(contentsOf: url) else {
+            return
+        }
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) else {
+            return
+        }
+        let dict = json as? [String: [String: CGFloat]]
+        fontDictionary = dict ?? [:]
     }
 }
