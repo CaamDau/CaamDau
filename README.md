@@ -81,6 +81,9 @@ it, simply add the following line to your Podfile:
 pod 'CaamDau'
 
 pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
+
+# swift5.0  ios >= 10.0
+pod 'CaamDau/All', :git => 'https://github.com/liucaide/CaamDau.git', :branch => 'swift5.0'
 ```
 ```ruby
 pod 'CaamDau/Core'  # 只引入CaamDau核心插件
