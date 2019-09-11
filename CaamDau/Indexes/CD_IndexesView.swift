@@ -191,8 +191,6 @@ extension CD_IndexesView {
         }
         let point:CGPoint = touch.location(in: self.stack)
         
-        print_cd("touchPoint->", point)
-        
         highlighting( highlight(with: point) )
     }
     
