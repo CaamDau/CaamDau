@@ -134,7 +134,7 @@ Pod::Spec.new do |s|
   s.subspec 'Indexes' do |indx|
       indx.source_files = 'CaamDau/Indexes/*.{swift}'
       indx.dependency 'CaamDau/Core'
-      indx.dependency 'SnapKit', '~> 4.2.0'
+      indx.dependency 'SnapKit' #, '~> 4.2.0'
   end
   
   # ---- 第三方 扩展 或 桥接
