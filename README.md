@@ -31,6 +31,7 @@
 - [ViewModel 协议，Form 配合的 TableView、CollectionView代理方案](https://github.com/liucaide/CaamDau/tree/master/CaamDau/ViewModel)
 - [IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IconFont) 
 - [InputBox：输入框扩展组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/InputBox) 
+- [Indexes：一个漂亮的索引View](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Indexes)
 - [IBInspectable sb/xib 辅助](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IBInspectable) 
 - ... 持续增新
 
@@ -106,6 +107,7 @@ pod 'CaamDau/Page'
 pod 'CaamDau/TopBar'
 pod 'CaamDau/IconFont'
 pod 'CaamDau/IBInspectable'
+pod 'CaamDau/Indexes'
 
 pod 'CaamDau/MJRefresh'
 pod 'CaamDau/Net/Core'
