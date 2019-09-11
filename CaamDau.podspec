@@ -41,6 +41,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CaamDau/Router'
     mo.dependency 'CaamDau/HUD'
     mo.dependency 'CaamDau/ViewModel'
+    mo.dependency 'CaamDau/Indexes'
   end
   
   s.subspec 'All' do |all|
@@ -130,6 +131,11 @@ Pod::Spec.new do |s|
     rr.source_files = 'CaamDau/Router/*.{swift}'
   end
   
+  s.subspec 'Indexes' do |indx|
+      indx.source_files = 'CaamDau/Indexes/*.{swift}'
+      indx.dependency 'CaamDau/Core'
+      indx.dependency 'SnapKit', '~> 4.2.0'
+  end
   
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|

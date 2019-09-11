@@ -2,7 +2,7 @@
 
 /***** 模块文档 *****
  * CD_Row UI 排版组件
-*/
+ */
 
 
 
@@ -123,9 +123,9 @@ public protocol CD_UIViewControllerProtocol: CD_UIDataSourceConfigModel {
     
 }
 extension CD_UIViewControllerProtocol {
-//    public static func row_init(withDataSource dataSource:DataSource? = nil, config:ConfigModel? = nil, callBack:CD_RowCallBack? = nil, tapBlock:CD_RowDidSelectBlock? = nil) -> UIViewController {
-//        return UIViewController()
-//    }
+    //    public static func row_init(withDataSource dataSource:DataSource? = nil, config:ConfigModel? = nil, callBack:CD_RowCallBack? = nil, tapBlock:CD_RowDidSelectBlock? = nil) -> UIViewController {
+    //        return UIViewController()
+    //    }
     public func row_update(config data: ConfigModel) {
         
     }
@@ -154,9 +154,9 @@ public protocol CD_UIViewProtocol: CD_UIDataSourceConfigModel {
     
 }
 extension CD_UIViewProtocol {
-//    public static func row_init(withDataSource dataSource:DataSource? = nil, config:ConfigModel? = nil, callBack:CD_RowCallBack? = nil, tapBlock:CD_RowDidSelectBlock? = nil) -> UIView {
-//        return UIView()
-//    }
+    //    public static func row_init(withDataSource dataSource:DataSource? = nil, config:ConfigModel? = nil, callBack:CD_RowCallBack? = nil, tapBlock:CD_RowDidSelectBlock? = nil) -> UIView {
+    //        return UIView()
+    //    }
     public func row_update(config data: ConfigModel) {
         
     }
@@ -269,8 +269,8 @@ public struct CD_RowView<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView
 /// CD_RowView 引用类型  一般用上面的 struct
 public class CD_RowViewClass<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView {
     public var view:UIView
-    public var dataSource:T.DataSource?
-    public var config:T.ConfigModel?
+    public var _dataSource:T.DataSource?
+    public var _config:T.ConfigModel?
     public var frame:CGRect
     public var autoLayout:Bool
     public init(dataSource:T.DataSource? = nil,
@@ -281,19 +281,35 @@ public class CD_RowViewClass<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UI
                 tapBlock:CD_RowDidSelectBlock? = nil) {
         self.view = T.row_init(withDataSource: dataSource, config: config, callBack:callBack, tapBlock:tapBlock)
         
-        self.dataSource = dataSource
-        self.config = config
+        self._dataSource = dataSource
+        self._config = config
         self.frame = frame
         self.autoLayout = autoLayout
     }
     
     public func bind(_ obj: AnyObject) {
         guard let item = obj as? T else {return}
-        if let m = config {
+        if let m = _config {
             item.row_update(config: m)
         }
-        if let d = dataSource {
+        if let d = _dataSource {
             item.row_update(dataSource:d)
+        }
+    }
+    public var dataSource: Any? {
+        set{
+            _dataSource = newValue as! T.DataSource
+        }
+        get{
+            return _dataSource
+        }
+    }
+    public var config: Any? {
+        set{
+            _config = newValue as! T.ConfigModel
+        }
+        get{
+            return _config
         }
     }
 }
@@ -317,8 +333,8 @@ extension CD_RowCellUpdateProtocol {
 public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UIView {
     public var cellId: String
     public var cellClass:AnyClass
-    public var dataSource:T.DataSource?
-    public var config:T.ConfigModel?
+    public var _dataSource:T.DataSource?
+    public var _config:T.ConfigModel?
     public var bundleFrom:String?
     public var frame:CGRect
     public var insets:UIEdgeInsets
@@ -346,8 +362,8 @@ public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UI
                 bundleFrom:String = "",
                 callBack:CD_RowCallBack? = nil,
                 didSelect:CD_RowDidSelectBlock? = nil) {
-        self.dataSource = data
-        self.config = config
+        self._dataSource = data
+        self._config = config
         self.cellClass = T.self
         self.cellId = id ?? String(describing: T.self)
         self.frame = frame
@@ -360,14 +376,30 @@ public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UI
     
     public func bind(_ obj: AnyObject) {
         guard let item = obj as? T else {return}
-        if let m = config {
+        if let m = _config {
             item.row_update(config: m)
         }
-        if let d = dataSource {
+        if let d = _dataSource {
             item.row_update(dataSource:d)
         }
         if let back = callBack  {
             item.row_update(callBack: back)
+        }
+    }
+    public var dataSource: Any? {
+        set{
+            _dataSource = newValue as! T.DataSource
+        }
+        get{
+            return _dataSource
+        }
+    }
+    public var config: Any? {
+        set{
+            _config = newValue as! T.ConfigModel
+        }
+        get{
+            return _config
         }
     }
 }
@@ -381,8 +413,8 @@ extension CD_RowCell {
 public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UIView {
     public var cellId: String
     public var cellClass:AnyClass
-    public var dataSource:T.DataSource?
-    public var config:T.ConfigModel?
+    public var _dataSource:T.DataSource?
+    public var _config:T.ConfigModel?
     public var bundleFrom:String?
     public var frame:CGRect
     public var insets:UIEdgeInsets
@@ -410,8 +442,8 @@ public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T
                 bundleFrom:String = "",
                 callBack:CD_RowCallBack? = nil,
                 didSelect:CD_RowDidSelectBlock? = nil) {
-        self.dataSource = data
-        self.config = config
+        self._dataSource = data
+        self._config = config
         self.cellClass = T.self
         self.cellId = id ?? String(describing: T.self)
         self.frame = frame
@@ -424,14 +456,30 @@ public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T
     
     public func bind(_ obj: AnyObject) {
         guard let item = obj as? T else {return}
-        if let m = config {
+        if let m = _config {
             item.row_update(config: m)
         }
-        if let d = dataSource {
+        if let d = _dataSource {
             item.row_update(dataSource:d)
         }
         if let back = callBack  {
             item.row_update(callBack: back)
+        }
+    }
+    public var dataSource: Any? {
+        set{
+            _dataSource = newValue as! T.DataSource
+        }
+        get{
+            return _dataSource
+        }
+    }
+    public var config: Any? {
+        set{
+            _config = newValue as! T.ConfigModel
+        }
+        get{
+            return _config
         }
     }
 }
@@ -657,3 +705,4 @@ extension CD_RowClass {
         set{ frame.size = newValue }
     }
 }
+
