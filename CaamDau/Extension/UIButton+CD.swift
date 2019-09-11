@@ -5,6 +5,12 @@ import UIKit
 
 public extension CaamDau where Base: UIButton {
     @discardableResult
+    func select(_ b: Bool) -> CaamDau {
+        base.isSelected = b
+        return self
+    }
+    
+    @discardableResult
     func line(breakMode mode: NSLineBreakMode) -> CaamDau {
         base.titleLabel?.lineBreakMode = mode
         return self
