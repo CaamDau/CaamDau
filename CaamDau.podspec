@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CaamDau'
-  s.version          = '0.10.42'
+  s.version          = '0.11.42'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块组件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 开发组件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
