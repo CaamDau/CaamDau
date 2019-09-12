@@ -193,7 +193,13 @@ public class CD_TextView: UIView {
     //@available(iOS 10.0, *)
     //open var interact:Interact?
     open var interact:Any?
-    var observes:[NSObjectProtocol] = []
+    lazy var observers:[NSObjectProtocol]? = {
+        return []
+    }()
+    deinit {
+        // <ios11 监听没有跟随销毁
+        observers = nil
+    }
 }
 
 extension CD_TextView {
@@ -225,7 +231,7 @@ extension CD_TextView {
             
         }
         
-        observes.append(textView.observe(\.text, options: [.new, .old], changeHandler: { [weak self](txt, change) in
+        observers?.append(textView.observe(\.text, options: [.new, .old], changeHandler: { [weak self](txt, change) in
             //guard let tt = change.newValue ?? nil else{return}
             guard let tt = txt.text else{return}
             self?.placeholderView.cd.isHidden(!tt.isEmpty)
