@@ -132,7 +132,7 @@ extension CD_PageViewController {
     }
     func reloadData() {
         guard self.selectIndex < dataSource.count else { return }
-        let ss = (self.selectIndex-1...self.selectIndex+1)
+        let ss = (self.selectIndex-model.loadNextNum ... self.selectIndex+model.loadNextNum)
         for (i,item) in dataSource.enumerated() where ss.contains(i) && !self.children.contains(item.vc) {
             self.addChild(item.vc)
             //item.view.backgroundColor = i%2==0 ? .red : .lightGray

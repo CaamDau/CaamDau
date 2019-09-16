@@ -15,9 +15,11 @@ public struct CD_Page {
         /// View.tag 差值
         public var offsetTag:Int = 10
         /// 间距
-        public var space:CGFloat = 10
+        public var space:CGFloat = 0
         /// 边距
-        public var marge:CGFloat = 20
+        public var marge:CGFloat = 0
+        /// 同时加载当前页面的前后 loadNextNum 个页面
+        public var loadNextNum:Int = 0
         ///
         public var alignment:Alignment = .leftOrTop
         
