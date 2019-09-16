@@ -121,7 +121,7 @@ extension CD_HUDProgressView {
     }
 }
 
-public extension CD_HUDProgressView {
+extension CD_HUDProgressView {
     public struct Model {
         ///进度条宽度
         public var lineWidth: CGFloat = 5

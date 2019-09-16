@@ -16,7 +16,7 @@ public protocol CaamDauCompatible {
     associatedtype CompatibleType
     var cd: CompatibleType { get }
 }
-public extension CaamDauCompatible {
+extension CaamDauCompatible {
     public var cd: CaamDau<Self> {
         return CaamDau(self)
     }

@@ -74,7 +74,7 @@ public protocol CD_ViewModelRefreshDelegater {
     var _mjRefreshModel:CD_MJRefreshModel { get }
     var _mjRefreshType:[CD_MJRefreshModel.RefreshType] { get }
 }
-public extension CD_ViewModelRefreshDelegater {
+extension CD_ViewModelRefreshDelegater {
     public var _mjRefresh: (header: Bool, footer: Bool, headerGif: Bool, footerGif: Bool) {
         return (header: true, footer: true, headerGif: false, footerGif: false)
     }
@@ -109,7 +109,7 @@ public protocol CD_ViewModelCollectionViewDelegater {
     var _collectionViewCustom:((UICollectionView)->Void)? { get }
     var _safeAreaLayout:Bool { get }
 }
-public extension CD_ViewModelCollectionViewDelegater {
+extension CD_ViewModelCollectionViewDelegater {
     public var _collectionRegisters:[CaamDau<UICollectionView>.View] {
         return []
     }
@@ -130,7 +130,7 @@ public protocol CD_ViewModelTopBarDelegater {
     var _topBarDidSelect:((CD_TopBar,CD_TopNavigationBar.Item)->Void)? { get }
     var _topBarUpdate:((CD_TopBar,CD_TopNavigationBar.Item)->[CD_TopNavigationBarItem.Item.Style]?)? { get }
 }
-public extension CD_ViewModelTopBarDelegater {
+extension CD_ViewModelTopBarDelegater {
     public var _topBarCustom:((CD_TopBar)->Void)? {
         return { _ in
         }

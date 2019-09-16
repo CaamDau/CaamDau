@@ -24,7 +24,7 @@ public class CD_Timer {
     }
 }
 
-public extension CD_Timer {
+extension CD_Timer {
     /// 计时器
     public class Timer {
         private init(){}
