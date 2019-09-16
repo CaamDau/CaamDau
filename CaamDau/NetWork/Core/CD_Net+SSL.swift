@@ -11,31 +11,13 @@ import Foundation
 import Alamofire
 
 public extension CD_Net {
-    struct IdentityAndTrust {
-        var identityRef:SecIdentity
-        var trust:SecTrust
-        var certArray:AnyObject
-    }
-
-    //MARK:--- SSL认证 -----------------------------
-    static func sslCertification(_ hosts:[String], p12:(name:String, pwd:String)) {
-        let selfSignedHosts = hosts//["192.168.1.112", "www.hangge.com"]
-        SessionManager.default.delegate.sessionDidReceiveChallenge = { session, challenge -> (URLSession.AuthChallengeDisposition, URLCredential?) in
-            //认证服务器（这里不使用服务器证书认证，只需地址是我们定义的几个地址即可信任）
+    static func ssl(withHosts hosts:[String], p12:(name:String, pwd:String), bundleForm:String = "") {
+        SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) in
             switch challenge.protectionSpace.authenticationMethod {
-            case NSURLAuthenticationMethodServerTrust where selfSignedHosts.contains(challenge.protectionSpace.host):
-                debugPrint("服务器认证！")
-                let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
-                return (.useCredential, credential)
+            case NSURLAuthenticationMethodServerTrust where hosts.contains(challenge.protectionSpace.host):
+                return serverAuthentication(session, challenge)
             case NSURLAuthenticationMethodClientCertificate:
-                debugPrint("客户端证书认证！")
-                //获取客户端证书相关信息
-                let identityAndTrust:CD_Net.IdentityAndTrust = CD_Net.extractIdentity(p12);
-                let urlCredential:URLCredential = URLCredential(
-                    identity: identityAndTrust.identityRef,
-                    certificates: identityAndTrust.certArray as? [Any] ?? [],
-                    persistence: URLCredential.Persistence.forSession)
-                return (.useCredential, urlCredential)
+                return clientAuthentication(p12, bundleForm: bundleForm)
             default:
                 debugPrint("其它情况（不接受认证）")
                 return (.cancelAuthenticationChallenge, nil)
@@ -43,36 +25,37 @@ public extension CD_Net {
         }
     }
     
-    //MARK:--- 双向认证 -----------------------------
-    static func sslCertificationTwoWay(_ cerName:String ,p12:(name:String, pwd:String)) {
-        SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) in
+    static func ssl(whthCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:String = "") {
+        SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) in
             switch challenge.protectionSpace.authenticationMethod {
             case NSURLAuthenticationMethodServerTrust:
-                debugPrint("服务端证书认证！")
-                let serverTrust:SecTrust = challenge.protectionSpace.serverTrust!
-                let certificate = SecTrustGetCertificateAtIndex(serverTrust, 0)!
-                let remoteCertificateData
-                    = CFBridgingRetain(SecCertificateCopyData(certificate))!
-                //证书目录
-                let cerPath = Bundle.main.path(forResource: cerName, ofType: "cer")!
-                let cerUrl = URL(fileURLWithPath:cerPath)
-                let localCertificateData = try? Data(contentsOf: cerUrl)
-                if remoteCertificateData.isEqual(localCertificateData) {
-                    let credential = URLCredential(trust: serverTrust)
-                    challenge.sender?.use(credential, for: challenge)
-                    return (.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
+                var bundle:Bundle?
+                if !bundleForm.isEmpty, let bu
+                    = Bundle.cd_bundle(CD_Net.self, bundleForm)  {
+                    bundle = bu
+                }else{
+                    bundle = Bundle.main
+                }
+                guard let path = bundle?.path(forResource: name, ofType: "cer"),
+                    let secTrust:SecTrust = challenge.protectionSpace.serverTrust,
+                    let certificate = SecTrustGetCertificateAtIndex(secTrust, 0),
+                    let secData
+                    = CFBridgingRetain(SecCertificateCopyData(certificate)) else {
+                        debugPrint("（不接受认证）")
+                        return (.cancelAuthenticationChallenge, nil)
+                }
+                let cerUrl = URL(fileURLWithPath: path)
+                guard let data = try? Data(contentsOf: cerUrl) else {
+                    return (.cancelAuthenticationChallenge, nil)
+                }
+                if secData.isEqual(data) {
+                    return serverAuthentication(session, challenge)
                 }else {
+                    debugPrint("（不接受认证）")
                     return (.cancelAuthenticationChallenge, nil)
                 }
             case NSURLAuthenticationMethodClientCertificate:
-                debugPrint("客户端证书认证！")
-                //获取客户端证书相关信息
-                let identityAndTrust:CD_Net.IdentityAndTrust = CD_Net.extractIdentity(p12)
-                let urlCredential:URLCredential = URLCredential(
-                    identity: identityAndTrust.identityRef,
-                    certificates: identityAndTrust.certArray as? [Any] ?? [],
-                    persistence: URLCredential.Persistence.forSession)
-                return (.useCredential, urlCredential)
+                return clientAuthentication(p12, bundleForm: bundleForm)
             default:
                 debugPrint("其它情况（不接受认证）")
                 return (.cancelAuthenticationChallenge, nil)
@@ -80,36 +63,73 @@ public extension CD_Net {
         }
     }
     
-    //MARK:--- 获取客户端证书相关信息 -----------------------------
-    static fileprivate func extractIdentity(_ p12:(name:String, pwd:String)) -> CD_Net.IdentityAndTrust {
-        
-        var identityAndTrust:CD_Net.IdentityAndTrust!
-        var securityError:OSStatus = errSecSuccess
-        //客户端证书 p12 文件目录
-        let path: String = Bundle.main.path(forResource: p12.name, ofType: "p12")!
-        let PKCS12Data = NSData(contentsOfFile:path)!
-        let key : NSString = kSecImportExportPassphrase as NSString
-        let options : NSDictionary = [key : p12.pwd] //客户端证书密码
-       
-        var items : CFArray?
-        securityError = SecPKCS12Import(PKCS12Data, options, &items)
-        if securityError == errSecSuccess {
-            let certItems:CFArray = items!
-            let certItemsArray:Array = certItems as Array
-            let dict:AnyObject? = certItemsArray.first;
-            if let certEntry:Dictionary = dict as? Dictionary<String, AnyObject> {
-                
-                let identityPointer:AnyObject? = certEntry["identity"];
-                let secIdentityRef:SecIdentity = identityPointer as! SecIdentity
-                
-                let trustPointer:AnyObject? = certEntry["trust"]
-                let trustRef:SecTrust = trustPointer as! SecTrust
-                
-                let chainPointer:AnyObject? = certEntry["chain"]
-                identityAndTrust = CD_Net.IdentityAndTrust(identityRef: secIdentityRef,
-                                                           trust: trustRef, certArray:  chainPointer!)
-            }
+    static private func serverAuthentication(_ session:URLSession, _ challenge:URLAuthenticationChallenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+        guard let secTrust:SecTrust = challenge.protectionSpace.serverTrust else {
+            debugPrint("（不接受认证）")
+            return (.cancelAuthenticationChallenge, nil)
         }
-        return identityAndTrust;
+        debugPrint("服务端认证！")
+        let credential = URLCredential(trust: secTrust)
+        challenge.sender?.use(credential, for: challenge)
+        return (.useCredential, URLCredential(trust: secTrust))
+    }
+    
+    static private func clientAuthentication(_ p12:(name:String, pwd:String), bundleForm:String = "") -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+        debugPrint("客户端证书认证！")
+        //获取客户端证书相关信息
+        guard let identityAndTrust = CD_Net.extractIdentity(p12, bundleForm:bundleForm) else {
+            debugPrint("（不接受认证）")
+            return (.cancelAuthenticationChallenge, nil)
+        }
+        
+        let urlCredential:URLCredential = URLCredential(identity: identityAndTrust.identityRef,
+                                                        certificates: identityAndTrust.certArray as? [Any] ?? [],
+                                                        persistence: .forSession)
+        debugPrint("认证通过")
+        return (.useCredential, urlCredential)
+    }
+    
+    //MARK:--- 获取客户端证书相关信息 -----------------------------
+    static fileprivate func extractIdentity(_ p12:(name:String, pwd:String), bundleForm:String = "") -> IdentityAndTrust? {
+        
+        var identity:IdentityAndTrust
+        var errSec:OSStatus
+        //客户端证书 p12 文件目录
+        var bundle:Bundle?
+        if !bundleForm.isEmpty, let bu
+            = Bundle.cd_bundle(CD_Net.self, bundleForm)  {
+            bundle = bu
+        }else{
+            bundle = Bundle.main
+        }
+        guard let path: String = bundle?.path(forResource: p12.name, ofType: "p12"),
+            let data:CFData = try? Data(contentsOf: URL(fileURLWithPath: path)) as? CFData else {
+            return nil
+        }
+        let key : String = kSecImportExportPassphrase as String
+        //客户端证书密码
+        guard let options:CFDictionary = [key : p12.pwd] as? CFDictionary else {
+            return nil
+        }
+        var items : CFArray?
+        errSec = SecPKCS12Import(data as CFData, options as CFDictionary, &items)
+        guard errSec == errSecSuccess,
+            let itemss = items as? Array<Any>,
+            let dict:Dictionary<AnyHashable, Any> = itemss.first as? Dictionary<AnyHashable, Any>,
+            let identityRef = dict["identity"],
+            let trustRef = dict["trust"],
+            let chainPointer = dict["chain"] else {
+            return nil
+        }
+        identity = IdentityAndTrust(identityRef: identityRef as! SecIdentity,
+                                    trust: trustRef as! SecTrust,
+                                    certArray:  chainPointer as AnyObject)
+        return identity
+    }
+    
+    fileprivate struct IdentityAndTrust {
+        var identityRef:SecIdentity
+        var trust:SecTrust
+        var certArray:AnyObject
     }
 }
