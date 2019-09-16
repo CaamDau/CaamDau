@@ -201,7 +201,7 @@ public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:U
     
     public var dataSource: Any? {
         set{
-            _dataSource = newValue as! T.DataSource
+            _dataSource = newValue as? T.DataSource
         }
         get{
             return _dataSource
@@ -209,7 +209,7 @@ public struct CD_RowVC<T:CD_UIViewControllerProtocol>:CD_RowVCProtocol where T:U
     }
     public var config: Any? {
         set{
-            _config = newValue as! T.ConfigModel
+            _config = newValue as? T.ConfigModel
         }
         get{
             return _config
@@ -251,7 +251,7 @@ public struct CD_RowView<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView
     
     public var dataSource: Any? {
         set{
-            _dataSource = newValue as! T.DataSource
+            _dataSource = newValue as? T.DataSource
         }
         get{
             return _dataSource
@@ -259,7 +259,7 @@ public struct CD_RowView<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UIView
     }
     public var config: Any? {
         set{
-            _config = newValue as! T.ConfigModel
+            _config = newValue as? T.ConfigModel
         }
         get{
             return _config
@@ -298,7 +298,7 @@ public class CD_RowViewClass<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UI
     }
     public var dataSource: Any? {
         set{
-            _dataSource = newValue as! T.DataSource
+            _dataSource = newValue as? T.DataSource
         }
         get{
             return _dataSource
@@ -306,7 +306,7 @@ public class CD_RowViewClass<T:CD_UIViewProtocol>: CD_RowViewProtocol where T:UI
     }
     public var config: Any? {
         set{
-            _config = newValue as! T.ConfigModel
+            _config = newValue as? T.ConfigModel
         }
         get{
             return _config
@@ -388,7 +388,7 @@ public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UI
     }
     public var dataSource: Any? {
         set{
-            _dataSource = newValue as! T.DataSource
+            _dataSource = newValue as? T.DataSource
         }
         get{
             return _dataSource
@@ -396,7 +396,7 @@ public struct CD_RowCell<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T: UI
     }
     public var config: Any? {
         set{
-            _config = newValue as! T.ConfigModel
+            _config = newValue as? T.ConfigModel
         }
         get{
             return _config
@@ -468,7 +468,7 @@ public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T
     }
     public var dataSource: Any? {
         set{
-            _dataSource = newValue as! T.DataSource
+            _dataSource = newValue as? T.DataSource
         }
         get{
             return _dataSource
@@ -476,7 +476,7 @@ public class CD_RowCellClass<T:CD_RowCellUpdateProtocol>:CD_CellProtocol where T
     }
     public var config: Any? {
         set{
-            _config = newValue as! T.ConfigModel
+            _config = newValue as? T.ConfigModel
         }
         get{
             return _config

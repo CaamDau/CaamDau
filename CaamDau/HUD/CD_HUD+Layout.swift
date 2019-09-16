@@ -12,7 +12,7 @@ import SnapKit
 
 extension CD_HUD {
     func makeHUDLayoutPositionTop() {
-        guard let supV = self.superview else { return }
+        guard let _ = self.superview else { return }
         if model._isEnabledMask {
             self.snp.makeConstraints { (make) in
                 make.top.equalToSuperview().offset(model._offsetTopY)
@@ -152,8 +152,6 @@ extension CD_HUD {
             makeHUDLayoutPositionCenter()
         case .custom(let offsetY):
             makeHUDLayoutPositionCustom(offsetY)
-        default:
-            break
         }
     }
 }

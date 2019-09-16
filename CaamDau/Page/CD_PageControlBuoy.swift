@@ -65,7 +65,7 @@ public class CD_PageControlBuoy: UIView {
                 .frame(CGRect(x: x, y: y, w: w, h: h))
                 .corner(model.radiusClips.0, clips: model.radiusClips.1)
                 .background(model.color)
-            if case let .background = model.style {
+            if case .background = model.style {
                 self.superview?.sendSubviewToBack(self)
             }
         }

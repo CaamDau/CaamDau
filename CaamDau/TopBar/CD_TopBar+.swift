@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 
-public extension CD_TopBar {
+extension CD_TopBar {
     struct StopKeys {
         static var changeAlphaStop = "CD_TopBar_ChangeAlphaStop"
         static var hiddenNavigationBarStop = "CD_TopBar_HiddenNavigationBarStop"
@@ -44,7 +44,7 @@ public extension CD_TopBar {
     
     
     /// 改变TopBar 透明度
-    func change(alpha offset:CGFloat, maxOffset:CGFloat, block:((_ alpha:CGFloat)->Void)? = nil) {
+    public func change(alpha offset:CGFloat, maxOffset:CGFloat, block:((_ alpha:CGFloat)->Void)? = nil) {
         //滑动太快，offset直接跳过了0 划过
         if offset<0 && !self.changeAlphaStop {
             let alpha:CGFloat = 0.0
@@ -71,7 +71,7 @@ public extension CD_TopBar {
     
     
     /// 隐藏导航栏
-    func hidden(navigationBar offset:CGFloat) {
+    public func hidden(navigationBar offset:CGFloat) {
         //滑动太快，offset直接跳过了0 划过
         if offset>0 && !self.hiddenNavigationBarStop {
             self.hidden(navigationBar: false)

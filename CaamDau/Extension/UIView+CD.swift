@@ -278,7 +278,7 @@ public extension CaamDau where Base: UIView {
         var locations:[CGFloat] = [0.0, 1.0]
         var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
         lazy var radius: CGFloat = {
-            return max(self.bounds.size.width, self.bounds.size.height)
+            return Swift.max(self.bounds.size.width, self.bounds.size.height)
         }()
         override func draw(in ctx: CGContext) {
             guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locations.count) else {
@@ -300,7 +300,7 @@ public extension CaamDau where Base: UIView {
             }).joined())
             layer.frame = base.bounds
             layer.point = point
-            layer.radius = radius ?? max(base.bounds.size.width, base.bounds.size.height)
+            layer.radius = radius ?? Swift.max(base.bounds.size.width, base.bounds.size.height)
             layer.setNeedsDisplay()
         }
         
@@ -390,7 +390,7 @@ public extension CaamDau where Base: UIScrollView {
 
 
 
-public extension UIView{
+extension UIView{
     public static func cd_loadNib(_ name:String? = nil, from:String? = nil, owner: Any? = nil, options: [UINib.OptionsKey : Any]? = nil) -> [Any]? {
         let bundle = Bundle.cd_bundle(self, from) ?? Bundle.main
         return bundle.loadNibNamed(name ?? String(describing: self), owner: owner, options: options)

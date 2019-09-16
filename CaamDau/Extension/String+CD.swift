@@ -40,7 +40,7 @@ public extension String {
 }
 
 
-public extension String{
+extension String{
     /// base64编码
     public var cd_base64Encoding:String {
         let data = self.data(using:.utf8)

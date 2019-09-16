@@ -105,7 +105,7 @@ extension CD_HUD {
             guard let view = model._isEnabledMask ? self : contentView else { return }
             view.superview?.layoutIfNeeded()
             var value0 = view.layer.position.y + view.frame.size.height + model._offsetBottomY
-            var value1 = view.layer.position.y
+            let value1 = view.layer.position.y
             if offsetY < 0  {
                 value0 = view.layer.position.y + view.frame.size.height - offsetY
             }else{
@@ -153,7 +153,7 @@ extension CD_HUD {
             guard let view = model._isEnabledMask ? self : contentView else { return }
             view.superview?.layoutIfNeeded()
             var value0 = view.layer.position.y + view.frame.size.height + model._offsetBottomY
-            var value1 = view.layer.position.y
+            let value1 = view.layer.position.y
             if offsetY < 0  {
                 value0 = view.layer.position.y + view.frame.size.height - offsetY
             }else{

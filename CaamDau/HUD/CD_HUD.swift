@@ -94,7 +94,7 @@ extension CD_HUD {
 }
 
 
-public extension CD_HUD {
+extension CD_HUD {
     public enum Style {
         case text
         case loading(_ l:Loading?)
@@ -133,7 +133,7 @@ public extension CD_HUD {
     }
 }
 
-public extension CD_HUD {
+extension CD_HUD {
     public enum Axis {
         case vertical
         case horizontal
@@ -159,7 +159,7 @@ public extension CD_HUD {
     }
 }
 
-public extension CD_HUD {
+extension CD_HUD {
     public static var modelDefault:Model = CD_HUD.Model()
     public struct Model {
         public init() {}
@@ -256,7 +256,7 @@ public extension CaamDau where Base: UIView {
     }
 }
 
-public extension CD_HUD {
+extension CD_HUD {
     public static func show(with view:UIView,
                             style:CD_HUD.Style = .text,
                             title:String = "",
