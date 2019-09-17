@@ -26,7 +26,7 @@ public extension CD_Net {
         }
     }
     
-    static func ssl(whthCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:String = "") {
+    static func ssl(withCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:String = "") {
         SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) in
             switch challenge.protectionSpace.authenticationMethod {
             case NSURLAuthenticationMethodServerTrust:
@@ -104,7 +104,7 @@ public extension CD_Net {
             bundle = Bundle.main
         }
         guard let path: String = bundle?.path(forResource: p12.name, ofType: "p12"),
-            let data:CFData = try? Data(contentsOf: URL(fileURLWithPath: path)) as? CFData else {
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             return nil
         }
         let key : String = kSecImportExportPassphrase as String
