@@ -11,9 +11,8 @@ import Foundation
 import Alamofire
 
 public extension CD_Net {
-    static func ssl(withHosts hosts:[String], p12:(name:String, pwd:String), bundleForm:String = "") {
+    static func ssl(withHosts hosts:[String], p12:(name:String, pwd:String), bundleForm:(AnyClass, String)? = nil) {
         SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) in
-            //认证服务器（这里不使用服务器证书认证，只需地址是我们定义的几个地址即可信任）
             switch challenge.protectionSpace.authenticationMethod {
             case NSURLAuthenticationMethodServerTrust where hosts.contains(challenge.protectionSpace.host):
                 return serverAuthentication(session, challenge)
@@ -26,13 +25,13 @@ public extension CD_Net {
         }
     }
     
-    static func ssl(withCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:String = "") {
+    static func ssl(whthCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:(AnyClass, String)? = nil) {
         SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) in
             switch challenge.protectionSpace.authenticationMethod {
             case NSURLAuthenticationMethodServerTrust:
                 var bundle:Bundle?
-                if !bundleForm.isEmpty, let bu
-                    = Bundle.cd_bundle(CD_Net.self, bundleForm)  {
+                if let bundleForm = bundleForm, let bu
+                    = Bundle.cd_bundle(bundleForm.0, bundleForm.1)  {
                     bundle = bu
                 }else{
                     bundle = Bundle.main
@@ -75,7 +74,7 @@ public extension CD_Net {
         return (.useCredential, URLCredential(trust: secTrust))
     }
     
-    static private func clientAuthentication(_ p12:(name:String, pwd:String), bundleForm:String = "") -> (URLSession.AuthChallengeDisposition, URLCredential?) {
+    static private func clientAuthentication(_ p12:(name:String, pwd:String), bundleForm:(AnyClass, String)? = nil) -> (URLSession.AuthChallengeDisposition, URLCredential?) {
         debugPrint("客户端证书认证！")
         //获取客户端证书相关信息
         guard let identityAndTrust = CD_Net.extractIdentity(p12, bundleForm:bundleForm) else {
@@ -91,21 +90,21 @@ public extension CD_Net {
     }
     
     //MARK:--- 获取客户端证书相关信息 -----------------------------
-    static fileprivate func extractIdentity(_ p12:(name:String, pwd:String), bundleForm:String = "") -> IdentityAndTrust? {
+    static fileprivate func extractIdentity(_ p12:(name:String, pwd:String), bundleForm:(AnyClass, String)? = nil) -> IdentityAndTrust? {
         
         var identity:IdentityAndTrust
         var errSec:OSStatus
         //客户端证书 p12 文件目录
         var bundle:Bundle?
-        if !bundleForm.isEmpty, let bu
-            = Bundle.cd_bundle(CD_Net.self, bundleForm)  {
+        if let bundleForm = bundleForm, let bu
+            = Bundle.cd_bundle(bundleForm.0, bundleForm.1)  {
             bundle = bu
         }else{
             bundle = Bundle.main
         }
         guard let path: String = bundle?.path(forResource: p12.name, ofType: "p12"),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
-            return nil
+            let data:CFData = try? Data(contentsOf: URL(fileURLWithPath: path)) as? CFData else {
+                return nil
         }
         let key : String = kSecImportExportPassphrase as String
         //客户端证书密码
@@ -120,7 +119,7 @@ public extension CD_Net {
             let identityRef = dict["identity"],
             let trustRef = dict["trust"],
             let chainPointer = dict["chain"] else {
-            return nil
+                return nil
         }
         identity = IdentityAndTrust(identityRef: identityRef as! SecIdentity,
                                     trust: trustRef as! SecTrust,
