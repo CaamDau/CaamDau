@@ -22,6 +22,8 @@ public extension CD_Net {
         let storage = self.makeStorage()
         if let data = try? storage?.object(forKey: urlPath) {
             completion?(data)
+        }else{
+            failure?(CD_Net.Error(code: -1100, massage: ""))
         }
         return self
     }
