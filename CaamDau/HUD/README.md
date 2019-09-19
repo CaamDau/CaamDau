@@ -6,7 +6,7 @@ CD is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/HUD'
+pod 'CaamDau/HUD'
 ```
 <p>
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud10.png" width="20%" />
