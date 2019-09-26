@@ -13,9 +13,26 @@ extension UIColor {
         return (r,g,b,a)
     }
 }
+
+class CD_GradientLayer:CALayer {
+    var point: CGPoint = CGPoint.zero
+    var colorSpace = CGColorSpaceCreateDeviceRGB()
+    var locations:[CGFloat] = [0.0, 1.0]
+    var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
+    lazy var radius: CGFloat = {
+        return max(self.bounds.size.width, self.bounds.size.height)
+    }()
+    override func draw(in ctx: CGContext) {
+        guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locations.count) else {
+            return
+        }
+        ctx.drawRadialGradient(gradient, startCenter: point, startRadius: 0, endCenter: point, endRadius: radius, options: .drawsAfterEndLocation)
+    }
+}
+
 extension UIView {
     /// 设置背景线性渐变 默认横向渐变 point -> 0 - 1
-    func gradient(layerAxial gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil) {
+    func gradient(layerAxial gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil, then:((CAGradientLayer)->Void)? = nil)  {
         func gradient(_ layer:CAGradientLayer) {
             self.layoutIfNeeded()
             layer.colors = gradients.map{$0.color.cgColor}
@@ -29,28 +46,17 @@ extension UIView {
             let layer = CAGradientLayer()
             gradient(layer)
             self.layer.insertSublayer(layer, at: at)
+            then?(layer)
         }else{
-            gradient(layers[updateIndex ?? 0])
+            let layer = layers[updateIndex ?? 0]
+            gradient(layer)
+            then?(layer)
         }
     }
     
-    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil) {
+    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil, then:((CD_GradientLayer)->Void)? = nil) {
         
-        class CD_GradientLayer:CALayer {
-            var point: CGPoint = CGPoint.zero
-            var colorSpace = CGColorSpaceCreateDeviceRGB()
-            var locations:[CGFloat] = [0.0, 1.0]
-            var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
-            lazy var radius: CGFloat = {
-                return max(self.bounds.size.width, self.bounds.size.height)
-            }()
-            override func draw(in ctx: CGContext) {
-                guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locations.count) else {
-                    return
-                }
-                ctx.drawRadialGradient(gradient, startCenter: point, startRadius: 0, endCenter: point, endRadius: radius, options: .drawsAfterEndLocation)
-            }
-        }
+        
         func gradient(_ layer:CD_GradientLayer) {
             self.layoutIfNeeded()
             layer.locations = gradients.map{$0.location}
@@ -68,8 +74,11 @@ extension UIView {
             let layer = CD_GradientLayer()
             gradient(layer)
             self.layer.insertSublayer(layer, at: at)
+            then?(layer)
         }else{
-            gradient(layers[updateIndex ?? 0])
+            let layer = layers[updateIndex ?? 0]
+            gradient(layer)
+            then?(layer)
         }
     }
 }
@@ -314,10 +323,29 @@ class MyViewController : UIViewController {
         }
         
         do{
-            let str = "国"
-            let lab = UILabel(frame: CGRect(x: 0, y: 100, width: 150, height: 30))
+            let vv = UIView(frame: CGRect(x: 0, y: 100, width: 150, height: 30))
+            view.addSubview(vv)
+            
+            let str = "我们国家是世界上最强大的"
+            let lab = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
+            //lab.backgroundColor = UIColor.gray
             lab.text = str
-            view.addSubview(lab)
+            vv.addSubview(lab)
+            /*vv.gradient(layerAxial: [(UIColor.red, 0.0),
+            (UIColor.yellow, 0.5),
+            (UIColor.blue, 1.0)], at:0, then:{ layer in
+                layer.mask = lab.layer
+            })*/
+            
+            vv.gradient(layerRadial: [
+            (UIColor.black.withAlphaComponent(0.2), 0.0),
+            (UIColor.red.withAlphaComponent(0.9), 1.0)
+            ],point:CGPoint(x: 0, y: 10), radius:200, at:0, then:{ layer in
+                layer.mask = lab.layer
+            })
+            
+            
+            
             let str64 = str.data(using: String.Encoding.utf8, allowLossyConversion: true)?.base64EncodedString() ?? ""
             
             let data = Data(base64Encoded: str64)

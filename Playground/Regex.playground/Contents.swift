@@ -1,10 +1,66 @@
 import UIKit
 import Foundation
-import CaamDau
+//import CaamDau
+
+public struct CaamDau<Base> {
+    public let base: Base
+    public init(_ base: Base) {
+        self.base = base
+    }
+    public var build: Base {
+        return base
+    }
+}
+
+public protocol CaamDauCompatible {
+    associatedtype CompatibleType
+    var cd: CompatibleType { get }
+}
+public extension CaamDauCompatible {
+    public var cd: CaamDau<Self> {
+        return CaamDau(self)
+    }
+}
+extension NSObject: CaamDauCompatible {}
+
+//MARK:--- 脚本 ----------
+public extension String {
+    /// 下标脚本
+    /// 插入 var str = "1234", str[1..<1] = "345", print(str) //1345234
+    /// 替换 str[1...4] = "000", print(str) //100034
+    /// 删除 str[1...3] = "" print(str) //134
+    /// 取子串 let subStr = str[0...1], print(subStr) //13
+    subscript (cd_rang: Range<Int>) -> String {
+        get {
+            var r = cd_rang
+            guard r.lowerBound < self.count else{
+                return ""
+            }
+            if r.upperBound > self.count {
+                r = r.lowerBound..<self.count
+            }
+            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
+            return String(self[startIndex..<endIndex])
+        }
+        set{
+            var r = cd_rang
+            guard r.lowerBound < self.count else{
+                return
+            }
+            if r.upperBound > self.count {
+                r = r.lowerBound..<self.count
+            }
+            let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound)
+            let endIndex = self.index(self.startIndex, offsetBy: r.upperBound)
+            self.replaceSubrange(Range(uncheckedBounds: (startIndex, endIndex)), with: newValue)
+        }
+    }
+}
 
 
 //MARK:--- 正则 ----------
-public extension CD where Base: NSTextCheckingResult {
+public extension CaamDau where Base: NSTextCheckingResult {
     /// 返回匹配字符串
     @discardableResult
     func string(in string:String) -> String {
@@ -38,11 +94,11 @@ public extension CD where Base: NSTextCheckingResult {
 
 public extension NSRegularExpression {
     static func cd_init(_ pattern: String, options: NSRegularExpression.Options = []) -> NSRegularExpression? {
-        return CD.makeRegEx(pattern, options:options)
+        return CaamDau.makeRegEx(pattern, options:options)
     }
 }
 
-public extension CD where Base: NSRegularExpression {
+public extension CaamDau where Base: NSRegularExpression {
     /// 初始化 NSRegularExpression
     /// .caseInsensitive 忽略字母、不区分大小写的\n
     /// .allowCommentsAndWhitespace 忽略空格、# -
@@ -89,84 +145,23 @@ public extension CD where Base: NSRegularExpression {
         //output[$0.cd.range(in: string)!.lowerBound.encodedOffset..<$0.cd.range(in: string)!.upperBound.encodedOffset] = $0.cd.replace(in: string, template: template)
         
         /*
-        for item in ranged.reversed() {
-            let replacement = item.cd.replace(in: string, template: template)
-            if let range = item.cd.range(in: string) {
-                output.replaceSubrange(range, with: replacement)
-            }
-        }*/
+         for item in ranged.reversed() {
+         let replacement = item.cd.replace(in: string, template: template)
+         if let range = item.cd.range(in: string) {
+         output.replaceSubrange(range, with: replacement)
+         }
+         }*/
         return output
     }
     
     /// 获取匹配
     @discardableResult
     func match(numIn string:String, range:Range<Int>? = nil, options: NSRegularExpression.MatchingOptions = []) -> Int {
-        return base.numberOfMatches(in: string, options: [], range: (range != nil) ? NSMakeRange(range!.lowerBound, range!.upperBound) : NSMakeRange(0,string.count))
+        return base.numberOfMatches(in: string, options: [], range: (range != nil) ? NSMakeRange(range!.lowerBound, range!.upperBound) : NSMakeRange(0, string.count))
     }
 }
 
-//----- 示例 ----------
-
-do{//验证一个邮箱地址的格式是否正确。
-    let pattern = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
-    let email = "liu_cai_de@qq.163.com"
-    if (CD.makeRegEx(pattern)?.cd.match(allIn: email)) != nil {
-        _ = true
-    }else{
-        _ = false
-    }
-    if CD.makeRegEx(pattern)!.cd.match(email) {
-        _ = true
-    }else{
-        _ = false
-    }
-}
-
-
-do{// 获取第一个匹配结果
-    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
-    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    if let text = CD.makeRegEx(pattern)?.cd.match(firstIn: str) {
-        //print(text.cd.range(in: str))
-        text.cd.string(in: str)
-        text.cd.captures(in: str)
-        text.cd.captures(in: str)![0]
-        text.cd.captures(in: str)![1]
-    }else{
-        _ = false
-    }
-}
-
-
-do{// 获取所有匹配结果
-    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
-    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    if let text = CD.makeRegEx(pattern)?.cd.match(allIn: str) {
-        text.map{$0.cd.string(in: str)}
-        text.map{$0.cd.captures(in: str)![0]}
-        text.map{$0.cd.captures(in: str)![1]}
-    }else{
-        _ = false
-    }
-}
-
-
-do{// ----- 字符串替换
-    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
-    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 1)
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***")
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 9)
-}
-do{//捕获组替换
-    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
-    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 1)
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2")
-    CD.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 9)
-}
-
-/// 更多正则表达式 可供参考 https://c.runoob.com/front-end/854
+/*
 public extension CD_RegEx {
     enum Password {
         /// 弱密码 任意字母、数字、下划线 (不允许有除此之外的字符)
@@ -183,7 +178,7 @@ public extension CD_RegEx {
         /// 匹配自定义
         case value3(_ pattern:String)
         
-        var patternValue:String {
+        public var patternValue:String {
             switch self {
             case .value0:
                 return "^\\w{6,20}$"
@@ -207,7 +202,7 @@ public extension CD_RegEx {
         /// 自定义匹配
         case value3(_ pattern:String)
         
-        var patternValue:String {
+        public var patternValue:String {
             switch self {
             case .value0:
                 return "^.{2，12}$"
@@ -228,12 +223,12 @@ public extension CD_RegEx {
         case zh_hk
         case zh_tw
         
-        var patternValue:String {
+        public var patternValue:String {
             switch self {
             case .zh_cn:
                 return "^[1-9]{2}[0-9]{4}[1-3]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}[0-9]{3}([0-9]|X|x)$"
             default:
-                return ""
+                return "^.$"
             }
         }
     }
@@ -255,7 +250,8 @@ public enum CD_RegEx {
     /// 银行卡 ^([1-9]{1})(\d{12}|\d{18})$
     case tBankCard
     
-    /// URL验证 默认 "[a-zA-z]+://[^\s]*"
+    /// URL验证 默认 "[a-zA-Z_-]+://[^\s]*"
+    /// 使用了 canOpenURL 无法验证 app schemes
     case tURL(_ pattern:String?)
     
     /// 手机号码验证 默认包含国外号码 8-11位 ^1[0-9]{7,10}$
@@ -289,8 +285,9 @@ public enum CD_RegEx {
     /// emoji 默认 \uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]
     case tEmoji(_ pattern:String?)
     
+    case tValue(_ pattern:String?)
     
-    var patternValue:String {
+    public var patternValue:String {
         switch self {
         case .tLower:
             return "^[a-z]+$"
@@ -324,6 +321,8 @@ public enum CD_RegEx {
             return p ?? "^\\d*\\.?\\d{0,2}$"
         case .tEmoji(let p):
             return p ?? "\\uD83C[\\uDF00-\\uDFFF]|\\uD83D[\\uDC00-\\uDE4F]"
+        case .tValue(let p):
+            return p ?? ""
         }
     }
 }
@@ -339,7 +338,6 @@ public extension CD_RegEx {
     }
     private static func matchURL(_ string:String) -> Bool {
         guard let url = string.url else {
-            print("let url = string.url")
             return false
         }
         return UIApplication.shared.canOpenURL(url)
@@ -375,11 +373,9 @@ public extension CD_RegEx {
             return true
         case .tURL:
             guard CD_RegEx.match(string, pattern: type.patternValue) else {
-                print("tURL.match.false")
                 return false
             }
             guard CD_RegEx.matchURL(string) else {
-                print("matchURL.false")
                 return false
             }
             return true
@@ -397,13 +393,76 @@ public extension CD_RegEx {
     }
     
     static func match(_ string:String, pattern:String) -> Bool {
-        return CD.makeRegEx(pattern)?.cd.match(string) ?? false
+        return CaamDau.makeRegEx(pattern)?.cd.match(string) ?? false
+    }
+}
+*/
+//----- 示例 ----------
+/*
+do{//验证一个邮箱地址的格式是否正确。
+    let pattern = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$"
+    let email = "liu_cai_de@qq.163.com"
+    if (CaamDau.makeRegEx(pattern)?.cd.match(allIn: email)) != nil {
+        _ = true
+    }else{
+        _ = false
+    }
+    if CaamDau.makeRegEx(pattern)!.cd.match(email) {
+        _ = true
+    }else{
+        _ = false
     }
 }
 
+
+do{// 获取第一个匹配结果
+    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
+    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
+    if let text = CaamDau.makeRegEx(pattern)?.cd.match(firstIn: str) {
+        //print(text.cd.range(in: str))
+        text.cd.string(in: str)
+        text.cd.captures(in: str)
+        text.cd.captures(in: str)![0]
+        text.cd.captures(in: str)![1]
+    }else{
+        _ = false
+    }
+}
+
+
+do{// 获取所有匹配结果
+    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
+    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
+    if let text = CaamDau.makeRegEx(pattern)?.cd.match(allIn: str) {
+        text.map{$0.cd.string(in: str)}
+        text.map{$0.cd.captures(in: str)![0]}
+        text.map{$0.cd.captures(in: str)![1]}
+    }else{
+        _ = false
+    }
+}
+
+
+do{// ----- 字符串替换
+    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
+    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 1)
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***")
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "***", count: 9)
+}
+do{//捕获组替换
+    let pattern = "([\\u4e00-\\u9fa5]+):([\\d]+)"
+    let str = "张三:123456 66,99 ,我的， 李四:23457,王麻子:110987 9"
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 1)
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2")
+    CaamDau.makeRegEx(pattern)!.cd.match(replaceIn: str, with: "$1的编号是$2", count: 9)
+}
+*/
+
+
 extension String {
     func cd_regex(_ pattern:String) -> Bool {
-        return CD.makeRegEx(pattern)?.cd.match(pattern) ?? false
+        return CaamDau.makeRegEx(pattern)?.cd.match(self) ?? false
     }
 }
 
@@ -429,6 +488,7 @@ do{
     bool
 }
 */
+/*
 do{
     CD_RegEx.match("123", type: CD_RegEx.tPassword(CD_RegEx.Password.value0))
     CD_RegEx.match("123456", type: CD_RegEx.tPassword(CD_RegEx.Password.value0))
@@ -448,4 +508,16 @@ do{
     }
     
     CD_RegEx.match("wechat://itunes.apple.com/cn/app/", type: CD_RegEx.tURL(nil))
+}
+*/
+
+
+do{
+    //"123".cd_regex("^[0-9]+$")
+    "-1".cd_regex(#"^-?([0-9]+)?$"#)
+    
+    if let ff = Float("-1") {
+        String(format: "%f", ff)
+    }
+    
 }

@@ -25,7 +25,7 @@ public extension CD_Net {
         }
     }
     
-    static func ssl(whthCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:(AnyClass, String)? = nil) {
+    static func ssl(withCer name:String , p12:(name:String, pwd:String) = ("",""), bundleForm:(AnyClass, String)? = nil) {
         SessionManager.default.delegate.sessionDidReceiveChallenge = { (session, challenge) -> (URLSession.AuthChallengeDisposition, URLCredential?) in
             switch challenge.protectionSpace.authenticationMethod {
             case NSURLAuthenticationMethodServerTrust:

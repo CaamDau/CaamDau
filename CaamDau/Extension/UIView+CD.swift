@@ -249,8 +249,9 @@ public extension CaamDau where Base: UIView {
     /// 背景线性渐变 默认横向渐变 point -> 0 - 1
     /// let gradients:[(UIColor,Float)] = [(UIColor.red,0),(UIColor.yellow,1)]
     /// view.cd.gradient(layer: gradients)
+    /// 文字渐变 view.gradient(layerAxial: ..., then:{ layer in layer.mask = label.layer })
     @discardableResult
-    func gradient(layerAxial gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil) -> CaamDau {
+    func gradient(layerAxial gradients:[(color:UIColor,location:Float)], point:(start:CGPoint, end:CGPoint) = (start:CGPoint(x: 0, y: 0), end:CGPoint(x: 1, y: 0)), at: UInt32 = 0, updateIndex:Int? = nil, then:((CAGradientLayer)->Void)? = nil) -> CaamDau {
         
         func gradient(_ layer:CAGradientLayer) {
             base.layoutIfNeeded()
@@ -266,21 +267,24 @@ public extension CaamDau where Base: UIView {
             let layer = CAGradientLayer()
             gradient(layer)
             base.layer.insertSublayer(layer, at: at)
+            then?(layer)
         }else{
+            let layer = layers[updateIndex ?? 0]
             gradient(layers[updateIndex ?? 0])
+            then?(layer)
         }
         return self
     }
     /// 放射性渐变
-    private class CD_GradientLayer:CALayer {
-        var point: CGPoint = CGPoint.zero
-        var colorSpace = CGColorSpaceCreateDeviceRGB()
-        var locations:[CGFloat] = [0.0, 1.0]
-        var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
-        lazy var radius: CGFloat = {
+    open class CD_GradientLayer:CALayer {
+        open var point: CGPoint = CGPoint.zero
+        open var colorSpace = CGColorSpaceCreateDeviceRGB()
+        open var locations:[CGFloat] = [0.0, 1.0]
+        open var colors:[CGFloat] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0]
+        open lazy var radius: CGFloat = {
             return Swift.max(self.bounds.size.width, self.bounds.size.height)
         }()
-        override func draw(in ctx: CGContext) {
+        override open func draw(in ctx: CGContext) {
             guard let gradient = CGGradient(colorSpace: colorSpace, colorComponents: colors, locations: locations, count: locations.count) else {
                 return
             }
@@ -289,7 +293,7 @@ public extension CaamDau where Base: UIView {
     }
     /// 背景放射性渐变
     @discardableResult
-    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil) -> CaamDau {
+    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil, then:((CD_GradientLayer)->Void)? = nil) -> CaamDau {
         
         func gradient(_ layer:CD_GradientLayer) {
             base.layoutIfNeeded()
@@ -309,8 +313,11 @@ public extension CaamDau where Base: UIView {
             let layer = CD_GradientLayer()
             gradient(layer)
             base.layer.insertSublayer(layer, at: at)
+            then?(layer)
         }else{
-            gradient(layers[updateIndex ?? 0])
+            let layer = layers[updateIndex ?? 0]
+            gradient(layer)
+            then?(layer)
         }
         return self
     }

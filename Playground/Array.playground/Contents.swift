@@ -13,9 +13,10 @@ import Foundation
 
 
  //MARK:--- 升维 组合 ----------
-let arr = (0..<15).map{$0}
-let arr2 = arr.enumerated().reduce(into: []) { (item, element) in
-    if element.offset%4 == 0 {
+var arr = (0..<15).map{$0}
+var arr2 = arr.enumerated().reduce(into: []) { (item, element) in
+    if element.offset%2 == 0 {
+        item.append([element.element])
         item.append([element.element])
     }else{
         var aa = item.last as! [Any]
@@ -25,7 +26,7 @@ let arr2 = arr.enumerated().reduce(into: []) { (item, element) in
 }
 
 print(arr)
-print(arr2)
+//print(arr2)
 extension Array {
     func split(by size: Int) -> [[Element]] {
         return stride(from: 0, through: count, by: size)
@@ -33,6 +34,35 @@ extension Array {
             .filter{!$0.isEmpty}
     }
 }
+do{
+    var arr1 = [0, 100, 120]
+    arr1.append(90)
+    print(arr1)
+    arr1.sort{$0<$1}
+    print(arr1)
+}
+
+
+/*
+do{
+    let arr1 = arr.split(by: 2)
+    print(arr1)
+    arr.remove(at: 0)
+    let arr2 = arr.split(by: 2)
+    print(arr2)
+    var arr3 = arr1 + arr2
+    print(arr3)
+    arr3.sort { (i, j) -> Bool in
+        return i.first! < j.first!
+    }
+    print(arr3)
+    
+    let idx = arr3.filter{!Set($0).intersection(Set([3])).isEmpty}.map{$0}
+    
+    print("->", idx)
+}*/
+
+
 
 //MARK:--- 求和等 ----------
 //print((1...20).reduce(0, +))
