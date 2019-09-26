@@ -12,7 +12,7 @@ import UIKit
 import SnapKit
 
 //MARK:--- 针对新的表单协议 CD_CellProtocol ----------
-public class CD_TableViewDelegateDataSource: NSObject {
+open class CD_TableViewDelegateDataSource: NSObject {
     public var vm:CD_ViewModelTableViewProtocol?
     private override init(){}
     public init(_ vm:CD_ViewModelTableViewProtocol?) {
@@ -20,7 +20,7 @@ public class CD_TableViewDelegateDataSource: NSObject {
     }
 }
 extension CD_TableViewDelegateDataSource {
-    public func makeReloadData(_ tableView:UITableView) {
+    open func makeReloadData(_ tableView:UITableView) {
         vm?._reloadData = {[weak self] in
             tableView.reloadData()
             tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
@@ -63,13 +63,13 @@ extension CD_TableViewDelegateDataSource {
 }
 
 extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return vm?._forms.count ?? 0
     }
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vm?._forms[section].count ?? 0
     }
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let row = vm?._forms[indexPath.section][indexPath.row] else {
             return UITableViewCell()
         }
@@ -77,20 +77,20 @@ extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSo
         row.bind(cell)
         return cell
     }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let row = vm?._forms[indexPath.section][indexPath.row] else {
             return
         }
         row.tapBlock?()
     }
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let row = vm?._forms[indexPath.section][indexPath.row] else {
             return 0
         }
         return row.h
     }
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section < (vm?._formHeaders.count ?? 0) {
             return vm?._formHeaders[section].h ?? CD.sectionMinH
         }else{
@@ -100,7 +100,7 @@ extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSo
             return top
         }
     }
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section < (vm?._formFooters.count ?? 0) {
             return vm?._formFooters[section].h ?? CD.sectionMinH
         }else{
@@ -110,7 +110,7 @@ extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSo
             return bottom
         }
     }
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section < (vm?._formHeaders.count ?? 0) else {
             return nil
         }
@@ -123,7 +123,7 @@ extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSo
         row.bind(v)
         return v
     }
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard section < (vm?._formFooters.count ?? 0) else {
             return nil
         }
@@ -149,18 +149,18 @@ public struct R_CDTableViewController {
 }
 
 
-class CD_TableViewController: UIViewController {
-    var vm:CD_ViewModelTableViewProtocol?
-    var delegateData:CD_TableViewDelegateDataSource?
-    lazy var tableView: UITableView = {
+open class CD_TableViewController: UIViewController {
+    open var vm:CD_ViewModelTableViewProtocol?
+    open var delegateData:CD_TableViewDelegateDataSource?
+    open lazy var tableView: UITableView = {
         return UITableView(frame: CGRect.zero, style: UITableView.Style.grouped).cd
             .build
     }()
-    lazy var topBar: CD_TopBar = {
+    open lazy var topBar: CD_TopBar = {
         return CD_TopBar()
     }()
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
         makeLayout()
@@ -169,7 +169,7 @@ class CD_TableViewController: UIViewController {
         vm?._tableViewCustom?(tableView)
     }
     
-    func makeUI(){
+    open func makeUI(){
         self.cd.navigationBar(hidden: true)
         self.view.cd
             .add(tableView)
@@ -180,7 +180,7 @@ class CD_TableViewController: UIViewController {
         
     }
     
-    func makeLayout(){
+    open func makeLayout(){
         topBar.snp.makeConstraints { (make) in
             make.left.right.top.equalToSuperview()
         }
@@ -205,16 +205,18 @@ class CD_TableViewController: UIViewController {
 }
 
 extension CD_TableViewController: CD_TopBarProtocol {
-    func topBarCustom() {
+    open func topBarCustom() {
         vm?._topBarCustom?(self.topBar)
     }
     
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    open func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
         //super_topBarClick(item)
         vm?._topBarDidSelect?(self.topBar, item)
     }
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    open func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         return vm?._topBarUpdate?(self.topBar, item)
     }
 }
+
+

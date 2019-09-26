@@ -16,7 +16,7 @@ public class VC_Mine: UIViewController {
     @IBOutlet weak var topBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
     var vm:VM_Mine = VM_Mine()
-    
+    var delegateData:VC_MineTableViewDelegateDataSource?
     lazy var modelMj:CD_MJRefreshModel = {
         var m = CD_MJRefreshModel()
         let ass = Assets()
@@ -68,8 +68,10 @@ public class VC_Mine: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.cd.navigationBar(hidden: true)
-        self.tableView.delegate = self
-        self.tableView.cd
+        delegateData = VC_MineTableViewDelegateDataSource(vm)
+        tableView.cd
+            .dataSource(delegateData)
+            .delegate(delegateData)
             .estimatedAll()
             //.content(inset: UIEdgeInsets(top: topBar._heightStatusBar, left: 0, bottom: 0, right: 0))
             /*.headerMJGifWithModel({ [weak self] in
@@ -84,115 +86,62 @@ public class VC_Mine: UIViewController {
         topBar.delegate = self
         
         
-        _ = CD.window
-        _ = CD.window
-        _ = CD.window
-        _ = CD.window
-    }
-}
-
-extension VC_Mine:UITableViewDelegate,UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return vm.forms.count
-    }
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.forms[section].count
-    }
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let row = vm.forms[indexPath.section][indexPath.row]
-        return row.h
-    }
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = vm.forms[indexPath.section][indexPath.row]
-        let cell = tableView.cd.cell(row.viewClass)
-        row.bind(cell!)
-        return cell!
-    }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let row = vm.forms[indexPath.section][indexPath.row]
-        row.didSelect?()
-    }
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.001
-    }
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        /*
-        print("contentOffsetY-->", contentOffsetY)
-        print("contentOffset.Y->", scrollView.contentOffset.y)
-        
-        guard scrollView.contentOffset.y > 0 else {
-            return
-        }
-        guard contentOffsetY >= 0 else {
-            return
-        }
-        if scrollView.contentOffset.y > contentOffsetY {
-            //上
-            velocityUp = true
-            let offset = scrollView.contentOffset.y-contentOffsetY
-            self.topBar.hidden(navigationBar: -offset)
-        }else{
-            //下
-            velocityUp = false
-            let offset = scrollView.contentOffset.y-contentOffsetY
-            self.topBar.hidden(navigationBar: -(44-abs(offset)))
+        delegateData?.scrollViewDidScrollBlock = { [unowned self]scrollView in
+            /*
+            print("contentOffsetY-->", contentOffsetY)
+            print("contentOffset.Y->", scrollView.contentOffset.y)
             
-        }*/
-        
-        self.topBar.change(alpha: scrollView.contentOffset.y, maxOffset: tableViewHeaderHeight-topBar._heightTopBar) { [weak self](a) in
-            let arr:[(UIColor,Float)] = [(Config.color.main_5.cd_alpha(a),0),(Config.color.main_4.cd_alpha(a),1)]
-            self?.topBar.cd.gradient(layerAxial: arr,  updateIndex: 0)
-        }
-        
-        do{ /// logo 缩小到标题栏
-        
-        }
-        do{ /// 背景缩放
-            guard scrollView.contentOffset.y <= tableViewHeaderHeight else {
+            guard scrollView.contentOffset.y > 0 else {
                 return
             }
-            let offset = scrollView.contentOffset.y
-            tableViewHeaderImgBg.snp.updateConstraints { (make) in
-                make.top.equalToSuperview().offset(offset)
-            }
-            guard scrollView.contentOffset.y <= 0 else {
+            guard contentOffsetY >= 0 else {
                 return
             }
-            tableViewHeaderImgBg.snp.updateConstraints { (make) in
-                make.left.equalToSuperview().offset(offset)
-                make.right.equalToSuperview().offset(-offset)
+            if scrollView.contentOffset.y > contentOffsetY {
+                //上
+                velocityUp = true
+                let offset = scrollView.contentOffset.y-contentOffsetY
+                self.topBar.hidden(navigationBar: -offset)
+            }else{
+                //下
+                velocityUp = false
+                let offset = scrollView.contentOffset.y-contentOffsetY
+                self.topBar.hidden(navigationBar: -(44-abs(offset)))
+                
+            }*/
+            
+            self.topBar.change(alpha: scrollView.contentOffset.y, maxOffset: self.tableViewHeaderHeight-self.topBar._heightTopBar) { [weak self](a) in
+                let arr:[(UIColor,Float)] = [(Config.color.main_5.cd_alpha(a),0),(Config.color.main_4.cd_alpha(a),1)]
+                self?.topBar.cd.gradient(layerAxial: arr,  updateIndex: 0)
+            }
+            
+            do{ /// logo 缩小到标题栏
+            
+            }
+            do{ /// 背景缩放
+                guard scrollView.contentOffset.y <= self.tableViewHeaderHeight else {
+                    return
+                }
+                let offset = scrollView.contentOffset.y
+                self.tableViewHeaderImgBg.snp.updateConstraints { (make) in
+                    make.top.equalToSuperview().offset(offset)
+                }
+                guard scrollView.contentOffset.y <= 0 else {
+                    return
+                }
+                self.tableViewHeaderImgBg.snp.updateConstraints { (make) in
+                    make.left.equalToSuperview().offset(offset)
+                    make.right.equalToSuperview().offset(-offset)
+                }
             }
         }
         
-    }
-    
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //contentOffsetY = scrollView.contentOffset.y
-    }
-    
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        /*
-        if velocity.y > 1.0 {
-            self.topBar.hidden(navigationBar: true)
-        }else if velocity.y < -1.0 {
-            self.topBar.hidden(navigationBar: false)
-        }*/
+        
+        let vvc = CD_TableViewController()
+        vvc.vm = VM_Mine()
+            
     }
 }
-
 
 extension VC_Mine: CD_TopBarProtocol {
     public func topBarCustom() {
@@ -227,5 +176,21 @@ extension VC_Mine: CD_TopBarProtocol {
         default:
             return nil
         }
+    }
+}
+
+
+
+
+class VC_MineTableViewDelegateDataSource: CD_TableViewDelegateDataSource {
+    
+    var scrollViewDidScrollBlock:((UIScrollView)->Void)?
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollViewDidScrollBlock?(scrollView)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
     }
 }

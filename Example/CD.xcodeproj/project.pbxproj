@@ -12,6 +12,7 @@
 		4707FD7B21E873130072257B /* VM_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707FD7A21E873130072257B /* VM_ViewController.swift */; };
 		4707FD8A21E8C67C0072257B /* VC_ImageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4707FD8921E8C67C0072257B /* VC_ImageTest.swift */; };
 		470EC4E62268279A0027CBDD /* AppDelegate_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470EC4E52268279A0027CBDD /* AppDelegate_VC.swift */; };
+		479735C822ED857F0022A310 /* ObjectC.m in Sources */ = {isa = PBXBuildFile; fileRef = 479735C722ED857F0022A310 /* ObjectC.m */; };
 		5ACE8F91E3E6D798CDD9B22D /* Pods_CD_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A7D441589387BC924BD8E43 /* Pods_CD_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -40,19 +41,26 @@
 		4707FD7721E871080072257B /* Cell_MainNews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_MainNews.xib; sourceTree = "<group>"; };
 		4707FD7A21E873130072257B /* VM_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_ViewController.swift; sourceTree = "<group>"; };
 		4707FD8921E8C67C0072257B /* VC_ImageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_ImageTest.swift; sourceTree = "<group>"; };
+		470A3D3D233C986800D50E6A /* Calendar.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Calendar.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		470A3D3E233C991700D50E6A /* Text.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Text.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		470EC4E52268279A0027CBDD /* AppDelegate_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate_VC.swift; sourceTree = "<group>"; };
 		4713C3DC2240B885007D3E29 /* CD.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CD.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4733EFCF223F3F44006F27A3 /* RegEx.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RegEx.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		474F8386226792A500FC6859 /* CryptoSwift.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CryptoSwift.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4760EFCD229E5E77009586A7 /* SKUPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SKUPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4766B499228EDF600058E91C /* CALayer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CALayer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		479735C522ED857E0022A310 /* CD_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CD_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		479735C622ED857F0022A310 /* ObjectC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectC.h; sourceTree = "<group>"; };
+		479735C722ED857F0022A310 /* ObjectC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectC.m; sourceTree = "<group>"; };
 		4799B2DE22B251700085FA9B /* SwiftyJSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftyJSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		479BA3B423104322003BEC20 /* CaamDau.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CaamDau.podspec; path = ../CaamDau.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		47A0A158223A8B31001F07ED /* JSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A159223A8B31001F07ED /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A15A223A8B31001F07ED /* Date.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Date.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A15B223A8B31001F07ED /* Array.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Array.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A15C223A8B31001F07ED /* CountDown.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CountDown.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47A0A15D223A8B32001F07ED /* M_Sign.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = M_Sign.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		47BF50AC2317AEB300EADAB1 /* Router.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Router.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47C491342278336F00DC876B /* MVVM.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MVVM.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		47C5C983224603D300A35E00 /* ViewController.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewController.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		607FACD01AFB9204008FA782 /* CD_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CD_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +76,6 @@
 		71103DEB7705E8D1E26757B8 /* Pods_CD_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CD_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7D441589387BC924BD8E43 /* Pods_CD_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CD_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82ED0A2F56D771DE0701320B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		8B4C7787002012EFC8CDAEC9 /* Popois.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Popois.podspec; path = ../Popois.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98276F4BEE9E86C754E81B07 /* Pods-CD_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CD_Tests.release.xcconfig"; path = "Target Support Files/Pods-CD_Tests/Pods-CD_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BA1B16A973B3973769BE00F0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +111,9 @@
 		47A0A157223A8B31001F07ED /* Playground */ = {
 			isa = PBXGroup;
 			children = (
+				470A3D3E233C991700D50E6A /* Text.playground */,
+				470A3D3D233C986800D50E6A /* Calendar.playground */,
+				47BF50AC2317AEB300EADAB1 /* Router.playground */,
 				4799B2DE22B251700085FA9B /* SwiftyJSON.playground */,
 				4760EFCD229E5E77009586A7 /* SKUPlayground.playground */,
 				4766B499228EDF600058E91C /* CALayer.playground */,
@@ -163,10 +173,13 @@
 				470EC4E52268279A0027CBDD /* AppDelegate_VC.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				4707FD7A21E873130072257B /* VM_ViewController.swift */,
+				479735C622ED857F0022A310 /* ObjectC.h */,
+				479735C722ED857F0022A310 /* ObjectC.m */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				479735C522ED857E0022A310 /* CD_Example-Bridging-Header.h */,
 			);
 			name = "Example for CD";
 			path = CD;
@@ -200,7 +213,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				8B4C7787002012EFC8CDAEC9 /* Popois.podspec */,
+				479BA3B423104322003BEC20 /* CaamDau.podspec */,
 				82ED0A2F56D771DE0701320B /* README.md */,
 				BA1B16A973B3973769BE00F0 /* LICENSE */,
 			);
@@ -238,7 +251,7 @@
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				D5453261C8368DE22CCD9AA0 /* [CP] Embed Pods Frameworks */,
+				02B79FA0329CFB91EEEF8613 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,8 +294,8 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = LXPVEK5KX2;
-						LastSwiftMigration = 1010;
+						DevelopmentTeam = L2ZMVTE4E5;
+						LastSwiftMigration = 1020;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -334,6 +347,70 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		02B79FA0329CFB91EEEF8613 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CD_Example/Pods-CD_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CaamDau/CaamDau.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/CleanJSON/CleanJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Demo/Demo.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
+				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
+				"${BUILT_PRODUCTS_DIR}/Home/Home.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/Mine/Mine.framework",
+				"${BUILT_PRODUCTS_DIR}/Models/Models.framework",
+				"${BUILT_PRODUCTS_DIR}/Publish/Publish.framework",
+				"${BUILT_PRODUCTS_DIR}/Rx/Rx.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
+				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Sign/Sign.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TabbarNavigation/TabbarNavigation.framework",
+				"${BUILT_PRODUCTS_DIR}/Util/Util.framework",
+				"${BUILT_PRODUCTS_DIR}/Web/Web.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CaamDau.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleanJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Demo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Home.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mine.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Models.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Publish.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rx.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sign.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TabbarNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Util.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CD_Example/Pods-CD_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		742FEA444BD0B997A13F06A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -381,72 +458,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CD_Tests/Pods-CD_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D5453261C8368DE22CCD9AA0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CD_Example/Pods-CD_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CaamDau/CaamDau.framework",
-				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
-				"${BUILT_PRODUCTS_DIR}/CleanJSON/CleanJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Demo/Demo.framework",
-				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
-				"${BUILT_PRODUCTS_DIR}/FDFullscreenPopGesture/FDFullscreenPopGesture.framework",
-				"${BUILT_PRODUCTS_DIR}/Home/Home.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Mine/Mine.framework",
-				"${BUILT_PRODUCTS_DIR}/Models/Models.framework",
-				"${BUILT_PRODUCTS_DIR}/Publish/Publish.framework",
-				"${BUILT_PRODUCTS_DIR}/Rx/Rx.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Sign/Sign.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/TabbarNavigation/TabbarNavigation.framework",
-				"${BUILT_PRODUCTS_DIR}/Then/Then.framework",
-				"${BUILT_PRODUCTS_DIR}/Util/Util.framework",
-				"${BUILT_PRODUCTS_DIR}/Web/Web.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CaamDau.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CleanJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Demo.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FDFullscreenPopGesture.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Home.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mine.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Models.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Publish.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sign.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TabbarNavigation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Then.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Util.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CD_Example/Pods-CD_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DEF1CEE3804ABC536BF8D464 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,6 +492,7 @@
 				4707FD7821E871080072257B /* Cell_MainNews.swift in Sources */,
 				470EC4E62268279A0027CBDD /* AppDelegate_VC.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				479735C822ED857F0022A310 /* ObjectC.m in Sources */,
 				4707FD7B21E873130072257B /* VM_ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,14 +643,17 @@
 			baseConfigurationReference = 2491569A24D6000AEADDDEEB /* Pods-CD_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LXPVEK5KX2;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = L2ZMVTE4E5;
 				INFOPLIST_FILE = CD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.liucaide.CDExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "CD/CD_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -647,14 +662,16 @@
 			baseConfigurationReference = 12DF6ADB9596AF1C711B7B5F /* Pods-CD_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LXPVEK5KX2;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = L2ZMVTE4E5;
 				INFOPLIST_FILE = CD/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.liucaide.CDExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "CD/CD_Example-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

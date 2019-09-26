@@ -94,3 +94,8 @@ extension VC_MineTableView: UITableViewDelegate,UITableViewDataSource {
         row.didSelect?()
     }
 }
+
+
+class Da: CD_TableViewDelegateDataSource {
+    
+}

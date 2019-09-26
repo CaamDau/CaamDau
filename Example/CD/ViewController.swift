@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        "123".cd_pinyin(remove: true)
     }
     
     override func didReceiveMemoryWarning() {

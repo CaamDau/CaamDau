@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   # 提示窗
   s.subspec 'HUD' do |hud|
     hud.source_files = 'Util/HUD/**/*'
-    hud.dependency 'CaamDau/HUD'
+    hud.dependency 'CaamDau'
   end
 
   # 全局基本配置

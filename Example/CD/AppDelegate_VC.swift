@@ -21,6 +21,8 @@ class AppDelegate_VC: CD_AppDelegate {
         let vc = VC_Tab.show()
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
+        print(UIScreen.main.scale)
+        
         return true
     }
 }
