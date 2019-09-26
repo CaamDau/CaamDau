@@ -6,7 +6,7 @@ CD is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/HUD'
+pod 'CaamDau/HUD'
 ```
 <p>
   <img src="https://github.com/liucaide/Images/blob/master/CD/hud10.png" width="20%" />
@@ -41,11 +41,11 @@ CD_HUD.remove(for:view)
 
 ```ruby
 
-cd_window()?.cd.hud(.text, title:"HUD")
+CD.window?.cd.hud(.text, title:"HUD")
 
-cd_window()?.cd.hud(.loading(.activity), title: "HUD", detail: "Detail").hud_remove(10)
+CD.window?.cd.hud(.loading(.activity), title: "HUD", detail: "Detail").hud_remove(10)
 
-cd_window()?.cd.hud(.loading(.images(images,0.3,0)), title: "HUD", detail: "Detail").hud_remove(10)
+CD.window?.cd.hud(.loading(.images(images,0.3,0)), title: "HUD", detail: "Detail").hud_remove(10)
 
 ```
 
