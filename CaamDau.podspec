@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CaamDau'
-  s.version          = '0.11.42'
+  s.version          = '0.12.42'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块组件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 开发组件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
@@ -92,20 +92,20 @@ Pod::Spec.new do |s|
       topbar.dependency 'CaamDau/Value'
       topbar.dependency 'CaamDau/IconFont'
       topbar.dependency 'CaamDau/FDFullscreenPopGesture'
-      topbar.dependency 'SnapKit', '~> 4.2.0'
+      topbar.dependency 'SnapKit'
   end
   
   s.subspec 'Page' do |page|
       page.source_files = 'CaamDau/Page/*.{swift}'
       page.dependency 'CaamDau/Core'
       page.dependency 'CaamDau/FDFullscreenPopGesture'
-      page.dependency 'SnapKit', '~> 4.2.0'
+      page.dependency 'SnapKit'
   end
   
   s.subspec 'InputBox' do |input|
       input.source_files = 'CaamDau/InputBox/Classes/*.{swift}'
       input.dependency 'CaamDau/Core'
-      input.dependency 'SnapKit', '4.2.0'
+      input.dependency 'SnapKit'
       input.resource_bundles = {
         'CaamDauInputBox' => ['CaamDau/InputBox/Nib/*.{xib}']
       }
@@ -116,7 +116,7 @@ Pod::Spec.new do |s|
     hud.dependency 'CaamDau/Core'
     hud.dependency 'CaamDau/Timer'
     hud.dependency 'CaamDau/IconFont'
-    hud.dependency 'SnapKit', '4.2.0'
+    hud.dependency 'SnapKit'
   end
   
   s.subspec 'ViewModel' do |vm|
@@ -124,7 +124,7 @@ Pod::Spec.new do |s|
     vm.dependency 'CaamDau/Core'
     vm.dependency 'CaamDau/TopBar'
     vm.dependency 'CaamDau/MJRefresh'
-    vm.dependency 'SnapKit', '~> 4.2.0'
+    vm.dependency 'SnapKit'
   end
   
   s.subspec 'Router' do |rr|
@@ -134,27 +134,27 @@ Pod::Spec.new do |s|
   s.subspec 'Indexes' do |indx|
       indx.source_files = 'CaamDau/Indexes/*.{swift}'
       indx.dependency 'CaamDau/Core'
-      indx.dependency 'SnapKit', '~> 4.2.0'
+      indx.dependency 'SnapKit'
   end
   
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CaamDau/MJRefresh/*.{swift}'
     mj.dependency 'CaamDau/Core'
-    mj.dependency 'MJRefresh', '3.1.15.7'
+    mj.dependency 'MJRefresh'
   end
   
   s.subspec 'FDFullscreenPopGesture' do |fd|
       fd.source_files = 'CaamDau/FDFullscreenPopGesture/*.{swift}'
       fd.dependency 'CaamDau/Core'
-      fd.dependency 'FDFullscreenPopGesture', '1.1'
+      fd.dependency 'FDFullscreenPopGesture'
   end
   
   s.subspec 'Net' do |net|
     
     net.subspec 'Core' do |core|
       core.source_files = 'CaamDau/NetWork/Core/*'
-      core.dependency 'Alamofire', '4.8.2'
+      core.dependency 'Alamofire'
       core.dependency 'CaamDau/Core'
     end
     
@@ -168,14 +168,14 @@ Pod::Spec.new do |s|
     net.subspec 'SwiftyJSON' do |json|
       json.source_files = 'CaamDau/NetWork/SwiftyJSON/*.{swift}'
       json.dependency 'CaamDau/Net/Core'
-      json.dependency 'SwiftyJSON', '4.3.0'
+      json.dependency 'SwiftyJSON'
     end
     
     net.subspec 'Cache' do |cache|
       cache.source_files = 'CaamDau/NetWork/Cache/*.{swift}'
       cache.dependency 'CaamDau/Core'
       cache.dependency 'CaamDau/Net/Core'
-      cache.dependency 'Cache', '5.2.0'
+      cache.dependency 'Cache'
     end
     
     net.subspec 'Codable' do |codable|
@@ -186,19 +186,6 @@ Pod::Spec.new do |s|
     
   end
   
-  
-  
-  
-  
-  
-  
-  
-  #s.resource_bundles = {
-  #  'CD' => ['CaamDau/Storyboards/*.{storyboard}']
-  #}
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'Foundation'
-  # s.dependency 'AFNetworking', '~> 2.3'
   # s.dependency 'Then'
 end

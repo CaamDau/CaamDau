@@ -198,23 +198,21 @@ class CD_BaseCollectionViewController: UIViewController {
     }
     
     open func makeLayout(){
-        topBar.snp.makeConstraints { (make) in
-            make.left.right.top.equalToSuperview()
+        topBar.snp.makeConstraints {
+            $0.left.right.top.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(topBar.snp.bottom)
+        collectionView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(topBar.snp.bottom)
             guard let safeArea = vm?._safeAreaLayout, safeArea else {
-                make.bottom.equalToSuperview()
+                $0.bottom.equalToSuperview()
                 return
             }
             if #available(iOS 11.0, *) {
-                make.bottom.equalToSuperview()
-                //make.left.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             } else {
-                make.bottom.equalToSuperview()
-                //make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(bottomLayoutGuide.snp.bottom)
             }
         }
     }

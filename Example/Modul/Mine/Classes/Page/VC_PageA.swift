@@ -96,6 +96,7 @@ extension VC_PageA: CD_UIViewControllerProtocol {
     }
     typealias DataSource = Any
     typealias ConfigModel = Any
+    
     var config: ConfigModel? {
         get { return nil }
         set {}

@@ -67,6 +67,13 @@ public class VC_Mine: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print_cd(CGFloat.leastNormalMagnitude)
+        print_cd(CGFloat.leastNonzeroMagnitude)
+        print_cd(CGFloat.greatestFiniteMagnitude)
+        print_cd(CGFloat.leastNormalMagnitude > 0)
+        print_cd(CGFloat.leastNormalMagnitude>CGFloat.leastNonzeroMagnitude)
+        
         self.cd.navigationBar(hidden: true)
         delegateData = VC_MineTableViewDelegateDataSource(vm)
         tableView.cd
@@ -82,7 +89,6 @@ public class VC_Mine: UIViewController {
             }, model: modelMj)
             .beginRefreshing()*/
             .table(headerView: tableViewHeader)
-        
         topBar.delegate = self
         
         

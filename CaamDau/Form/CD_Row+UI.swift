@@ -89,35 +89,19 @@ extension CD_TableViewCellBase: CD_RowCellUpdateProtocol {
 public class CD_CollectionViewCellNone: UICollectionViewCell{
     public static let id:String = "CD_CollectionViewCellNone"
     public static let bundle:String = "CaamDau"
-    public func update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-    }
-    public func update(config data: Any) {
-        
-    }
-    public func update(dataSource data: Any) {
-        
-    }
-    public func update(callBack block: CD_RowCallBack?) {
-        
-    }
 }
 extension CD_CollectionViewCellNone:CD_RowUpdateProtocol{
     public typealias DataSource = Any
     public func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.update(data, id: id, tag: tag, frame: frame, callBack: callBack)
     }
-    
 }
 extension CD_CollectionViewCellNone: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
     public func row_update(config data: Any) {
-        update(config: data)
     }
     public func row_update(dataSource data: Any) {
-        update(dataSource: data)
     }
     public func row_update(callBack block: CD_RowCallBack?) {
-        update(callBack: block)
     }
 }
 
@@ -126,33 +110,21 @@ extension CD_CollectionViewCellNone: CD_RowCellUpdateProtocol {
 public class CD_CollectionReusableViewNone: UICollectionReusableView {
     public static let id:String = "CD_CollectionReusableViewNone"
     public static let bundle:String = "CaamDau"
-    public func update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-    }
-    public func update(config data: Any) {
-        
-    }
-    public func update(dataSource data: Any) {
-        
-    }
-    public func update(callBack block: CD_RowCallBack?) {
-        
-    }
 }
 extension CD_CollectionReusableViewNone:CD_RowUpdateProtocol{
     public typealias DataSource = Any
     public func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.update(data, id: id, tag: tag, frame: frame, callBack: callBack)
     }
 }
 extension CD_CollectionReusableViewNone: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
     public func row_update(config data: Any) {
-        update(config: data)
+        
     }
     public func row_update(dataSource data: Any) {
-        update(dataSource: data)
+        
     }
     public func row_update(callBack block: CD_RowCallBack?) {
-        update(callBack: block)
+        
     }
 }
