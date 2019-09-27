@@ -28,6 +28,7 @@ public protocol CD_UIDataSource {
     func row_update(dataSource data: DataSource)
 }
 extension CD_UIDataSource {
+    /// 部分地方是不需要用到的，需要使用到的地方重写即可
     public var dataSource: DataSource? {
         get { return nil }
         set {}
@@ -41,6 +42,7 @@ public protocol CD_UIConfigModel {
     func row_update(config data: ConfigModel)
 }
 extension CD_UIConfigModel {
+    /// 部分地方是不需要用到的，需要使用到的地方重写即可
     public var config: ConfigModel? {
         get { return nil }
         set {}
@@ -71,8 +73,8 @@ public protocol CD_UIProtocol {
 }
 
 extension CD_UIProtocol {
-    public var dataSource: Any? { set{} get{ return nil} }
-    public var config: Any? { set{} get{ return nil} }
+    //public var dataSource: Any? { set{} get{ return nil} }
+    //public var config: Any? { set{} get{ return nil} }
     public var bundleFrom: String? { return nil }
     public var autoLayout: Bool { return true }
     public var frame: CGRect { set{} get{ return .zero }}

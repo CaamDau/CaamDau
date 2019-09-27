@@ -1,7 +1,7 @@
 //Created  on 2019/7/12 by  LCD:https://github.com/liucaide .
 
 /***** 模块文档 *****
- * 针对旧的表单协议 CD_RowProtocol, 建议使用新的，但旧的依然可用
+ * 针对旧的表单协议 CD_RowProtocol, 建议使用新的，但旧的依然可用，但计划在正式版本1.0中删除
  */
 
 
@@ -11,8 +11,8 @@ import Foundation
 import UIKit
 import SnapKit
 
-//MARK:--- 针对旧的表单协议 CD_RowProtocol ----------
-public class CD_UITableViewDelegateData: NSObject {
+//MARK:--- 针对旧的表单协议 CD_RowProtocol 计划在正式版本1.0中删除  ----------
+open class CD_UITableViewDelegateData: NSObject {
     public var vm:CD_ViewModelTableViewProtocol?
     private override init(){}
     public init(_ vm:CD_ViewModelTableViewProtocol?) {
@@ -20,7 +20,7 @@ public class CD_UITableViewDelegateData: NSObject {
     }
 }
 extension CD_UITableViewDelegateData {
-    public func makeReloadData(_ tableView:UITableView) {
+    open func makeReloadData(_ tableView:UITableView) {
         vm?._reloadData = {[weak self] in
             tableView.reloadData()
             tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
@@ -62,13 +62,13 @@ extension CD_UITableViewDelegateData {
     }
 }
 extension CD_UITableViewDelegateData: UITableViewDelegate, UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return vm?._form.count ?? 0
     }
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vm?._form[section].count ?? 0
     }
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let row = vm?._form[indexPath.section][indexPath.row] else {
             return UITableViewCell()
         }
@@ -76,20 +76,20 @@ extension CD_UITableViewDelegateData: UITableViewDelegate, UITableViewDataSource
         row.bind(cell)
         return cell
     }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let row = vm?._form[indexPath.section][indexPath.row] else {
             return
         }
         row.didSelect?()
     }
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let row = vm?._form[indexPath.section][indexPath.row] else {
             return 0
         }
         return row.h
     }
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section < (vm?._formHeader.count ?? 0) {
             return vm?._formHeader[section].h ?? CD.sectionMinH
         }else{
@@ -99,7 +99,7 @@ extension CD_UITableViewDelegateData: UITableViewDelegate, UITableViewDataSource
             return top
         }
     }
-    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section < (vm?._formFooter.count ?? 0) {
             return vm?._formFooter[section].h ?? CD.sectionMinH
         }else{
@@ -109,7 +109,7 @@ extension CD_UITableViewDelegateData: UITableViewDelegate, UITableViewDataSource
             return bottom
         }
     }
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section < (vm?._formHeader.count ?? 0) else {
             return nil
         }
@@ -122,7 +122,7 @@ extension CD_UITableViewDelegateData: UITableViewDelegate, UITableViewDataSource
         row.bind(v)
         return v
     }
-    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard section < (vm?._formFooter.count ?? 0) else {
             return nil
         }
@@ -149,18 +149,18 @@ public struct R_CDBaseTableViewController {
 }
 
 
-class CD_BaseTableViewController: UIViewController {
-    var vm:CD_ViewModelTableViewProtocol?
-    var delegateData:CD_UITableViewDelegateData?
-    lazy var tableView: UITableView = {
+open class CD_BaseTableViewController: UIViewController {
+    open var vm:CD_ViewModelTableViewProtocol?
+    open var delegateData:CD_UITableViewDelegateData?
+    open lazy var tableView: UITableView = {
         return UITableView(frame: CGRect.zero, style: UITableView.Style.grouped).cd
             .build
     }()
-    lazy var topBar: CD_TopBar = {
+    open lazy var topBar: CD_TopBar = {
         return CD_TopBar()
     }()
     
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
         makeLayout()
@@ -169,7 +169,7 @@ class CD_BaseTableViewController: UIViewController {
         vm?._tableViewCustom?(tableView)
     }
     
-    func makeUI(){
+    open func makeUI(){
         self.cd.navigationBar(hidden: true)
         self.view.cd
             .add(tableView)
@@ -180,24 +180,21 @@ class CD_BaseTableViewController: UIViewController {
         
     }
     
-    func makeLayout(){
-        topBar.snp.makeConstraints { (make) in
-            make.left.right.top.equalToSuperview()
+    open func makeLayout(){
+        topBar.snp.makeConstraints {
+            $0.left.right.top.equalToSuperview()
         }
-        
-        tableView.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(topBar.snp.bottom)
+        tableView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(topBar.snp.bottom)
             guard let safeArea = vm?._safeAreaLayout, safeArea else {
-                make.bottom.equalToSuperview()
+                $0.bottom.equalToSuperview()
                 return
             }
             if #available(iOS 11.0, *) {
-                make.bottom.equalToSuperview()
-                //make.left.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             } else {
-                make.bottom.equalToSuperview()
-                //make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(bottomLayoutGuide.snp.bottom)
             }
         }
     }
@@ -207,16 +204,16 @@ class CD_BaseTableViewController: UIViewController {
 }
 
 extension CD_BaseTableViewController: CD_TopBarProtocol {
-    func topBarCustom() {
+    open func topBarCustom() {
         vm?._topBarCustom?(self.topBar)
     }
     
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    open func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
         //super_topBarClick(item)
         vm?._topBarDidSelect?(self.topBar, item)
     }
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    open func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         return vm?._topBarUpdate?(self.topBar, item)
     }
 }

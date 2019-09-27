@@ -1,6 +1,0 @@
-framework module ThirdSDK {
-    umbrella header "AlipaySDK.h"
-    
-    export *
-    module * { export * }
-}

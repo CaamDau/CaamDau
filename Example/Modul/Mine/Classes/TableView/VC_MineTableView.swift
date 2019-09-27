@@ -40,7 +40,7 @@ class VC_MineTableView: UIViewController {
         }
         
         self.tableView.cd
-            .estimatedAll()
+            .estimatedAll(5)
             .headerMJGifWithModel({ [weak self] in
                 self?.vm.requestData(true)
             }, model: self.vm.modelMj)
@@ -50,6 +50,17 @@ class VC_MineTableView: UIViewController {
             .mjRefreshTypes(self.vm.refreshTypes)
             .background(Config.color.bg)
         
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(tabbar.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            //$0.bottom.equalToSuperview()
+            if #available(iOS 11.0, *) {
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+            } else {
+                
+                $0.bottom.equalTo(bottomLayoutGuide.snp.bottom)
+            }
+        }
         
         makeCounDown()
     }
@@ -93,4 +104,9 @@ extension VC_MineTableView: UITableViewDelegate,UITableViewDataSource {
         let row = vm.forms[indexPath.section][indexPath.row]
         row.didSelect?()
     }
+}
+
+
+class Da: CD_TableViewDelegateDataSource {
+    
 }

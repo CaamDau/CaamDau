@@ -20,9 +20,11 @@ class Cell_MineSign:UITableViewCell{
             .text(Config.color.main_1)
     }
 }
-extension Cell_MineSign:CD_RowUpdateProtocol{
+extension Cell_MineSign:CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
+    
     typealias DataSource = String
-    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: String) {
         lab_title.cd.text(data)
     }
 }
@@ -40,9 +42,10 @@ class Cell_MineTitle:UITableViewCell{
             .text(Config.color.txt_3)
     }
 }
-extension Cell_MineTitle:CD_RowUpdateProtocol{
+extension Cell_MineTitle:CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
     typealias DataSource = (String,String)
-    func row_update(_ data: (String,String), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: (String, String)) {
         self.textLabel?.cd.text(data.0)
         self.detailTextLabel?.cd.text(data.1)
     }
@@ -70,13 +73,15 @@ class Cell_MineForm: UITableViewCell {
     }
     
 }
-extension Cell_MineForm:CD_RowUpdateProtocol{
+extension Cell_MineForm:CD_RowCellUpdateProtocol {
+    typealias ConfigModel = Any
     typealias DataSource = String
-    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: String) {
         self.lab_title.cd.text(data)
-        self.callBack = callBack
     }
-    
+    func row_update(callBack block: CD_RowCallBack?) {
+        self.callBack = block
+    }
 }
 
 
@@ -102,6 +107,14 @@ class Cell_MineLine:UITableViewCell{
 extension Cell_MineLine:CD_RowUpdateProtocol{
     typealias DataSource = Cell_MineLine.Style
     func row_update(_ data: Cell_MineLine.Style, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+        self.contentView.cd.background(data.colorValue)
+    }
+}
+
+
+extension Cell_MineLine:CD_RowCellUpdateProtocol {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: Cell_MineLine.Style) {
         self.contentView.cd.background(data.colorValue)
     }
 }

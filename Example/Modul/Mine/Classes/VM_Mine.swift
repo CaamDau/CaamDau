@@ -45,9 +45,7 @@ extension VM_Mine {
 
 struct VM_Mine {
     
-    lazy var forms:[[CD_RowProtocol]] = {
-        return (0..<Section.end.rawValue).map{_ in []}
-    }()
+    var forms:[[CD_CellProtocol]] = (0..<Section.end.rawValue).map{_ in []}
     
     var block:(()->Void)?
     
@@ -68,7 +66,7 @@ struct VM_Mine {
 extension VM_Mine{
     mutating func makeSectionMe(){
         do{
-            let row = CD_Row<Cell_MineSign>(data: "登 录", frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineSign>(data: "登 录", frame: CGRect(h:45)) {
                 VC_Sign.isSignUp(true)
             }
             self.forms[Section.me.rawValue].append(row)
@@ -82,13 +80,13 @@ extension VM_Mine{
         }
         
         do{
-            let row = CD_Row<Cell_MineForm>(data: "Form-TableView", frame: CGRect(h:45), callBack: callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: "Form-TableView", frame: CGRect(h:45), callBack: callBack) {
                 VC_MineTableView.push()
             }
             self.forms[Section.form.rawValue].append(row)
         }
         do{
-            let row = CD_RowClass<Cell_MineForm>(data: "Form-CollectionView", frame: CGRect(h:45), callBack:callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: "Form-CollectionView", frame: CGRect(h:45), callBack:callBack) {
                 VC_MineCollection.push()
             }
             self.forms[Section.form.rawValue].append(row)
@@ -96,46 +94,46 @@ extension VM_Mine{
         
         // --------- IconFont CountDown ----------
         do{
-            let row = CD_Row<Cell_MineTitle>(data: ("CD_Timer","计时器"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_Timer","计时器"), frame: CGRect(h:45)) {
                 VC_MineTableView.push()
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_IconFont", "阿里矢量图标库 管理&使用"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_IconFont", "阿里矢量图标库 管理&使用"), frame: CGRect(h:45)) {
                 VC_MineCollection.push()
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_RegEx", "常用正则表达式"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_RegEx", "常用正则表达式"), frame: CGRect(h:45)) {
                 VC_Web.push(.http("https://github.com/liucaide/CD/tree/master/CD/CD_RegEx"))
             }
             self.forms[Section.other.rawValue].append(row)
         }
         
         do{
-            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_Page", "分页"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_Page", "分页"), frame: CGRect(h:45)) {
                 R_PageList.push()
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_HUD", "HUD"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_HUD", "HUD"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
                 R_CDBaseTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
                 R_CDBaseTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowClass<Cell_MineTitle>(data: ("CD_BaseCollectionViewController", "基础CollectionView"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseCollectionViewController", "基础CollectionView"), frame: CGRect(h:45)) {
                 let vm = VM_BaseColle()
                 R_CDBaseCollectionViewController.push(vm)
             }
@@ -143,10 +141,19 @@ extension VM_Mine{
         }
         do {
             for item in 0..<100 {
-                let row = CD_RowClass<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))
+                let row = CD_RowCell<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))
                 self.forms[Section.num.rawValue].append(row)
             }
         }
+    }
+    
+    
+}
+
+
+extension VM_Mine: CD_ViewModelTableViewProtocol {
+    var _forms: [[CD_CellProtocol]] {
+        return forms
     }
     
     

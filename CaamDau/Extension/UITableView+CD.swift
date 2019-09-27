@@ -6,13 +6,21 @@ import UIKit
 public extension CaamDau where Base: UITableView {
     
     @discardableResult
-    func estimatedAll(_ height:CGFloat = 0.1) -> CaamDau {
+    func estimatedAll(_ height:CGFloat = CGFloat.leastNormalMagnitude) -> CaamDau {
         if #available(iOS 11.0, *) {
             base.contentInsetAdjustmentBehavior = .never
+            base.estimatedRowHeight = height
+            base.estimatedSectionHeaderHeight = height
+            base.estimatedSectionFooterHeight = height
+        }else{
+            let height = height >= 2 ? height : 2
+            base.estimatedRowHeight = height
+            base.estimatedSectionHeaderHeight = height
+            base.estimatedSectionFooterHeight = height
         }
-        base.estimatedRowHeight = height
-        base.estimatedSectionHeaderHeight = height
-        base.estimatedSectionFooterHeight = height
+        base.rowHeight = UITableView.automaticDimension
+        base.sectionHeaderHeight = UITableView.automaticDimension
+        base.sectionFooterHeight = UITableView.automaticDimension
         return self
     }
     

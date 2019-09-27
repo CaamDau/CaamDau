@@ -2,9 +2,13 @@ use_frameworks!
 inhibit_all_warnings!
 platform :ios, '10.0'
 
+#install! 'cocoapods', generate_multiple_pod_projects: true, :incremental_installation => true
+
+source 'https://github.com/CocoaPods/Specs.git'
+
 target 'CD_Example' do
   
-  pod 'CaamDau', :path => '../'
+  pod 'CaamDau/All', :path => '../'
  
   
   pod 'Models', :path => './Modul/'

@@ -63,6 +63,7 @@ extension VM_HUD: CD_ViewModelRefreshDelegater {
 extension VM_HUD: CD_ViewModelTableViewDelegater {
     var _tableViewCustom: ((UITableView) -> Void)? {
         return { tab in
+            tab.cd.estimatedAll()
             //tab.cd.background(UIColor.lightGray)
         }
     }

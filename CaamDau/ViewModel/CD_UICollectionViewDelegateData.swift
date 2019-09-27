@@ -1,7 +1,7 @@
 //Created  on 2019/7/12 by  LCD:https://github.com/liucaide .
 
 /***** 模块文档 *****
- * 针对旧的表单协议 CD_RowProtocol, 建议使用新的，但旧的依然可用
+ * 针对旧的表单协议 CD_RowProtocol, 建议使用新的，但旧的依然可用，但计划在正式版本1.0中删除
  */
 
 
@@ -11,8 +11,8 @@ import Foundation
 import UIKit
 import SnapKit
 
-//MARK:--- 针对旧的表单协议 CD_RowProtocol ----------
-public class CD_UICollectionViewDelegateData: NSObject {
+//MARK:--- 针对旧的表单协议 CD_RowProtocol，但计划在正式版本1.0中删除 ----------
+open class CD_UICollectionViewDelegateData: NSObject {
     public var vm:CD_ViewModelCollectionViewProtocol?
     private override init(){}
     public init(_ vm:CD_ViewModelCollectionViewProtocol?) {
@@ -20,7 +20,7 @@ public class CD_UICollectionViewDelegateData: NSObject {
     }
 }
 extension CD_UICollectionViewDelegateData {
-    public func makeReloadData(_ collectionView:UICollectionView) {
+    open func makeReloadData(_ collectionView:UICollectionView) {
         vm?._reloadData = {[weak self] in
             collectionView.reloadData()
             collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
@@ -62,19 +62,19 @@ extension CD_UICollectionViewDelegateData {
     }
 }
 extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return vm?._form.count ?? 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return vm?._form[section].count ?? 0
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return vm?._form[indexPath.section][indexPath.row].size ?? .zero
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let row = vm?._form[indexPath.section][indexPath.row] else {
             return collectionView.cd.cell(CD_CollectionViewCellNone.id, indexPath)
         }
@@ -82,14 +82,14 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
         row.bind(cell)
         return cell
     }
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let row = vm?._form[indexPath.section][indexPath.row] else {
             return
         }
         row.didSelect?()
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if let count = vm?._formHeader.count, count > section {
             return vm!._formHeader[section].y
         }else{
@@ -97,7 +97,7 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
         }
         
     }
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if let count = vm?._formHeader.count, count > section {
             return vm!._formHeader[section].x
         }else{
@@ -105,7 +105,7 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if let count = vm?._formHeader.count, count > section {
             return vm!._formHeader[section].insets
         }else{
@@ -115,7 +115,7 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
     
     
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
         if let count = vm?._formHeader.count, count > section {
             return vm!._formHeader[section].size
         }else{
@@ -123,7 +123,7 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
         if let count = vm?._formFooter.count, count > section {
             return vm!._formFooter[section].size
         }else{
@@ -132,7 +132,7 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
     }
     
     
-    public func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case CaamDau<UICollectionView>.Kind.tHeader.stringValue:
             guard let count = vm?._formHeader.count, count > indexPath.section, let row = vm?._formHeader[indexPath.section] else {
@@ -163,9 +163,9 @@ public struct R_CDBaseCollectionViewController {
 }
 
 class CD_BaseCollectionViewController: UIViewController {
-    var vm:CD_ViewModelCollectionViewProtocol?
-    var delegateData: CD_UICollectionViewDelegateData?
-    lazy var collectionView: UICollectionView = {
+    open var vm:CD_ViewModelCollectionViewProtocol?
+    open var delegateData: CD_UICollectionViewDelegateData?
+    open lazy var collectionView: UICollectionView = {
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init()).cd
             .register([.tCell(CD_CollectionViewCellNone.self, nil, nil),
                        .tView(CD_CollectionReusableViewNone.self, nil, .tHeader, nil),
@@ -174,10 +174,10 @@ class CD_BaseCollectionViewController: UIViewController {
             .background(UIColor.lightGray)
             .build
     }()
-    lazy var topBar: CD_TopBar = {
+    open lazy var topBar: CD_TopBar = {
         return CD_TopBar()
     }()
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
         makeLayout()
@@ -186,7 +186,7 @@ class CD_BaseCollectionViewController: UIViewController {
         vm?._collectionViewCustom?(collectionView)
     }
     
-    func makeUI(){
+    open func makeUI(){
         self.cd.navigationBar(hidden: true)
         self.view.cd
             .add(collectionView)
@@ -197,24 +197,22 @@ class CD_BaseCollectionViewController: UIViewController {
         
     }
     
-    func makeLayout(){
-        topBar.snp.makeConstraints { (make) in
-            make.left.right.top.equalToSuperview()
+    open func makeLayout(){
+        topBar.snp.makeConstraints {
+            $0.left.right.top.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(topBar.snp.bottom)
+        collectionView.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.top.equalTo(topBar.snp.bottom)
             guard let safeArea = vm?._safeAreaLayout, safeArea else {
-                make.bottom.equalToSuperview()
+                $0.bottom.equalToSuperview()
                 return
             }
             if #available(iOS 11.0, *) {
-                make.bottom.equalToSuperview()
-                //make.left.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
             } else {
-                make.bottom.equalToSuperview()
-                //make.left.bottom.equalTo(bottomLayoutGuide.snp.bottom)
+                $0.bottom.equalTo(bottomLayoutGuide.snp.bottom)
             }
         }
     }
@@ -224,16 +222,16 @@ class CD_BaseCollectionViewController: UIViewController {
 }
 
 extension CD_BaseCollectionViewController: CD_TopBarProtocol {
-    func topBarCustom() {
+    open func topBarCustom() {
         vm?._topBarCustom?(self.topBar)
     }
     
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    open func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
         //super_topBarClick(item)
         vm?._topBarDidSelect?(self.topBar, item)
     }
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    open func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         return vm?._topBarUpdate?(self.topBar, item)
     }
 }
