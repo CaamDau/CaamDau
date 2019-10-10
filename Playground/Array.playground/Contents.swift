@@ -11,6 +11,24 @@ import Foundation
  print(letterCount)
  */
 
+extension Array where Element: Equatable {
+    /// 筛选相同元素为 二维数组
+    func filterCombined() -> [[Element]] {
+        var tmp: [[Element]] = []
+        self.forEach { (element) in
+            if var tmpArray = (tmp.first(where: { $0.contains(element) })),
+                let index = tmp.firstIndex(of: tmpArray) {
+                tmpArray.append(element)
+                tmp[index] = tmpArray
+                return
+            }
+            tmp.append([element])
+        }
+        return tmp
+    }
+    
+}
+
 
  //MARK:--- 升维 组合 ----------
 var arr = (0..<15).map{$0}

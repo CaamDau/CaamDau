@@ -116,6 +116,8 @@ public protocol CD_RowVCProtocol: CD_UIProtocol {
 }
 extension CD_RowVCProtocol {
     public var view:UIView { get{ return vc.view} }
+    public var dataSource: Any? { set{} get{ return nil} }
+    public var config: Any? { set{} get{ return nil} }
 }
 
 public protocol CD_UIViewControllerProtocol: CD_UIDataSourceConfigModel {
@@ -142,6 +144,8 @@ public protocol CD_RowViewProtocol: CD_UIProtocol {
     func row_show(withSuperView vv:UIView, callBack:((UIView)->Void)?)
 }
 extension CD_RowViewProtocol {
+    public var dataSource: Any? { set{} get{ return nil} }
+    public var config: Any? { set{} get{ return nil} }
     public func row_show(withSuperView vv:UIView, callBack:((UIView)->Void)? = nil) {
         vv.addSubview(view)
         callBack?(view)

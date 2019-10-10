@@ -94,7 +94,7 @@ public extension CD_Timer {
             let nowDate2 = Date()
             let nowTime2 = nowDate2.cd_timestamp()
             let interval = endTime - nowTime2
-            let coms = nowDate2.cd_interval( to: endDate)
+            let coms = nowDate2.cd_interval(endDate)
             if interval <= 0 {
                 time.year = 0
                 time.month = 0
