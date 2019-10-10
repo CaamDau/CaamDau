@@ -1,0 +1,22 @@
+use_frameworks!
+inhibit_all_warnings!
+platform :ios, '9.0'
+
+target 'Example' do
+  
+  pod 'CaamDau/All', :path => '../../../../'
+  pod 'Util', :path => '../../../Util/'
+  pod 'Web', :path => '../../'
+  pod 'Sign', :path => '../../'
+  #pod 'RxSwift'
+  #pod 'RxCocoa'
+  #pod 'RxDataSources'
+  # 阿里七巧板
+  #pod 'Tangram'
+  # 阿里协程库
+  #pod 'coobjc'
+  #pod 'Then', '~> 2.4.0'
+  #pod 'Toast-Swift', '~> 4.0.1'
+  #pod 'KeychainAccess'
+  #pod 'Hero'
+end
