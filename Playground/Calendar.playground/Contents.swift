@@ -319,15 +319,17 @@ class MyViewController : UIViewController {
         view.backgroundColor = .white
 
         let label = UILabel()
-        label.frame = CGRect(x: 150, y: 200, width: 200, height: 20)
+        label.frame = CGRect(x: 150, y: 100, width: 200, height: 20)
         label.text = "Hello World!"
         label.textColor = .black
         
         view.addSubview(label)
         
         do{
-            let picker = CD_DatePicker(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-            view.addSubview(picker)
+            let picker = CD_DatePicker(frame: CGRect(x: 0, y: 0, width: 400, height: 200))
+            picker.backgroundColor = .red
+            //view.addSubview(picker)
+            view.insertSubview(picker, aboveSubview: label)
             picker.style = .yyyy
             picker.completionHandler = { date in
                 print(date)
@@ -339,6 +341,7 @@ class MyViewController : UIViewController {
             picker.datePickerMode = .date
             view.addSubview(picker)
         }
+        
         
         self.view = view
         

@@ -64,15 +64,21 @@ extension CD_Picker: UIPickerViewDelegate, UIPickerViewDataSource {
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return rows[component].count
     }
-    private func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        return UILabel().cd
-            .text(rows[component][row])
-            .text(color)
-            .text(font)
-            .text(NSTextAlignment.center)
-            .build
+    /*
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return rows[component][row]
+    }*/
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        
+        let lab = UILabel()
+        lab.text = rows[component][row]
+        lab.textColor = color
+        lab.font = font
+        lab.textAlignment = .center
+        return lab
     }
-    private func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard row < rows[component].count else { return }
         _selects[component] = rows[component][row]
         completionHandler?(component, row, _selects)

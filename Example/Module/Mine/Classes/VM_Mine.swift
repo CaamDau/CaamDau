@@ -139,6 +139,20 @@ extension VM_Mine{
             }
             self.forms[Section.other.rawValue].append(row)
         }
+        do{
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_Indexes", "侧边索引"), frame: CGRect(h:45)) {
+                
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        do{
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_DatePickerAlert", "时间选择器"), frame: CGRect(h:45)) {
+                
+                CD_DatePickerAlert.show()
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        
         do {
             for item in 0..<100 {
                 let row = CD_RowCell<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))

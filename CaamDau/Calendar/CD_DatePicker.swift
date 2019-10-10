@@ -19,6 +19,9 @@ extension CD_DatePicker {
     }
 }
 open class CD_DatePicker:UIView {
+    convenience public init() {
+        self.init(frame:.zero)
+    }
     override public init(frame: CGRect) {
         super.init(frame: frame)
         makeUI()
@@ -68,29 +71,29 @@ open class CD_DatePicker:UIView {
     }
     func makeData(_ date: Date, animated:Bool){
         let now = Date().cd_component(.year)
-        let years = ((minYear ?? (now-100))...(maxYear ?? (now+100))).map{"\($0)"}
-        let months = (1...12).map{"\($0)"}
-        let days = (1...date.cd_count(of: .day, in: .month)!).map{"\($0)"}
+        let years = ((minYear ?? (now-100))...(maxYear ?? (now+100))).map{ "\($0)" }
+        let months = (1...12).map{$0.stringValue}
+        let days = (1...date.cd_count(of: .day, in: .month)!).map{ $0.stringValue }
         switch style {
         case .yyyy:
             picker.rows = [years]
             picker.select([0:"\(date.cd_component(.year))"], animated: animated)
         case .MM:
             picker.rows = [months]
-            picker.select([0:"\(date.cd_component(.month))"], animated: animated)
+            picker.select([0:date.cd_component(.month).stringValue], animated: animated)
         case .yyyyMM:
             picker.rows = [years, months]
-            picker.select([0:"\(date.cd_component(.year))",
-                1:"\(date.cd_component(.month))"], animated: animated)
+            picker.select([0:date.cd_component(.year).stringValue,
+                1:date.cd_component(.month).stringValue], animated: animated)
         case .MMdd:
             picker.rows = [months, days]
-            picker.select([0:"\(date.cd_component(.month))",
-            1:"\(date.cd_component(.day))"], animated: animated)
+            picker.select([0:date.cd_component(.month).stringValue,
+            1:date.cd_component(.day).stringValue], animated: animated)
         case .yyyyMMdd:
             picker.rows = [years, months, days]
-            picker.select([0:"\(date.cd_component(.year))",
-            1:"\(date.cd_component(.month))",
-            2:"\(date.cd_component(.day))"], animated: animated)
+            picker.select([0:date.cd_component(.year).stringValue,
+            1:date.cd_component(.month).stringValue,
+            2:date.cd_component(.day).stringValue], animated: animated)
         }
         picker.completionHandler = { [weak self](component, row, res) in
             self?.makeCompletionHandler(component, row, res)
@@ -108,7 +111,7 @@ open class CD_DatePicker:UIView {
         case .yyyyMM:
             format = "yyyy-MM"
         case .MMdd where component == 0:
-            let days = (1...date.cd_count(of: .day, in: .month)!).map{"\($0)"}
+            let days = (1...date.cd_count(of: .day, in: .month)!).map{ $0.stringValue }
             picker.rows[1] = days
             if !days.contains(res[1] ?? "1") {
                 res[1] = days.last!
@@ -119,7 +122,7 @@ open class CD_DatePicker:UIView {
             format = "MM-dd"
         case .yyyyMMdd where component == 0 || component == 1:
             let date = (res[0]! + "-" + res[1]!).cd_date("yyyy-MM")
-            let days = (1...date!.cd_count(of: .day, in: .month)!).map{"\($0)"}
+            let days = (1...date!.cd_count(of: .day, in: .month)!).map{ $0.stringValue }
             picker.rows[2] = days
             if !days.contains(res[2] ?? "1") {
                 res[2] = days.last!
