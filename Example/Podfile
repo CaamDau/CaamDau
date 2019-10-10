@@ -6,20 +6,20 @@ platform :ios, '10.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'CD_Example' do
+target 'Example' do
   
   pod 'CaamDau/All', :path => '../'
  
   
-  pod 'Models', :path => './Modul/'
-  pod 'Home', :path => './Modul/'
-  pod 'Demo', :path => './Modul/'
-  pod 'Publish', :path => './Modul/'
-  pod 'Rx', :path => './Modul/'
-  pod 'Mine', :path => './Modul/'
-  pod 'Sign', :path => './Modul/'
-  pod 'Web', :path => './Modul/'
-  pod 'TabbarNavigation', :path => './Modul/'
+  pod 'Models', :path => './Module/'
+  pod 'Home', :path => './Module/'
+  pod 'Demo', :path => './Module/'
+  pod 'Publish', :path => './Module/'
+  pod 'Rx', :path => './Module/'
+  pod 'Mine', :path => './Module/'
+  pod 'Sign', :path => './Module/'
+  pod 'Web', :path => './Module/'
+  pod 'TabbarNavigation', :path => './Module/'
   
   pod 'Util', :path => './Util/'
   
@@ -31,12 +31,12 @@ target 'CD_Example' do
   # 阿里协程库
   #pod 'coobjc'
   
-  target 'CD_Tests' do
-    inherit! :search_paths
+  #target 'Tests' do
+    #inherit! :search_paths
 
-    pod 'Quick'
-    pod 'Nimble'
-    pod 'FBSnapshotTestCase'
-    pod 'Nimble-Snapshots'
-  end
+    #pod 'Quick'
+    #pod 'Nimble'
+    #pod 'FBSnapshotTestCase'
+    #pod 'Nimble-Snapshots'
+  #end
 end

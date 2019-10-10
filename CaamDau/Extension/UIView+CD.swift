@@ -339,8 +339,123 @@ public extension CaamDau where Base: UIView {
     
     ///
     @discardableResult
-    func then(_ block:() -> Void) -> CaamDau {
-        block()
+    func then(_ block:(Base) -> Void) -> CaamDau {
+        block(base)
+        return self
+    }
+    
+    
+    
+    @discardableResult
+    func insert(_ subview:UIView, at index:Int = 0) -> CaamDau {
+        base.insertSubview(subview, at: index)
+        return self
+    }
+    
+    @discardableResult
+    func insert(_ subview:UIView, below view:UIView) -> CaamDau {
+        base.insertSubview(subview, belowSubview: view)
+        return self
+    }
+    @discardableResult
+    func insert(_ subview:UIView, above view:UIView) -> CaamDau {
+        base.insertSubview(subview, aboveSubview: view)
+        return self
+    }
+    
+    @discardableResult
+    func exchange(_ subview1:Int, _ subview2:Int) -> CaamDau {
+        base.exchangeSubview(at: subview1, withSubviewAt: subview2)
+        return self
+    }
+    
+    @discardableResult
+    func bring(subviewToFront view:UIView) -> CaamDau {
+        base.bringSubviewToFront(view)
+        return self
+    }
+    
+    @discardableResult
+    func send(subviewToBack view:UIView) -> CaamDau {
+        base.sendSubviewToBack(view)
+        return self
+    }
+    
+    @discardableResult
+    func add(toSuperview view:UIView) -> CaamDau {
+        view.addSubview(base)
+        return self
+    }
+    
+    @discardableResult
+    func insert(toSuperview view:UIView, at index:Int) -> CaamDau {
+        view.insertSubview(base, at: index)
+        return self
+    }
+    
+    @discardableResult
+    func insert(toSuperview superview:UIView, below view:UIView) -> CaamDau {
+        superview.insertSubview(base, belowSubview: view)
+        return self
+    }
+    @discardableResult
+    func insert(toSuperview superview:UIView, above view:UIView) -> CaamDau {
+        superview.insertSubview(base, aboveSubview: view)
+        return self
+    }
+    
+    @discardableResult
+    func exchange(_ view:UIView) -> CaamDau {
+        guard let idx1 = base.superview?.subviews.firstIndex(of: base),
+            let idx2 = base.superview?.subviews.firstIndex(of: view) else {
+            return self
+        }
+        base.superview?.exchangeSubview(at: idx1, withSubviewAt: idx2)
+        return self
+    }
+    
+    @discardableResult
+    func bringToFront() -> CaamDau {
+        base.superview?.bringSubviewToFront(base)
+        return self
+    }
+    
+    @discardableResult
+    func sendToBack() -> CaamDau {
+        base.superview?.sendSubviewToBack(base)
+        return self
+    }
+    
+    @discardableResult
+    func add(toSuperstack stack:UIStackView) -> CaamDau {
+        stack.addArrangedSubview(base)
+        return self
+    }
+    @discardableResult
+    func insert(toSuperstack stack:UIStackView, at index:Int) -> CaamDau {
+        stack.insertArrangedSubview(base, at: index)
+        return self
+    }
+    
+    @discardableResult
+    func removeFromSuperview() -> CaamDau {
+        base.removeFromSuperview()
+        return self
+    }
+    
+    @discardableResult
+    func remove(subview view:UIView) -> CaamDau {
+        base.subviews
+            .filter{ $0 == view }
+            .forEach{ $0.removeFromSuperview() }
+        return self
+    }
+    
+    @discardableResult
+    func remove(subviews views:[UIView]) -> CaamDau {
+        base.subviews
+            .filter{ views.contains($0)}
+            .forEach{ $0.removeFromSuperview() }
         return self
     }
 }

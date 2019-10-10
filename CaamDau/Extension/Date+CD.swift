@@ -1,7 +1,7 @@
 //Created  on 2019/3/7 by  LCD:https://github.com/liucaide .
 
 /***** 模块文档 *****
- * 时间处理 工具箱
+ * 时间处理
  */
 
 
@@ -83,16 +83,25 @@ public extension Date {
         return formatter.string(from: self)
     }
     
-    /// 转日历
-    func cd_calendar(_ components: Set<Calendar.Component> = [.year, .month, .weekday, .day, .hour, .minute, .second]) -> DateComponents {
-        let calendar = Calendar.current
+    /// 时间 间隔
+    func cd_interval(_ to:Date, components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second], calendar:Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(components, from: self, to: to)
+    }
+    
+    /// 单独取得时间中的单元，
+    /// 注意！当 .weekday 的时候，返回的是第几天而非周几，周日是第一天
+    /// calendar 默认 Calendar.current，可指定算法
+    func cd_component(_ component:Calendar.Component, calendar:Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
+    }
+    
+    /// 转日历 取得时间中的单元组，
+    func cd_components(_ components:Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second], calendar:Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(components, from: self)
     }
     
-    /// 时间 间隔
-    func cd_interval(_ components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second], to:Date) -> DateComponents {
-        let calendar = Calendar.current
-        return calendar.dateComponents(components, from: self, to: to)
+    func cd_count(of smaller: Calendar.Component, in larger: Calendar.Component, calendar:Calendar = Calendar.current) -> Int? {
+        return calendar.range(of: smaller, in: larger, for: self)?.count
     }
 }
 
