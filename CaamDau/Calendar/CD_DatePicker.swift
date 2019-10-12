@@ -41,7 +41,7 @@ open class CD_DatePicker:UIView {
             makeData(date, animated: true)
         }
     }
-    var completionHandler:((Date)->Void)?
+    var callback:((Date)->Void)?
     
     open var minYear: Int? {
         didSet{
@@ -63,6 +63,8 @@ open class CD_DatePicker:UIView {
     
     func makeUI() {
         self.addSubview(picker)
+        
+        picker.translatesAutoresizingMaskIntoConstraints = false
         picker.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         picker.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         picker.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -95,7 +97,7 @@ open class CD_DatePicker:UIView {
             1:date.cd_component(.month).stringValue,
             2:date.cd_component(.day).stringValue], animated: animated)
         }
-        picker.completionHandler = { [weak self](component, row, res) in
+        picker.callback = { [weak self](component, row, res) in
             self?.makeCompletionHandler(component, row, res)
         }
     }
@@ -134,6 +136,6 @@ open class CD_DatePicker:UIView {
         }
         let keys = res.keys.sorted()
         let values = keys.compactMap{res[$0]}.joined(separator: "-")
-        completionHandler?(values.cd_date(format)!)
+        callback?(values.cd_date(format)!)
     }
 }

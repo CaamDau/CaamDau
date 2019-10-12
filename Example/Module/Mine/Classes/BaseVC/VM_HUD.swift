@@ -214,8 +214,9 @@ extension VM_HUD {
             
         }else{
             var pro:CD_HUDProgressView = CD_HUDProgressView()
-            pro.heightAnchor.constraint(equalToConstant: 20).isActive = true
-            pro.widthAnchor.constraint(equalToConstant: 100).isActive = true
+            pro.translatesAutoresizingMaskIntoConstraints = false
+            pro.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            pro.widthAnchor.constraint(equalToConstant: 60).isActive = true
             var model = CD_HUDProgressView.Model()
             pro.model = model
             func proressCycle() {

@@ -85,6 +85,7 @@ extension CD_HUDActivityView {
         case .progress(let pro):
             switch pro {
             case .default(let model, let handler):
+                view_proress.translatesAutoresizingMaskIntoConstraints = false
                 view_proress.heightAnchor.constraint(equalToConstant: 60).isActive = true
                 view_proress.widthAnchor.constraint(equalToConstant: 60).isActive = true
                 self.cd.addArranged(subview: view_proress)
