@@ -141,14 +141,23 @@ extension VM_Mine{
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_Indexes", "侧边索引"), frame: CGRect(h:45)) {
-                
+                VC_Indexes.push()
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_DatePickerAlert", "时间选择器"), frame: CGRect(h:45)) {
                 
-                CD_DatePickerAlert.show()
+                let date = "2018-10-2".cd_date("yyyy-MM-dd")!
+                print_cd(date)
+                
+                CD_DatePickerAlert.show(.yyyyMMdd, date: date, callback: { (da) in
+                    print_cd(da)
+                }) {
+                    $0.colorLine = Config.color.line_1
+                    $0.colorCancel = Config.color.txt_1
+                    $0.colorDone = Config.color.main_1
+                }
             }
             self.forms[Section.other.rawValue].append(row)
         }

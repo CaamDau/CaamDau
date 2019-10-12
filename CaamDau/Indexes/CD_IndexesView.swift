@@ -285,6 +285,7 @@ extension CD_IndexesView{
                 .text(item.colorHighlighted, .selected)
                 .text(item.font)
                 .text(item.title)
+            button.translatesAutoresizingMaskIntoConstraints = false
             if let size = item.size {
                 button.heightAnchor.constraint(equalToConstant: size.height).isActive = true
                 button.widthAnchor.constraint(equalToConstant: size.width).isActive = true
