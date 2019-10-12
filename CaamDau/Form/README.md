@@ -86,7 +86,7 @@ extension VM_MineTableView{
 }
 ```
 
-#### 对于 UITableView/UICollectionView，都是一样的代码，基本无需维护，无需考虑检查 section row  height didselect 等多点关系，...ViewDelegate/...ViewDataSource 代码无需编写；如果有更高一点的要求，比如....ViewDelegateFlowLayout 、 scrollViewDidScroll 等，可将中间件 [.....DelegateDataSource](https://github.com/liucaide/CaamDau/tree/master/CaamDau/ViewModel) 里的代码完全复制，无需改动任何地方，而后添加未实现的功能即可。
+#### 对于 UITableView/UICollectionView，都是一样的代码，基本无需维护，无需考虑检查 section row  height didselect 等多点关系，...ViewDelegate/...ViewDataSource 代码无需编写；如果有更高一点的要求，比如....ViewDelegateFlowLayout 、 scrollViewDidScroll 等，可将中间件 [.....DelegateDataSource](https://github.com/liucaide/CaamDau/tree/master/CaamDau/ViewModel) 里的代码完全复制或继承，无需改动任何地方，而后扩展添加未实现的功能即可。
 
 
 ## Author
