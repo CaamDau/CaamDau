@@ -1,23 +1,36 @@
-//Created  on 2019/10/12 by  LCD:https://github.com/liucaide .
+# CD_IndexesView 一个漂亮的侧边索引
 
-/***** 模块文档 *****
- *
- */
+## Installation
 
+CD is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
+```ruby
+pod 'CaamDau/Indexes'
+```
+<p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/indexes0.gif" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/indexes1.gif" width="25%" />
+</p>
 
+## Usage
+#### CD_PageControl 指示器
 
-import UIKit
-import CaamDau
-import Util
-class VC_Indexes: UIViewController {
-    
-    static func push() {
-        let vc = VC_Indexes.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Indexes
-        CD.push(vc)
-    }
-    
-    
+```ruby
+lazy var pageControl: CD_PageControl = {
+    return CD_PageControl<CD_PageControlItem,CD_PageControlBuoy>(itemConfig:CD_PageControlItem.Model(), buoyConfig: CD_PageControlBuoy.Model())
+}()
+
+pageControl.dataSource = (0..<3).map({ (i) -> CD_PageControlItemDataSource in
+    var d = CD_PageControlItemDataSource()
+    d.id = i.stringValue
+    d.title = "Title-\(i)"
+    return d
+})
+```
+#### CD_PageViewController 分页控制器
+
+```ruby
     @IBOutlet weak var tableView: UITableView!
     
     lazy var headers:[String] = {
@@ -59,22 +72,12 @@ class VC_Indexes: UIViewController {
             break
         }
     }
-    
-}
+```
 
-extension VC_Indexes: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return headers.count
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return headers[section]
-    }
-}
+## Author
+
+liucaide, 565726319@qq.com
+
+## License
+
+CD is available under the MIT license. See the LICENSE file for more info.
