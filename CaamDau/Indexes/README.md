@@ -14,22 +14,6 @@ pod 'CaamDau/Indexes'
 </p>
 
 ## Usage
-#### CD_PageControl 指示器
-
-```ruby
-lazy var pageControl: CD_PageControl = {
-    return CD_PageControl<CD_PageControlItem,CD_PageControlBuoy>(itemConfig:CD_PageControlItem.Model(), buoyConfig: CD_PageControlBuoy.Model())
-}()
-
-pageControl.dataSource = (0..<3).map({ (i) -> CD_PageControlItemDataSource in
-    var d = CD_PageControlItemDataSource()
-    d.id = i.stringValue
-    d.title = "Title-\(i)"
-    return d
-})
-```
-#### CD_PageViewController 分页控制器
-
 ```ruby
     @IBOutlet weak var tableView: UITableView!
     
