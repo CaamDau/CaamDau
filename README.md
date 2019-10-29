@@ -34,7 +34,6 @@
 - [InputBox：输入框扩展组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/InputBox) 
 - [Indexes：一个漂亮的索引View](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Indexes)
 - [Calendar：日历、日期选择组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Calendar)
-- [IBInspectable sb/xib 辅助](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IBInspectable) 
 - ... 持续增新
 
 #### 第三方扩展组件
