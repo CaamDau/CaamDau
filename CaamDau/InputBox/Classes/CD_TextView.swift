@@ -176,6 +176,7 @@ public class CD_TextView: UIView {
         return UITextView(frame: self.bounds).cd
             .text(placeColor)
             .text(placeholder)
+            .background(UIColor.clear)
             .isUser(false)
             .build
     }()

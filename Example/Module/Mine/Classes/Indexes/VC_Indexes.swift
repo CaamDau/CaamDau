@@ -10,12 +10,15 @@
 import UIKit
 import CaamDau
 import Util
-class VC_Indexes: UIViewController {
-    
-    static func push() {
+
+extension VC_Indexes: CD_RouterProtocol {
+    static func router(_ param: [AnyHashable : Any]? = nil, callback: (([AnyHashable : Any]?) -> Void)? = nil) {
         let vc = VC_Indexes.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Indexes
         CD.push(vc)
     }
+}
+
+class VC_Indexes: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!

@@ -122,6 +122,9 @@ do{
     time.cd_component(.weekday, calendar: Calendar(identifier: .chinese))
     
     time.cd_count(of: .day, in: .month)
+    
+    
+    
 }
 
 
@@ -338,7 +341,9 @@ class MyViewController : UIViewController {
         
         do{
             let picker = UIDatePicker(frame: CGRect(x: 0, y: 300, width: 400, height: 200))
-            picker.datePickerMode = .date
+            picker.datePickerMode = .time
+            picker.locale = Locale(identifier: "zh")
+            picker.minimumDate = Date()
             view.addSubview(picker)
         }
         

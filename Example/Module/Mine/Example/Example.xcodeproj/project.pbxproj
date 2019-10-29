@@ -43,6 +43,7 @@
 		47AB7B432261AE0F009C3EE3 /* VC_PageD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B422261AE0F009C3EE3 /* VC_PageD.swift */; };
 		47AB7B452261AEBF009C3EE3 /* VC_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B442261AEBF009C3EE3 /* VC_Page.swift */; };
 		47AB7B472261CAED009C3EE3 /* PageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AB7B462261CAED009C3EE3 /* PageStoryboard.storyboard */; };
+		47E8E1FF23521C4000E60CD2 /* CD_Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */; };
 		47FC34E02238076F0022174D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34DF2238076F0022174D /* AppDelegate.swift */; };
 		47FC34E2223807700022174D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34E1223807700022174D /* ViewController.swift */; };
 		47FC34E5223807700022174D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FC34E3223807700022174D /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		47AB7B422261AE0F009C3EE3 /* VC_PageD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_PageD.swift; sourceTree = "<group>"; };
 		47AB7B442261AEBF009C3EE3 /* VC_Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Page.swift; sourceTree = "<group>"; };
 		47AB7B462261CAED009C3EE3 /* PageStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PageStoryboard.storyboard; sourceTree = "<group>"; };
+		47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_Localize.swift; sourceTree = "<group>"; };
 		47FC34DC2238076F0022174D /* CaamDau_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaamDau_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FC34DF2238076F0022174D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FC34E1223807700022174D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -215,9 +217,19 @@
 			path = Page;
 			sourceTree = "<group>";
 		};
+		47E8E1FD23521C4000E60CD2 /* Localize */ = {
+			isa = PBXGroup;
+			children = (
+				47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */,
+			);
+			name = Localize;
+			path = ../../../../CaamDau/Localize;
+			sourceTree = "<group>";
+		};
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
+				47E8E1FD23521C4000E60CD2 /* Localize */,
 				479F397522C9D88C00AD6916 /* TabBar */,
 				470C3DC1223BF024006292CE /* Classes */,
 				470C3DC6223BF025006292CE /* Nib */,
@@ -417,6 +429,7 @@
 				470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */,
 				479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */,
 				473ABC18223C8306004CD694 /* Views_MineTableView.swift in Sources */,
+				47E8E1FF23521C4000E60CD2 /* CD_Localize.swift in Sources */,
 				472676BD228A890A006AF7A7 /* VM_HUD.swift in Sources */,
 				47FC34E02238076F0022174D /* AppDelegate.swift in Sources */,
 				473ABC14223C82D9004CD694 /* VC_MineTableView.swift in Sources */,

@@ -141,22 +141,36 @@ extension VM_Mine{
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_Indexes", "侧边索引"), frame: CGRect(h:45)) {
-                VC_Indexes.push()
+                VC_Indexes.router()
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_DatePickerAlert", "时间选择器"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_DatePickerAlert - Alert", "时间选择器"), frame: CGRect(h:45)) {
                 
-                let date = "2018-10-2".cd_date("yyyy-MM-dd")!
-                print_cd(date)
-                
-                CD_DatePickerAlert.show(.yyyyMMdd, date: date, callback: { (da) in
+                CD_DatePickerAlert.show(.yyyyMM, date: Date(), preferredStyle: .alert, callback: { (da) in
                     print_cd(da)
                 }) {
                     $0.colorLine = Config.color.line_1
                     $0.colorCancel = Config.color.txt_1
                     $0.colorDone = Config.color.main_1
+                    $0.minDate = "2019-3-10".cd_date("yyyy-MM-dd")!
+                    $0.maxDate = "2020-11-20".cd_date("yyyy-MM-dd")!
+                }
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        do{
+            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_DatePickerAlert - Sheet", "时间选择器"), frame: CGRect(h:45)) {
+                
+                CD_DatePickerAlert.show(.yyyyMM, date: Date(), preferredStyle: .sheet, callback: { (da) in
+                    print_cd(da)
+                }) {
+                    $0.colorLine = Config.color.line_1
+                    $0.colorCancel = Config.color.txt_1
+                    $0.colorDone = Config.color.main_1
+                    $0.minDate = "2019-3-10".cd_date("yyyy-MM-dd")!
+                    $0.maxDate = "2020-11-20".cd_date("yyyy-MM-dd")!
                 }
             }
             self.forms[Section.other.rawValue].append(row)

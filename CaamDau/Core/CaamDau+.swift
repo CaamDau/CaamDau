@@ -325,4 +325,15 @@ public struct CD {
             CD.visibleVC?.dismiss(animated: animated, completion: nil)
         }
     }
+    
+    public static func classFrom(string name: String) -> AnyClass? {
+        guard let app:String = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String else {
+            // 命名空间不存在
+            return NSClassFromString(name)
+        }
+        // 2.通过命名空间和类名转换成类
+        let str = "_TtC\(app.count)\(app)\(name.count)\(name)"
+        let cla:AnyClass? = NSClassFromString(str)
+        return cla
+    }
 }

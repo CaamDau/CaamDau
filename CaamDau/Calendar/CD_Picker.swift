@@ -25,7 +25,7 @@ open class CD_Picker: UIView {
         vv.dataSource = self
         return vv
     }()
-    open var rows:[[String]] = [] {
+    open var rows:[[Model]] = [] {
         didSet {
             picker.reloadAllComponents()
         }
@@ -36,7 +36,7 @@ open class CD_Picker: UIView {
     func select(_ res:[Int:String], animated:Bool) {
         _selects = res
         for item in res where rows.count > item.key && !rows[item.key].isEmpty  {
-            picker.selectRow(rows[item.key].firstIndex(of: item.value) ?? 0, inComponent: item.key, animated: animated)
+            picker.selectRow(rows[item.key].firstIndex{ $0.title == item.value } ?? 0, inComponent: item.key, animated: animated)
         }
     }
     
@@ -56,12 +56,26 @@ extension CD_Picker: UIPickerViewDelegate, UIPickerViewDataSource {
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return rows[component].count
     }
+    /*
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return rows[component][row]
+        return rows[component][row].title
+    }*/
+    public func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let model = rows[component][row]
+        let ats = NSAttributedString(string: model.title, attributes: [.foregroundColor : model.isEnabled ? UIColor.darkText : UIColor.lightGray])
+        return ats
     }
+    
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard row < rows[component].count else { return }
-        _selects[component] = rows[component][row]
+        _selects[component] = rows[component][row].title
         callback?(component, row, _selects)
+    }
+}
+
+extension CD_Picker {
+    public struct Model {
+        public var title = ""
+        public var isEnabled = true
     }
 }
