@@ -7,6 +7,7 @@
 [![License](https://img.shields.io/cocoapods/l/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 [![Platform](https://img.shields.io/cocoapods/p/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 [![](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
+[![](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 > 蚕豆 (粤语：caam dau) （[OC版本在这里](https://github.com/liucaide/CaamDauObjC)）（[CaamDauRx - RxSwift扩展版本](https://github.com/liucaide/CaamDauRx)）
 
 > 初心：构建一个通用业务组件库和Cocoa便利性扩展，作为底层基础业务组件，在项目初期与维护期快速完成通用业务代码的构建（其实就是方便自己）。
@@ -32,6 +33,7 @@
 - [IconFont：阿里矢量图标管理和使用](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IconFont) 
 - [InputBox：输入框扩展组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/InputBox) 
 - [Indexes：一个漂亮的索引View](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Indexes)
+- [Calendar：日历、日期选择组件](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Calendar)
 - [IBInspectable sb/xib 辅助](https://github.com/liucaide/CaamDau/tree/master/CaamDau/IBInspectable) 
 - ... 持续增新
 
@@ -108,6 +110,7 @@ pod 'CaamDau/TopBar'
 pod 'CaamDau/IconFont'
 pod 'CaamDau/IBInspectable'
 pod 'CaamDau/Indexes'
+pod 'CaamDau/Calendar'
 
 pod 'CaamDau/MJRefresh'
 pod 'CaamDau/Net/Core'

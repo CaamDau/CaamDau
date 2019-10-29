@@ -66,8 +66,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cdi-27-dCf">
+                                <rect key="frame" x="280" y="5" width="95" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="sBz-rC-qIN"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="泡泡"/>
+                                    <segment title="HUD"/>
+                                </segments>
+                                <connections>
+                                    <action selector="click:" destination="avS-VO-OMI" eventType="valueChanged" id="Omo-Wd-udt"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="08K-Hu-NG7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="41" width="375" height="626"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="avS-VO-OMI" id="AoW-sz-Uvp"/>
@@ -77,9 +90,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="08K-Hu-NG7" firstAttribute="top" secondItem="QK4-LT-UFd" secondAttribute="top" id="EYX-Hp-GiY"/>
                             <constraint firstItem="08K-Hu-NG7" firstAttribute="leading" secondItem="QK4-LT-UFd" secondAttribute="leading" id="HQW-00-2pB"/>
+                            <constraint firstItem="cdi-27-dCf" firstAttribute="trailing" secondItem="QK4-LT-UFd" secondAttribute="trailing" id="W9V-uU-LCm"/>
                             <constraint firstItem="08K-Hu-NG7" firstAttribute="bottom" secondItem="QK4-LT-UFd" secondAttribute="bottom" id="WVx-UM-qLN"/>
+                            <constraint firstItem="08K-Hu-NG7" firstAttribute="top" secondItem="cdi-27-dCf" secondAttribute="bottom" constant="5" id="cQH-lg-8a2"/>
+                            <constraint firstItem="cdi-27-dCf" firstAttribute="top" secondItem="QK4-LT-UFd" secondAttribute="top" constant="5" id="gbq-Ad-1TZ"/>
                             <constraint firstItem="08K-Hu-NG7" firstAttribute="trailing" secondItem="QK4-LT-UFd" secondAttribute="trailing" id="h0H-7p-O7g"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QK4-LT-UFd"/>
@@ -90,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SiT-pJ-sl1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="166" y="-758"/>
+            <point key="canvasLocation" x="165.59999999999999" y="-758.77061469265368"/>
         </scene>
         <!--我的-->
         <scene sceneID="NeW-12-XU0">

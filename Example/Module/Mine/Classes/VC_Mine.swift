@@ -5,6 +5,7 @@ import CaamDau
 import Util
 import SnapKit
 
+
 public extension VC_Mine{
     
     static func show() -> VC_Mine{
@@ -141,6 +142,26 @@ public class VC_Mine: UIViewController {
         vvc.vm = VM_Mine()
             
     }
+    
+    public override func viewLayoutMarginsDidChange() {
+        print_cd("viewLayoutMarginsDidChange")
+        
+        
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        print_cd("viewWillLayoutSubviews")
+        
+        
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        print_cd("viewDidLayoutSubviews")
+        
+        
+    }
+    
+    var ob:NSObjectProtocol?
 }
 
 extension VC_Mine: CD_TopBarProtocol {
@@ -159,6 +180,8 @@ extension VC_Mine: CD_TopBarProtocol {
         
         //topBar._heightCustomBar = 40
         //topBar.bar_custom.cd.background(UIColor.orange)
+        
+        
     }
     
     public func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
@@ -175,6 +198,15 @@ extension VC_Mine: CD_TopBarProtocol {
                             (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .selected)])]
         default:
             return nil
+        }
+    }
+    
+    public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+        switch item {
+        case .rightItem1:
+            self.view.layoutIfNeeded()
+        default:
+            break
         }
     }
 }

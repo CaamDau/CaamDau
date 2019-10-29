@@ -56,15 +56,23 @@ public protocol CD_RouterProtocol {
     func router()
     /// 入参、回参 模糊，自由度更好
     func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any]?)->Void)?)
+    
+    /// 用于直接页面开放接口路由： ViewController.router([:], callback:{_ in })
+    static func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any]?)->Void)?)
 }
 extension CD_RouterProtocol {
     public func router() {
         router(nil, callback: nil)
     }
+    /// 入参、回参 模糊，自由度更好
     public func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any]?)->Void)? = nil) {
         CD_Router.shared.routerHandler?(self, param, callback)
         
     }
+    /// 用于直接页面开放接口路由： View / ViewController.router([:], callback:{_ in })
+    public static func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any]?)->Void)? = nil) {
+    }
+        
 }
 
 

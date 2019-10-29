@@ -305,9 +305,8 @@ class CD_IndexesViewHUD: UIView {
         let button = UIButton(type: .custom)
         self.cd.add(button)
         button.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-                .offset((style.size.height-style.size.width)/2)
             $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
         }
         return button
     }()
@@ -356,8 +355,15 @@ class CD_IndexesViewHUD: UIView {
             self.cd
                 .corner(style.cornerRadius, clips: true)
                 .background(style.colorBg.cd_alpha(style.alphaMax))
+            button.snp.updateConstraints {
+                $0.centerX.equalToSuperview()
+            }
         case .bubble:
             self.cd.background(style.colorBg.cd_alpha(0))
+            button.snp.updateConstraints {
+                $0.centerX.equalToSuperview()
+                .offset((style.size.height-style.size.width)/2)
+            }
         }
         button.cd
             .text(style.font)
