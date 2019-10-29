@@ -9,10 +9,10 @@ it, simply add the following line to your Podfile:
 pod 'CaamDau/Calendar'
 ```
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar0.gif" width="25%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar1.gif" width="25%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar2.gif" width="25%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar3.gif" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar0.png" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar1.png" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar2.png" width="25%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/calendar3.png" width="25%" />
 </p>
 
 ## Usage
