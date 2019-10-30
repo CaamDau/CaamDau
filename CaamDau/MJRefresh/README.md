@@ -2,11 +2,11 @@
 
 ## Installation
 
-CD is available through [CocoaPods](https://cocoapods.org). To install
+CaamDau is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/MJRefresh'
+pod 'CaamDau/MJRefresh'
 ```
 > MJRefresh 普通扩展，使用更方便
 #### 设置全局统一样式
@@ -64,4 +64,4 @@ liucaide, 565726319@qq.com
 
 ## License
 
-CD is available under the MIT license. See the LICENSE file for more info.
+CaamDau is available under the MIT license. See the LICENSE file for more info.

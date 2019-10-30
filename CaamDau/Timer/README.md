@@ -2,11 +2,11 @@
 
 ## Installation
 
-CD is available through [CocoaPods](https://cocoapods.org). To install
+CaamDau is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/CountDown'
+pod 'CaamDau/Timer'
 ```
 > CD_Timer 使用系统时间对比进行计时，较为有效保持界面退出/App进入后台后重新进入的时效性；防止重复创建同一计时器
 #### 创建倒计时
@@ -58,4 +58,4 @@ liucaide, 565726319@qq.com
 
 ## License
 
-CD is available under the MIT license. See the LICENSE file for more info.
+CaamDau is available under the MIT license. See the LICENSE file for more info.

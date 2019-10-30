@@ -2,11 +2,11 @@
 
 ## Installation
 
-CD is available through [CocoaPods](https://cocoapods.org). To install
+CaamDau is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/Form'
+pod 'CaamDau/Form'
 ```
 #### 目标：用一点点代码 实现 高耦合的 UI 排版解耦，增强排版随机、变更、扩展能力，增强 UI-Data 关联强度；解决TableView,CollectionView 混合排版 section row height didselect 等多点关系的灾难
 #### 无论界面多复杂，都是一样的代码，使用这种方式即可轻松完成复杂的 UI 排版,适用所有 UIView，编写可读性、扩展性、维护性强的代码
@@ -95,4 +95,4 @@ liucaide, 565726319@qq.com
 
 ## License
 
-CD is available under the MIT license. See the LICENSE file for more info.
+CaamDau is available under the MIT license. See the LICENSE file for more info.
