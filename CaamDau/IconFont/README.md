@@ -2,11 +2,11 @@
 
 ## Installation
 
-CD is available through [CocoaPods](https://cocoapods.org). To install
+CaamDau is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'CD/IconFont'
+pod 'CaamDau/IconFont'
 ```
 > 
 #### 
@@ -33,4 +33,4 @@ liucaide, 565726319@qq.com
 
 ## License
 
-CD is available under the MIT license. See the LICENSE file for more info.
+CaamDau is available under the MIT license. See the LICENSE file for more info.
