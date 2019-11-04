@@ -326,8 +326,9 @@ public struct CD {
         }
     }
     
-    public static func classFrom(string name: String) -> AnyClass? {
-        guard let app:String = Bundle.main.infoDictionary!["CFBundleExecutable"] as? String else {
+    public static func classFrom(string name: String, forClass: AnyClass? = nil) -> AnyClass? {
+        let bundle = forClass == nil ? Bundle.main : Bundle(for: forClass!)
+        guard let app:String = bundle.infoDictionary!["CFBundleExecutable"] as? String else {
             // 命名空间不存在
             return NSClassFromString(name)
         }
