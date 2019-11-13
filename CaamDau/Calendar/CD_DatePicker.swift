@@ -76,7 +76,7 @@ open class CD_DatePicker:UIView {
             self.date = min
             return
         }
-        if let max = minDate, date > max {
+        if let max = maxDate, date > max {
             self.date = max
             return
         }

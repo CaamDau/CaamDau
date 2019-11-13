@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CaamDau/AppDelegate'
     mo.dependency 'CaamDau/Router'
     mo.dependency 'CaamDau/HUD'
-    mo.dependency 'CaamDau/ViewModel'
+    mo.dependency 'CaamDau/ViewModel/Core'
     mo.dependency 'CaamDau/Indexes'
     mo.dependency 'CaamDau/Calendar'
   end
@@ -51,6 +51,7 @@ Pod::Spec.new do |s|
     all.dependency 'CaamDau/FDFullscreenPopGesture'
     all.dependency 'CaamDau/MJRefresh'
     all.dependency 'CaamDau/Net/All'
+    all.dependency 'CaamDau/ViewModel/BaseUI'
   end
   
   # ---- 核心插件 组件
@@ -121,11 +122,28 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'ViewModel' do |vm|
-    vm.source_files = 'CaamDau/ViewModel/*.{swift}'
-    vm.dependency 'CaamDau/Core'
-    vm.dependency 'CaamDau/TopBar'
-    vm.dependency 'CaamDau/MJRefresh'
-    vm.dependency 'SnapKit'
+    
+    vm.subspec 'Core' do |core|
+      core.source_files = 'CaamDau/ViewModel/Core/*.{swift}'
+      core.dependency 'CaamDau/Core'
+    end
+    
+    vm.subspec 'BaseUI' do |bui|
+      bui.source_files = 'CaamDau/ViewModel/BaseUI/*.{swift}'
+      bui.dependency 'CaamDau/ViewModel/Core'
+      bui.dependency 'CaamDau/TopBar'
+      bui.dependency 'CaamDau/MJRefresh'
+      bui.dependency 'SnapKit'
+    end
+    
+  end
+  
+  s.subspec 'Base' do |base|
+    base.source_files = 'CaamDau/Base/*.{swift}'
+    base.dependency 'CaamDau/ViewModel'
+    base.dependency 'CaamDau/TopBar'
+    base.dependency 'CaamDau/MJRefresh'
+    base.dependency 'SnapKit'
   end
   
   s.subspec 'Router' do |rr|

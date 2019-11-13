@@ -155,7 +155,6 @@ extension VM_Mine{
                     $0.colorCancel = Config.color.txt_1
                     $0.colorDone = Config.color.main_1
                     $0.minDate = "2019-3-10".cd_date("yyyy-MM-dd")!
-                    $0.maxDate = "2020-11-20".cd_date("yyyy-MM-dd")!
                 }
             }
             self.forms[Section.other.rawValue].append(row)
@@ -175,9 +174,21 @@ extension VM_Mine{
             }
             self.forms[Section.other.rawValue].append(row)
         }
-        
+        do{
+            let la = Locale.preferredLanguages.first ?? ""
+            let row = CD_RowCell<Cell_MineTitle>(data: ("当前语言", la), frame: CGRect(h:45)) {
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
         do {
-            for item in 0..<100 {
+            for item in Locale.preferredLanguages {
+                let row = CD_RowCell<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))
+                self.forms[Section.num.rawValue].append(row)
+            }
+            
+            self.forms[Section.num.rawValue].append(CD_RowCell<Cell_MineTitle>(data: ("--", "--"), frame: CGRect(h:45)))
+            
+            for item in UserDefaults.standard.stringArray(forKey: "AppleLanguages") ?? [] {
                 let row = CD_RowCell<Cell_MineTitle>(data: ("\(item)", "\(item)"), frame: CGRect(h:45))
                 self.forms[Section.num.rawValue].append(row)
             }
