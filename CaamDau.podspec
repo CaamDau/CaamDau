@@ -140,6 +140,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Router' do |rr|
     rr.source_files = 'CaamDau/Router/*.{swift}'
+    rr.dependency 'CaamDau/Core'
   end
   
   s.subspec 'Indexes' do |indx|
