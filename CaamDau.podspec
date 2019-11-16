@@ -163,8 +163,7 @@ Pod::Spec.new do |s|
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CaamDau/MJRefresh/*.{swift}'
     mj.dependency 'CaamDau/Core'
-    mj.dependency 'MJRefresh'
-
+    mj.dependency 'MJRefresh', '3.2.0'
   end
   
   s.subspec 'FDFullscreenPopGesture' do |fd|
