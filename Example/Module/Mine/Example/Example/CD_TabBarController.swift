@@ -36,8 +36,14 @@ class CD_TabBarController: UITabBarController {
             .colorNormals([.gray,nil])
             .colorSelecteds([.red,nil,.yellow])
             .badges([nil,"123","666"])
-            .badgeColors([nil,.black,.yellow])
-            .badgeColorSelecteds([.black,.black,.red])
+            
+        if #available(iOS 10.0, *) {
+            self.tabBar.cd
+                .badgeColors([nil,.black,.yellow])
+                .badgeColorSelecteds([.black,.black,.red])
+        } else {
+            
+        }
         
         //添加简单的阴影
         self.tabBar.cd.addShadowLine(backgroundColor: UIColor.white) { (v) in

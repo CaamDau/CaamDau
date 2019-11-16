@@ -85,7 +85,7 @@ public extension CaamDau where Base: MJRefreshBackStateFooter {
                                                           .noMoreData("")]
         ) -> CaamDau
     {
-        base.stateLabel.isHidden = isHidden
+        base.stateLabel?.isHidden = isHidden
         guard !isHidden else {
             return self
         }
@@ -104,8 +104,8 @@ public extension CaamDau where Base: MJRefreshBackStateFooter {
             }
         }
         base.labelLeftInset = inset
-        base.stateLabel.font = font;
-        base.stateLabel.textColor = color
+        base.stateLabel?.font = font;
+        base.stateLabel?.textColor = color
         return self
     }
 }
@@ -125,7 +125,7 @@ public extension CaamDau where Base: MJRefreshAutoStateFooter {
         ) -> CaamDau
     {
         base.isRefreshingTitleHidden = isHidden
-        base.stateLabel.isHidden = isHidden
+        base.stateLabel?.isHidden = isHidden
         guard !isHidden else {
             return self
         }
@@ -144,8 +144,8 @@ public extension CaamDau where Base: MJRefreshAutoStateFooter {
             }
         }
         base.labelLeftInset = inset
-        base.stateLabel.font = font;
-        base.stateLabel.textColor = color
+        base.stateLabel?.font = font;
+        base.stateLabel?.textColor = color
         return self
     }
 }
