@@ -14,19 +14,19 @@ import Util
 
 extension VM_MineTableView {
     class Model {
-        var id:String!
-        var img:UIImage!
-        var time:TimeInterval!
-        var second:Double!
-        var num:Int!
-        var open:Bool!
+        var id:String
+        var img:UIImage
+        var endTime:String
+        var second:Double
+        var num:Int
+        var open:Bool
         
-        var down:CD_Timer.Model?
+        var timeOpen = false
         
-        init(_ id:String, _ img:UIImage, _ time:TimeInterval, _ second:Double, _ num:Int, _ open:Bool) {
+        init(_ id:String, _ img:UIImage, _ endTime:String, _ second:Double, _ num:Int, _ open:Bool) {
             self.id = id
             self.img = img
-            self.time = time
+            self.endTime = endTime
             self.second = second
             self.num = num
             self.open = open
@@ -108,18 +108,19 @@ class VM_MineTableView {
 extension VM_MineTableView{
     func makeForm() {
         var models:[Model] = []
-        models.append(Model("model_1", assets.logo_200, 370000, 1, 3, false))
-        models.append(Model("model_2", assets.logo_0, 3700, 0.09, 4, true))
-        models.append(Model("model_3", assets.logo_200, 36000, 1, 5, false))
-        models.append(Model("model_4", assets.logo_0, 3700, 1, 6, false))
-        models.append(Model("model_5", assets.logo_200, 3700, 1, 37, false))
-        models.append(Model("model_6", assets.logo_0, 3700, 1, 38, true))
-        models.append(Model("model_7", assets.logo_200, 3700, 1, 39, false))
-        models.append(Model("model_8", assets.logo_0, 3700, 1, 32, false))
-        models.append(Model("model_9", assets.logo_200, 3700, 1, 345, false))
-        models.append(Model("model_10", assets.logo_0, 3700, 1, 378, false))
-        models.append(Model("model_11", assets.logo_200, 3700, 1, 3111, false))
-        models.append(Model("model_12", assets.logo_0, 3700, 1, 31, false))
+        let now = Date().cd_timestamp()
+        models.append(Model("model_1", assets.logo_200, (now+37000).cd_date().cd_time(), 1, 3, false))
+        models.append(Model("model_2", assets.logo_0, (now+3700).cd_date().cd_time(), 0.09, 4, true))
+        models.append(Model("model_3", assets.logo_200, (now+36000).cd_date().cd_time(), 1, 5, false))
+        models.append(Model("model_4", assets.logo_0, (now+3800).cd_date().cd_time(), 1, 6, false))
+        models.append(Model("model_5", assets.logo_200, (now+38000).cd_date().cd_time(), 1, 37, false))
+        models.append(Model("model_6", assets.logo_0, (now+39000).cd_date().cd_time(), 1, 38, true))
+        models.append(Model("model_7", assets.logo_200, (now+26000).cd_date().cd_time(), 1, 39, false))
+        models.append(Model("model_8", assets.logo_0, (now+34000).cd_date().cd_time(), 1, 32, false))
+        models.append(Model("model_9", assets.logo_200, (now+35000).cd_date().cd_time(), 1, 345, false))
+        models.append(Model("model_10", assets.logo_0, (now+36800).cd_date().cd_time(), 1, 378, false))
+        models.append(Model("model_11", assets.logo_200, (now+345000).cd_date().cd_time(), 1, 3111, false))
+        models.append(Model("model_12", assets.logo_0, (now+38900).cd_date().cd_time(), 1, 31, false))
         for (i,item) in models.enumerated() {
             self.makeFormCountDown(item)
             // 除倒计时外 其余随机排版

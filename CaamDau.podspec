@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CaamDau'
-  s.version          = '0.15.50'
+  s.version          = '0.16.50'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块组件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 开发组件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CaamDau/AppDelegate'
     mo.dependency 'CaamDau/Router'
     mo.dependency 'CaamDau/HUD'
-    mo.dependency 'CaamDau/ViewModel'
+    mo.dependency 'CaamDau/ViewModel/Core'
     mo.dependency 'CaamDau/Indexes'
     mo.dependency 'CaamDau/Calendar'
   end
@@ -51,6 +51,7 @@ Pod::Spec.new do |s|
     all.dependency 'CaamDau/FDFullscreenPopGesture'
     all.dependency 'CaamDau/MJRefresh'
     all.dependency 'CaamDau/Net/All'
+    all.dependency 'CaamDau/ViewModel/BaseUI'
   end
   
   # ---- 核心插件 组件
@@ -124,12 +125,20 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'ViewModel' do |vm|
-    vm.source_files = 'CaamDau/ViewModel/*.{swift}'
-    vm.dependency 'CaamDau/Core'
-    vm.dependency 'CaamDau/TopBar'
-    vm.dependency 'CaamDau/MJRefresh'
-    vm.dependency 'SnapKit'
-
+    
+    vm.subspec 'Core' do |core|
+      core.source_files = 'CaamDau/ViewModel/Core/*.{swift}'
+      core.dependency 'CaamDau/Core'
+    end
+    
+    vm.subspec 'BaseUI' do |bui|
+      bui.source_files = 'CaamDau/ViewModel/BaseUI/*.{swift}'
+      bui.dependency 'CaamDau/ViewModel/Core'
+      bui.dependency 'CaamDau/TopBar'
+      bui.dependency 'CaamDau/MJRefresh'
+      bui.dependency 'SnapKit'
+    end
+    
   end
   
   s.subspec 'Router' do |rr|

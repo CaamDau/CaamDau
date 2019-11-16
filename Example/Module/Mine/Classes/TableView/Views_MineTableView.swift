@@ -21,7 +21,26 @@ class Cell_MineCountDown:UITableViewCell{
     @IBOutlet weak var lab_dot: UILabel!
     
     @IBOutlet weak var view_space_W: NSLayoutConstraint!
-    weak var model:VM_MineTableView.Model?
+    var openTime = false
+    weak var model:VM_MineTableView.Model? {
+        didSet{
+            if let m = oldValue {
+                CD_Timer.remove(m.id)
+            }
+            print_cd("old->",oldValue?.id)
+            makeTimer()
+        }
+    }
+    
+    func makeTimer() {
+        guard let m = self.model, m.timeOpen else {
+            return
+        }
+        print_cd("new->", m.id)
+        let end = m.endTime.cd_date("yyyy-MM-dd HH:mm:ss:SSS")!.cd_timestamp()
+        let time = end - Date().cd_timestamp()
+        CD_Timer.make(CD_Timer.Style.delegate(self, m.id, time, m.second))
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,8 +59,14 @@ class Cell_MineCountDown:UITableViewCell{
     }
     
     @IBAction func countdownClick(_ sender: UIButton) {
-        CD_Timer.make(CD_Timer.Style.delegate(self, self.model!.id, self.model!.time!, self.model!.second!))
-        
+        model?.timeOpen = true
+        makeTimer()
+    }
+    
+    deinit {
+        if let m = model {
+            CD_Timer.remove(m.id)
+        }
     }
 }
 
@@ -57,28 +82,24 @@ extension Cell_MineCountDown:CD_TimerProtocol{
         self.lab_minute.cd.text(model.minute > 9 ? "\(model.minute)" : "0\(model.minute)")
         self.lab_second.cd.text(model.second > 9 ? "\(model.second)" : "0\(model.second)")
         self.lab_msecond.cd.text(model.millisecond > 0 ? (model.millisecond > 99 ? "\(model.millisecond)" : "0\(model.millisecond)") : "000")
-        
-        self.model?.time = model.remainTime
-        self.model?.down = model
     }
 }
 
 extension Cell_MineCountDown:CD_RowUpdateProtocol{
     typealias DataSource = VM_MineTableView.Model
     func row_update(_ data: VM_MineTableView.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.model = data
+        
         self.img_icon.image = data.img
         self.lab_msecond.isHidden = data.second >= 1
         self.lab_dot.isHidden = data.second >= 1
-        if let down = data.down {
-            makeDown(down)
-        }else{
-            self.lab_day.cd.text("")
-            self.lab_hour.cd.text("00")
-            self.lab_minute.cd.text("00")
-            self.lab_second.cd.text("00")
-            self.lab_msecond.cd.text("000")
-        }
+        
+        self.lab_day.cd.text("")
+        self.lab_hour.cd.text("00")
+        self.lab_minute.cd.text("00")
+        self.lab_second.cd.text("00")
+        self.lab_msecond.cd.text("000")
+        
+        self.model = data
     }
 }
 
