@@ -44,7 +44,7 @@ public extension CaamDau where Base: MJRefreshStateHeader {
                                                           .noMoreData(""),]
         ) -> CaamDau
     {
-        base.stateLabel.isHidden = isHidden
+        base.stateLabel?.isHidden = isHidden
         guard !isHidden else {
             return self
         }
@@ -63,8 +63,8 @@ public extension CaamDau where Base: MJRefreshStateHeader {
             }
         }
         base.labelLeftInset = inset
-        base.stateLabel.font = font;
-        base.stateLabel.textColor = color
+        base.stateLabel?.font = font;
+        base.stateLabel?.textColor = color
         return self
     }
     
@@ -76,12 +76,12 @@ public extension CaamDau where Base: MJRefreshStateHeader {
                  timeText:((Date)->(String))? = nil
         ) -> CaamDau
     {
-        base.lastUpdatedTimeLabel.isHidden = isHidden
+        base.lastUpdatedTimeLabel?.isHidden = isHidden
         guard !isHidden else {
             return self
         }
-        base.lastUpdatedTimeLabel.font = font
-        base.lastUpdatedTimeLabel.textColor = color
+        base.lastUpdatedTimeLabel?.font = font
+        base.lastUpdatedTimeLabel?.textColor = color
         base.lastUpdatedTimeText = { (date) -> String in
             return timeText?(date ?? Date()) ?? ""
         }

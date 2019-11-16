@@ -270,7 +270,7 @@ public extension CaamDau where Base: UIScrollView {
     /// 开始刷新
     @discardableResult
     func beginRefreshing() -> CaamDau {
-        if !base.mj_header.isRefreshing {
+        if let header = base.mj_header, !header.isRefreshing {
             base.mj_footer?.endRefreshing()
             base.mj_header?.beginRefreshing()
         }
