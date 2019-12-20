@@ -26,7 +26,7 @@ extension CD_UICollectionViewDelegateData {
             collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
         }
         
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
+        vm?._reloadRows = { [weak self] (indexPath, animation) in
             collectionView.reloadItems(at: indexPath)
             collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
         }

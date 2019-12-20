@@ -12,23 +12,29 @@ import UIKit
 import SnapKit
 
 //MARK:--- 针对新的表单协议 CD_CellProtocol ----------
-open class CD_CollectionViewDelegateDataSource: NSObject {
+open class CD_CollectionViewDelegateDataSource: CD_FormCollectionViewDelegateDataSource {
     public var vm:CD_ViewModelCollectionViewProtocol?
-    private override init(){}
     public init(_ vm:CD_ViewModelCollectionViewProtocol?) {
+        super.init(vm)
         self.vm = vm
     }
 }
+
 extension CD_CollectionViewDelegateDataSource {
-    open func makeReloadData(_ collectionView:UICollectionView) {
-        vm?._reloadData = {[weak self] in
-            collectionView.reloadData()
-            collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+    open override func makeReloadData(_ collectionView:UICollectionView) {
+        vm?._reloadData = {[weak collectionView, weak self] in
+            collectionView?.reloadData()
+            collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
-            collectionView.reloadItems(at: indexPath)
-            collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        vm?._reloadRows = { [weak collectionView, weak self] (indexPath, animation) in
+            collectionView?.reloadItems(at: indexPath)
+            collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        vm?._reloadSections = { [weak collectionView, weak self] (sections, animation) in
+            collectionView?.reloadSections(sections)
+            collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
         guard let refresh = vm?._mjRefresh else {
@@ -61,6 +67,8 @@ extension CD_CollectionViewDelegateDataSource {
         collectionView.cd.mjRefreshTypes(vm!._mjRefreshType)
     }
 }
+
+/*
 extension CD_CollectionViewDelegateDataSource: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return vm?._forms.count ?? 0
@@ -151,9 +159,7 @@ extension CD_CollectionViewDelegateDataSource: UICollectionViewDelegate, UIColle
         }
     }
 }
-
-
-
+*/
 
 
 

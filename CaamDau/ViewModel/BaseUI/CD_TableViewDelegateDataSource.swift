@@ -12,23 +12,28 @@ import UIKit
 import SnapKit
 
 //MARK:--- 针对新的表单协议 CD_CellProtocol ----------
-open class CD_TableViewDelegateDataSource: NSObject {
+open class CD_TableViewDelegateDataSource: CD_FormTableViewDelegateDataSource {
     public var vm:CD_ViewModelTableViewProtocol?
-    private override init(){}
     public init(_ vm:CD_ViewModelTableViewProtocol?) {
+        super.init(vm)
         self.vm = vm
     }
 }
 extension CD_TableViewDelegateDataSource {
-    open func makeReloadData(_ tableView:UITableView) {
-        vm?._reloadData = {[weak self] in
-            tableView.reloadData()
-            tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+    open override func makeReloadData(_ tableView:UITableView) {
+        vm?._reloadData = {[weak self, weak tableView] in
+            tableView?.reloadData()
+            tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
-            tableView.reloadRows(at: indexPath, with: animation)
-            tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        vm?._reloadRows = { [weak self, weak tableView] (indexPath, animation) in
+            tableView?.reloadRows(at: indexPath, with: animation)
+            tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        vm?._reloadSections = { [weak self, weak tableView] (sections, animation) in
+            tableView?.reloadSections(sections, with: animation)
+            tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
         guard let refresh = vm?._mjRefresh else {
@@ -62,6 +67,8 @@ extension CD_TableViewDelegateDataSource {
     }
 }
 
+
+/*
 extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSource {
     open func numberOfSections(in tableView: UITableView) -> Int {
         return vm?._forms.count ?? 0
@@ -137,7 +144,7 @@ extension CD_TableViewDelegateDataSource: UITableViewDelegate, UITableViewDataSo
         return v
     }
 }
-
+*/
 
 //MARK:--- 提供一个基础的 TableViewController 简单的页面不需要编写 ViewController----------
 public struct R_CDTableViewController {
@@ -199,7 +206,6 @@ open class CD_TableViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension CD_TableViewController: CD_TopBarProtocol {

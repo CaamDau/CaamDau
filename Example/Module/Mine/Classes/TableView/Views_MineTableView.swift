@@ -85,10 +85,11 @@ extension Cell_MineCountDown:CD_TimerProtocol{
     }
 }
 
-extension Cell_MineCountDown:CD_RowUpdateProtocol{
+extension Cell_MineCountDown:CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
     typealias DataSource = VM_MineTableView.Model
-    func row_update(_ data: VM_MineTableView.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        
+    
+    func row_update(dataSource data: VM_MineTableView.Model) {
         self.img_icon.image = data.img
         self.lab_msecond.isHidden = data.second >= 1
         self.lab_dot.isHidden = data.second >= 1
@@ -164,9 +165,11 @@ extension Cell_MineInput: UITextFieldDelegate{
         }
     }
 }
-extension Cell_MineInput: CD_RowUpdateProtocol{
+extension Cell_MineInput: CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
+    
     typealias DataSource = VM_MineTableView.Model
-    func row_update(_ data: VM_MineTableView.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: VM_MineTableView.Model) {
         self.model = data
     }
 }
@@ -196,8 +199,13 @@ class Cell_MineSwitch:UITableViewCell{
     }
 }
 
-extension Cell_MineSwitch:CD_RowUpdateProtocol{
+extension Cell_MineSwitch:CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
+    
     typealias DataSource = VM_MineTableView.Model
+    func row_update(dataSource data: VM_MineTableView.Model) {
+        self.model = data
+    }
     func row_update(_ data: VM_MineTableView.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         self.model = data
     }
@@ -209,9 +217,11 @@ class Cell_MineDetail:UITableViewCell{
     
 }
 
-extension Cell_MineDetail:CD_RowUpdateProtocol{
+extension Cell_MineDetail:CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
+    
     typealias DataSource = String
-    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: String) {
         self.lab_title.cd.text(data)
     }
 }

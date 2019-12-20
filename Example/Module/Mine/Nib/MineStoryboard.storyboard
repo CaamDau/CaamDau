@@ -978,10 +978,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="v32-YC-QSV" id="GUv-kR-mEo"/>
-                                    <outlet property="delegate" destination="v32-YC-QSV" id="3fl-6v-Fgo"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U33-lw-MOI" customClass="CD_TopBar" customModule="CaamDau">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>

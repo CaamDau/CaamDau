@@ -26,7 +26,7 @@ extension CD_UITableViewDelegateData {
             tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
         }
         
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
+        vm?._reloadRows = { [weak self] (indexPath, animation) in
             tableView.reloadRows(at: indexPath, with: animation)
             tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
         }

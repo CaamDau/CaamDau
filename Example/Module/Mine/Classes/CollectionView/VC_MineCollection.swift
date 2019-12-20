@@ -34,6 +34,8 @@ class VC_MineCollection: UIViewController {
         self.collectionView.cd
             .background(Config.color.bg)
             .register(self.vm.registerView)
+        
+        
     }
 }
 
