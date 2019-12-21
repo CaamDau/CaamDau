@@ -27,27 +27,43 @@ extension CD_ViewModelRefreshDelegater {
 }
 
 
-public protocol CD_ViewModelTableViewDelegater {
+public protocol CD_ViewModelViewDelegater {
+    //var _safeAreaLayout:(top:Bool, bottom:Bool) { get }
+    var _bottomBarHeignt:CGFloat { get }
+    var _bottomBarCustom:((UIView)->Void)? { get }
+}
+
+extension CD_ViewModelViewDelegater {
+//    public var _safeAreaLayout:(top:Bool, bottom:Bool) {
+//        get{
+//            return (true, true)
+//        }
+//    }
+    public var _bottomBarCustom:((UIView)->Void)? {
+        return { _ in
+        }
+    }
+    public var _bottomBarHeignt:CGFloat {
+        get{
+            return 0
+        }
+    }
+}
+
+public protocol CD_ViewModelTableViewDelegater: CD_ViewModelViewDelegater {
     var _tableViewCustom:((UITableView)->Void)? { get }
-    var _safeAreaLayout:Bool { get }
 }
 public extension CD_ViewModelTableViewDelegater {
     public var _tableViewCustom:((UITableView)->Void)? {
         return { _ in
         }
     }
-    public var _safeAreaLayout:Bool {
-        get{
-            return true
-        }
-    }
 }
 
 
-public protocol CD_ViewModelCollectionViewDelegater {
+public protocol CD_ViewModelCollectionViewDelegater: CD_ViewModelViewDelegater {
     var _collectionRegisters:[CaamDau<UICollectionView>.View] { get }
     var _collectionViewCustom:((UICollectionView)->Void)? { get }
-    var _safeAreaLayout:Bool { get }
 }
 extension CD_ViewModelCollectionViewDelegater {
     public var _collectionRegisters:[CaamDau<UICollectionView>.View] {
@@ -55,11 +71,6 @@ extension CD_ViewModelCollectionViewDelegater {
     }
     public var _collectionViewCustom:((UICollectionView)->Void)? {
         return { _ in
-        }
-    }
-    public var _safeAreaLayout:Bool {
-        get{
-            return true
         }
     }
 }

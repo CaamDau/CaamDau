@@ -1,6 +1,13 @@
 //Created  on 2018/12/13  by LCD :https://github.com/liucaide .
+/***** 模块文档 *****
+* Form : TableView、CollectionView 流式排版协议，
+ 将 数据源 转化为 CD_RowCell / CD_RowCellClass 模型，即可将排版内容模型化，将 Delegate DataSource 多点关系，转化为单点关系，更便于扩展、维护、数据精准绑定。
+ CD_FormProtocol 是为普通MVVM模式准备
+*/
+
 
 import Foundation
+import UIKit
 
 public typealias CD_Form = [[CD_CellProtocol]]
 public typealias CD_FormProtocol = (CD_FormDataSource & CD_FormDelegate)

@@ -1,7 +1,9 @@
 //Created  on 2019/12/19 by  LCD:https://github.com/liucaide .
 
 /***** 模块文档 *****
- *
+ * CD_FormViewController 包含两类
+ * 1、普通MVVM模式
+ * 2、MVC模式
  */
 
 
@@ -9,9 +11,7 @@
 
 import UIKit
 
-
-
-
+//@IBDesignable
 open class CD_FormViewController: UIViewController {
     lazy var stackView: UIStackView = {
         return UIStackView()
@@ -27,7 +27,7 @@ open class CD_FormViewController: UIViewController {
 }
 
 extension CD_FormViewController {
-    func makeStackView() {
+    @objc func makeStackView() {
         self.view.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,11 +53,14 @@ extension CD_FormViewController {
 }
 
 
+
+
+//@IBDesignable
 open class CD_FormTableViewController: CD_FormViewController {
     open lazy var tableView: UITableView = {
         return UITableView(frame: CGRect.zero, style: style)
     }()
-    open var style:UITableView.Style = .plain
+    open var style:UITableView.Style = .grouped
     open var _form:CD_FormProtocol?
     open lazy var _delegateData:CD_FormTableViewDelegateDataSource? = {
         return CD_FormTableViewDelegateDataSource(_form)
@@ -70,10 +73,10 @@ open class CD_FormTableViewController: CD_FormViewController {
 }
 
 extension CD_FormTableViewController {
-    func makeTableView() {
+    @objc open func makeTableView() {
         stackView.addArrangedSubview(tableView)
         if _form == nil {
-            assertionFailure("👉👉👉 - form 未初始化  👻")
+            assertionFailure("👉👉👉 - form 未初始化,可重写 makeTableView 初始化在此之前  👻")
         }
         tableView.delegate = _delegateData
         tableView.dataSource = _delegateData
@@ -82,19 +85,7 @@ extension CD_FormTableViewController {
 }
 
 
-class CD_FormTableViewControllerSS: CD_FormTableViewController {
-    var form:CD_FormProtocol?
-    override var _form: CD_FormProtocol? {
-        set{
-            
-        }
-        get{
-            return _form
-        }
-    }
-}
-
-
+//@IBDesignable
 open class CD_FormCollectionViewController: CD_FormViewController {
     
     open lazy var flowLayout: UICollectionViewLayout = {
@@ -116,13 +107,201 @@ open class CD_FormCollectionViewController: CD_FormViewController {
 }
 
 extension CD_FormCollectionViewController {
-    func makeCollectionView() {
+    @objc open func makeCollectionView() {
         stackView.addArrangedSubview(collectionView)
         if _form == nil {
-            assertionFailure("👉👉👉 - form 未初始化  👻")
+            assertionFailure("👉👉👉 - form 未初始化,可重写 makeCollectionView 初始化在此之前  👻")
         }
         collectionView.delegate = _delegateData
         collectionView.dataSource = _delegateData
         _delegateData?.makeReloadData(collectionView)
+    }
+}
+
+
+
+//MARK:--- 如果你依然钟情于MVC模式，那么这个基类将适用 ----------
+extension CD_FormBaseViewController {
+    struct DataModel {
+        /// 单元格数据组配置
+        var _forms:[[CD_CellProtocol]] = []
+        /// 页首数据组配置
+        var _formHeaders:[CD_CellProtocol] = []
+        /// 页尾数据组配置
+        var _formFooters:[CD_CellProtocol] = []
+    }
+}
+open class CD_FormBaseViewController: UIViewController {
+    var tableDatas:DataModel?
+    var collectionDatas:DataModel?
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+}
+
+extension CD_FormBaseViewController: UITableViewDelegate, UITableViewDataSource  {
+    open func numberOfSections(in tableView: UITableView) -> Int {
+        return tableDatas?._forms.count ?? 0
+    }
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableDatas?._forms[section].count ?? 0
+    }
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let row = tableDatas?._forms[indexPath.section][indexPath.row] else {
+            return UITableViewCell()
+        }
+        let cell = tableView.cd.cell(row.cellClass, id:row.cellId, bundleFrom:row.bundleFrom ?? "") ?? UITableViewCell()
+        row.bind(cell)
+        return cell
+    }
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let row = tableDatas?._forms[indexPath.section][indexPath.row] else {
+            return
+        }
+        row.tapBlock?()
+    }
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let row = tableDatas?._forms[indexPath.section][indexPath.row] else {
+            return 0
+        }
+        return row.h
+    }
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section < (tableDatas?._formHeaders.count ?? 0) {
+            return tableDatas?._formHeaders[section].h ?? CD.sectionMinH
+        }else{
+            guard let count = tableDatas?._forms[section].count, count > 0, let top = tableDatas?._forms[section].first?.insets.top, top > 0 else {
+                return CD.sectionMinH
+            }
+            return top
+        }
+    }
+    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section < (tableDatas?._formFooters.count ?? 0) {
+            return tableDatas?._formFooters[section].h ?? CD.sectionMinH
+        }else{
+            guard let count = tableDatas?._forms[section].count, count > 0, let bottom = tableDatas?._forms[section].first?.insets.bottom, bottom > 0 else {
+                return CD.sectionMinH
+            }
+            return bottom
+        }
+    }
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section < (tableDatas?._formHeaders.count ?? 0) else {
+            return nil
+        }
+        guard let row = tableDatas?._formHeaders[section] else {
+            return nil
+        }
+        guard let v = tableView.cd.view(row.cellClass, id:row.cellId, bundleFrom:row.bundleFrom ?? "") else {
+            return nil
+        }
+        row.bind(v)
+        return v
+    }
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard section < (tableDatas?._formFooters.count ?? 0) else {
+            return nil
+        }
+        guard let row = tableDatas?._formFooters[section] else {
+            return nil
+        }
+        guard let v = tableView.cd.view(row.cellClass, id:row.cellId, bundleFrom:row.bundleFrom ?? "") else {
+            return nil
+        }
+        row.bind(v)
+        return v
+    }
+}
+extension CD_FormBaseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return collectionDatas?._forms.count ?? 0
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionDatas?._forms[section].count ?? 0
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionDatas?._forms[indexPath.section][indexPath.row].size ?? .zero
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let row = collectionDatas?._forms[indexPath.section][indexPath.row] else {
+            return collectionView.cd.cell(CD_CollectionViewCellNone.id, indexPath)
+        }
+        let cell = collectionView.cd.cell(row.cellId, indexPath)
+        row.bind(cell)
+        return cell
+    }
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let row = collectionDatas?._forms[indexPath.section][indexPath.row] else {
+            return
+        }
+        row.tapBlock?()
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if let count = collectionDatas?._formHeaders.count, count > section {
+            return collectionDatas!._formHeaders[section].y
+        }else{
+            return collectionDatas?._forms[section].first?.y ?? 0
+        }
+        
+    }
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if let count = collectionDatas?._formHeaders.count, count > section {
+            return collectionDatas!._formHeaders[section].x
+        }else{
+            return collectionDatas?._forms[section].first?.x ?? 0
+        }
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if let count = collectionDatas?._formHeaders.count, count > section {
+            return collectionDatas!._formHeaders[section].insets
+        }else{
+            return collectionDatas?._forms[section].first?.insets ?? .zero
+        }
+    }
+    
+    
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize{
+        if let count = collectionDatas?._formHeaders.count, count > section {
+            return collectionDatas!._formHeaders[section].size
+        }else{
+            return .zero
+        }
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize{
+        if let count = collectionDatas?._formFooters.count, count > section {
+            return collectionDatas!._formFooters[section].size
+        }else{
+            return .zero
+        }
+    }
+    
+    
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case CaamDau<UICollectionView>.Kind.tHeader.stringValue:
+            guard let count = collectionDatas?._formHeaders.count, count > indexPath.section, let row = collectionDatas?._formHeaders[indexPath.section] else {
+                return collectionView.cd.view(CD_CollectionReusableViewNone.id, kind, indexPath)
+            }
+            let v = collectionView.cd.view(row.cellId, kind, indexPath)
+            row.bind(v)
+            return v
+        default:
+            guard let count = collectionDatas?._formFooters.count, count > indexPath.section, let row = collectionDatas?._formFooters[indexPath.section] else {
+                return collectionView.cd.view(CD_CollectionReusableViewNone.id, kind, indexPath)
+            }
+            let v = collectionView.cd.view(row.cellId, kind, indexPath)
+            row.bind(v)
+            return v
+        }
     }
 }

@@ -37,6 +37,7 @@
 		4789A49D22A63E4700FEA124 /* VM_PageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4789A49C22A63E4700FEA124 /* VM_PageList.swift */; };
 		479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */; };
 		479F397B22C9D90600AD6916 /* CD_TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397A22C9D90500AD6916 /* CD_TabBar.swift */; };
+		47A8625D23ACBB4200F85C40 /* VM_Forms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8625C23ACBB4200F85C40 /* VM_Forms.swift */; };
 		47AB7B3D2261ADEF009C3EE3 /* VC_PageA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B3C2261ADEF009C3EE3 /* VC_PageA.swift */; };
 		47AB7B3F2261ADFC009C3EE3 /* VC_PageB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B3E2261ADFC009C3EE3 /* VC_PageB.swift */; };
 		47AB7B412261AE05009C3EE3 /* VC_PageC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B402261AE05009C3EE3 /* VC_PageC.swift */; };
@@ -82,6 +83,7 @@
 		4789A49C22A63E4700FEA124 /* VM_PageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_PageList.swift; sourceTree = "<group>"; };
 		479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBarController.swift; sourceTree = "<group>"; };
 		479F397A22C9D90500AD6916 /* CD_TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBar.swift; sourceTree = "<group>"; };
+		47A8625C23ACBB4200F85C40 /* VM_Forms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_Forms.swift; sourceTree = "<group>"; };
 		47AB7B3C2261ADEF009C3EE3 /* VC_PageA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_PageA.swift; sourceTree = "<group>"; };
 		47AB7B3E2261ADFC009C3EE3 /* VC_PageB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_PageB.swift; sourceTree = "<group>"; };
 		47AB7B402261AE05009C3EE3 /* VC_PageC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_PageC.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		470C3DC1223BF024006292CE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				47A8625B23ACBB1600F85C40 /* Forms */,
 				4729C1C423517CBD006CAA75 /* Indexes */,
 				472676B9228A8909006AF7A7 /* BaseVC */,
 				47AB7B3B2261ADCF009C3EE3 /* Page */,
@@ -201,6 +204,14 @@
 			);
 			name = TabBar;
 			path = ../../../../CaamDau/TabBar;
+			sourceTree = "<group>";
+		};
+		47A8625B23ACBB1600F85C40 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				47A8625C23ACBB4200F85C40 /* VM_Forms.swift */,
+			);
+			path = Forms;
 			sourceTree = "<group>";
 		};
 		47AB7B3B2261ADCF009C3EE3 /* Page */ = {
@@ -424,6 +435,7 @@
 				470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */,
 				47AB7B3D2261ADEF009C3EE3 /* VC_PageA.swift in Sources */,
 				473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */,
+				47A8625D23ACBB4200F85C40 /* VM_Forms.swift in Sources */,
 				470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */,
 				472676BC228A890A006AF7A7 /* VM_BaseColle.swift in Sources */,
 				470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */,

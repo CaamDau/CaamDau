@@ -1,6 +1,16 @@
 //Created  on 2018/12/13  by LCD :https://github.com/liucaide .
 
+/***** 模块文档 *****
+*  Form 数据代理类
+* 将 TableView CollectionView 的 Delegate DataSource 设置为 CD_FormDelegateDataSource
+ 可实现Form模板化，无需 编写 Delegate DataSource 代码，
+ 特殊需求 可继承CD_FormDelegateDataSource，重写 Delegate DataSource 方法
+ 
+*/
+
+
 import Foundation
+import UIKit
 
 open class CD_FormDelegateDataSource: NSObject {
     open var form: CD_FormProtocol?
@@ -221,3 +231,6 @@ extension CD_FormCollectionViewDelegateDataSource: UICollectionViewDelegate, UIC
         }
     }
 }
+
+
+

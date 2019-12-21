@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
   end
   
   s.subspec 'Form' do |form|
-    form.source_files = 'CaamDau/Form/*.{swift}'
+    form.source_files = 'CaamDau/Form/**/*.{swift}'
   end
   
   s.subspec 'Timer' do |t|
@@ -124,12 +124,12 @@ Pod::Spec.new do |s|
   s.subspec 'ViewModel' do |vm|
     
     vm.subspec 'Core' do |core|
-      core.source_files = 'CaamDau/ViewModel/Core/*.{swift}'
+      core.source_files = 'CaamDau/ViewModel/Core/**/*.{swift}'
       core.dependency 'CaamDau/Core'
     end
     
     vm.subspec 'BaseUI' do |bui|
-      bui.source_files = 'CaamDau/ViewModel/BaseUI/*.{swift}'
+      bui.source_files = 'CaamDau/ViewModel/BaseUI/**/*.{swift}'
       bui.dependency 'CaamDau/ViewModel/Core'
       bui.dependency 'CaamDau/TopBar'
       bui.dependency 'CaamDau/MJRefresh'

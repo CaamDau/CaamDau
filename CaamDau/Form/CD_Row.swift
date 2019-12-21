@@ -506,6 +506,8 @@ extension CD_RowCellClass {
 //MARK:--- ------------------- 旧的 表单 协议 --------------------
 
 //MARK:---  单元格配置协议 ---
+/// 旧的协议，弃用
+@available(*, deprecated, message: "旧的协议，弃用")
 public protocol CD_RowProtocol {
     var tag:Int { get }
     var viewId: String { get }
@@ -526,6 +528,8 @@ public protocol CD_RowProtocol {
 }
 
 //MARK:---  数据源更新协议 ---
+/// 旧的协议，弃用
+@available(*, deprecated, message: "旧的协议，弃用")
 public protocol CD_RowUpdateProtocol {
     /// 数据源 关联类型
     associatedtype DataSource
@@ -536,6 +540,8 @@ public extension CD_RowUpdateProtocol{
 }
 
 //MARK:---  建设单元格模型 ---
+/// 旧的协议，弃用
+@available(*, deprecated, message: "旧的协议，弃用")
 public struct CD_Row<T> where T: UIView, T: CD_RowUpdateProtocol {
     public var data: T.DataSource
     public let id: String
@@ -625,7 +631,8 @@ extension CD_Row {
 
 
 //MARK:--- CD_RowClass 对象 ----------
-///CD_RowClass 对象，可用于如：实时输入类view 使数据源变更便捷，普通还是建议使用上面 struct CD_Row
+/// 旧的协议，弃用
+@available(*, deprecated, message: "旧的协议，弃用")
 public class CD_RowClass<T> where T: UIView, T: CD_RowUpdateProtocol {
     public var data: T.DataSource
     public let id: String
