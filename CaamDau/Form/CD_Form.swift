@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-public typealias CD_Form = [[CD_CellProtocol]]
+public typealias CD_Form = [CD_CellProtocol]
+public typealias CD_Forms = [[CD_CellProtocol]]
+
 public typealias CD_FormProtocol = (CD_FormDataSource & CD_FormDelegate)
 public typealias CD_FormRowAnimation = UITableView.RowAnimation
 
@@ -29,6 +31,9 @@ public protocol CD_FormDelegate {
     var _reloadRows:(([IndexPath],CD_FormRowAnimation)->Void)? { set get }
     /// 指定组刷新  Animation 适用于 TableView, CollectionView无效
     var _reloadSections:((IndexSet,CD_FormRowAnimation)->Void)? { set get }
+    
+    /// 空数据视图
+    // var _emptyView:((Any?) -> UIView?) { get }
 }
 
 
@@ -63,6 +68,10 @@ extension CD_FormDelegate {
         set(newValue) {
             
         }
+    }
+    
+    public var _emptyView:((Any?) -> UIView?)? {
+        get { nil }
     }
 }
 

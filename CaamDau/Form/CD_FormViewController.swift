@@ -12,13 +12,18 @@
 import UIKit
 
 //@IBDesignable
+/// ViewController 组装基类，里面包含一个 StackView
 open class CD_FormViewController: UIViewController {
     lazy var stackView: UIStackView = {
-        return UIStackView()
+        let v = UIStackView()
+        v.axis = .vertical
+        return v
     }()
-    
+    /// 头部安全区约束
     open var safeAreaTop:Bool = false
+    /// 尾部安全区约束
     open var safeAreaBottom:Bool = true
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -31,10 +36,16 @@ extension CD_FormViewController {
         self.view.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            stackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+            stackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        } else {
+            stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+            stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        }
         
         if !safeAreaTop {
+            
             stackView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         }else if #available(iOS 11.0, *) {
             stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -56,12 +67,16 @@ extension CD_FormViewController {
 
 
 //@IBDesignable
+/// TableViewController 组装基类，Form 协议 下的普通 MVVM 模式
+/// 继承自CD_FormViewController，StackView内包含一个 TableView
 open class CD_FormTableViewController: CD_FormViewController {
     open lazy var tableView: UITableView = {
         return UITableView(frame: CGRect.zero, style: style)
     }()
     open var style:UITableView.Style = .grouped
+    /// 数据源遵循 CD_FormProtocol 协议
     open var _form:CD_FormProtocol?
+    /// tableView Delegate DataSource 代理类
     open lazy var _delegateData:CD_FormTableViewDelegateDataSource? = {
         return CD_FormTableViewDelegateDataSource(_form)
     }()
@@ -86,6 +101,8 @@ extension CD_FormTableViewController {
 
 
 //@IBDesignable
+/// CollectionViewController 组装基类，Form 协议 下的普通 MVVM 模式
+/// 继承自CD_FormViewController，StackView内包含一个 CollectionView
 open class CD_FormCollectionViewController: CD_FormViewController {
     
     open lazy var flowLayout: UICollectionViewLayout = {
@@ -95,7 +112,9 @@ open class CD_FormCollectionViewController: CD_FormViewController {
     open lazy var collectionView: UICollectionView = {
         return UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     }()
+    /// 数据源遵循 CD_FormProtocol 协议
     open var _form:CD_FormProtocol?
+    /// CollectionView Delegate DataSource DelegateFlowLayout  代理类
     open lazy var _delegateData:CD_FormCollectionViewDelegateDataSource? = {
         return CD_FormCollectionViewDelegateDataSource(_form)
     }()
@@ -120,20 +139,31 @@ extension CD_FormCollectionViewController {
 
 
 
+
+
+
 //MARK:--- 如果你依然钟情于MVC模式，那么这个基类将适用 ----------
+/// ViewController 组装基类，普通 MVC 模式
+/// 内含两个排版 Form 数据源，
+/// 已实现基本 TableViewDelegate/DataSource、CollectionViewDelegate/DataSource/DelegateFlowLayout
+/// 继承 CD_FormBaseViewController 的基础上课重写，并可实现剩余协议，获得剩余功能
 extension CD_FormBaseViewController {
-    struct DataModel {
+    public struct DataModel {
         /// 单元格数据组配置
-        var _forms:[[CD_CellProtocol]] = []
+        public var _forms:CD_Forms = []
         /// 页首数据组配置
-        var _formHeaders:[CD_CellProtocol] = []
+        public var _formHeaders:CD_Form = []
         /// 页尾数据组配置
-        var _formFooters:[CD_CellProtocol] = []
+        public var _formFooters:CD_Form = []
     }
 }
 open class CD_FormBaseViewController: UIViewController {
-    var tableDatas:DataModel?
-    var collectionDatas:DataModel?
+    /// TableView 排版组装数据源
+    public var tableDatas:DataModel?
+    /// CollectionView 排版组装数据源
+    public var collectionDatas:DataModel?
+    
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -215,6 +245,8 @@ extension CD_FormBaseViewController: UITableViewDelegate, UITableViewDataSource 
         return v
     }
 }
+
+
 extension CD_FormBaseViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return collectionDatas?._forms.count ?? 0

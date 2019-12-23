@@ -28,16 +28,18 @@ open class CD_FormTableViewDelegateDataSource: CD_FormDelegateDataSource {
 
 extension CD_FormTableViewDelegateDataSource {
     @objc open func makeReloadData(_ tableView:UITableView) {
-        form?._reloadData = {[weak tableView] in
+        form?._reloadData = {[weak tableView, weak self] in
             tableView?.reloadData()
-            
+            //tableView?.backgroundView = self?.form?._emptyView?(tableView) ?? nil
         }
-        form?._reloadRows = { [weak tableView] (indexPath, animation) in
+        form?._reloadRows = { [weak tableView, weak self] (indexPath, animation) in
             tableView?.reloadRows(at: indexPath, with: animation)
+            //tableView?.backgroundView = self?.form?._emptyView?(tableView) ?? nil
             
         }
-        form?._reloadSections = { [weak tableView] (sections, animation) in
+        form?._reloadSections = { [weak tableView, weak self] (sections, animation) in
             tableView?.reloadSections(sections, with: animation)
+            //tableView?.backgroundView = self?.form?._emptyView?(tableView) ?? nil
         }
     }
 }
@@ -127,16 +129,19 @@ open class CD_FormCollectionViewDelegateDataSource: CD_FormDelegateDataSource {
 }
 extension CD_FormCollectionViewDelegateDataSource {
     @objc open func makeReloadData(_ collectionView:UICollectionView) {
-        form?._reloadData = {[weak collectionView] in
+        form?._reloadData = {[weak collectionView, weak self] in
             collectionView?.reloadData()
+            //collectionView?.backgroundView = self?.form?._emptyView?(collectionView) ?? nil
         }
         
-        form?._reloadRows = { [weak collectionView] (indexPath, animation) in
+        form?._reloadRows = { [weak collectionView, weak self] (indexPath, animation) in
             collectionView?.reloadItems(at: indexPath)
+            //collectionView?.backgroundView = self?.form?._emptyView?(collectionView) ?? nil
         }
         
-        form?._reloadSections = { [weak collectionView] (sections, animation) in
+        form?._reloadSections = { [weak collectionView, weak self] (sections, animation) in
             collectionView?.reloadSections(sections)
+            //collectionView?.backgroundView = self?.form?._emptyView?(collectionView) ?? nil
         }
     }
 }
