@@ -26,12 +26,12 @@ public class CD_TextField: UIView {
         self.init(frame: CGRect.zero)
     }
     //MARK:--- Color ----------
-    @IBInspectable open var _colorLine:UIColor = .lightGray {
+    @IBInspectable open var _colorLine:UIColor = .cd_hex("d3", dark:"f0") {
         didSet{
             updateLineColor()
         }
     }
-    @IBInspectable open var _colorPlaceholder:UIColor = .lightGray {
+    @IBInspectable open var _colorPlaceholder:UIColor = .cd_hex("d3", dark:"f0") {
         didSet{
             btn_placeholder.cd.text(_colorPlaceholder, .normal)
         }
@@ -124,7 +124,7 @@ public class CD_TextField: UIView {
         return UIButton().cd
             .text(_colorPlaceholder, .normal)
             .text(_font)
-            .text(UIColor.lightGray)
+            .text(UIColor.cd_hex("d3", dark: "f0"))
             .contentAlignment(horizontal: _placeholderAlignment)
             .isUser(false)
             .build

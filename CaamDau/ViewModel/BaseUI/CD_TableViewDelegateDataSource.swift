@@ -23,18 +23,21 @@ open class CD_TableViewDelegateDataSource: CD_FormTableViewDelegateDataSource {
         vm?._reloadData = {[weak self, weak tableView] in
             tableView?.reloadData()
             tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+            tableView?.backgroundView = self?.vm?._emptyView?(tableView) ?? nil
         }
         
         vm?._reloadRows = { [weak self, weak tableView] (indexPath, animation) in
             tableView?.reloadRows(at: indexPath, with: animation)
             tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+            tableView?.backgroundView = self?.vm?._emptyView?(tableView) ?? nil
         }
         
         vm?._reloadSections = { [weak self, weak tableView] (sections, animation) in
             tableView?.reloadSections(sections, with: animation)
             tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+            tableView?.backgroundView = self?.vm?._emptyView?(tableView) ?? nil
         }
-        
+        tableView.backgroundView = self.vm?._emptyView?(tableView) ?? nil
         guard let refresh = vm?._mjRefresh else {
             return
         }

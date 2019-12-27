@@ -203,7 +203,7 @@ class CD_BaseCollectionViewController: CD_FormCollectionViewController {
                 ]
         )
             .register(vm?._collectionRegisters ?? [])
-            .background(UIColor.white)
+            .background(UIColor.cd_hex("f", dark: "0"))
             .delegate(delegateData)
             .dataSource(delegateData)
         topBar.delegate = self

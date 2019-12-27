@@ -34,73 +34,147 @@ public extension Config {
         private static var colors:[String : String] = {
             return configPlist["color"] as? [String : String] ?? [:]
         }()
+        private static var colorDarks:[String : String] = {
+            return configPlist["colorDark"] as? [String : String] ?? [:]
+        }()
+        
+        private static func colorFit(_ name:String, _ place:String = "f0") -> UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor.init { (tr) -> UIColor in
+                    switch tr.userInterfaceStyle {
+                    case .light:
+                        return UIColor.cd_hex(colors[name] ?? place)
+                    case .dark:
+                        return UIColor.cd_hex(colorDarks[name] ?? place)
+                    default:
+                        return UIColor.cd_hex(colors[name] ?? place)
+                    }
+                }
+            } else {
+                return UIColor.cd_hex(colors[name] ?? place)
+            }
+        }
+        
+        
+        public static var navigation0:UIColor {
+            return colorFit("navigation0")
+        }
+        
+        public static var navigation1:UIColor {
+            return colorFit("navigation1")
+        }
+        
+        public static var tabbar0:UIColor {
+            return colorFit("tabbar0")
+        }
+        
+        public static var tabbar1:UIColor {
+            return colorFit("tabbar1")
+        }
         
         public static var main_1:UIColor {
-            return UIColor.cd_hex(colors["main_1"] ?? "#f0")
-        }
-        public static var main_2:UIColor {
-            return UIColor.cd_hex(colors["main_2"] ?? "#f0")
-        }
-        public static var main_3:UIColor {
-            return UIColor.cd_hex(colors["main_3"] ?? "#f0")
-        }
-        public static var main_4:UIColor {
-            return UIColor.cd_hex(colors["main_4"] ?? "#f0")
-        }
-        public static var main_5:UIColor {
-            return UIColor.cd_hex(colors["main_5"] ?? "#f0")
-        }
-        public static var btnBgSelected:UIColor {
-            return UIColor.cd_hex(colors["btnBgSelected"] ?? "#f0")
-        }
-        public static var btnBgNormal:UIColor {
-            return UIColor.cd_hex(colors["btnBgNormal"] ?? "#f0")
-        }
-        public static var btnBgEnabledNo:UIColor {
-            return UIColor.cd_hex(colors["btnBgEnabledNo"] ?? "#f0")
-        }
-        public static var btnBgEnabledYes:UIColor {
-            return UIColor.cd_hex(colors["btnBgEnabledYes"] ?? "#f0")
-        }
-        public static var btnBgHighlighted:UIColor {
-            return UIColor.cd_hex(colors["btnBgHighlighted"] ?? "#f0")
-        }
-        public static var txt_1:UIColor {
-            return UIColor.cd_hex(colors["txt_1"] ?? "#f0")
-        }
-        public static var txt_2:UIColor {
-            return UIColor.cd_hex(colors["txt_2"] ?? "#f0")
-        }
-        public static var txt_3:UIColor {
-            return UIColor.cd_hex(colors["txt_3"] ?? "#f0")
-        }
-        public static var txt_4:UIColor {
-            return UIColor.cd_hex(colors["txt_4"] ?? "#f0")
-        }
-        public static var txt_5:UIColor {
-            return UIColor.cd_hex(colors["txt_5"] ?? "#f0")
-        }
-        public static var bg:UIColor {
-            return UIColor.cd_hex(colors["bg"] ?? "#f0")
-        }
-        public static var line_1:UIColor {
-            return UIColor.cd_hex(colors["line_1"] ?? "#f0")
-        }
-        public static var line_2:UIColor {
-            return UIColor.cd_hex(colors["line_2"] ?? "#f0")
-        }
-        public static var warning:UIColor {
-            return UIColor.cd_hex(colors["warning"] ?? "#f0")
-        }
-        public static var error:UIColor {
-            return UIColor.cd_hex(colors["error"] ?? "#f0")
-        }
-        public static var shadow:UIColor {
-            return UIColor.cd_hex(colors["shadow"] ?? "#f0")
+            return colorFit("main_1")
         }
         
-        public static func hex(_ str:String) ->UIColor {
-            return UIColor.cd_hex(str)
+        public static var main_2:UIColor {
+            return colorFit("main_2")
+        }
+        
+        public static var main_3:UIColor {
+            return colorFit("main_3")
+        }
+        
+        public static var main_4:UIColor {
+            return colorFit("main_4")
+        }
+        
+        public static var main_5:UIColor {
+            return colorFit("main_5")
+        }
+        
+        public static var normal:UIColor {
+            return colorFit("normal")
+        }
+        
+        public static var selected:UIColor {
+            return colorFit("selected")
+        }
+        
+        public static var highlighted:UIColor {
+            return colorFit("highlighted")
+        }
+        
+        public static var enabledTrue:UIColor {
+            return colorFit("enabledTrue")
+        }
+        
+        public static var enabledFalse:UIColor {
+            return colorFit("enabledFalse")
+        }
+        
+        public static var txt_1:UIColor {
+            return colorFit("txt_1")
+        }
+        
+        public static var txt_2:UIColor {
+            return colorFit("txt_2")
+        }
+        
+        public static var txt_3:UIColor {
+            return colorFit("txt_3")
+        }
+        
+        public static var txt_4:UIColor {
+            return colorFit("txt_4")
+        }
+        
+        public static var txt_5:UIColor {
+            return colorFit("txt_5")
+        }
+        
+        public static var price:UIColor {
+            return colorFit("price", "#ff00")
+        }
+        
+        public static var bg:UIColor {
+            return colorFit("bg")
+        }
+        
+        public static var line_1:UIColor {
+            return colorFit("line_1")
+        }
+        
+        public static var line_2:UIColor {
+            return colorFit("line_2")
+        }
+        
+        public static var warning:UIColor {
+            return colorFit("warning")
+        }
+        
+        public static var error:UIColor {
+            return colorFit("error")
+        }
+        
+        public static var shadow:UIColor {
+            return colorFit("shadow")
+        }
+        
+        public static func hex(_ str:String, dark:String? = nil) ->UIColor {
+            if #available(iOS 13.0, *) {
+                return UIColor.init { (tr) -> UIColor in
+                    switch tr.userInterfaceStyle {
+                    case .light:
+                        return UIColor.cd_hex(str)
+                    case .dark:
+                        return UIColor.cd_hex(dark ?? str)
+                    default:
+                        return UIColor.cd_hex(str)
+                    }
+                }
+            } else {
+                return UIColor.cd_hex(str)
+            }
         }
     }
 }
@@ -125,35 +199,35 @@ public extension Config {
             return CGFloat(fonts["fitSizeiPhone414"] as? Float ?? 0)
         }
         
-        public static var name:String {
-            return fonts["name"] as? String ?? ""
+        public static var defaultt:String {
+            return fonts["default"] as? String ?? ""
         }
-        public static var nameMedium:String {
-            return fonts["nameMedium"] as? String ?? ""
+        public static var medium:String {
+            return fonts["medium"] as? String ?? ""
         }
-        public static var nameBold:String {
-            return fonts["nameBold"] as? String ?? ""
+        public static var bold:String {
+            return fonts["bold"] as? String ?? ""
         }
-        public static var nameThin:String {
-            return fonts["nameThin"] as? String ?? ""
+        public static var thin:String {
+            return fonts["thin"] as? String ?? ""
         }
-        public static var nameRegular:String {
-            return fonts["nameRegular"] as? String ?? ""
+        public static var regular:String {
+            return fonts["regular"] as? String ?? ""
         }
-        public static var nameSemibold:String {
-            return fonts["nameSemibold"] as? String ?? ""
+        public static var semibold:String {
+            return fonts["semibold"] as? String ?? ""
         }
-        public static var nameUltralight:String {
-            return fonts["nameUltralight"] as? String ?? ""
+        public static var ultralight:String {
+            return fonts["ultralight"] as? String ?? ""
         }
-        public static var nameLight:String {
-            return fonts["nameLight"] as? String ?? ""
+        public static var light:String {
+            return fonts["light"] as? String ?? ""
         }
-        public static var nameHeavy:String {
-            return fonts["nameHeavy"] as? String ?? ""
+        public static var heavy:String {
+            return fonts["heavy"] as? String ?? ""
         }
-        public static var nameBlack:String {
-            return fonts["nameBlack"] as? String ?? ""
+        public static var black:String {
+            return fonts["black"] as? String ?? ""
         }
         /// 此方法需要在App启动时 运行 设置，如果需要更高级的管理，可自行扩展
         public static func setFontFitSizeRatio(){
@@ -178,52 +252,52 @@ public extension Config {
         
         public static func font(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size)
+            let font = UIFont(name: defaultt, size: size) ?? UIFont.systemFont(ofSize: size)
             return fit ? font.cd_fit() : font
         }
         public static func fontMedium(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameMedium, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.medium)
+            let font = UIFont(name: medium, size: size) ?? UIFont.systemFont(ofSize: size, weight: .medium)
             return fit ? font.cd_fit() : font
         }
         public static func fontBold(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameBold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.bold)
+            let font = UIFont(name: bold, size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
             return fit ? font.cd_fit() : font
         }
         public static func fontThin(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameThin, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.thin)
+            let font = UIFont(name: thin, size: size) ?? UIFont.systemFont(ofSize: size, weight: .thin)
             return fit ? font.cd_fit() : font
         }
         public static func fontRegular(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameRegular, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.regular)
+            let font = UIFont(name: regular, size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
             return fit ? font.cd_fit() : font
         }
         public static func fontSemibold(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameSemibold, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
+            let font = UIFont(name: semibold, size: size) ?? UIFont.systemFont(ofSize: size, weight: .semibold)
             return fit ? font.cd_fit() : font
         }
         public static func fontUltralight(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameUltralight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.ultraLight)
+            let font = UIFont(name: ultralight, size: size) ?? UIFont.systemFont(ofSize: size, weight: .ultraLight)
             return fit ? font.cd_fit() : font
         }
         public static func fontLight(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameLight, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
+            let font = UIFont(name: light, size: size) ?? UIFont.systemFont(ofSize: size, weight: .light)
             return fit ? font.cd_fit() : font
         }
         public static func fontHeavy(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameHeavy, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.heavy)
+            let font = UIFont(name: heavy, size: size) ?? UIFont.systemFont(ofSize: size, weight: .heavy)
             return fit ? font.cd_fit() : font
         }
         public static func fontBlack(_ size:CGFloat, fit:Bool = false) -> UIFont {
             _ = setFit
-            let font = UIFont(name: nameBlack, size: size) ?? UIFont.systemFont(ofSize: size, weight: UIFont.Weight.black)
+            let font = UIFont(name: black, size: size) ?? UIFont.systemFont(ofSize: size, weight: .black)
             return fit ? font.cd_fit() : font
         }
     }
@@ -266,13 +340,6 @@ public extension Config {
         private static var placeholderBgSmall:String {
             return placeholders["imgSmall"] ?? ""
         }
-        private static var placeholderBgBigRectangle:String {
-            return placeholders["imgBigRectangle"] ?? ""
-        }
-        private static var placeholderBgSmallRectangle:String {
-            return placeholders["imgSmallRectangle"] ?? ""
-        }
-        
         
         public static var iconBig:UIImage = {
             return UIImage.cd_bundle(placeholderUserIconBig, forClass:Config.Help.self, from:"Config")
@@ -286,12 +353,6 @@ public extension Config {
         
         public static var imgSmall:UIImage = {
             return UIImage.cd_bundle(placeholderBgSmall, forClass:Config.Help.self, from:"Config")
-        }()
-        public static var imgBigRectangle:UIImage = {
-            return UIImage.cd_bundle(placeholderBgBigRectangle, forClass:Config.Help.self, from:"Config")
-        }()
-        public static var imgSmallRectangle:UIImage = {
-            return UIImage.cd_bundle(placeholderBgSmallRectangle, forClass:Config.Help.self, from:"Config")
         }()
     }
 }

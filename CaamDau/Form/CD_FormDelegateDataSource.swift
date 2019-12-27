@@ -131,17 +131,14 @@ extension CD_FormCollectionViewDelegateDataSource {
     @objc open func makeReloadData(_ collectionView:UICollectionView) {
         form?._reloadData = {[weak collectionView, weak self] in
             collectionView?.reloadData()
-            //collectionView?.backgroundView = self?.form?._emptyView?(collectionView) ?? nil
         }
         
         form?._reloadRows = { [weak collectionView, weak self] (indexPath, animation) in
             collectionView?.reloadItems(at: indexPath)
-            //collectionView?.backgroundView = self?.form?._emptyView?(collectionView) ?? nil
         }
         
         form?._reloadSections = { [weak collectionView, weak self] (sections, animation) in
             collectionView?.reloadSections(sections)
-            //collectionView?.backgroundView = self?.form?._emptyView?(collectionView) ?? nil
         }
     }
 }

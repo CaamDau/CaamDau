@@ -46,11 +46,11 @@ public class CD_TableViewCellBase: UITableViewCell{
     public func update(dataSource data: CD_TableViewCellBase.Model) {
         self.accessoryType = data.accType
         self.textLabel?.text = data.title ?? ""
-        self.textLabel?.textColor = data.titleColor ?? UIColor.black
+        self.textLabel?.textColor = data.titleColor ?? UIColor.cd_hex("0", dark: "f")
         self.textLabel?.font = data.titleFont ?? UIFont.systemFont(ofSize: 14)
         
         self.detailTextLabel?.text = data.detail ?? ""
-        self.detailTextLabel?.textColor = data.detailColor ?? UIColor.lightGray
+        self.detailTextLabel?.textColor = data.detailColor ?? UIColor.cd_hex("d3", dark:"f0")
         self.detailTextLabel?.font = data.detailFont ?? UIFont.systemFont(ofSize: 12)
         
         if let img = data.icon {

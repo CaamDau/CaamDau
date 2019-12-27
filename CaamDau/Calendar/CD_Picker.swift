@@ -62,7 +62,7 @@ extension CD_Picker: UIPickerViewDelegate, UIPickerViewDataSource {
     }*/
     public func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let model = rows[component][row]
-        let ats = NSAttributedString(string: model.title, attributes: [.foregroundColor : model.isEnabled ? UIColor.darkText : UIColor.lightGray])
+        let ats = NSAttributedString(string: model.title, attributes: [.foregroundColor : model.isEnabled ? UIColor.cd_hex("3", dark:"f") : UIColor.cd_hex("d3", dark:"f0")])
         return ats
     }
     

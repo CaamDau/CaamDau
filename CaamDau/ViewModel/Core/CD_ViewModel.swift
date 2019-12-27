@@ -22,6 +22,10 @@ public protocol CD_ViewModelDataSource: CD_FormProtocol {
     @available(*, deprecated, message: "旧的，弃用")
     var _formFooter:[CD_RowProtocol] { get }
     
+    
+    /// 空数据视图
+    var _emptyView:((Any?) -> UIView?)? { get }
+    
     func requestData(_ refresh:Bool)
 }
 
@@ -33,6 +37,8 @@ extension CD_ViewModelDataSource {
     public var _formHeader:[CD_RowProtocol] { get{return []} }
     @available(*, deprecated, message: "旧的，弃用")
     public var _formFooter:[CD_RowProtocol] { get{return []} }
+    
+    public var _emptyView:((Any?) -> UIView?)? { get { nil } }
     
     public func requestData(_ refresh:Bool) {}
 }

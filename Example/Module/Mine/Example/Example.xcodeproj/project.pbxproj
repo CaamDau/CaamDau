@@ -45,6 +45,7 @@
 		47AB7B432261AE0F009C3EE3 /* VC_PageD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B422261AE0F009C3EE3 /* VC_PageD.swift */; };
 		47AB7B452261AEBF009C3EE3 /* VC_Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AB7B442261AEBF009C3EE3 /* VC_Page.swift */; };
 		47AB7B472261CAED009C3EE3 /* PageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AB7B462261CAED009C3EE3 /* PageStoryboard.storyboard */; };
+		47CB59DC23B34A9A00F8147A /* VM_FormsTableViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CB59DB23B34A9A00F8147A /* VM_FormsTableViewA.swift */; };
 		47E8E1FF23521C4000E60CD2 /* CD_Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */; };
 		47FC34E02238076F0022174D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34DF2238076F0022174D /* AppDelegate.swift */; };
 		47FC34E2223807700022174D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34E1223807700022174D /* ViewController.swift */; };
@@ -92,6 +93,8 @@
 		47AB7B422261AE0F009C3EE3 /* VC_PageD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_PageD.swift; sourceTree = "<group>"; };
 		47AB7B442261AEBF009C3EE3 /* VC_Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Page.swift; sourceTree = "<group>"; };
 		47AB7B462261CAED009C3EE3 /* PageStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PageStoryboard.storyboard; sourceTree = "<group>"; };
+		47CB59DB23B34A9A00F8147A /* VM_FormsTableViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_FormsTableViewA.swift; sourceTree = "<group>"; };
+		47CB59DD23B351B200F8147A /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_Localize.swift; sourceTree = "<group>"; };
 		47FC34DC2238076F0022174D /* CaamDau_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaamDau_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FC34DF2238076F0022174D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				47A8625C23ACBB4200F85C40 /* VM_Forms.swift */,
+				47CB59DB23B34A9A00F8147A /* VM_FormsTableViewA.swift */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -282,6 +286,7 @@
 				47FC34E6223807710022174D /* Assets.xcassets */,
 				47FC34E8223807710022174D /* LaunchScreen.storyboard */,
 				47FC34EB223807710022174D /* Info.plist */,
+				47CB59DD23B351B200F8147A /* Example-Bridging-Header.h */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				TargetAttributes = {
 					47FC34DB2238076F0022174D = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -443,6 +449,7 @@
 				47414AC9228D611B004C78CC /* Cell_HUDConfig.swift in Sources */,
 				47AB7B3F2261ADFC009C3EE3 /* VC_PageB.swift in Sources */,
 				4721BA1B223D0236007C3E2A /* VM_MineCollection.swift in Sources */,
+				47CB59DC23B34A9A00F8147A /* VM_FormsTableViewA.swift in Sources */,
 				479F397B22C9D90600AD6916 /* CD_TabBar.swift in Sources */,
 				470C3DC9223BF025006292CE /* VC_Mine.swift in Sources */,
 				47AB7B3D2261ADEF009C3EE3 /* VC_PageA.swift in Sources */,
@@ -604,6 +611,7 @@
 			baseConfigurationReference = B597693570CC630FBB44E419 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6UCH8TBL2D;
 				INFOPLIST_FILE = Example/Info.plist;
@@ -614,6 +622,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.liucaide.CaamDauExample;
 				PRODUCT_NAME = CaamDau_Example;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -624,6 +634,7 @@
 			baseConfigurationReference = 11C7E6571DE563F6433941AC /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6UCH8TBL2D;
 				INFOPLIST_FILE = Example/Info.plist;
@@ -634,6 +645,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.liucaide.CaamDauExample;
 				PRODUCT_NAME = CaamDau_Example;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

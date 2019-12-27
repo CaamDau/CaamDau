@@ -55,9 +55,9 @@ extension CD_IndexesView{
     
     public struct HUD {
         public init(icon:UIImage? = nil,
-                    colorBg:UIColor = UIColor.black,
+                    colorBg:UIColor = UIColor.cd_hex("0", dark: "f"),
                     alphaMax:CGFloat = 0.3,
-                    color:UIColor = UIColor.white,
+                    color:UIColor = UIColor.cd_hex("f", dark: "0"),
                     font:UIFont = UIFont.boldSystemFont(ofSize: 40),
                     size:CGSize = CGSize(w: 60, h: 50),
                     cornerRadius:CGFloat = 6,

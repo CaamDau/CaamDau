@@ -78,6 +78,7 @@ extension VM_BaseColle: CD_ViewModelTopBarDelegater {}
 
 extension VM_BaseColle: CD_ViewModelDataSource {
     
+    
     func requestData(_ refresh: Bool) {
         
         for item in 0..<10 {

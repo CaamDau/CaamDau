@@ -44,8 +44,8 @@
 		476840F1233E0132000080E9 /* MVVM.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MVVM.playground; sourceTree = "<group>"; };
 		476840F2233E0132000080E9 /* Array.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Array.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		476840F3233E0132000080E9 /* CountDown.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CountDown.playground; sourceTree = "<group>"; };
-		476840F4233E0132000080E9 /* UserDefaults.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = UserDefaults.playground; sourceTree = "<group>"; };
-		476840F5233E0132000080E9 /* ViewController.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewController.playground; sourceTree = "<group>"; };
+		476840F4233E0132000080E9 /* UserDefaults.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = UserDefaults.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		476840F5233E0132000080E9 /* ViewController.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewController.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		476840F6233E0132000080E9 /* SwiftyJSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftyJSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		476840F7233E0132000080E9 /* Calendar.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Calendar.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		476840F8233E0132000080E9 /* Codable.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Codable.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };

@@ -76,7 +76,7 @@ public extension CaamDau where Base: MJRefreshBackStateFooter {
     @discardableResult
     func setTitle(isHidden:Bool = true,
                   font:UIFont = UIFont.systemFont(ofSize: 14),
-                  color:UIColor = UIColor.lightGray,
+                  color:UIColor = UIColor.cd_hex("d3", dark: "f0"),
                   inset:CGFloat = 0,
                   title:[CD_MJRefreshModel.TitlesEnum] = [.idle(""),
                                                           .pulling(""),
@@ -115,7 +115,7 @@ public extension CaamDau where Base: MJRefreshAutoStateFooter {
     @discardableResult
     func setTitle(isHidden:Bool = true,
                   font:UIFont = UIFont.systemFont(ofSize: 14),
-                  color:UIColor = UIColor.lightGray,
+                  color:UIColor = UIColor.cd_hex("d3", dark: "f0"),
                   inset:CGFloat = 0,
                   title:[CD_MJRefreshModel.TitlesEnum] = [.idle(""),
                                                           .pulling(""),

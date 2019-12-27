@@ -141,6 +141,9 @@ extension CD {
     }
 }
 
+
+
+
 public struct CD {
     public static var window:UIWindow? {
         return UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow ?? nil
@@ -337,4 +340,5 @@ public struct CD {
         let cla:AnyClass? = NSClassFromString(str)
         return cla
     }
+    
 }

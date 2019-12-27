@@ -35,7 +35,7 @@ public extension CaamDau where Base: MJRefreshStateHeader {
     @discardableResult
     func setTitle(isHidden:Bool = true,
                   font:UIFont = UIFont.systemFont(ofSize: 14),
-                  color:UIColor = UIColor.lightGray,
+                  color:UIColor = UIColor.cd_hex("d3", dark: "f0"),
                   inset:CGFloat = 0,
                   title:[CD_MJRefreshModel.TitlesEnum] = [.idle(""),
                                                           .pulling(""),
@@ -72,7 +72,7 @@ public extension CaamDau where Base: MJRefreshStateHeader {
     @discardableResult
     func setTime(isHidden:Bool = true,
                  font:UIFont = UIFont.systemFont(ofSize: 12),
-                 color:UIColor = UIColor.lightGray,
+                 color:UIColor = UIColor.cd_hex("d3", dark: "f0"),
                  timeText:((Date)->(String))? = nil
         ) -> CaamDau
     {

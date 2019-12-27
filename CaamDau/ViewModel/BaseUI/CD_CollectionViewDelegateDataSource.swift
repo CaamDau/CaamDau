@@ -24,18 +24,21 @@ open class CD_CollectionViewDelegateDataSource: CD_FormCollectionViewDelegateDat
         vm?._reloadData = {[weak collectionView, weak self] in
             collectionView?.reloadData()
             collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+            collectionView?.backgroundView = self?.vm?._emptyView?(collectionView) ?? nil
         }
         
         vm?._reloadRows = { [weak collectionView, weak self] (indexPath, animation) in
             collectionView?.reloadItems(at: indexPath)
             collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+            collectionView?.backgroundView = self?.vm?._emptyView?(collectionView) ?? nil
         }
         
         vm?._reloadSections = { [weak collectionView, weak self] (sections, animation) in
             collectionView?.reloadSections(sections)
             collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+            collectionView?.backgroundView = self?.vm?._emptyView?(collectionView) ?? nil
         }
-        
+        collectionView.backgroundView = self.vm?._emptyView?(collectionView) ?? nil
         guard let refresh = vm?._mjRefresh else {
             return
         }
@@ -123,7 +126,7 @@ open class CD_CollectionViewController: CD_FormCollectionViewController {
                 ]
         )
             .register(vm?._collectionRegisters ?? [])
-            .background(UIColor.white)
+            .background(UIColor.cd_hex("f", dark: "0"))
         super.makeCollectionView()
         self.cd.navigationBar(hidden: true)
         self.stackView.insertArrangedSubview(topBar, at: 0)

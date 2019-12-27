@@ -31,7 +31,7 @@ struct VM_Forms {
     mutating func makeForm() {
         do{
             let row = CD_RowCell<CD_TableViewCellBase>.init(data: CD_TableViewCellBase.Model(title: "TableView"), frame: CGRect(h:45)) {
-                
+                R_FormsTableViewA.push()
             }
             forms += [[row]]
         }

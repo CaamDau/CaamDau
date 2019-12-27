@@ -65,7 +65,7 @@ class Cell_MineForm: UITableViewCell {
         
         self.btn_github.cd
             .text(Config.font.fontRegular(15).cd_fit())
-            .background(Config.color.main_3)
+            .background(Config.color.normal)
     }
     var callBack: CD_RowCallBack?
     @IBAction func buttonClick(_ sender: Any) {

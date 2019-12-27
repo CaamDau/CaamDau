@@ -78,7 +78,7 @@ public class CD_DatePickerAlert: UIViewController {
     func makeAlertUI() {
         view_bg.cd
             .corner(12, clips: true)
-            .background(.white)
+            .background(.cd_hex("f", dark: "0"))
             .add(toSuperview: self.view)
             .then({
                 $0.translatesAutoresizingMaskIntoConstraints = false
@@ -161,7 +161,7 @@ public class CD_DatePickerAlert: UIViewController {
     func makeSheetUI() {
         view_bg.cd
             .clips(true)
-            .background(.white)
+            .background(.cd_hex("f", dark: "0"))
             .add(toSuperview: self.view)
             .then({
                 $0.translatesAutoresizingMaskIntoConstraints = false

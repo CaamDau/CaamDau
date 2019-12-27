@@ -13,7 +13,7 @@ import UIKit
 public extension CD_PageControlBuoy {
     struct Model {
         public var frame:CGRect = CGRect(x: 0, y: 0, w: CD_Page.Size.auto.rawValue, h: 3)
-        public var color:UIColor = UIColor.black
+        public var color:UIColor = UIColor.cd_hex("0", dark: "f")
         public var radiusClips:(CGFloat,Bool) = (1.5,true)
         public var style:Style = .line(.bottom(0))
         ///

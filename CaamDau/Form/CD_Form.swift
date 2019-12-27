@@ -31,9 +31,6 @@ public protocol CD_FormDelegate {
     var _reloadRows:(([IndexPath],CD_FormRowAnimation)->Void)? { set get }
     /// 指定组刷新  Animation 适用于 TableView, CollectionView无效
     var _reloadSections:((IndexSet,CD_FormRowAnimation)->Void)? { set get }
-    
-    /// 空数据视图
-    // var _emptyView:((Any?) -> UIView?) { get }
 }
 
 
@@ -70,9 +67,6 @@ extension CD_FormDelegate {
         }
     }
     
-    public var _emptyView:((Any?) -> UIView?)? {
-        get { nil }
-    }
 }
 
 

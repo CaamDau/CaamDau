@@ -26,7 +26,7 @@ open class CD_FormViewController: UIViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .cd_hex("f", dark: "0")
         makeStackView()
     }
 }

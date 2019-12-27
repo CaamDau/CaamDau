@@ -4,38 +4,48 @@
 <dict>
 	<key>color</key>
 	<dict>
+		<key>navigation0</key>
+		<string>0088FE</string>
+		<key>navigation1</key>
+		<string>00AEFF</string>
+		<key>tabbar0</key>
+		<string>00A6FF</string>
+		<key>tabbar1</key>
+		<string>00A6FF</string>
 		<key>main_1</key>
-		<string>FC511F</string>
+		<string>00A6FF</string>
 		<key>main_2</key>
-		<string>FC981F</string>
+		<string>FF3B30</string>
 		<key>main_3</key>
-		<string>1C9DFF</string>
+		<string>C1</string>
 		<key>main_4</key>
-		<string>1C9DFF</string>
+		<string>FF3A33</string>
 		<key>main_5</key>
-		<string>3CCCFF</string>
-		<key>btnBgSelected</key>
-		<string>1C9DFF</string>
-		<key>btnBgNormal</key>
-		<string>1C9DFF</string>
-		<key>btnBgEnabledNo</key>
+		<string>FF5F03</string>
+		<key>selected</key>
+		<string>00A6FF</string>
+		<key>normal</key>
+		<string>00A6FF</string>
+		<key>enabledFalse</key>
 		<string>DE</string>
-		<key>btnBgEnabledYes</key>
-		<string>1C9DFF</string>
-		<key>btnBgHighlighted</key>
-		<string>1C9DFF</string>
+		<key>enabledTrue</key>
+		<string>00A6FF</string>
+		<key>highlighted</key>
+		<string>00A6FF</string>
 		<key>txt_1</key>
-		<string>#3</string>
+		<string>3</string>
 		<key>txt_2</key>
-		<string>#6</string>
+		<string>6</string>
 		<key>txt_3</key>
-		<string>#9</string>
+		<string>9</string>
 		<key>txt_4</key>
-		<string>#1C9DFF</string>
+		<string>A3</string>
 		<key>txt_5</key>
-		<string>#d4</string>
+		<string>BDC3C7</string>
+		<key>price</key>
+		<string>FF3B30</string>
 		<key>bg</key>
-		<string>#f2</string>
+		<string>#f5</string>
 		<key>line_1</key>
 		<string>#e5</string>
 		<key>line_2</key>
@@ -47,10 +57,65 @@
 		<key>shadow</key>
 		<string>#ededed</string>
 	</dict>
+	<key>colorDark</key>
+	<dict>
+		<key>navigation0</key>
+		<string>0</string>
+		<key>navigation1</key>
+		<string>3</string>
+		<key>tabbar0</key>
+		<string>00A6FF</string>
+		<key>tabbar1</key>
+		<string>00A6FF</string>
+		<key>main_1</key>
+		<string>00A6FF</string>
+		<key>main_2</key>
+		<string>FF3B30</string>
+		<key>main_3</key>
+		<string>C1</string>
+		<key>main_4</key>
+		<string>FF3A33</string>
+		<key>main_5</key>
+		<string>FF5F03</string>
+		<key>selected</key>
+		<string>00A6FF</string>
+		<key>normal</key>
+		<string>00A6FF</string>
+		<key>enabledFalse</key>
+		<string>DE</string>
+		<key>enabledTrue</key>
+		<string>00A6FF</string>
+		<key>highlighted</key>
+		<string>00A6FF</string>
+		<key>txt_1</key>
+		<string>f</string>
+		<key>txt_2</key>
+		<string>f5</string>
+		<key>txt_3</key>
+		<string>f0</string>
+		<key>txt_4</key>
+		<string>A3</string>
+		<key>txt_5</key>
+		<string>BDC3C7</string>
+		<key>price</key>
+		<string>FF3B30</string>
+		<key>bg</key>
+		<string>0</string>
+		<key>line_1</key>
+		<string>f5</string>
+		<key>line_2</key>
+		<string>f0</string>
+		<key>warning</key>
+		<string>e54f</string>
+		<key>error</key>
+		<string>ff00</string>
+		<key>shadow</key>
+		<string>f0</string>
+	</dict>
 	<key>fit</key>
 	<dict>
 		<key>widthAxure</key>
-		<real>750.1</real>
+		<integer>375</integer>
 	</dict>
 	<key>placeholder</key>
 	<dict>
@@ -77,25 +142,25 @@
 		<integer>0</integer>
 		<key>fitSizeiPhone414</key>
 		<real>1.5</real>
-		<key>name</key>
+		<key>default</key>
 		<string>PingFangSC-Regular</string>
-		<key>nameBold</key>
+		<key>bold</key>
 		<string>PingFangSC-Medium</string>
-		<key>nameMedium</key>
+		<key>medium</key>
 		<string>PingFangSC-Medium</string>
-		<key>nameThin</key>
+		<key>thin</key>
 		<string>PingFangSC-Thin</string>
-		<key>nameRegular</key>
+		<key>regular</key>
 		<string>PingFangSC-Regular</string>
-		<key>nameSemibold</key>
+		<key>semibold</key>
 		<string>PingFangSC-Semibold</string>
-		<key>nameUltralight</key>
+		<key>ultralight</key>
 		<string>PingFangSC-Ultralight</string>
-		<key>nameLight</key>
+		<key>light</key>
 		<string>PingFangSC-Light</string>
-		<key>nameHeavy</key>
+		<key>heavy</key>
 		<string>PingFangSC-Heavy</string>
-		<key>nameBlack</key>
+		<key>black</key>
 		<string>PingFangSC-Black</string>
 	</dict>
 </dict>

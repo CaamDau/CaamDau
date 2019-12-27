@@ -70,6 +70,7 @@ open class CD_TopBar: UIView {
         public static var height_status:CGFloat = {
             return (CD.Device.mode == .iPhoneX ? 44 : 20) //刘海高度大约 34
         }()
+        
         /// 状态栏 prompt 高度
         public static var height_prompt:CGFloat = 20
         /// 导航栏高度
@@ -77,22 +78,22 @@ open class CD_TopBar: UIView {
         /// 分割线高度
         public static var height_line:CGFloat = 0.5
         /// 标题颜色
-        public static var color_title:UIColor = UIColor.black
+        public static var color_title:UIColor = UIColor.cd_hex("0", dark: "f")
         /// 副标题颜色
-        public static var color_subTitle:UIColor = UIColor.black
+        public static var color_subTitle:UIColor = UIColor.cd_hex("0", dark: "f")
         /// 状态栏 prompt 颜色，等同于 UINavigationC 中的 prompt
-        public static var color_prompt:UIColor = UIColor.black
+        public static var color_prompt:UIColor = UIColor.cd_hex("0", dark: "f")
         /// 左右导航标签颜色
-        public static var color_normal:UIColor = UIColor.black
+        public static var color_normal:UIColor = UIColor.cd_hex("d3", dark: "f")
         /// 左右导航标签颜色
-        public static var color_selected:UIColor = UIColor.lightGray
+        public static var color_selected:UIColor = UIColor.cd_hex("ed", dark: "f")
         /// 左右导航标签颜色
-        public static var color_highlighted:UIColor = UIColor.lightGray
+        public static var color_highlighted:UIColor = UIColor.cd_hex("ed", dark: "f")
         
         /// 背景色
-        public static var color_bg:UIColor = UIColor.white
+        public static var color_bg:UIColor = UIColor.cd_hex("f", dark: "0")
         /// 分割线颜色
-        public static var color_line:UIColor = UIColor.lightGray
+        public static var color_line:UIColor = UIColor.cd_hex("ed", dark: "f0")
         /// 标题字体
         public static var font_title:UIFont = UIFont.systemFont(ofSize: 17)
         /// 副标题字体
@@ -104,7 +105,7 @@ open class CD_TopBar: UIView {
         
         
         /// 指定左侧默认返回按钮
-        public static var back:CD_TopNavigationBarItem.Item.Style = .title([(CD_IconFont.tback(30).text,CD_IconFont.tback(30).font,.black,.normal), (CD_IconFont.tback(30).text,CD_IconFont.tback(30).font,.lightGray,.highlighted), (CD_IconFont.tback(30).text,CD_IconFont.tback(30).font,.lightGray,.selected)])
+        public static var back:CD_TopNavigationBarItem.Item.Style = .title([(CD_IconFont.tback_light(30).text,CD_IconFont.tback_light(30).font,.cd_hex("0", dark: "f"),.normal), (CD_IconFont.tback_light(30).text,CD_IconFont.tback_light(30).font,.cd_hex("d3", dark: "f0"),.highlighted), (CD_IconFont.tback_light(30).text,CD_IconFont.tback_light(30).font,.cd_hex("d3", dark: "f0"),.selected)])
     }
     
     

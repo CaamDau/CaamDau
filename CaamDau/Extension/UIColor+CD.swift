@@ -51,33 +51,49 @@ public extension UIColor {
     }
     
     @discardableResult
-    static func cd_hex(_ hex:String) -> UIColor {
-        var str: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
-        if str.hasPrefix("#") {
-            str = str[1..<7]
-        }else if str.hasPrefix("0X") {
-            str = str[2..<8]
-        }
-        // str[0..<6] 这是String的一个扩展需要在String扩展中找
-        str = str[0..<6]
-        let count = str.count
-        if count%2 == 0 {
-            for _ in 0..<(6-count)/2 {
-                str.append(str[count-2..<count])
+    static func cd_hex(_ hex:String, dark:String? = nil) -> UIColor {
+        
+        func hexFit(_ hex:String) -> UIColor{
+            var str: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
+            if str.hasPrefix("#") {
+                str = str[1..<7]
+            }else if str.hasPrefix("0X") {
+                str = str[2..<8]
             }
-        }else{
-            for _ in 0..<6-count {
-                str.append(str[count-1..<count])
+            // str[0..<6] 这是String的一个扩展需要在String扩展中找
+            str = str[0..<6]
+            let count = str.count
+            if count%2 == 0 {
+                for _ in 0..<(6-count)/2 {
+                    str.append(str[count-2..<count])
+                }
+            }else{
+                for _ in 0..<6-count {
+                    str.append(str[count-1..<count])
+                }
             }
+            let sr = str[0..<2], sg = str[2..<4], sb = str[4..<6]
+            var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+            Scanner(string: sr).scanHexInt32(&r)
+            Scanner(string: sg).scanHexInt32(&g)
+            Scanner(string: sb).scanHexInt32(&b)
+            return UIColor(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b))
         }
-        let sr = str[0..<2]
-        let sg = str[2..<4]
-        let sb = str[4..<6]
-        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
-        Scanner(string: sr).scanHexInt32(&r)
-        Scanner(string: sg).scanHexInt32(&g)
-        Scanner(string: sb).scanHexInt32(&b)
-        return UIColor(r: CGFloat(r), g: CGFloat(g), b: CGFloat(b))
+        
+        if #available(iOS 13.0, *) {
+            return UIColor.init { (tr) -> UIColor in
+                switch tr.userInterfaceStyle {
+                case .light:
+                    return hexFit(hex)
+                case .dark:
+                    return hexFit(dark ?? hex)
+                default:
+                    return hexFit(hex)
+                }
+            }
+        } else {
+            return hexFit(hex)
+        }
     }
     
     
