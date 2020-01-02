@@ -77,7 +77,7 @@ public extension CaamDau where Base: UIButton {
 
 public extension CaamDau where Base: UIImageView {
     @discardableResult
-    func iconfont(_ font:CD_IconFontProtocol, color:UIColor = UIColor.lightGray) -> CaamDau {
+    func iconfont(_ font:CD_IconFontProtocol, color:UIColor = UIColor.cd_hex("d3", dark:"f0")) -> CaamDau {
         base.image = UIImage.cd_iconfont(font, color:color)
         return self
     }

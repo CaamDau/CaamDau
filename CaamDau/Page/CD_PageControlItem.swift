@@ -20,13 +20,13 @@ public struct CD_PageControlItemDataSource {
 //MARK:--- Item ----------
 extension CD_PageControlItem {
     public struct Model {
-        public var colorSelected:UIColor = UIColor.black
-        public var colorNormal:UIColor = UIColor.gray
+        public var colorSelected:UIColor = UIColor.cd_hex("0", dark: "f")
+        public var colorNormal:UIColor = UIColor.cd_hex("d3", dark:"f0")
         public var fontSelected: UIFont = UIFont.systemFont(ofSize: 15)
         public var fontNormal: UIFont = UIFont.systemFont(ofSize: 15)
         public var scaleTransform:CGFloat = 1
         
-        public var lineColor:UIColor = UIColor.black
+        public var lineColor:UIColor = UIColor.cd_hex("0", dark: "f")
         public var lineRadiusClips:(CGFloat,Bool) = (1.5,true)
         public var lineSize:(w:CD_Page.Size,h:CD_Page.Size) = (w:CD_Page.Size.auto,h:CD_Page.Size.size(3))
         public var linePosition:Position = .bottom(0)
@@ -87,7 +87,7 @@ extension CD_PageControlItem: CD_PageControlItemProtocol {
 
 public class CD_PageControlItem: UIButton {
     private lazy var line: UIView = {
-        return UIView().cd.background(UIColor.black).build
+        return UIView().cd.background(UIColor.cd_hex("0", dark: "f")).build
     }()
     
     override init(frame: CGRect) {
@@ -139,13 +139,13 @@ public class CD_PageControlItem: UIButton {
     private var _normalAlpha:CGFloat   = 1.0
     
     ///选中颜色
-    private var colorSelected:UIColor = UIColor.black {
+    private var colorSelected:UIColor = UIColor.cd_hex("0", dark: "f") {
         didSet{
             colorSelected.getRed(&_selectedRed, green: &_selectedGreen, blue: &_selectedBlue, alpha: &_selectedAlpha)
         }
     }
     ///未选中颜色
-    private var colorNormal:UIColor = UIColor.gray {
+    private var colorNormal:UIColor = UIColor.cd_hex("d3", dark:"f0") {
         didSet{
             colorNormal.getRed(&_normalRed, green: &_normalGreen, blue: &_normalBlue, alpha: &_normalAlpha)
         }

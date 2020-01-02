@@ -166,7 +166,7 @@ extension CD_HUD {
         /// HUD 蒙板 边距
         public var _margeMask:CGFloat = 40
         /// HUD 蒙板 背景色
-        public var _colorMask:UIColor = UIColor.black.cd_alpha(0)
+        public var _colorMask:UIColor = UIColor.cd_hex("0", dark: "f").cd_alpha(0)
         /// HUD 蒙板 背景 是否允许 透传交互
         public var _isEnabledMask = false
         /// HUD 持续时间
@@ -187,7 +187,7 @@ extension CD_HUD {
         /// contentView 布局样式
         public var _axis:CD_HUD.Axis = .vertical
         /// contentView 背景色
-        public var _colorBg:UIColor = UIColor.black.cd_alpha(0.9)
+        public var _colorBg:UIColor = UIColor.cd_hex("0", dark: "f").cd_alpha(0.9)
         /// contentView radius
         public var _radius:CGFloat = 6
         /// contentView marge 内边距
@@ -209,17 +209,17 @@ extension CD_HUD {
         public var _fontDetail:UIFont = UIFont.systemFont(ofSize: 14)
         
         /// contentView title textColor
-        public var _colorTitle:UIColor = UIColor.white
+        public var _colorTitle:UIColor = UIColor.cd_hex("f", dark: "0")
         /// contentView detail textColor
-        public var _colorDetail:UIColor = UIColor.white
+        public var _colorDetail:UIColor = UIColor.cd_hex("f", dark: "0")
         /// contentView activity/loading icon color
-        public var _colorActivity:UIColor = UIColor.white
+        public var _colorActivity:UIColor = UIColor.cd_hex("f", dark: "0")
         /// contentView 是否背景毛玻璃
         public var _isBlurEffect:Bool = false
         /// contentView 是否设置阴影
         public var _isShadow:Bool = false
         /// contentView 阴影
-        public var _shadow:(UIColor, Float, CGSize, CGFloat) = (UIColor.gray, 1, .zero, 6)
+        public var _shadow:(UIColor, Float, CGSize, CGFloat) = (UIColor.cd_hex("d3", dark: "f0"), 1, .zero, 6)
         
         
     }

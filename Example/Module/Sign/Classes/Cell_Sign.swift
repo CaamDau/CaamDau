@@ -74,11 +74,11 @@ extension Cell_SignSubmit:CD_RowUpdateProtocol{
     typealias DataSource = M_Sign
     func row_update(_ data: M_Sign, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         self.btn_submit.cd
-            .background(Config.color.btnBgEnabledNo)
+            .background(Config.color.enabledFalse)
         
         data.blockSubmitEnabled = { [unowned self] b in
             self.btn_submit.cd
-                .background(b ? Config.color.btnBgEnabledYes : Config.color.btnBgEnabledNo)
+                .background(b ? Config.color.enabledTrue : Config.color.enabledFalse)
                 .isUser(b)
         }
     }
@@ -91,7 +91,7 @@ class Cell_SignAgreement: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        btn_agree.cd.text(Config.color.btnBgNormal)
+        btn_agree.cd.text(Config.color.normal)
     }
     @IBAction func agreeClick(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -100,12 +100,12 @@ class Cell_SignAgreement: UITableViewCell {
             btn_agree.cd
                 .text(CD_IconFont.tround_check_fill(20).font)
                 .text(CD_IconFont.tround_check_fill(20).text)
-                .text(Config.color.btnBgNormal)
+                .text(Config.color.normal)
         }else{
             btn_agree.cd
                 .text(CD_IconFont.tround(20).font)
                 .text(CD_IconFont.tround(20).text)
-                .text(Config.color.btnBgNormal)
+                .text(Config.color.normal)
             
         }
     }
@@ -150,15 +150,15 @@ class Cell_SignOtherBtn: UITableViewCell {
         self.btn_1.cd
             .text(CD_IconFont.twarn_fill(45).font)
             .text(CD_IconFont.twarn_fill(45).text)
-            .text(Config.color.btnBgNormal)
+            .text(Config.color.normal)
         self.btn_2.cd
             .text(CD_IconFont.temoji(45).font)
             .text(CD_IconFont.temoji(45).text)
-            .text(Config.color.btnBgNormal)
+            .text(Config.color.normal)
         self.btn_3.cd
             .text(CD_IconFont.tinfo_fill(45).font)
             .text(CD_IconFont.tinfo_fill(45).text)
-            .text(Config.color.btnBgNormal)
+            .text(Config.color.normal)
     }
 }
 extension Cell_SignOtherBtn:CD_RowUpdateProtocol{

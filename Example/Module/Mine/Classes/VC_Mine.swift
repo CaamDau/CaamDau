@@ -112,7 +112,7 @@ public class VC_Mine: UIViewController {
             }*/
             
             self.topBar.change(alpha: scrollView.contentOffset.y, maxOffset: self.tableViewHeaderHeight-self.topBar._heightTopBar) { [weak self](a) in
-                let arr:[(UIColor,Float)] = [(Config.color.main_5.cd_alpha(a),0),(Config.color.main_4.cd_alpha(a),1)]
+                let arr:[(UIColor,Float)] = [(Config.color.navigation0.cd_alpha(a),0),(Config.color.navigation1.cd_alpha(a),1)]
                 self?.topBar.cd.gradient(layerAxial: arr,  updateIndex: 0)
             }
             
@@ -138,30 +138,29 @@ public class VC_Mine: UIViewController {
         }
         
         
-        let vvc = CD_TableViewController()
-        vvc.vm = VM_Mine()
+        //let vvc = CD_TableViewController()
+        //vvc.vm = VM_Mine()
+        
+        
+        
+        /*
+        self.view.cd
+            .append(UILabel.self, {
+                $0.cd
+                    .frame(x: 0, y: 300, w: 200, h: 200)
+                    .background(UIColor.blue)
+            })
+            .add(
+                UILabel().cd
+                    .background(UIColor.red)
+                    .frame(x: 10, y: 100, w: 100, h: 100)
+                    .build)
+         */
             
     }
     
-    public override func viewLayoutMarginsDidChange() {
-        print_cd("viewLayoutMarginsDidChange")
-        
-        
-    }
-    
-    public override func viewWillLayoutSubviews() {
-        print_cd("viewWillLayoutSubviews")
-        
-        
-    }
-    
-    public override func viewDidLayoutSubviews() {
-        print_cd("viewDidLayoutSubviews")
-        
-        
-    }
-    
     var ob:NSObjectProtocol?
+    
 }
 
 extension VC_Mine: CD_TopBarProtocol {
@@ -173,7 +172,7 @@ extension VC_Mine: CD_TopBarProtocol {
         topBar._colorNormal = UIColor.white
         topBar._colorSelected = UIColor.white
         topBar._colorHighlighted = UIColor.white
-        let arr:[(UIColor,Float)] = [(Config.color.main_5.cd_alpha(0),0),(Config.color.main_4.cd_alpha(0),1)]
+        let arr:[(UIColor,Float)] = [(Config.color.navigation0.cd_alpha(0),0),(Config.color.navigation1.cd_alpha(0),1)]
         //topBar.bar_status.cd.gradient(layer: arr)
         //topBar.bar_navigation.cd.gradient(layer: arr)
         topBar.cd.gradient(layerAxial: arr)
@@ -181,8 +180,12 @@ extension VC_Mine: CD_TopBarProtocol {
         //topBar._heightCustomBar = 40
         //topBar.bar_custom.cd.background(UIColor.orange)
         
-        
     }
+    
+    @objc func buttonClick(_ sender:UIButton) {
+        print_cd("点击了")
+    }
+    
     
     public func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
@@ -210,9 +213,6 @@ extension VC_Mine: CD_TopBarProtocol {
         }
     }
 }
-
-
-
 
 class VC_MineTableViewDelegateDataSource: CD_TableViewDelegateDataSource {
     

@@ -19,7 +19,7 @@ class CD_HUDContentView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         
-        self.backgroundColor = UIColor.black.cd_alpha(0.8)
+        self.backgroundColor = UIColor.cd_hex("0", dark: "f").cd_alpha(0.8)
     }
     
     lazy var view_text: CD_HUDTextView = {

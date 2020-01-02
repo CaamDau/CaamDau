@@ -5,6 +5,13 @@ import UIKit
 
 public extension CaamDau where Base: UIButton {
     @discardableResult
+    ///addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event)
+    func action(_ target: Any?, action: Selector, event: UIControl.Event) -> CaamDau {
+        base.addTarget(target, action: action, for: event)
+        return self
+    }
+    
+    @discardableResult
     func select(_ b: Bool) -> CaamDau {
         base.isSelected = b
         return self

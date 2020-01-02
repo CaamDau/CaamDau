@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CaamDau'
-  s.version          = '0.16.50'
+  s.version          = '0.17.9'
   s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块组件) Swift 版).'
   s.description      = <<-DESC
   TODO: iOS 开发组件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
@@ -15,17 +15,17 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'
-  s.swift_version = ['4.2', '5.0']
+  s.swift_version = ['4.0', '4.2', '5.0']
   # s.source_files = 'CaamDau/**/*'
   
   s.default_subspec = 'Core'
   
-  s.subspec 'Core' do |ex|
-    ex.source_files = 'CaamDau/Core/*.swift',
-    'CaamDau/Extension/*.swift',
-    'CaamDau/RegEx/*.{swift}'
-    ex.dependency 'CaamDau/Value'
-    ex.dependency 'CaamDau/Form'
+  s.subspec 'Core' do |core|
+    core.source_files = 'CaamDau/Core/**/*.swift',
+    'CaamDau/Extension/**/*.swift',
+    'CaamDau/Value/*.{swift}',
+    'CaamDau/RegEx/**/*.{swift}',
+    'CaamDau/Form/**/*.{swift}'
   end
   
   s.subspec 'Module' do |mo|
@@ -43,6 +43,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CaamDau/ViewModel/Core'
     mo.dependency 'CaamDau/Indexes'
     mo.dependency 'CaamDau/Calendar'
+    mo.dependency 'CaamDau/Empty'
   end
   
   s.subspec 'All' do |all|
@@ -59,12 +60,19 @@ Pod::Spec.new do |s|
     ib.source_files = 'CaamDau/IBInspectable/*.{swift}'
   end
   
-  s.subspec 'RegEx' do |rex|
-      rex.dependency 'CaamDau/Core'
+  s.subspec 'Extension' do |ex|
+      ex.source_files = 'CaamDau/Core/**/*.swift',
+      'CaamDau/Extension/**/*.swift',
+      'CaamDau/Value/*.{swift}',
+      'CaamDau/RegEx/**/*.{swift}'
   end
   
   s.subspec 'Form' do |form|
-    form.source_files = 'CaamDau/Form/*.{swift}'
+    form.source_files = 'CaamDau/Core/**/*.swift',
+    'CaamDau/Extension/**/*.swift',
+    'CaamDau/Value/*.{swift}',
+    'CaamDau/Form/**/*.{swift}',
+    'CaamDau/RegEx/**/*.{swift}'
   end
   
   s.subspec 'Timer' do |t|
@@ -127,12 +135,12 @@ Pod::Spec.new do |s|
   s.subspec 'ViewModel' do |vm|
     
     vm.subspec 'Core' do |core|
-      core.source_files = 'CaamDau/ViewModel/Core/*.{swift}'
+      core.source_files = 'CaamDau/ViewModel/Core/**/*.{swift}'
       core.dependency 'CaamDau/Core'
     end
     
     vm.subspec 'BaseUI' do |bui|
-      bui.source_files = 'CaamDau/ViewModel/BaseUI/*.{swift}'
+      bui.source_files = 'CaamDau/ViewModel/BaseUI/**/*.{swift}'
       bui.dependency 'CaamDau/ViewModel/Core'
       bui.dependency 'CaamDau/TopBar'
       bui.dependency 'CaamDau/MJRefresh'
@@ -157,6 +165,11 @@ Pod::Spec.new do |s|
       date.source_files = 'CaamDau/Calendar/*.{swift}'
       date.dependency 'CaamDau/Core'
       date.dependency 'SnapKit'
+  end
+  
+  s.subspec 'Empty' do |empty|
+    empty.source_files = 'CaamDau/EmptyView/**/*.{swift}'
+    empty.dependency 'CaamDau/Extension'
   end
   
   # ---- 第三方 扩展 或 桥接

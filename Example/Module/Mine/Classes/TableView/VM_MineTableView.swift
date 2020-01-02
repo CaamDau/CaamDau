@@ -44,19 +44,20 @@ class VM_MineTableView {
         case countdown = 0
         case end
     }
-    lazy var forms:[[CD_RowProtocol]] = {
+    lazy var forms:[[CD_CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
     
-    var blockRequest:(()->Void)?
+    var reloadData: (() -> Void)?
     
-    lazy var assets:Assets = {
-        return Assets()
-    }()
     
-    var refreshTypes:[CD_MJRefreshModel.RefreshType] = {
+    
+    lazy var refreshTypes:[CD_MJRefreshModel.RefreshType] = {
         return [.tHiddenFoot(true),
                 .tBegin]
+    }()
+    lazy var assets:Assets = {
+        return Assets()
     }()
     lazy var modelMj:CD_MJRefreshModel = {
         var m = CD_MJRefreshModel()
@@ -96,7 +97,7 @@ class VM_MineTableView {
         
         
         CD_Timer.after(2) {[weak self] in
-            self?.blockRequest?()
+            self?.reloadData?()
         }
     }
     
@@ -146,7 +147,7 @@ extension VM_MineTableView{
             }
             
             do{//分割线
-                let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:10))
+                let row = CD_RowCell<Cell_MineLine>(data: .bgF0, frame: CGRect(h:10))
                 self.forms[Section.countdown.rawValue].append(row)
             }
         }
@@ -154,73 +155,105 @@ extension VM_MineTableView{
     
     func makeFormCountDown(_ model:VM_MineTableView.Model) {
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{// 倒计时
-            let row = CD_Row<Cell_MineCountDown>(data: model, frame: CGRect(h:100))
+            let row = CD_RowCell<Cell_MineCountDown>(data: model, frame: CGRect(h:100))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:10))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
             self.forms[Section.countdown.rawValue].append(row)
         }
     }
     func makeFormDetail(_ i:Int) {
         guard i > 0 else {return}
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//描述
-            let row = CD_Row<Cell_MineDetail>(data: (0..<i).map{[unowned self]_ in self.detail}.joined(separator: ","), frame: CGRect(h:UITableView.automaticDimension))
+            let row = CD_RowCell<Cell_MineDetail>(data: (0..<i).map{[unowned self]_ in self.detail}.joined(separator: ","), frame: CGRect(h:UITableView.automaticDimension))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
             self.forms[Section.countdown.rawValue].append(row)
         }
     }
     
     func makeFormInput(_ model:VM_MineTableView.Model) {
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//输入
-            let row = CD_Row<Cell_MineInput>(data: model, frame: CGRect(h:30))
+            let row = CD_RowCell<Cell_MineInput>(data: model, frame: CGRect(h:30))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgF0, frame: CGRect(h:0.5))
             self.forms[Section.countdown.rawValue].append(row)
         }
     }
     
     func makeFormSwitch(_ model:VM_MineTableView.Model) {
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//开关
-            let row = CD_Row<Cell_MineSwitch>(data: model, frame: CGRect(h:UITableView.automaticDimension))
+            let row = CD_RowCell<Cell_MineSwitch>(data: model, frame: CGRect(h:UITableView.automaticDimension))
             self.forms[Section.countdown.rawValue].append(row)
         }
         do{//分割线
-            let row = CD_Row<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
+            let row = CD_RowCell<Cell_MineLine>(data: .bgFF, frame: CGRect(h:5))
             self.forms[Section.countdown.rawValue].append(row)
         }
+    }
+}
+
+
+extension VM_MineTableView: CD_ViewModelTableViewProtocol {
+    var _forms: [[CD_CellProtocol]] {
+        return forms
+    }
+    
+    var _reloadData: (() -> Void)? {
+        set{
+            reloadData = newValue
+        }
+        get{
+            return reloadData
+        }
+    }
+    
+}
+
+
+extension VM_MineTableView {
+    var _mjRefreshModel: CD_MJRefreshModel {
+        return modelMj
+    }
+    
+    var _mjRefreshType: [CD_MJRefreshModel.RefreshType] {
+        return refreshTypes
+    }
+    
+    var _mjRefresh: (header: Bool, footer: Bool, headerGif: Bool, footerGif: Bool) {
+        return (true, true, true, false)
     }
 }

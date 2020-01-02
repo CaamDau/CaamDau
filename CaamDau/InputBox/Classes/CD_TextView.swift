@@ -72,7 +72,7 @@ public class CD_TextView: UIView {
         }
     }
     
-    var _textColor:UIColor = UIColor.black {
+    var _textColor:UIColor = UIColor.cd_hex("0", dark: "f") {
         didSet{
             textView.cd.text(_textColor)
         }

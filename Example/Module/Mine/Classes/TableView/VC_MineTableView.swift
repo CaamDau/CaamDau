@@ -13,7 +13,6 @@ import Util
 //import RxSwift
 //import RxCocoa
 
-
 extension VC_MineTableView {
     static func show() -> VC_MineTableView {
         return VC_MineTableView.cd_storyboard( "MineStoryboard", from: "Mine") as! VC_MineTableView
@@ -28,27 +27,20 @@ class VC_MineTableView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tabbar: CD_TopBar!
     var vm:VM_MineTableView = VM_MineTableView()
-    
+    var delegateData:CD_TableViewDelegateDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.cd.navigationBar(hidden: true)
-        self.vm.blockRequest = { [weak self] in
-            self?.tableView.reloadData()
-            self?.tableView.cd
-                .mjRefreshTypes(self!.vm.refreshTypes)
-        }
         
+        delegateData = CD_TableViewDelegateDataSource(vm)
         self.tableView.cd
-            .estimatedAll(5)
-            .headerMJGifWithModel({ [weak self] in
-                self?.vm.requestData(true)
-            }, model: self.vm.modelMj)
-            .footerMJAutoWithModel({ [weak self] in
-                self?.vm.requestData(false)
-            })
-            .mjRefreshTypes(self.vm.refreshTypes)
             .background(Config.color.bg)
+            .estimatedAll(5)
+            .delegate(delegateData)
+            .dataSource(delegateData)
+        delegateData?.makeReloadData(tableView)
+            
         
         tableView.snp.makeConstraints {
             $0.top.equalTo(tabbar.snp.bottom)
@@ -80,29 +72,6 @@ class VC_MineTableView: UIViewController {
     deinit {
         //如果不需要保持 可以移除
         //CD_Timer.remove("VC_MineTableView")
-    }
-}
-
-extension VC_MineTableView: UITableViewDelegate,UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return vm.forms.count
-    }
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.forms[section].count
-    }
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let row = vm.forms[indexPath.section][indexPath.row]
-        return row.h
-    }
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = vm.forms[indexPath.section][indexPath.row]
-        let cell = tableView.cd.cell(row.viewClass)!
-        row.bind(cell)
-        return cell
-    }
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = vm.forms[indexPath.section][indexPath.row]
-        row.didSelect?()
     }
 }
 

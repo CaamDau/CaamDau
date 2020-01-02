@@ -106,7 +106,7 @@ public class CD_InputBoxPopping: UIView {
         }
         keyboard = CD_Keyboard(view: view_bg)
         text_view.textContainerInset = UIEdgeInsets(t: 10, l: 5, b: 10, r: 5)
-        text_view.placeColor = UIColor.lightGray
+        text_view.placeColor = UIColor.cd_hex("d3", dark:"f0")
         text_view.textView.backgroundColor = UIColor.cd_hex("f0f0f0").cd_alpha(0.8)
         text_view.font = UIFont.systemFont(ofSize: 14)
         

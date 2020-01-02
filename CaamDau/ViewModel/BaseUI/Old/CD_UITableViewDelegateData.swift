@@ -12,6 +12,8 @@ import UIKit
 import SnapKit
 
 //MARK:--- 针对旧的表单协议 CD_RowProtocol 计划在正式版本1.0中删除  ----------
+/// 使用旧的 协议，弃用
+@available(*, deprecated, message: "旧的，弃用")
 open class CD_UITableViewDelegateData: NSObject {
     public var vm:CD_ViewModelTableViewProtocol?
     private override init(){}
@@ -20,16 +22,24 @@ open class CD_UITableViewDelegateData: NSObject {
     }
 }
 extension CD_UITableViewDelegateData {
+    /// 使用旧的 协议，弃用
+    @available(*, deprecated, message: "旧的，弃用")
     open func makeReloadData(_ tableView:UITableView) {
-        vm?._reloadData = {[weak self] in
-            tableView.reloadData()
-            tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        vm?._reloadData = {[weak self, weak tableView] in
+            tableView?.reloadData()
+            tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
-            tableView.reloadRows(at: indexPath, with: animation)
-            tableView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        vm?._reloadRows = { [weak self, weak tableView] (indexPath, animation) in
+            tableView?.reloadRows(at: indexPath, with: animation)
+            tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
+        
+        vm?._reloadSections = { [weak self, weak tableView] (sections, animation) in
+            tableView?.reloadSections(sections, with: animation)
+            tableView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
         
         guard let refresh = vm?._mjRefresh else {
             return
@@ -140,6 +150,8 @@ extension CD_UITableViewDelegateData: UITableViewDelegate, UITableViewDataSource
 
 
 //MARK:--- 提供一个基础的 TableViewController 简单的页面不需要编写 ViewController----------
+/// 使用旧的 协议，弃用
+@available(*, deprecated, message: "旧的，弃用")
 public struct R_CDBaseTableViewController {
     public static func push(_ vm:CD_ViewModelTableViewProtocol) {
         let vc = CD_BaseTableViewController()
@@ -148,59 +160,46 @@ public struct R_CDBaseTableViewController {
     }
 }
 
-
-open class CD_BaseTableViewController: UIViewController {
+/// 使用旧的 协议，弃用
+@available(*, deprecated, message: "旧的，弃用")
+open class CD_BaseTableViewController: CD_FormTableViewController {
     open var vm:CD_ViewModelTableViewProtocol?
     open var delegateData:CD_UITableViewDelegateData?
-    open lazy var tableView: UITableView = {
-        return UITableView(frame: CGRect.zero, style: UITableView.Style.grouped).cd
-            .build
-    }()
     open lazy var topBar: CD_TopBar = {
         return CD_TopBar()
     }()
+    open lazy var bottomBar: UIView = {
+        let v = UIView()
+        v.clipsToBounds = true
+        return v
+    }()
+    
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        makeUI()
         makeLayout()
-        delegateData?.makeReloadData(tableView)
-        topBar.delegate = self
-        vm?._tableViewCustom?(tableView)
-    }
-    
-    open func makeUI(){
-        self.cd.navigationBar(hidden: true)
-        self.view.cd
-            .add(tableView)
-            .add(topBar)
         
         delegateData = CD_UITableViewDelegateData(vm)
-        tableView.cd.delegate(delegateData).dataSource(delegateData)
-        
+        delegateData?.makeReloadData(tableView)
+        tableView.cd
+            .delegate(delegateData)
+            .dataSource(delegateData)
+        topBar.delegate = self
+        vm?._tableViewCustom?(tableView)
+        vm?._bottomBarCustom?(bottomBar)
     }
-    
+    override open func makeTableView() {
+        self.cd.navigationBar(hidden: true)
+        stackView.cd
+            .addArranged(subview: topBar)
+            .addArranged(subview: tableView)
+            .addArranged(subview: bottomBar)
+    }
     open func makeLayout(){
-        topBar.snp.makeConstraints {
-            $0.left.right.top.equalToSuperview()
-        }
-        tableView.snp.makeConstraints {
-            $0.left.right.equalToSuperview()
-            $0.top.equalTo(topBar.snp.bottom)
-            guard let safeArea = vm?._safeAreaLayout, safeArea else {
-                $0.bottom.equalToSuperview()
-                return
-            }
-            if #available(iOS 11.0, *) {
-                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            } else {
-                $0.bottom.equalTo(bottomLayoutGuide.snp.bottom)
-            }
+        bottomBar.snp.makeConstraints {
+            $0.height.equalTo(vm?._bottomBarHeignt ?? 0)
         }
     }
-    
-    
-    
 }
 
 extension CD_BaseTableViewController: CD_TopBarProtocol {

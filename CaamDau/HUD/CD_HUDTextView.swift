@@ -25,13 +25,13 @@ class CD_HUDTextView: UIStackView {
     lazy var lab_title: UILabel = {
         return UILabel().cd
             //.background(UIColor.red)
-            .text(UIColor.white)
+            .text(UIColor.cd_hex("f", dark: "0"))
             .build
     }()
     lazy var lab_detail: UILabel = {
         return UILabel().cd
             //.background(UIColor.red)
-            .text(UIColor.white)
+            .text(UIColor.cd_hex("f", dark: "0"))
             .build
     }()
     var title:String = ""

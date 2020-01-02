@@ -46,7 +46,7 @@ public extension CaamDau where Base: UITabBar {
     
     /// 简单添加顶部阴影  background 默认使用 barTintColor，如果 barTintColor 为clear 的话，不会显示阴影，需要设置一个background
     @discardableResult
-    func addShadowLine(_ color:UIColor = UIColor.gray, backgroundColor bgColor:UIColor? = nil, layout:((UIView)->Void)? = nil) -> CaamDau {
+    func addShadowLine(_ color:UIColor = UIColor.cd_hex("d3", dark:"f0"), backgroundColor bgColor:UIColor? = nil, layout:((UIView)->Void)? = nil) -> CaamDau {
         self.hideLine()
         let view = UIView(frame: CGRect(x: 0, y: 0, w: base.frame.size.width, h: 0.5)).cd
             .background(bgColor ?? base.barTintColor)

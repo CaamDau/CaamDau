@@ -10,7 +10,9 @@
 [![](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 > 蚕豆 (粤语：caam dau) （[OC版本在这里](https://github.com/liucaide/CaamDauObjC)）（[CaamDauRx - RxSwift扩展版本](https://github.com/liucaide/CaamDauRx)）
 
-> 初心：构建一个通用业务组件库和Cocoa便利性扩展，作为底层基础业务组件，在项目初期与维护期快速完成通用业务代码的构建（其实就是方便自己）。
+> 初心：构建一个通用业务组件库和Cocoa便利性扩展，作为底层基础业务组件，在新项目初期与老项目维护期快速完成通用业务代码的构建（其实就是方便自己，同时也希望能方便同志）。
+
+> 备注：CaamDau 目前处于开发阶段，在现有多个实际项目中使用、验证、修复并持续输出新的组件，距离发布正式版可能需要一段距离，但并不影响正常使用。
 
 ## [目录](http://naotu.baidu.com/file/77191ea402a709285dd7af36fbaa47ee?token=6c06ab5d592c67c7)
 

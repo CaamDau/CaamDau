@@ -13,7 +13,6 @@
 import Foundation
 import Alamofire
 
-
 extension CD_Net {
     public enum RequestStyle {
         case data
@@ -91,7 +90,7 @@ extension CD_Net.Error: LocalizedError {
 }
 
 
-public class CD_Net {
+open class CD_Net {
     open var method:Alamofire.HTTPMethod = .get
     open var baseURL:String  = ""
     open var path:String  = ""
@@ -199,6 +198,7 @@ extension CD_Net {
         let urlPath = (self.baseURL + self.path)
         request = SessionManager.default.request(urlPath, method: self.method, parameters: self.parameters, encoding: self.encoding, headers: self.headers)
         request?.session.configuration.timeoutIntervalForRequest = timeoutInterval
+        request?.session.configuration.timeoutIntervalForResource = timeoutInterval
         switch responseStyle {
         case .json:
             request?.responseJSON { (response) in

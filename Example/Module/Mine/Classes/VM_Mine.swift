@@ -78,7 +78,12 @@ extension VM_Mine{
         let callBack:CD_RowCallBack = { _ in
             VC_Web.push(.http("https://github.com/liucaide/CD"))
         }
-        
+        do{
+            let row = CD_RowCell<Cell_MineForm>(data: "Form", frame: CGRect(h:45), callBack: callBack) {
+                R_Forms.push()
+            }
+            self.forms[Section.form.rawValue].append(row)
+        }
         do{
             let row = CD_RowCell<Cell_MineForm>(data: "Form-TableView", frame: CGRect(h:45), callBack: callBack) {
                 VC_MineTableView.push()

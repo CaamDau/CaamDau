@@ -130,11 +130,11 @@ extension CD_HUDProgressView {
         ///进度条是否圆角
         public var isRoundProgress:Bool = true
         ///进度槽颜色
-        public var colorTrack = UIColor.cd_hex("f0").cd_alpha(0.3)
+        public var colorTrack = UIColor.cd_hex("f0", dark: "3").cd_alpha(0.3)
         ///进度条颜色
-        public var colorProgress = UIColor.white
+        public var colorProgress = UIColor.cd_hex("f", dark: "0")
         /// 数值 颜色
-        public var colorTitle:UIColor = UIColor.white
+        public var colorTitle:UIColor = UIColor.cd_hex("f", dark: "0")
         /// 数值 字体
         public var fontTitle:UIFont = UIFont.systemFont(ofSize: 12)
         

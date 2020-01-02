@@ -9,60 +9,37 @@ public protocol CD_VMProtocol {
     func put(_ input: Input) -> Output
 }
 
-public protocol CD_ViewModelDataSource {
-    /// 使用新的 Row 协议 CD_CellProtocol
-    var _forms:[[CD_CellProtocol]] { get }
-    /// 使用新的 Row 协议 CD_CellProtocol
-    var _formHeaders:[CD_CellProtocol] { get }
-    /// 使用新的 Row 协议 CD_CellProtocol
-    var _formFooters:[CD_CellProtocol] { get }
-    
-    /// 使用旧的的 Row 协议 CD_CellProtocol
+
+// 历史项目原因，依然保留使用旧的Row协议
+public protocol CD_ViewModelDataSource: CD_FormProtocol {
+    /// 使用旧的的 Row 协议 CD_RowProtocol，弃用
+    @available(*, deprecated, message: "旧的，弃用")
     var _form:[[CD_RowProtocol]] { get }
-    /// 使用旧的的 Row 协议 CD_CellProtocol
+    /// 使用旧的的 Row 协议 CD_RowProtocol，弃用
+    @available(*, deprecated, message: "旧的，弃用")
     var _formHeader:[CD_RowProtocol] { get }
-    /// 使用旧的的 Row 协议 CD_CellProtocol
+    /// 使用旧的的 Row 协议 CD_RowProtocol，弃用
+    @available(*, deprecated, message: "旧的，弃用")
     var _formFooter:[CD_RowProtocol] { get }
     
-    var _reloadData:(()->Void)? { set get }
-    var _reloadDataIndexPath:(([IndexPath],UITableView.RowAnimation)->Void)? { set get }
-    var _reloadSections:((IndexSet,UITableView.RowAnimation)->Void)? { set get }
+    
+    /// 空数据视图
+    var _emptyView:((Any?) -> UIView?)? { get }
+    
     func requestData(_ refresh:Bool)
 }
 
 
 extension CD_ViewModelDataSource {
-    public var _forms:[[CD_CellProtocol]] { get{return []} }
-    public var _formHeaders:[CD_CellProtocol] { get{return []} }
-    public var _formFooters:[CD_CellProtocol] { get{return []} }
-    
+    @available(*, deprecated, message: "旧的，弃用")
     public var _form:[[CD_RowProtocol]] { get{return []} }
+    @available(*, deprecated, message: "旧的，弃用")
     public var _formHeader:[CD_RowProtocol] { get{return []} }
+    @available(*, deprecated, message: "旧的，弃用")
     public var _formFooter:[CD_RowProtocol] { get{return []} }
-    public var _reloadData:(()->Void)? {
-        get {
-            return nil
-        }
-        set(newValue) {
-            
-        }
-    }
-    public var _reloadDataIndexPath: (([IndexPath], UITableView.RowAnimation) -> Void)? {
-        get {
-            return nil
-        }
-        set(newValue) {
-            
-        }
-    }
-    public var _reloadSections:((IndexSet,UITableView.RowAnimation)->Void)? {
-        get {
-            return nil
-        }
-        set(newValue) {
-            
-        }
-    }
+    
+    public var _emptyView:((Any?) -> UIView?)? { get { nil } }
+    
     public func requestData(_ refresh:Bool) {}
 }
 

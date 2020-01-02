@@ -12,6 +12,8 @@ import UIKit
 import SnapKit
 
 //MARK:--- 针对旧的表单协议 CD_RowProtocol，但计划在正式版本1.0中删除 ----------
+/// 使用旧的 协议，弃用
+@available(*, deprecated, message: "旧的，弃用")
 open class CD_UICollectionViewDelegateData: NSObject {
     public var vm:CD_ViewModelCollectionViewProtocol?
     private override init(){}
@@ -19,16 +21,24 @@ open class CD_UICollectionViewDelegateData: NSObject {
         self.vm = vm
     }
 }
+
 extension CD_UICollectionViewDelegateData {
+    /// 使用旧的 协议，弃用
+    @available(*, deprecated, message: "旧的，弃用")
     open func makeReloadData(_ collectionView:UICollectionView) {
-        vm?._reloadData = {[weak self] in
-            collectionView.reloadData()
-            collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        vm?._reloadData = {[weak self, weak collectionView] in
+            collectionView?.reloadData()
+            collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
-        vm?._reloadDataIndexPath = { [weak self] (indexPath, animation) in
-            collectionView.reloadItems(at: indexPath)
-            collectionView.cd.mjRefreshTypes(self!.vm?._mjRefreshType ?? [.tEnd])
+        vm?._reloadRows = { [weak self, weak collectionView] (indexPath, animation) in
+            collectionView?.reloadItems(at: indexPath)
+            collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
+        }
+        
+        vm?._reloadSections = { [weak collectionView, weak self] (sections, animation) in
+            collectionView?.reloadSections(sections)
+            collectionView?.cd.mjRefreshTypes(self?.vm?._mjRefreshType ?? [.tEnd])
         }
         
         guard let refresh = vm?._mjRefresh else {
@@ -154,6 +164,8 @@ extension CD_UICollectionViewDelegateData: UICollectionViewDelegate, UICollectio
 
 
 //MARK:--- 提供一个基础的 CollectionViewController 简单的页面不需要编写 ViewController----------
+/// 使用旧的 协议，弃用
+@available(*, deprecated, message: "旧的，弃用")
 public struct R_CDBaseCollectionViewController {
     public static func push(_ vm:CD_ViewModelCollectionViewProtocol) {
         let vc = CD_BaseCollectionViewController()
@@ -161,64 +173,54 @@ public struct R_CDBaseCollectionViewController {
         CD.push(vc)
     }
 }
-
-class CD_BaseCollectionViewController: UIViewController {
+/// 使用旧的 协议，弃用
+@available(*, deprecated, message: "旧的，弃用")
+class CD_BaseCollectionViewController: CD_FormCollectionViewController {
     open var vm:CD_ViewModelCollectionViewProtocol?
     open var delegateData: CD_UICollectionViewDelegateData?
-    open lazy var collectionView: UICollectionView = {
-        return UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init()).cd
-            .register([.tCell(CD_CollectionViewCellNone.self, nil, nil),
-                       .tView(CD_CollectionReusableViewNone.self, nil, .tHeader, nil),
-                       .tView(CD_CollectionReusableViewNone.self, nil, .tFooter, nil)])
-            .register(vm?._collectionRegisters ?? [])
-            .background(UIColor.lightGray)
-            .build
-    }()
+    
     open lazy var topBar: CD_TopBar = {
         return CD_TopBar()
     }()
+    open lazy var bottomBar: UIView = {
+        let v = UIView()
+        v.clipsToBounds = true
+        return v
+    }()
+    
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
-        makeUI()
         makeLayout()
-        delegateData?.makeReloadData(collectionView)
-        topBar.delegate = self
-        vm?._collectionViewCustom?(collectionView)
-    }
-    
-    open func makeUI(){
-        self.cd.navigationBar(hidden: true)
-        self.view.cd
-            .add(collectionView)
-            .add(topBar)
         
         delegateData = CD_UICollectionViewDelegateData(vm)
-        collectionView.cd.delegate(delegateData).dataSource(delegateData)
-        
+        delegateData?.makeReloadData(collectionView)
+        collectionView.cd
+            .register(
+                [.tCell(CD_CollectionViewCellNone.self, nil, nil),
+                .tView(CD_CollectionReusableViewNone.self, nil, .tHeader, nil),
+                .tView(CD_CollectionReusableViewNone.self, nil, .tFooter, nil)
+                ]
+        )
+            .register(vm?._collectionRegisters ?? [])
+            .background(UIColor.cd_hex("f", dark: "0"))
+            .delegate(delegateData)
+            .dataSource(delegateData)
+        topBar.delegate = self
+        vm?._collectionViewCustom?(collectionView)
+        vm?._bottomBarCustom?(bottomBar)
     }
-    
+    override open func makeCollectionView() {
+        self.cd.navigationBar(hidden: true)
+        stackView.addArrangedSubview(collectionView)
+        self.stackView.insertArrangedSubview(topBar, at: 0)
+        self.stackView.addArrangedSubview(bottomBar)
+    }
     open func makeLayout(){
-        topBar.snp.makeConstraints {
-            $0.left.right.top.equalToSuperview()
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.left.right.equalToSuperview()
-            $0.top.equalTo(topBar.snp.bottom)
-            guard let safeArea = vm?._safeAreaLayout, safeArea else {
-                $0.bottom.equalToSuperview()
-                return
-            }
-            if #available(iOS 11.0, *) {
-                $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-            } else {
-                $0.bottom.equalTo(bottomLayoutGuide.snp.bottom)
-            }
+        bottomBar.snp.makeConstraints {
+            $0.height.equalTo(vm?._bottomBarHeignt ?? 0)
         }
     }
-    
-    
-    
 }
 
 extension CD_BaseCollectionViewController: CD_TopBarProtocol {

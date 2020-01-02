@@ -2,7 +2,7 @@
   
 import UIKit
 import PlaygroundSupport
-
+/*
 extension UIColor {
     var cd_rgba:(CGFloat,CGFloat,CGFloat,CGFloat) {
         var r:CGFloat = 0
@@ -394,9 +394,27 @@ class MyViewController : UIViewController {
         
         self.view = view
     }
+}*/
+
+class VC_Button : UIViewController {
+    override func loadView() {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 568))
+        view.backgroundColor = .white
+        do{
+            let button = UIButton(frame: CGRect(x: 30, y: 30, width: 60, height: 30))
+            button.backgroundColor = UIColor.red
+            button.addTarget(self, action: #selector(buttonClick(_:)), for: .touchUpOutside)
+            view.addSubview(button)
+        }
+        self.view = view
+    }
+    
+    @objc func buttonClick(_ sender:Any) {
+        print("点击了")
+    }
 }
 // Present the view controller in the Live View window
-PlaygroundPage.current.liveView = MyViewController()
+PlaygroundPage.current.liveView = VC_Button()
 
 /*
 UIBezierPath *maskPath=[[UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(10, 10)] bezierPathByReversingPath];

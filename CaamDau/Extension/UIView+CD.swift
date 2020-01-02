@@ -6,20 +6,71 @@ import UIKit
 public protocol CaamDauViewProtocol {
     /// T: UIView、UIGestureRecognizer、NSLayoutConstraint、[NSLayoutConstraint]、、
     func addT<T>(_ t: T?)
+    
+    func appendView<T:UIView>(_ type:T.Type, _ handler:((T)->Void)?)
+    
+    
 }
 extension CaamDauViewProtocol {
-    func addT<T>(_ t: T?){}
+    public func addT<T>(_ t: T?){
+        guard let vv = self as? UIView else { return }
+        switch t {
+        case let subview as UIView where vv is UIStackView:
+            (vv as? UIStackView)?.addArrangedSubview(subview)
+        case let subview as UIView :
+            vv.addSubview(subview)
+        case let ges as UIGestureRecognizer :
+            vv.addGestureRecognizer(ges)
+        case let lay as NSLayoutConstraint :
+            vv.addConstraint(lay)
+        case let lays as [NSLayoutConstraint] :
+            vv.addConstraints(lays)
+        default:
+            break
+        }
+        
+    }
+    
+    public func appendView<T>(_ type: T.Type, _ handler: ((T) -> Void)? = nil) where T : UIView {
+        switch self {
+        case let stack as UIStackView:
+            let v = T()
+            handler?(v)
+            stack.addArrangedSubview(v)
+        case let vv as UIView:
+            let v = T()
+            handler?(v)
+            vv.addSubview(v)
+        default:
+            break
+        }
+    }
+    
 }
 
-public extension CaamDau where Base: CaamDauViewProtocol {
+
+
+public extension CaamDau where Base: UIView {
     @discardableResult
     public func add<T>(_ t: T?) -> CaamDau {
         base.addT(t)
         return self
     }
+    
+    @discardableResult
+    public func append<T:UIView>(_ type:T.Type, _ handler:((T)->Void)?) -> CaamDau {
+        base.appendView(type, handler)
+        return self
+    }
 }
 
+
 extension UIView: CaamDauViewProtocol {
+    /*
+    public func appendView<T>(_ type: T.Type, _ handler: ((T) -> Void)?) where T : UIView {
+        self.cd.append(type, handler)
+    }*/
+    /*
     public func addT<T>(_ t: T?) {
         switch t {
         case let subview as UIView :
@@ -33,7 +84,7 @@ extension UIView: CaamDauViewProtocol {
         default:
             break
         }
-    }
+    }*/
 }
 
 
