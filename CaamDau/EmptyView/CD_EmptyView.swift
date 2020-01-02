@@ -9,12 +9,13 @@
 
 import UIKit
 
+
 extension CD_EmptyView {
     public enum Item {
-        case activity(_ callback:((UIActivityIndicatorView)->Void)?)
-        case lable(_ callback:((UILabel)->Void)?, _ action:(()->Void)?)
-        case button(_ callback:((UIButton)->Void)?, _ action:(()->Void)?)
-        case image(_ callback:((UIImageView)->Void)?, _ action:(()->Void)?)
+        case activity(_ then:((UIActivityIndicatorView)->Void)?)
+        case lable(_ then:((UILabel)->Void)?, _ action:(()->Void)?)
+        case button(_ then:((UIButton)->Void)?, _ action:(()->Void)?)
+        case image(_ then:((UIImageView)->Void)?, _ action:(()->Void)?)
     }
     
     public struct Config {
@@ -72,9 +73,13 @@ open class CD_EmptyView: UIView {
         return UIButton().cd.build
     }()
     
+    var obs:[NSObjectProtocol] = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeStackView()
+        
+        
     }
     
     required public init?(coder: NSCoder) {
@@ -93,7 +98,7 @@ extension CD_EmptyView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        stackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 20).isActive = true
+        //stackView.leadingAnchor.constraint(greaterThanOrEqualTo: self.leadingAnchor, constant: 20).isActive = true
         //stackView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: 20).isActive = true
     }
     
@@ -104,7 +109,7 @@ extension CD_EmptyView {
         }
         for (i, item) in items.enumerated() {
             switch item {
-            case let .lable(callback, action):
+            case let .lable(then, action):
                 let v = UILabel().cd
                     .isUser(true)
                     .tag(i)
@@ -114,8 +119,8 @@ extension CD_EmptyView {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(tapClick(_:)))
                 v.addGestureRecognizer(tap)
                 actions.append(action)
-                callback?(v)
-            case let .button(callback, action):
+                then?(v)
+            case let .button(then, action):
                 let v = UIButton().cd
                     .tag(i)
                     .add(toSuperstack: stackView)
@@ -123,8 +128,8 @@ extension CD_EmptyView {
                     .build
                 CD_EmptyView.config.buttonCallback?(v)
                 actions.append(action)
-                callback?(v)
-            case let .image(callback, action):
+                then?(v)
+            case let .image(then, action):
                 let v = UIImageView().cd
                     .isUser(true)
                     .tag(i)
@@ -134,14 +139,14 @@ extension CD_EmptyView {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(tapClick(_:)))
                 v.addGestureRecognizer(tap)
                 actions.append(action)
-                callback?(v)
-            case .activity(let callback):
+                then?(v)
+            case .activity(let then):
                 let v = UIActivityIndicatorView().cd
                     .add(toSuperstack: stackView)
                     .build
                 v.startAnimating()
                 CD_EmptyView.config.activityCallback?(v)
-                callback?(v)
+                then?(v)
             }
         }
     }

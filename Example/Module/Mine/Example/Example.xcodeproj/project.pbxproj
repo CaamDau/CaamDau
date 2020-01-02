@@ -35,7 +35,6 @@
 		4751E446229395740052464B /* Cell_HUDProress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4751E444229395740052464B /* Cell_HUDProress.swift */; };
 		4751E447229395740052464B /* Cell_HUDProress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4751E445229395740052464B /* Cell_HUDProress.xib */; };
 		4789A49D22A63E4700FEA124 /* VM_PageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4789A49C22A63E4700FEA124 /* VM_PageList.swift */; };
-		4791F07623AFAA3100CC1E24 /* CD_EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4791F07523AFAA3100CC1E24 /* CD_EmptyView.swift */; };
 		479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */; };
 		479F397B22C9D90600AD6916 /* CD_TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397A22C9D90500AD6916 /* CD_TabBar.swift */; };
 		47A8625D23ACBB4200F85C40 /* VM_Forms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A8625C23ACBB4200F85C40 /* VM_Forms.swift */; };
@@ -47,6 +46,7 @@
 		47AB7B472261CAED009C3EE3 /* PageStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47AB7B462261CAED009C3EE3 /* PageStoryboard.storyboard */; };
 		47CB59DC23B34A9A00F8147A /* VM_FormsTableViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CB59DB23B34A9A00F8147A /* VM_FormsTableViewA.swift */; };
 		47E8E1FF23521C4000E60CD2 /* CD_Localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */; };
+		47EAE19C23BD93EE00F7B19A /* VC_FormsTableViewB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAE19B23BD93EE00F7B19A /* VC_FormsTableViewB.swift */; };
 		47FC34E02238076F0022174D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34DF2238076F0022174D /* AppDelegate.swift */; };
 		47FC34E2223807700022174D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34E1223807700022174D /* ViewController.swift */; };
 		47FC34E5223807700022174D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FC34E3223807700022174D /* Main.storyboard */; };
@@ -83,7 +83,6 @@
 		4751E444229395740052464B /* Cell_HUDProress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell_HUDProress.swift; sourceTree = "<group>"; };
 		4751E445229395740052464B /* Cell_HUDProress.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell_HUDProress.xib; sourceTree = "<group>"; };
 		4789A49C22A63E4700FEA124 /* VM_PageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_PageList.swift; sourceTree = "<group>"; };
-		4791F07523AFAA3100CC1E24 /* CD_EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_EmptyView.swift; sourceTree = "<group>"; };
 		479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBarController.swift; sourceTree = "<group>"; };
 		479F397A22C9D90500AD6916 /* CD_TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBar.swift; sourceTree = "<group>"; };
 		47A8625C23ACBB4200F85C40 /* VM_Forms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_Forms.swift; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		47CB59DB23B34A9A00F8147A /* VM_FormsTableViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VM_FormsTableViewA.swift; sourceTree = "<group>"; };
 		47CB59DD23B351B200F8147A /* Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		47E8E1FE23521C4000E60CD2 /* CD_Localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_Localize.swift; sourceTree = "<group>"; };
+		47EAE19B23BD93EE00F7B19A /* VC_FormsTableViewB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_FormsTableViewB.swift; sourceTree = "<group>"; };
 		47FC34DC2238076F0022174D /* CaamDau_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaamDau_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FC34DF2238076F0022174D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FC34E1223807700022174D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -202,15 +202,6 @@
 			path = NavigationView;
 			sourceTree = "<group>";
 		};
-		4791F07423AFAA1200CC1E24 /* EmptyView */ = {
-			isa = PBXGroup;
-			children = (
-				4791F07523AFAA3100CC1E24 /* CD_EmptyView.swift */,
-			);
-			name = EmptyView;
-			path = ../../../../CaamDau/EmptyView;
-			sourceTree = "<group>";
-		};
 		479F397522C9D88C00AD6916 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +216,7 @@
 			children = (
 				47A8625C23ACBB4200F85C40 /* VM_Forms.swift */,
 				47CB59DB23B34A9A00F8147A /* VM_FormsTableViewA.swift */,
+				47EAE19B23BD93EE00F7B19A /* VC_FormsTableViewB.swift */,
 			);
 			path = Forms;
 			sourceTree = "<group>";
@@ -255,7 +247,6 @@
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
-				4791F07423AFAA1200CC1E24 /* EmptyView */,
 				47E8E1FD23521C4000E60CD2 /* Localize */,
 				479F397522C9D88C00AD6916 /* TabBar */,
 				470C3DC1223BF024006292CE /* Classes */,
@@ -436,6 +427,7 @@
 				47AB7B432261AE0F009C3EE3 /* VC_PageD.swift in Sources */,
 				470D69C822A9032D00AEB4FC /* View_PageConfig.swift in Sources */,
 				4745AB2A22479E87006E5461 /* VC_Navigation.swift in Sources */,
+				47EAE19C23BD93EE00F7B19A /* VC_FormsTableViewB.swift in Sources */,
 				4745D374224E098F006A8ADE /* VC_TopBar.swift in Sources */,
 				47AB7B452261AEBF009C3EE3 /* VC_Page.swift in Sources */,
 				47FC34E2223807700022174D /* ViewController.swift in Sources */,
@@ -456,7 +448,6 @@
 				473ABC16223C82E7004CD694 /* VM_MineTableView.swift in Sources */,
 				47A8625D23ACBB4200F85C40 /* VM_Forms.swift in Sources */,
 				470C3DCA223BF025006292CE /* VM_Mine.swift in Sources */,
-				4791F07623AFAA3100CC1E24 /* CD_EmptyView.swift in Sources */,
 				472676BC228A890A006AF7A7 /* VM_BaseColle.swift in Sources */,
 				470C3DC8223BF025006292CE /* Views_Mine.swift in Sources */,
 				479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */,
