@@ -4,7 +4,7 @@ import UIKit
 import CaamDau
 import Util
 import SnapKit
-
+import SwiftyJSON
 
 public extension VC_Mine{
     
@@ -16,6 +16,7 @@ public extension VC_Mine{
 public class VC_Mine: UIViewController {
     @IBOutlet weak var topBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
+    
     var vm:VM_Mine = VM_Mine()
     var delegateData:VC_MineTableViewDelegateDataSource?
     lazy var modelMj:CD_MJRefreshModel = {
@@ -211,6 +212,30 @@ extension VC_Mine: CD_TopBarProtocol {
         default:
             break
         }
+        
+        CD_Net.config.log = true
+        CD_Net()
+            .method(.get)
+            .baseURL("http://apis.juhe.cn/qrcode/api")
+            .parameters(
+                ["key":"516c5015e25a46c7c5b6a027c9835b17",
+                 "text":"https://github.com/liucaide/CaamDau",
+                 "el": "h",
+                 "logo": "https://static.pgyer.com/static-20200106/images/newHome/homepage_tracup_pic1.png",
+                 "bgcolor": "f0f0f0",
+                 "fgcolor": "333333",
+                 "w": 500,
+                 "m": 20,
+                 "lw": 80,
+                 "type": 2
+            ])
+            .success({ [weak self](res) in
+                print_cd(res)
+            })
+            .failure({ (error) in
+                print_cd(error)
+            })
+            .request()
     }
 }
 

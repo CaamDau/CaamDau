@@ -190,7 +190,11 @@ extension CD_FormCollectionViewDelegateDataSource: UICollectionViewDelegate, UIC
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if let count = form?._formHeaders.count, count > section {
             return form!._formHeaders[section].insets
-        }else{
+        }
+        else if let count = form?._formFooters.count, count > section {
+            return form!._formFooters[section].insets
+        }
+        else{
             return form?._forms[section].first?.insets ?? .zero
         }
     }

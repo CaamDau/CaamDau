@@ -165,7 +165,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Empty' do |empty|
     empty.source_files = 'CaamDau/EmptyView/**/*.{swift}'
-    empty.dependency 'CaamDau/Extension'
+    empty.dependency 'CaamDau/Core'
   end
   
   # ---- 第三方 扩展 或 桥接
