@@ -213,6 +213,39 @@ CD_Timer.after(2) { .... }
 [回顶部目录](#目录)
 ### AppDelegateAppDelegate解耦方案
 ```
+class App_Win: CD_AppDelegate { // 实现window 主页面切换、配置，
+    func application( ...
+}
+class App_Config: CD_AppDelegate { // 统一信息配置
+    func application( ...
+}
+class App_Net: CD_AppDelegate { // 网络配置
+    func application( ...
+}
+class App_Test: CD_AppDelegate { // DEBUG
+    func application( ...
+}
+```
+```
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    lazy var composite: CD_AppDelegateComposite = {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        var arr:[CD_AppDelegate] = [
+            App_Net(),
+            App_Win(window),
+            App_Config()
+        ]
+        #if DEBUG
+        arr.append(App_Test())
+        #endif
+        return CD_AppDelegateComposite(arr)
+    }()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return composite.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    ...
+}
 ```
 [回顶部目录](#目录)
 ### Router极致简约而强大的页面路由协议
