@@ -508,7 +508,8 @@ CD_Net()
 
 ## Author
 
-liucaide, 565726319@qq.com
+- Email：565726319@qq.com 
+- QQ & Wechat：565726319
 
 ## License
 
