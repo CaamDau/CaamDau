@@ -9,13 +9,13 @@ pod 'CaamDau/Form'
 > 无论界面多复杂，都是一样的代码，使用这种方式即可轻松完成复杂的 UI 排版，编写可读性、扩展性、维护性强的代码
 
 > 原理：这是一个UI排版模型，将UI排版逻辑 事先转换为 Row 模型单元！
-- [如何做到不需要再维护Delegate/DataSource协议的代码](#如何做到不需要再维护Delegate/DataSource协议的代码)
+- [如何做到不需要再维护Delegate/DataSource协议的代码](#如何做到不需要再维护Delegate和DataSource协议的代码)
 - [如何构建一个单元格模型Row](#如何构建一个单元格模型Row)
 - [如何应对混合排版](#如何应对混合排版)
 - [以前混乱的代码](#以前混乱的代码)
 - [现在有序的代码](#现在有序的代码)
 
-### 如何做到不需要再维护Delegate/DataSource协议的代码
+### 如何做到不需要再维护Delegate和DataSource协议的代码
 - 首先要明白 Delegate/DataSource 中 section row height didselect 的多点关系是有迹可循的，是可以模型化的，因此可以转化为单个模型单元，即可将多点关系转化为了单点关系
 - 了解 CD_CellProtocol 协议
 - 了解为 TableView/CollectionView 而定制的CD_RowCell/CD_RowCellClass

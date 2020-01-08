@@ -63,6 +63,7 @@ pod 'CaamDau/.../...'
 ### Form:流式模型化排版组件
 - 流式模型化排版组件—使UI排版更加直观、易扩展、易维护；解决TableView/CollectionView 排版 section row height didselect 等多点关系的灾难
 - 原理:将多点关联的UI排版数据转化为单一的 CD_Row 模型单元
+- [更多详细的介绍请移步](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Form)
 ```
 /// Cell数据源遵循 CD_FormProtocol 协议
 var form:CD_FormProtocol = CD_FormProtocol()
@@ -234,6 +235,15 @@ Router.Order.submit.router(["id":999]) { (res) in
 ```
 [回顶部目录](#目录)
 ### HUD提示窗组件
+<p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud10.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud11.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud1.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud2.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud20.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/hud21.png" width="10%" />
+</p>
+
 ```
 var model = CD_HUD.modelDefault
 model._axis = .horizontal
@@ -243,6 +253,13 @@ view.cd.hud(.succeed, title: title, model:model)
 ```
 [回顶部目录](#目录)
 ### Page分页导航控制组件
+
+<p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/page1.gif" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/page2.gif" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/page3.png" width="10%" />
+</p>
+
 ```
 // 指示器
 lazy var pageControl: CD_PageControl = {
@@ -273,6 +290,11 @@ pageControl.selectIndex = 2
 ```
 [回顶部目录](#目录)
 ### TopBar自定义导航栏组件
+- 完全隐藏系统导航栏，使用自定义导航栏
+<p>
+<img src="https://github.com/liucaide/Images/blob/master/CD/TopBar1.jpeg" width="10%" />
+</p>
+
 ```
 lazy var topBar: CD_TopBar = {
     return CD_TopBar()
@@ -400,6 +422,13 @@ CD_InputBoxPopping.show( ... ){ ... }
 ```
 [回顶部目录](#目录)
 ### Indexes一个漂亮的索引View
+
+<p>
+  <img src="https://github.com/liucaide/Images/blob/master/CD/indexes0.gif" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CD/indexes1.gif" width="10%" />
+</p>
+
+
 ```
 lazy var headers:[String] = {
     return ["选", "主"] + CD.atoz(true) + ["#"]
