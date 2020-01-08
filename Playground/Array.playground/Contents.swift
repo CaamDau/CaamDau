@@ -10,7 +10,7 @@ import Foundation
  }
  print(letterCount)
  */
-
+/*
 extension Array where Element: Equatable {
     /// 筛选相同元素为 二维数组
     func filterCombined() -> [[Element]] {
@@ -28,8 +28,8 @@ extension Array where Element: Equatable {
     }
     
 }
-
-
+*/
+/*
  //MARK:--- 升维 组合 ----------
 var arr = (0..<15).map{$0}
 var arr2 = arr.enumerated().reduce(into: []) { (item, element) in
@@ -59,7 +59,7 @@ do{
     arr1.sort{$0<$1}
     print(arr1)
 }
-
+*/
 
 /*
 do{
