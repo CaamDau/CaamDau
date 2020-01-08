@@ -12,7 +12,9 @@ import CaamDau
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
     var window: UIWindow?
+    
     lazy var composite: CD_AppDelegateComposite = {
         var arr:[CD_AppDelegate] = [
             AppDelegate_VC(),
@@ -21,8 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         arr.append(AppDelegate_Test())
         #endif
+        
         return CD_AppDelegateComposite(arr)
     }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return composite.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -56,11 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 class AppDelegate_VC: CD_AppDelegate {
-    func application( ...
+    
 }
 
 class AppDelegate_UM: CD_AppDelegate {
-    func application( ...
+    
 }
 
 class AppDelegate_Test: CD_AppDelegate {
