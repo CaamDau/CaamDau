@@ -15,7 +15,7 @@
 # 目录
 - [CaamDau核心组件](#CaamDau核心组件)
   - [Form流式模型化排版组件](#Form流式模型化排版组件)
-  - [Extension便利性扩展And链式](#Extension便利性扩展And链式)
+  - [Extension便利性扩展&链式](#Extension便利性扩展And链式)
   - [RegEx正则表达式](#RegEx正则表达式)
   - [Value基本数据类型转换](#Value基本数据类型转换)
 - [CaamDau辅助模块组件](#CaamDau辅助模块组件)
@@ -29,7 +29,7 @@
   - [IconFont阿里矢量图标管理和使用](#IconFont阿里矢量图标管理和使用)
   - [InputBox输入框扩展组件](#InputBox输入框扩展组件)
   - [Indexes一个漂亮的索引View](#Indexes一个漂亮的索引View)
-  - [Calendar日历、日期选择组件](#Calendar日历、日期选择组件)
+  - [Calendar日历、日期选择组件](#Calendar日历日期选择组件)
   - [持续增新...](#持续增新...)
  
 - [第三方扩展组件](#第三方扩展组件)
@@ -418,7 +418,7 @@ indexesView.selectHandler = { [weak self](item, idx)in
 }
 ```
 [回顶部目录](#目录)
-### Calendar日历、日期选择组件
+### Calendar日历日期选择组件
 ```
 CD_DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callback: { (da) in
     print_cd(da)
