@@ -340,7 +340,7 @@ extension VC_***: CD_TopBarProtocol {
 }
 ```
 [回顶部目录](#目录)
-### ViewModel 协议
+### ViewModel协议
 - Form & MJRefresh & Request 组合扩展
 ```
 /// Cell数据源遵循 CD_FormProtocol 协议
