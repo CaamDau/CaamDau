@@ -30,8 +30,10 @@ struct VM_Forms {
     }
     mutating func makeForm() {
         do{
-            let row = CD_RowCell<CD_TableViewCellBase>.init(data: CD_TableViewCellBase.Model(title: "TableView"), frame: CGRect(h:45)) {
-                R_FormsTableViewA.push()
+            let row = CD_RowCell<CD_TableViewCellBase>.init(data: CD_TableViewCellBase.Model(title: "TableView"), frame: CGRect(h:45), callBack: { _ in
+                /// Cell 内事件回调处理
+            }) {
+                /// Cell 点击事件处理
             }
             forms += [[row]]
         }
