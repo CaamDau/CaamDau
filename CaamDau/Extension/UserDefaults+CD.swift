@@ -20,6 +20,7 @@ import Foundation
 public protocol CaamDauUserDefaultsProtocol {
     var name: String { get }
     var value:Any? {get}
+    var object:Any? {get}
     var string:String? {get}
     var bool:Bool {get}
     var dictionary:[String:Any]? {get}
@@ -30,7 +31,11 @@ public protocol CaamDauUserDefaultsProtocol {
 
 extension CaamDauUserDefaultsProtocol {
     public var value:Any? {
-        return UserDefaults.standard.value(forKey: name)
+        UserDefaults.standard.object(forKey: name)
+        return UserDefaults.standard.object(forKey: name)
+    }
+    public var object:Any? {
+        return UserDefaults.standard.object(forKey: name)
     }
     public var string:String? {
         return UserDefaults.standard.string(forKey: name)
