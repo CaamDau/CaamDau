@@ -19,5 +19,5 @@ target 'Example' do
   #pod 'Toast-Swift', '~> 4.0.1'
   #pod 'KeychainAccess'
   #pod 'Hero'
-  pod "SkeletonView"
+  #pod "SkeletonView"
 end

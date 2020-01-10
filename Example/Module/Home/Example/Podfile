@@ -3,13 +3,11 @@ inhibit_all_warnings!
 platform :ios, '9.0'
 
 target 'Example' do
-  
-  
-  
-  #pod 'CaamDau', :path => '~/Desktop/MyWorking/CDKit/CaamDau/'
-  #pod 'Util', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  pod 'ThirdSDK', :path => '~/Desktop/MyWorking/CDKit/CD/Example/ThirdSDK/'
-  
+
+  pod 'CaamDau/All', :path => '../../../../'
+  pod 'Util', :path => '../../../Util/'
+  pod 'Home', :path => '../../'
+
   #pod 'RxSwift'
   #pod 'RxCocoa'
   #pod 'RxDataSources'

@@ -4,18 +4,8 @@ platform :ios, '9.0'
 
 target 'Example' do
   
-  pod 'CD/All', :path => '~/Desktop/MyWorking/CDKit/CD/'
-  pod 'Assets', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  pod 'Config', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  pod 'Web', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Modul/'
-  pod 'Sign', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Modul/'
-  pod 'M_Sign', :path => '~/Desktop/MyWorking/CDKit/CD/Example/Util/'
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxDataSources'
-  # 阿里七巧板
-  #pod 'Tangram'
-  # 阿里协程库
-  #pod 'coobjc'
+  pod 'CaamDau/All', :path => '../../../../'
+  pod 'Util', :path => '../../../Util/'
+  pod 'Publish', :path => '../../'
   
 end
