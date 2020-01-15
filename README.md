@@ -19,7 +19,7 @@
   - [Value基本数据类型转换](#Value基本数据类型转换)
 - [CaamDau辅助模块组件](#CaamDau辅助模块组件)
   - [Timer计时管理组件](#Timer计时管理组件)
-  - [AppDelegateAppDelegate解耦方案](#AppDelegateAppDelegate解耦方案)
+  - [AppDelegate解耦方案](#AppDelegate解耦方案)
   - [Router极致简约而强大的页面路由协议](#Router极致简约而强大的页面路由协议)
   - [HUD提示窗组件](#HUD提示窗组件)
   - [Page分页导航控制组件](#Page分页导航控制组件)
@@ -208,7 +208,7 @@ func countDown(_ tag:Int){
 CD_Timer.after(2) { .... }
 ```
 [回顶部目录](#目录)
-### AppDelegateAppDelegate解耦方案
+### AppDelegate解耦方案
 ```
 class App_Win: CD_AppDelegate { // 实现window 主页面切换、配置，
     func application( ...
