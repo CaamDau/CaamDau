@@ -9,9 +9,6 @@
 
 import Foundation
 import CaamDau
-import Sign
-import Web
-import Util
 
 //MARK:--- 分组 ----------
 extension VM_Mine {
@@ -67,7 +64,8 @@ extension VM_Mine{
     mutating func makeSectionMe(){
         do{
             let row = CD_RowCell<Cell_MineSign>(data: "登 录", frame: CGRect(h:45)) {
-                VC_Sign.isSignUp(true)
+                Router.Sign.up(true).router()
+                
             }
             self.forms[Section.me.rawValue].append(row)
         }
@@ -76,7 +74,7 @@ extension VM_Mine{
 extension VM_Mine{
     mutating func makeSectionForm() {
         let callBack:CD_RowCallBack = { _ in
-            VC_Web.push(.http("https://github.com/liucaide/CD"))
+            Router.Utility.http("https://github.com/liucaide/CaamDau", "CaamDau").router()
         }
         do{
             let row = CD_RowCell<Cell_MineForm>(data: "Form", frame: CGRect(h:45), callBack: callBack) {
@@ -112,7 +110,7 @@ extension VM_Mine{
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_RegEx", "常用正则表达式"), frame: CGRect(h:45)) {
-                VC_Web.push(.http("https://github.com/liucaide/CD/tree/master/CD/CD_RegEx"))
+               Router.Utility.http("https://github.com/liucaide/CaamDau/CD_RegEx", "CaamDau").router()
             }
             self.forms[Section.other.rawValue].append(row)
         }

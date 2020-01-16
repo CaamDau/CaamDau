@@ -1,8 +1,7 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CaamDau
-import Web
+
 
 public class M_HomeNews:NSObject {
     var img = ""

@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import CaamDau
-import Util
 
 //MARK:--- 标签 ----------
 class Cell_MineCountDown:UITableViewCell{

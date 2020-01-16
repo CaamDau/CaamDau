@@ -9,7 +9,6 @@
 
 import UIKit
 import CaamDau
-import Util
 
 
 class Cell_MineCollectionLabel: UICollectionViewCell {

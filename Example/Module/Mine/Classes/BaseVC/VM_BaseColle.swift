@@ -3,7 +3,6 @@
 import Foundation
 import UIKit
 import CaamDau
-import Util
 
 class Cell_BaseColleTitle:UICollectionViewCell {
     lazy var btn: UIButton = {

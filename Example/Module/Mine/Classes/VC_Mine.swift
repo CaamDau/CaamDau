@@ -1,19 +1,15 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CaamDau
-import Util
-import SnapKit
-import SwiftyJSON
 
-public extension VC_Mine{
-    
-    static func show() -> VC_Mine{
+public struct R_Mine: CD_RowVCProtocol {
+    public init(){}
+    public var vc: UIViewController {
         return VC_Mine.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Mine
     }
 }
 
-public class VC_Mine: UIViewController {
+class VC_Mine: UIViewController {
     @IBOutlet weak var topBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -67,7 +63,7 @@ public class VC_Mine: UIViewController {
         return UIImageView(image: Assets().logo_0)
     }()
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         self.cd.navigationBar(hidden: true)
@@ -165,7 +161,7 @@ public class VC_Mine: UIViewController {
 }
 
 extension VC_Mine: CD_TopBarProtocol {
-    public func topBarCustom() {
+    func topBarCustom() {
         topBar.cd.background(UIColor.clear)
         topBar.bar_navigation.line.isHidden = true
         topBar._colorTitle = UIColor.white
@@ -188,7 +184,7 @@ extension VC_Mine: CD_TopBarProtocol {
     }
     
     
-    public func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
             let icon = CD_IconFont.tsearch(22)
@@ -205,7 +201,7 @@ extension VC_Mine: CD_TopBarProtocol {
         }
     }
     
-    public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
         switch item {
         case .rightItem1:
             self.view.layoutIfNeeded()

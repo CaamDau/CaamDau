@@ -9,34 +9,18 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'Example' do
   
   pod 'CaamDau/All', :path => '../'
- 
+  pod 'Sign', :path => './Module/Sign'
+  pod 'TabBarNavigation', :path => './Module/TabBarNavigation'
+  pod 'Utility', :path => './Module/Utility'
+  pod 'Router', :path => './Module/Router'
+  pod 'Home', :path => './Module/Home'
+  pod 'Mine', :path => './Module/Mine'
   
-  pod 'Models', :path => './Module/'
-  pod 'Home', :path => './Module/'
-  pod 'Demo', :path => './Module/'
-  pod 'Publish', :path => './Module/'
-  pod 'Rx', :path => './Module/'
-  pod 'Mine', :path => './Module/'
-  pod 'Sign', :path => './Module/'
-  pod 'Web', :path => './Module/'
-  pod 'TabbarNavigation', :path => './Module/'
   
-  pod 'Util', :path => './Util/'
+  # ---------- Debug 调试工具 ----------
+  # 虽然Swift 设置了在Release 不导入 Debugging，
+  # 但还是建议 Debugging 调试面板在正式上线时删除，不要带到线上。
+  # 因为有一些hook操作会可能污染线上代码。
+  pod 'Debugging', :path => './Module/Debugging/', :configurations => ['Debug']
   
-  #pod 'Alamofire'
-  #pod 'RxAlamofire'
-  #pod 'SwiftyJSON'
-  # 阿里七巧板
-  #pod 'Tangram'
-  # 阿里协程库
-  #pod 'coobjc'
-  
-  #target 'Tests' do
-    #inherit! :search_paths
-
-    #pod 'Quick'
-    #pod 'Nimble'
-    #pod 'FBSnapshotTestCase'
-    #pod 'Nimble-Snapshots'
-  #end
 end

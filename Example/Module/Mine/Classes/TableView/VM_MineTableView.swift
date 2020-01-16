@@ -10,7 +10,6 @@
 import Foundation
 import UIKit
 import CaamDau
-import Util
 
 extension VM_MineTableView {
     class Model {
