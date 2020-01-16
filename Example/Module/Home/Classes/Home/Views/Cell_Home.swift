@@ -1,8 +1,6 @@
 //Created  on 2018/12/16  by LCD :https://github.com/liucaide .
 
 import UIKit
-import CaamDau
-import Util
 
 //MARK:--- 标签 ----------
 class Cell_HomeTitle: UITableViewCell {

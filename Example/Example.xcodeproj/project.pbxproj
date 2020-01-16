@@ -10,7 +10,12 @@
 		269B01BEE2F83BF445F25CF3 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB45DED5B2C2D6CC4D07D2 /* Pods_Example.framework */; };
 		476840B8233DFDDA000080E9 /* CaamDau_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476840B7233DFDDA000080E9 /* CaamDau_ExampleUITests.swift */; };
 		479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */; };
-		47FC34E02238076F0022174D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34DF2238076F0022174D /* AppDelegate.swift */; };
+		47F0472E23D043E5009E4439 /* App+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472723D043E5009E4439 /* App+Window.swift */; };
+		47F0472F23D043E5009E4439 /* UIViewController+Load.m in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472823D043E5009E4439 /* UIViewController+Load.m */; };
+		47F0473023D043E5009E4439 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472923D043E5009E4439 /* AppDelegate.swift */; };
+		47F0473123D043E5009E4439 /* UIViewController+Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472A23D043E5009E4439 /* UIViewController+Swizzling.swift */; };
+		47F0473223D043E5009E4439 /* Router+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472C23D043E5009E4439 /* Router+Utility.swift */; };
+		47F0473323D043E5009E4439 /* App+Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472D23D043E5009E4439 /* App+Router.swift */; };
 		47FC34E2223807700022174D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC34E1223807700022174D /* ViewController.swift */; };
 		47FC34E5223807700022174D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FC34E3223807700022174D /* Main.storyboard */; };
 		47FC34E7223807710022174D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FC34E6223807710022174D /* Assets.xcassets */; };
@@ -52,8 +57,14 @@
 		476840F9233E0132000080E9 /* CALayer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CALayer.playground; sourceTree = "<group>"; };
 		476840FA233E0132000080E9 /* M_Sign.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = M_Sign.playground; sourceTree = "<group>"; };
 		479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBarController.swift; sourceTree = "<group>"; };
+		47F0472723D043E5009E4439 /* App+Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "App+Window.swift"; sourceTree = "<group>"; };
+		47F0472823D043E5009E4439 /* UIViewController+Load.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Load.m"; sourceTree = "<group>"; };
+		47F0472923D043E5009E4439 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		47F0472A23D043E5009E4439 /* UIViewController+Swizzling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swizzling.swift"; sourceTree = "<group>"; };
+		47F0472C23D043E5009E4439 /* Router+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Utility.swift"; sourceTree = "<group>"; };
+		47F0472D23D043E5009E4439 /* App+Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "App+Router.swift"; sourceTree = "<group>"; };
+		47F0473823D04596009E4439 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		47FC34DC2238076F0022174D /* CaamDau_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaamDau_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		47FC34DF2238076F0022174D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FC34E1223807700022174D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47FC34E4223807700022174D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		47FC34E6223807710022174D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,9 +129,40 @@
 			path = ../Playground;
 			sourceTree = "<group>";
 		};
+		47F0472523D043E5009E4439 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				47F0472623D043E5009E4439 /* App */,
+				47F0472B23D043E5009E4439 /* App+Router */,
+			);
+			name = App;
+			path = Module/App;
+			sourceTree = "<group>";
+		};
+		47F0472623D043E5009E4439 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				47F0472723D043E5009E4439 /* App+Window.swift */,
+				47F0472823D043E5009E4439 /* UIViewController+Load.m */,
+				47F0472923D043E5009E4439 /* AppDelegate.swift */,
+				47F0472A23D043E5009E4439 /* UIViewController+Swizzling.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		47F0472B23D043E5009E4439 /* App+Router */ = {
+			isa = PBXGroup;
+			children = (
+				47F0472C23D043E5009E4439 /* Router+Utility.swift */,
+				47F0472D23D043E5009E4439 /* App+Router.swift */,
+			);
+			path = "App+Router";
+			sourceTree = "<group>";
+		};
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
+				47F0472523D043E5009E4439 /* App */,
 				476840E7233E0131000080E9 /* Playground */,
 				47FC34DE2238076F0022174D /* Example */,
 				476840B6233DFDDA000080E9 /* CaamDau_ExampleUITests */,
@@ -142,7 +184,7 @@
 		47FC34DE2238076F0022174D /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				47FC34DF2238076F0022174D /* AppDelegate.swift */,
+				47F0473823D04596009E4439 /* Example-Bridging-Header.h */,
 				47FC34E1223807700022174D /* ViewController.swift */,
 				479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */,
 				47FC34E3223807700022174D /* Main.storyboard */,
@@ -200,6 +242,7 @@
 				47FC34D92238076F0022174D /* Frameworks */,
 				47FC34DA2238076F0022174D /* Resources */,
 				FD4A9A57E060305C7D8B17A8 /* [CP] Embed Pods Frameworks */,
+				47F047A423D04E1A009E4439 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -269,6 +312,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		47F047A423D04E1A009E4439 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n\n\n\n";
+		};
 		B6DA8C2368422B9B98E0B4D6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -323,9 +383,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F0473323D043E5009E4439 /* App+Router.swift in Sources */,
 				47FC34E2223807700022174D /* ViewController.swift in Sources */,
 				479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */,
-				47FC34E02238076F0022174D /* AppDelegate.swift in Sources */,
+				47F0472F23D043E5009E4439 /* UIViewController+Load.m in Sources */,
+				47F0473023D043E5009E4439 /* AppDelegate.swift in Sources */,
+				47F0473123D043E5009E4439 /* UIViewController+Swizzling.swift in Sources */,
+				47F0473223D043E5009E4439 /* Router+Utility.swift in Sources */,
+				47F0472E23D043E5009E4439 /* App+Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +595,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.liucaide.CaamDauExample;
 				PRODUCT_NAME = CaamDau_Example;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -550,6 +616,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.liucaide.CaamDauExample;
 				PRODUCT_NAME = CaamDau_Example;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

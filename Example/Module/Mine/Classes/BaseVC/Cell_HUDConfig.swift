@@ -9,7 +9,6 @@
 
 import UIKit
 import CaamDau
-import Util
 
 extension CD_HUD.Axis {
     var intValue:Int {

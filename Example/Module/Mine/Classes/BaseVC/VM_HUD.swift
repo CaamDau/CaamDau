@@ -3,7 +3,6 @@
 import Foundation
 import UIKit
 import CaamDau
-import Util
 
 class Cell_BaseTabTitle:UITableViewCell {
     lazy var btn: UIButton = {

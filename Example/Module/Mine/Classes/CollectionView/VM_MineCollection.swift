@@ -9,7 +9,6 @@
 
 import Foundation
 import CaamDau
-import Util
 
 extension VM_MineCollection {
     enum Section:Int {

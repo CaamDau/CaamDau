@@ -3,7 +3,6 @@
 import UIKit
 
 import CaamDau
-import Util
 
 struct VM_Sign {
     

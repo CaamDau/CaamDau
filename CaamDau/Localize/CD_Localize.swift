@@ -15,10 +15,25 @@
 
 import UIKit
 
-class CD_Localize {
-
+public struct CD_Localize{
+    private class Help {}
+    fileprivate static var localJSON:[String : Any]? =  {
+        let b = Bundle.cd_bundle(CD_Localize.Help.self, "Localize") ?? Bundle.main
+        guard let path = b.path(forResource: "localize", ofType: "json") else { return nil }
+        let info:[String:Any]? = NSDictionary(contentsOfFile: path) as? [String : Any]
+        return info
+    }()
     
-
+    public static var lintJSON:[String : Any]?
+    
+    fileprivate static var config:[String : Any]? =  {
+        return lintJSON ?? localJSON
+    }()
 }
 
 
+extension String {
+    var cd_localize:String {
+        return CD_Localize.config?.string(self) ?? self
+    }
+}

@@ -8,7 +8,6 @@
 
 
 import UIKit
-import SkeletonView
 
 struct R_FormsTableViewB {
     static func push() {

@@ -9,7 +9,6 @@
 
 import UIKit
 import CaamDau
-import Util
 
 extension VC_PageA {
     static func show() -> VC_PageA {
