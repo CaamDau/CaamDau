@@ -81,7 +81,8 @@ Pod::Spec.new do |s|
   s.subspec 'Assets' do |ass|
     ass.source_files = 'Assets/Classes/**/*'
     ass.resource_bundles = {
-      'Assets' => ['Assets/Assets/*.{xcassets}']
+      'Assets' => ['Assets/Assets/Images.xcassets'],
+      'AssetsDark' => ['Assets/Assets/ImagesDark.xcassets']
     }
     ass.dependency 'CaamDau'
   end

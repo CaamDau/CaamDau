@@ -237,6 +237,10 @@ extension CD_TextView {
             guard let tt = txt.text else{return}
             self?.placeholderView.cd.isHidden(!tt.isEmpty)
         }))
+        observers?.append(textView.observe(\.attributedText, options: [.new, .old], changeHandler: { [weak self](txt, change) in
+            //guard let tt = change.newValue ?? nil else{return}
+            self?.placeholderView.cd.isHidden(txt.attributedText.length > 0)
+        }))
     }
 }
 
