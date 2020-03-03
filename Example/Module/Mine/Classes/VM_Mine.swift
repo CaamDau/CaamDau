@@ -77,19 +77,19 @@ extension VM_Mine{
             Router.Utility.http("https://github.com/liucaide/CaamDau", "CaamDau").router()
         }
         do{
-            let row = CD_RowCell<Cell_MineForm>(data: "Form", frame: CGRect(h:45), callBack: callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: ("Form", Assets().com_点赞_已点), frame: CGRect(h:45), callBack: callBack) {
                 R_Forms.push()
             }
             self.forms[Section.form.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_MineForm>(data: "Form-TableView", frame: CGRect(h:45), callBack: callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: ("Form-TableView", Assets().com_点赞_已点), frame: CGRect(h:45), callBack: callBack) {
                 VC_MineTableView.push()
             }
             self.forms[Section.form.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_MineForm>(data: "Form-CollectionView", frame: CGRect(h:45), callBack:callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: ("Form-CollectionView", Assets().com_点赞_已点), frame: CGRect(h:45), callBack:callBack) {
                 VC_MineCollection.push()
             }
             self.forms[Section.form.rawValue].append(row)

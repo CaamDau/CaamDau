@@ -15,7 +15,7 @@ target 'Example' do
   pod 'Router', :path => './Module/Router'
   pod 'Home', :path => './Module/Home'
   pod 'Mine', :path => './Module/Mine'
-  
+  pod 'Map', :path => './Module/Map'
   
   # ---------- Debug 调试工具 ----------
   # 虽然Swift 设置了在Release 不导入 Debugging，

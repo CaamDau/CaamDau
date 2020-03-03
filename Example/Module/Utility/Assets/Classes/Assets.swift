@@ -3,48 +3,12 @@ import Foundation
 import UIKit
 
 
-
-class AssetsDark {
-    public lazy var com_评论_图标小:UIImage = {
-        return UIImage.cd_bundle("com_评论_图标小", forClass:Assets.self)
-    }()
-}
-
-class AssetsLight {
-    public lazy var com_评论_图标小:UIImage = {
-        return UIImage.cd_bundle("com_评论_图标小", forClass:Assets.self)
-    }()
-}
-
-
-
 public class Assets {
+    
     public init(){}
     
-    func image(_ name:String) -> UIImage {
-        if #available(iOS 13.0, *) {
-            switch UITraitCollection.current.userInterfaceStyle {
-            case .dark:
-                return UIImage.cd_bundle(name, forClass:AssetsDark.self) ?? UIImage.cd_bundle(name, forClass:AssetsLight.self)
-            default:
-                return UIImage.cd_bundle(name, forClass:AssetsLight.self)
-            }
-        } else {
-            return UIImage.cd_bundle(name, forClass:AssetsLight.self)
-        }
-    }
-    
-    public lazy var com_评论_图标小:UIImage = {
-        if #available(iOS 13.0, *) {
-            switch UITraitCollection.current.userInterfaceStyle {
-            case .dark:
-                return AssetsDark().com_评论_图标小
-            default:
-                return AssetsDark().com_评论_图标小
-            }
-        } else {
-            return AssetsLight().com_评论_图标小
-        }
+    public lazy var com_点赞_已点:UIImage = {
+        return UIImage.cd_bundle("com_点赞_已点", forClass:Assets.self)
     }()
     
     public lazy var com_搜索_黑:UIImage = {
@@ -109,10 +73,6 @@ public class Assets {
     
     public lazy var com_点赞动画04:UIImage = {
         return UIImage.cd_bundle("com_点赞动画04", forClass:Assets.self)
-    }()
-    
-    public lazy var com_点赞_已点:UIImage = {
-        return UIImage.cd_bundle("com_点赞_已点", forClass:Assets.self)
     }()
     
     public lazy var com_向右_灰:UIImage = {
@@ -235,10 +195,6 @@ public class Assets {
         return UIImage.cd_bundle("logo_0", forClass:Assets.self)
     }()
     
-    public lazy var launchScreen1:UIImage = {
-        return UIImage.cd_bundle("launchScreen1", forClass:Assets.self)
-    }()
-    
     public lazy var logo_20:UIImage = {
         return UIImage.cd_bundle("logo_20", forClass:Assets.self)
     }()
@@ -254,6 +210,7 @@ public class Assets {
     public lazy var logo_30:UIImage = {
         return UIImage.cd_bundle("logo_30", forClass:Assets.self)
     }()
+    
     
 }
 

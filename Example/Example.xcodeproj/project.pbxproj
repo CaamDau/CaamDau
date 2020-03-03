@@ -37,7 +37,7 @@
 		476840B5233DFDDA000080E9 /* CaamDau_ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaamDau_ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		476840B7233DFDDA000080E9 /* CaamDau_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaamDau_ExampleUITests.swift; sourceTree = "<group>"; };
 		476840B9233DFDDA000080E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		476840E8233E0131000080E9 /* Text.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Text.playground; sourceTree = "<group>"; };
+		476840E8233E0131000080E9 /* Text.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Text.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		476840E9233E0131000080E9 /* Regex.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Regex.playground; sourceTree = "<group>"; };
 		476840EA233E0131000080E9 /* JSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSON.playground; sourceTree = "<group>"; };
 		476840EB233E0132000080E9 /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; };
