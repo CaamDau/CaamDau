@@ -37,6 +37,14 @@ public class CD_TableViewCellBase: UITableViewCell{
             self.accView = accView
         }
     }
+    
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     public func update(_ data: CD_TableViewCellBase.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
         update(dataSource:data)
     }
@@ -46,12 +54,12 @@ public class CD_TableViewCellBase: UITableViewCell{
     public func update(dataSource data: CD_TableViewCellBase.Model) {
         self.accessoryType = data.accType
         self.textLabel?.text = data.title ?? ""
-        self.textLabel?.textColor = data.titleColor ?? UIColor.cd_hex("0", dark: "f")
-        self.textLabel?.font = data.titleFont ?? UIFont.systemFont(ofSize: 14)
+        self.textLabel?.textColor = data.titleColor ?? UIColor.cd_hex("3", dark: "f")
+        self.textLabel?.font = data.titleFont ?? UIFont.systemFont(ofSize: 15)
         
         self.detailTextLabel?.text = data.detail ?? ""
-        self.detailTextLabel?.textColor = data.detailColor ?? UIColor.cd_hex("d3", dark:"f0")
-        self.detailTextLabel?.font = data.detailFont ?? UIFont.systemFont(ofSize: 12)
+        self.detailTextLabel?.textColor = data.detailColor ?? UIColor.cd_hex("9", dark:"f0")
+        self.detailTextLabel?.font = data.detailFont ?? UIFont.systemFont(ofSize: 13)
         
         if let img = data.icon {
             self.imageView?.image = img
