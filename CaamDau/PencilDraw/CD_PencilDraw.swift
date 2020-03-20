@@ -91,16 +91,18 @@ fileprivate class VC_PencilDraw: UIViewController {
         ])
         
         updateLayer(self.view.bounds.size)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         if let window = parent?.view.window, let toolPicker = PKToolPicker.shared(for: window) {
             toolPicker.setVisible(true, forFirstResponder: canvasView)
             toolPicker.addObserver(canvasView)
             toolPicker.addObserver(self)
             canvasView.becomeFirstResponder()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
