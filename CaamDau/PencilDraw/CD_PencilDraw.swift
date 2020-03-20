@@ -2,7 +2,8 @@
 
 /***** 模块文档 *****
  * PencilKit image drawing
- * 整合 PencilKit 的图片编辑器
+ * PencilKit 的图片编辑器
+ * 注意：AppDelegate 不要对 window 重新初始化，否则 PKToolPicker 工具板不显示
  */
 
 import UIKit
@@ -71,9 +72,7 @@ fileprivate class VC_PencilDraw: UIViewController {
     lazy var doneItem: UIBarButtonItem = {
         return UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction(_:)))
     }()
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
