@@ -178,6 +178,11 @@ extension VM_Mine{
             self.forms[Section.other.rawValue].append(row)
         }
         do{
+            let row = CD_RowCell<Cell_MineTitle>(data: ("PencilKit-CD_PencilDraw", "点击头像查看"), frame: CGRect(h:45)) {
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        do{
             let la = Locale.preferredLanguages.first ?? ""
             let row = CD_RowCell<Cell_MineTitle>(data: ("当前语言", la), frame: CGRect(h:45)) {
             }

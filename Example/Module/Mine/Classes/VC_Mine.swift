@@ -2,13 +2,15 @@
 
 import UIKit
 
+import PencilKit
+
+
 public struct R_Mine: CD_RowVCProtocol {
     public init(){}
     public var vc: UIViewController {
         return VC_Mine.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Mine
     }
 }
-
 class VC_Mine: UIViewController {
     @IBOutlet weak var topBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
@@ -60,8 +62,24 @@ class VC_Mine: UIViewController {
         return UIImageView(image: Assets().logo_0)
     }()
     lazy var tableViewHeaderImgLogo: UIImageView = {
-        return UIImageView(image: Assets().logo_0)
+        let v = UIImageView(image: Assets().logo_0)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(headerLogoClick(_:)))
+        v.cd.isUser(true).add(tap)
+        return v
     }()
+    
+    
+    var logoPKDrawing:Any?
+    @objc func headerLogoClick(_ tap:Any) {
+        if #available(iOS 13.0, *) {
+            CD_PencilDraw.show(tableViewHeaderImgLogo.image ?? Assets().logo_0, drawing: logoPKDrawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
+                self?.logoPKDrawing = draw
+                self?.tableViewHeaderImgLogo.image = image
+            }
+        } else {
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

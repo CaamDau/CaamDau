@@ -23,6 +23,18 @@ CD_LocationSys.shared.blockCityChange = { [weak self](address) in
 import CaamDau
 import Foundation
 
+
+public struct R_LocationSys: CD_RouterInterface {
+    public static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        CD_LocationSys.shared.blockCityChange = { a in
+            guard let city = a.last else { return }
+            callback?(["address":city.toParam()])
+        }
+        CD_LocationSys.shared.getLocation()
+    }
+}
+
+
 extension CD_LocationSys {
     public struct Address {
         public var country = ""
@@ -35,6 +47,15 @@ extension CD_LocationSys {
         public var number = ""
         public var address = ""
         public var postalCode = ""
+        
+        func toParam() -> [String:Any] {
+            let structMirror = Mirror(reflecting: self).children
+            var param:[String:Any] = [:]
+            structMirror
+                .filter{$0.label != nil}
+                .forEach{ param[$0.label!.stringValue] = $0.value }
+            return param
+        }
     }
     public enum CoordinateType {
         case Baidu

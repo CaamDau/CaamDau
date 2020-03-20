@@ -16,6 +16,7 @@ class App_Router: CD_AppDelegate {
         CD_Router.shared.routerHandler = { [weak self](r, param, callback) in
             self?.utility(r, param, callback)
             self?.sign(r, param, callback)
+            self?.map(r, param, callback)
         }
         return true
     }

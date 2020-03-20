@@ -20,12 +20,23 @@
 import UIKit
 import SnapKit
 public protocol CD_TopBarProtocol: NSObjectProtocol {
+    /// TopBar 自定义
+    func topBar(custom topBar:CD_TopBar)
+    
+    /// 新：更新按钮样式
+    func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
+    /// 新：按钮事件
+    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item)
+    
     /// 更新按钮样式
+    @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?")
     func update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
     /// 按钮事件
+    @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(custom topBar:CD_TopBar)")
     func didSelect(withTopBar item:CD_TopNavigationBar.Item)
     
     /// TopBar 自定义
+    @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(_ topBar:CD_TopBar, didSelectItemAt item:CD_TopNavigationBar.Item)")
     func topBarCustom()
     /// 导航栏默认按钮事件
     func super_topBarClick(_ item:CD_TopNavigationBar.Item)
@@ -34,14 +45,29 @@ public protocol CD_TopBarProtocol: NSObjectProtocol {
 }
 
 extension CD_TopBarProtocol {
+    /// TopBar 自定义
+    public func topBar(custom topBar:CD_TopBar) {
+        
+    }
+    
     public func topBarCustom() {
         
     }
+    
+    public func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        return super_update(withTopBar: item)
+    }
+    
+    public func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
+        super_topBarClick(item)
+    }
+    
     public func super_topBarClick(_ item:CD_TopNavigationBar.Item) {
         if item == .leftItem1 {
             CD.pop()
         }
     }
+    
     public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
         self.super_topBarClick(item)
     }
@@ -491,6 +517,7 @@ private extension CD_TopBar {
 extension CD_TopBar {
     public func reloadData() {
         self.delegate?.topBarCustom()
+        self.delegate?.topBar(custom: self)
         self.bar_navigation.reloadData()
         
     }

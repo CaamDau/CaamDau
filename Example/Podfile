@@ -15,8 +15,12 @@ target 'Example' do
   pod 'Router', :path => './Module/Router'
   pod 'Home', :path => './Module/Home'
   pod 'Mine', :path => './Module/Mine'
-  pod 'Map', :path => './Module/Map'
-  
+  pod 'Demo', :path => './Module/Demo'
+  # pod 'Map/Location', :path => './Module/Map'
+  # pod 'Map/Baidu', :path => './Module/Map'
+  pod 'BaiduMapKit'
+  pod 'BMKLocationKit'
+  pod 'BaiduTraceKit-Lite'
   # ---------- Debug 调试工具 ----------
   # 虽然Swift 设置了在Release 不导入 Debugging，
   # 但还是建议 Debugging 调试面板在正式上线时删除，不要带到线上。

@@ -44,6 +44,7 @@ Pod::Spec.new do |s|
     mo.dependency 'CaamDau/Indexes'
     mo.dependency 'CaamDau/Calendar'
     mo.dependency 'CaamDau/Empty'
+    mo.dependency 'CaamDau/PencilDraw'
   end
   
   s.subspec 'All' do |all|
@@ -53,6 +54,7 @@ Pod::Spec.new do |s|
     all.dependency 'CaamDau/MJRefresh'
     all.dependency 'CaamDau/Net/All'
     all.dependency 'CaamDau/ViewModel/BaseUI'
+    
   end
   
   # ---- 核心插件 组件
@@ -168,6 +170,11 @@ Pod::Spec.new do |s|
     empty.dependency 'CaamDau/Core'
   end
   
+  s.subspec 'PencilDraw' do |pencil|
+      pencil.source_files = 'CaamDau/PencilDraw/**/*.{swift}'
+      pencil.dependency 'CaamDau/Core'
+  end
+  
   # ---- 第三方 扩展 或 桥接
   s.subspec 'MJRefresh' do |mj|
     mj.source_files = 'CaamDau/MJRefresh/*.{swift}'
@@ -216,6 +223,8 @@ Pod::Spec.new do |s|
     end
     
   end
+  
+  
   
   s.frameworks = 'UIKit', 'Foundation'
   # s.dependency 'Then'

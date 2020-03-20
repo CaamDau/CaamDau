@@ -9,7 +9,7 @@
 
 import UIKit
 #if DEBUG
-import Debugging
+//import Debugging
 #endif
 
 @UIApplicationMain
@@ -17,16 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     lazy var composite: CD_AppDelegateComposite = {
-        window = UIWindow(frame: UIScreen.main.bounds)
         var arr:[CD_AppDelegate] = [
             App_Router(),
             App_Net(),
             App_VC(window),
-            App_Config()
+            App_Config(),
+            App_BaiduMap()
         ]
         
         #if DEBUG
-        arr.insert(App_Debugging(), at: 0)
+        //arr.insert(App_Debugging(), at: 0)
         //arr.append(App_NetTest())
         #endif
         

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		269B01BEE2F83BF445F25CF3 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB45DED5B2C2D6CC4D07D2 /* Pods_Example.framework */; };
+		4718A9622410A4D9001B0B59 /* VC_BaiduMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718A9612410A4D9001B0B59 /* VC_BaiduMapView.swift */; };
+		4744E0C5240F913C00F8A1CD /* Router+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744E0C4240F913C00F8A1CD /* Router+Map.swift */; };
+		4744E0D3240F915100F8A1CD /* LocationBaidu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744E0CB240F915100F8A1CD /* LocationBaidu.swift */; };
+		4744E0D4240F915100F8A1CD /* App_BaiduMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744E0CC240F915100F8A1CD /* App_BaiduMap.swift */; };
+		4744E0D7240F915100F8A1CD /* Map.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4744E0D2240F915100F8A1CD /* Map.podspec */; };
 		476840B8233DFDDA000080E9 /* CaamDau_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476840B7233DFDDA000080E9 /* CaamDau_ExampleUITests.swift */; };
 		479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */; };
 		47F0472E23D043E5009E4439 /* App+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F0472723D043E5009E4439 /* App+Window.swift */; };
@@ -34,10 +39,15 @@
 
 /* Begin PBXFileReference section */
 		11C7E6571DE563F6433941AC /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
+		4718A9612410A4D9001B0B59 /* VC_BaiduMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_BaiduMapView.swift; sourceTree = "<group>"; };
+		4744E0C4240F913C00F8A1CD /* Router+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Map.swift"; sourceTree = "<group>"; };
+		4744E0CB240F915100F8A1CD /* LocationBaidu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBaidu.swift; sourceTree = "<group>"; };
+		4744E0CC240F915100F8A1CD /* App_BaiduMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App_BaiduMap.swift; sourceTree = "<group>"; };
+		4744E0D2240F915100F8A1CD /* Map.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Map.podspec; sourceTree = "<group>"; };
 		476840B5233DFDDA000080E9 /* CaamDau_ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaamDau_ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		476840B7233DFDDA000080E9 /* CaamDau_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaamDau_ExampleUITests.swift; sourceTree = "<group>"; };
 		476840B9233DFDDA000080E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		476840E8233E0131000080E9 /* Text.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Text.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		476840E8233E0131000080E9 /* Text.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Text.playground; sourceTree = "<group>"; };
 		476840E9233E0131000080E9 /* Regex.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Regex.playground; sourceTree = "<group>"; };
 		476840EA233E0131000080E9 /* JSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = JSON.playground; sourceTree = "<group>"; };
 		476840EB233E0132000080E9 /* String.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = String.playground; sourceTree = "<group>"; };
@@ -93,6 +103,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4718A9602410A4AD001B0B59 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				4718A9612410A4D9001B0B59 /* VC_BaiduMapView.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		4744E0C6240F915100F8A1CD /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4744E0C7240F915100F8A1CD /* Map */,
+				4744E0D2240F915100F8A1CD /* Map.podspec */,
+			);
+			name = Map;
+			path = Module/Map;
+			sourceTree = "<group>";
+		};
+		4744E0C7240F915100F8A1CD /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4744E0C8240F915100F8A1CD /* Classes */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		4744E0C8240F915100F8A1CD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4744E0C9240F915100F8A1CD /* BaiduMap */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		4744E0C9240F915100F8A1CD /* BaiduMap */ = {
+			isa = PBXGroup;
+			children = (
+				4718A9602410A4AD001B0B59 /* MapView */,
+				4744E0CA240F915100F8A1CD /* Location */,
+				4744E0CC240F915100F8A1CD /* App_BaiduMap.swift */,
+				4744E0CD240F915100F8A1CD /* Frameworks */,
+			);
+			path = BaiduMap;
+			sourceTree = "<group>";
+		};
+		4744E0CA240F915100F8A1CD /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				4744E0CB240F915100F8A1CD /* LocationBaidu.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		4744E0CD240F915100F8A1CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		476840B6233DFDDA000080E9 /* CaamDau_ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +223,7 @@
 		47F0472B23D043E5009E4439 /* App+Router */ = {
 			isa = PBXGroup;
 			children = (
+				4744E0C4240F913C00F8A1CD /* Router+Map.swift */,
 				47F0472C23D043E5009E4439 /* Router+Utility.swift */,
 				47F0472D23D043E5009E4439 /* App+Router.swift */,
 			);
@@ -162,6 +233,7 @@
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
+				4744E0C6240F915100F8A1CD /* Map */,
 				47F0472523D043E5009E4439 /* App */,
 				476840E7233E0131000080E9 /* Playground */,
 				47FC34DE2238076F0022174D /* Example */,
@@ -243,6 +315,7 @@
 				47FC34DA2238076F0022174D /* Resources */,
 				FD4A9A57E060305C7D8B17A8 /* [CP] Embed Pods Frameworks */,
 				47F047A423D04E1A009E4439 /* ShellScript */,
+				57C6F54D1CC255A96CA72490 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47FC34EA223807710022174D /* LaunchScreen.storyboard in Resources */,
+				4744E0D7240F915100F8A1CD /* Map.podspec in Resources */,
 				47FC34E7223807710022174D /* Assets.xcassets in Resources */,
 				47FC34E5223807700022174D /* Main.storyboard in Resources */,
 			);
@@ -328,6 +402,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\n\n\n\n";
+		};
+		57C6F54D1CC255A96CA72490 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		B6DA8C2368422B9B98E0B4D6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -385,12 +476,16 @@
 			files = (
 				47F0473323D043E5009E4439 /* App+Router.swift in Sources */,
 				47FC34E2223807700022174D /* ViewController.swift in Sources */,
+				4744E0D4240F915100F8A1CD /* App_BaiduMap.swift in Sources */,
 				479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */,
 				47F0472F23D043E5009E4439 /* UIViewController+Load.m in Sources */,
 				47F0473023D043E5009E4439 /* AppDelegate.swift in Sources */,
 				47F0473123D043E5009E4439 /* UIViewController+Swizzling.swift in Sources */,
+				4744E0D3240F915100F8A1CD /* LocationBaidu.swift in Sources */,
 				47F0473223D043E5009E4439 /* Router+Utility.swift in Sources */,
 				47F0472E23D043E5009E4439 /* App+Window.swift in Sources */,
+				4718A9622410A4D9001B0B59 /* VC_BaiduMapView.swift in Sources */,
+				4744E0C5240F913C00F8A1CD /* Router+Map.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

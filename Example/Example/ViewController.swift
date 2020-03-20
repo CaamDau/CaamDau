@@ -8,7 +8,7 @@
 
 
 import UIKit
-
+import CaamDau
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -16,6 +16,13 @@ class ViewController: UIViewController {
         
     }
 
-
+    @IBAction func buttonClick(_ sender: Any) {
+        if #available(iOS 13.0, *) {
+            CD_PencilDraw.show(UIImage(named: "launchScreen")!)
+        } else {
+            
+        }
+    }
+    
 }
 

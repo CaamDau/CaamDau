@@ -21,7 +21,7 @@ public class App_Config: CD_AppDelegate {
     }
     
     func makeTopBar() {
-        CD_TopBar.Model.color_bg = Config.color.hex("f")
+        CD_TopBar.Model.color_bg = Config.color.hex("f", dark: "0f")
         CD_TopBar.Model.color_line = Config.color.line_1
         CD_TopBar.Model.color_title = Config.color.txt_1
         CD_TopBar.Model.color_subTitle = Config.color.txt_1
@@ -38,6 +38,7 @@ public class App_Config: CD_AppDelegate {
         UITableViewCell.appearance().selectionStyle = .none
         UITableView.appearance().backgroundColor = Config.color.bg
         UICollectionView.appearance().backgroundColor = Config.color.bg
+       
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().backIndicatorImage = UIImage.cd_iconfont(CD_IconFont.tback_light(22), color: .white)
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage.cd_iconfont(CD_IconFont.tback_light(22), color: .white)

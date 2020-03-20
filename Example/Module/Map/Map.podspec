@@ -28,22 +28,30 @@ TODO: Add long description of the pod here.
 
   s.subspec 'Location' do |loc|
     loc.source_files = 'Map/Classes/Location/*'
+    loc.resource_bundles = {
+      'Map' => ['Map/Nib/*.{storyboard}']
+    }
+    loc.dependency 'CaamDau'
+    loc.dependency 'Utility'
   end
 
   s.subspec 'Baidu' do |bd|
     bd.source_files = 'Map/Classes/BaiduMap/*'
-    
+    bd.resource_bundles = {
+      'Map' => ['Map/Nib/*.{storyboard}']
+    }
+#    bd.dependency 'BaiduMapKit'
+#    bd.dependency 'BMKLocationKit'
+#    bd.dependency 'BaiduTraceKit-Lite'
+    bd.dependency 'CaamDau'
+    bd.dependency 'Utility'
   end
   s.subspec 'AMap' do |am|
     am.source_files = 'Map/Classes/AMap/*'
+    am.resource_bundles = {
+      'Map' => ['Map/Nib/*.{storyboard}']
+    }
+    am.dependency 'CaamDau'
+    am.dependency 'Utility'
   end
-  
-  s.resource_bundles = {
-    'Map' => ['Map/Nib/*.{storyboard}']
-  }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'CaamDau'
-  s.dependency 'Utility'
 end
