@@ -45,6 +45,7 @@
 ```
 pod 'CaamDau'
 pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
+pod 'CaamDau', :git => 'https://gitee.com/CaamDau/CaamDau.git'
 
 pod 'CaamDau/Core'  # 只引入CaamDau核心组件
 pod 'CaamDau/Module'  # 引入CaamDau核心组件+辅助组件
