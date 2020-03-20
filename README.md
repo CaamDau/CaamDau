@@ -496,7 +496,7 @@ CD_DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callbac
 ### PencilKit图片编辑组件
 <p>
   <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil1.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil2.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil2.png" width="25%" />
 </p>
 
 ```
