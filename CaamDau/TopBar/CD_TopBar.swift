@@ -529,13 +529,14 @@ extension CD_TopBar {
 extension CD_TopBar: CD_TopNavigationBarProtocol {
     public func update(withNavigationBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         if let de = self.delegate {
-            return de.update(withTopBar:item)
+            return de.topBar(self, updateItemStyleForItem: item) ?? de.update(withTopBar:item)
         }
         return self.super_update(withTopBar:item)
     }
     
     public func didSelect(withNavigationBar item: CD_TopNavigationBar.Item) {
         if let de = self.delegate {
+            de.topBar(self, didSelectAt: item)
             de.didSelect(withTopBar: item)
         }
         else if let call = self.callBack {
