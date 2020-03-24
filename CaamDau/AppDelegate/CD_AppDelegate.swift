@@ -18,7 +18,7 @@ import CloudKit
 
 public typealias CD_AppDelegate = UIResponder & UIApplicationDelegate
 
-public class CD_AppDelegateComposite: CD_AppDelegate {
+open class CD_AppDelegateComposite: CD_AppDelegate {
     private let composite:[CD_AppDelegate]
     public init(_ delegates:[CD_AppDelegate]) {
         self.composite = delegates
