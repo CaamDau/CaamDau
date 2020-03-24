@@ -133,16 +133,14 @@ open class CD_TableViewController: CD_FormTableViewController {
 }
 
 extension CD_TableViewController: CD_TopBarProtocol {
-    open func topBarCustom() {
-        vm?._topBarCustom?(self.topBar)
+    open func topBar(custom topBar: CD_TopBar) {
+        vm?._topBarCustom?(topBar)
     }
-    
-    open func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
-        vm?._topBarDidSelect?(self.topBar, item)
+    open func topBar(_ topBar: CD_TopBar, didSelectAt item: CD_TopNavigationBar.Item) {
+        vm?._topBarDidSelect?(topBar, item)
     }
-    
-    open func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return vm?._topBarUpdate?(self.topBar, item)
+    open func topBar(_ topBar: CD_TopBar, updateItemStyleForItem item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        return vm?._topBarUpdate?(topBar, item)
     }
 }
 

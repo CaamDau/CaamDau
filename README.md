@@ -333,7 +333,7 @@ lazy var topBar: CD_TopBar = {
 }()
 
 extension VC_***: CD_TopBarProtocol {
-    func topBarCustom() {
+    func topBar(custom topBar:CD_TopBar) {
         topBar._style = "22"
         topBar._leftItemsWidth2 = 60
         topBar._rightItemsWidth1 = 80
