@@ -77,19 +77,19 @@ extension VM_Mine{
             Router.Utility.http("https://github.com/liucaide/CaamDau", "CaamDau").router()
         }
         do{
-            let row = CD_RowCell<Cell_MineForm>(data: "Form", frame: CGRect(h:45), callBack: callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: ("Form", Assets().com_点赞_已点), frame: CGRect(h:45), callBack: callBack) {
                 R_Forms.push()
             }
             self.forms[Section.form.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_MineForm>(data: "Form-TableView", frame: CGRect(h:45), callBack: callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: ("Form-TableView", Assets().com_点赞_已点), frame: CGRect(h:45), callBack: callBack) {
                 VC_MineTableView.push()
             }
             self.forms[Section.form.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_MineForm>(data: "Form-CollectionView", frame: CGRect(h:45), callBack:callBack) {
+            let row = CD_RowCell<Cell_MineForm>(data: ("Form-CollectionView", Assets().com_点赞_已点), frame: CGRect(h:45), callBack:callBack) {
                 VC_MineCollection.push()
             }
             self.forms[Section.form.rawValue].append(row)
@@ -124,21 +124,21 @@ extension VM_Mine{
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_HUD", "HUD"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
-                R_CDBaseTableViewController.push(vm)
+                R_CDTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
-                R_CDBaseTableViewController.push(vm)
+                R_CDTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseCollectionViewController", "基础CollectionView"), frame: CGRect(h:45)) {
                 let vm = VM_BaseColle()
-                R_CDBaseCollectionViewController.push(vm)
+                R_CDCollectionViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
@@ -174,6 +174,11 @@ extension VM_Mine{
                     $0.minDate = "2019-3-10".cd_date("yyyy-MM-dd")!
                     $0.maxDate = "2020-11-20".cd_date("yyyy-MM-dd")!
                 }
+            }
+            self.forms[Section.other.rawValue].append(row)
+        }
+        do{
+            let row = CD_RowCell<Cell_MineTitle>(data: ("PencilKit-CD_PencilDraw", "点击头像查看"), frame: CGRect(h:45)) {
             }
             self.forms[Section.other.rawValue].append(row)
         }

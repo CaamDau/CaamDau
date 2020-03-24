@@ -12,8 +12,9 @@ pod 'CaamDau/Form'
 - [如何做到不需要再维护Delegate/DataSource协议的代码](#如何做到不需要再维护Delegate和DataSource协议的代码)
 - [如何构建一个单元格模型Row](#如何构建一个单元格模型Row)
 - [如何应对混合排版](#如何应对混合排版)
-- [以前混乱的代码](#以前混乱的代码)
-- [现在有序的代码](#现在有序的代码)
+- [如何扩展实现自定义功能](#如何扩展实现自定义功能)
+- [对比：以前混乱的代码](#以前混乱的代码)
+- [对比：现在有序的代码](#现在有序的代码)
 
 ### 如何做到不需要再维护Delegate和DataSource协议的代码
 - 首先要明白 Delegate/DataSource 中 section row height didselect 的多点关系是有迹可循的，是可以模型化的，因此可以转化为单个模型单元，即可将多点关系转化为了单点关系
@@ -79,6 +80,37 @@ extension VM_MineTableView{
         }
     }
 }
+```
+### 如何扩展实现自定义功能
+- CD_Form *** DelegateDataSource 内已实现的 Delegate/DataSource 是普遍通用代码，当无法满足需求时，可继承 CD_Form *** DelegateDataSource 实现
+```
+/// 继承 CD_Form***DelegateDataSource 自行实现 左滑删除功能
+class CustomListTableViewDelegateDataSource: CD_FormTableViewDelegateDataSource {
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // 特定状态 特定Cell 具备左滑删除
+        guard let vm = vm as? VM_CustomList, vm.status == .t未提交, vm._forms[indexPath.section][indexPath.row].cellClass == Cell_CustomList.self else {
+            return false
+        }
+        return true
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "删除"
+    }
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let vm = vm as? VM_CustomList, let model = vm._forms[indexPath.section][indexPath.row].dataSource as? VM_CustomList.List  else {
+            return
+        }
+        vm.requestDelete(model)
+    }
+}
+
 ```
 
 ### 以前混乱的代码

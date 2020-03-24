@@ -148,7 +148,7 @@ extension CD_PageViewController {
             scroll(toIndex: selectIndex, animated:animated)
         }
     }
-    func scroll(toIndex index:Int, animated:Bool = false) {
+    public func scroll(toIndex index:Int, animated:Bool = false) {
         guard index < dataSourceSize.count else { return }
         var offset:CGPoint = .zero
         switch model.scrollDirection {

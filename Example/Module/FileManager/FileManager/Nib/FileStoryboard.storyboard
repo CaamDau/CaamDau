@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--File From Share-->
+        <scene sceneID="8Tb-oR-qBb">
+            <objects>
+                <viewController storyboardIdentifier="VC_FileFromShare" id="i9b-Sf-Bba" customClass="VC_FileFromShare" customModule="新科直卖" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bdK-EU-26Q">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dmo-Ns-YFu">
+                                <rect key="frame" x="205" y="240.5" width="190" height="119"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyS-9w-KuO">
+                                        <rect key="frame" x="65" y="0.0" width="60" height="79"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="maP-Bw-7Y7"/>
+                                            <constraint firstAttribute="width" secondItem="kyS-9w-KuO" secondAttribute="height" multiplier="150:197" id="reT-vQ-JxW"/>
+                                        </constraints>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="X93-Ty-lvP">
+                                        <rect key="frame" x="0.0" y="89" width="190" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brd-GJ-aUv">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="BUu-IA-gaF"/>
+                                                </constraints>
+                                                <state key="normal" title="打开"/>
+                                                <connections>
+                                                    <action selector="buttonClick:" destination="i9b-Sf-Bba" eventType="touchUpInside" id="p3q-tx-LQv"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlH-hz-gGR">
+                                                <rect key="frame" x="110" y="0.0" width="80" height="30"/>
+                                                <state key="normal" title="保存"/>
+                                                <connections>
+                                                    <action selector="buttonClick:" destination="i9b-Sf-Bba" eventType="touchUpInside" id="gWn-8m-yrq"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Dmo-Ns-YFu" firstAttribute="centerX" secondItem="24q-gR-LnE" secondAttribute="centerX" id="1V3-9P-he5"/>
+                            <constraint firstItem="Dmo-Ns-YFu" firstAttribute="centerY" secondItem="24q-gR-LnE" secondAttribute="centerY" id="n4V-ne-uFL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="24q-gR-LnE"/>
+                    </view>
+                    <connections>
+                        <outlet property="btn_icon" destination="kyS-9w-KuO" id="J9f-rl-Ay7"/>
+                        <outlet property="btn_open" destination="Brd-GJ-aUv" id="pJl-tI-7w4"/>
+                        <outlet property="btn_save" destination="JlH-hz-gGR" id="9Zi-x1-IOR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Cg-8h-YIY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277" y="213"/>
+        </scene>
+    </scenes>
+</document>

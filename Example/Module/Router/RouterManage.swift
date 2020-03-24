@@ -26,5 +26,14 @@ extension Router {
         case html(_ html:String, _ title:String)
         case http(_ url:String, _ title:String)
         case file(_ url:String, _ title:String)
+        case pencilDraw
+    }
+}
+
+//MARK:--- 通用 ----------
+extension Router {
+    public enum Map: CD_RouterProtocol {
+        case location
+        case baidu
     }
 }

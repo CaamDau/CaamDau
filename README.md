@@ -1,5 +1,5 @@
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CD/caamdau.png" align=centre />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/caamdau.png" align=centre />
 </p>
 
 [![CI Status](https://img.shields.io/travis/liucaide/CaamDau.svg?style=flat)](https://travis-ci.org/liucaide/CaamDau)
@@ -29,6 +29,7 @@
   - [InputBox输入框扩展组件](#InputBox输入框扩展组件)
   - [Indexes一个漂亮的索引View](#Indexes一个漂亮的索引View)
   - [Calendar日历、日期选择组件](#Calendar日历日期选择组件)
+  - [PencilKit 图片编辑组件](#PencilKit图片编辑组件)
   - 持续增新...
  
 - [第三方扩展组件](#第三方扩展组件)
@@ -44,6 +45,7 @@
 ```
 pod 'CaamDau'
 pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
+pod 'CaamDau', :git => 'https://gitee.com/CaamDau/CaamDau.git'
 
 pod 'CaamDau/Core'  # 只引入CaamDau核心组件
 pod 'CaamDau/Module'  # 引入CaamDau核心组件+辅助组件
@@ -266,12 +268,12 @@ Router.Order.submit.router(["id":999]) { (res) in
 [回顶部目录](#目录)
 ### HUD提示窗组件
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud10.png" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud11.png" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud1.png" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud2.png" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud20.png" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/hud21.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud10.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud11.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud1.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud2.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud20.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud21.png" width="15%" />
 </p>
 
 ```
@@ -285,9 +287,9 @@ view.cd.hud(.succeed, title: title, model:model)
 ### Page分页导航控制组件
 
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CD/page1.gif" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/page2.gif" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/page3.png" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/page1.gif" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/page2.gif" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/page3.png" width="15%" />
 </p>
 
 ```
@@ -322,7 +324,7 @@ pageControl.selectIndex = 2
 ### TopBar自定义导航栏组件
 - 完全隐藏系统导航栏，使用自定义导航栏
 <p>
-<img src="https://github.com/liucaide/Images/blob/master/CD/TopBar1.jpeg" width="10%" />
+<img src="https://github.com/liucaide/Images/blob/master/CaamDau/TopBar1.jpeg" width="15%" />
 </p>
 
 ```
@@ -331,7 +333,7 @@ lazy var topBar: CD_TopBar = {
 }()
 
 extension VC_***: CD_TopBarProtocol {
-    func topBarCustom() {
+    func topBar(custom topBar:CD_TopBar) {
         topBar._style = "22"
         topBar._leftItemsWidth2 = 60
         topBar._rightItemsWidth1 = 80
@@ -341,7 +343,7 @@ extension VC_***: CD_TopBarProtocol {
         topBar._heightCustomBar = 70
         topBar.cd.snp().gradient()
     }
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
         super_topBarClick(item)
         switch item {
         case .rightItem1:
@@ -353,7 +355,7 @@ extension VC_***: CD_TopBarProtocol {
         }
     }
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+     func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
             return topBar.cd.backWhite()
@@ -454,8 +456,8 @@ CD_InputBoxPopping.show( ... ){ ... }
 ### Indexes一个漂亮的索引View
 
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CD/indexes0.gif" width="10%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CD/indexes1.gif" width="10%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/indexes0.gif" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/indexes1.gif" width="15%" />
 </p>
 
 
@@ -489,6 +491,25 @@ CD_DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callbac
     $0.maxDate = "2020-11-20".cd_date("yyyy-MM-dd")!
 }
 ```
+
+[回顶部目录](#目录)
+### PencilKit图片编辑组件
+<p>
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil1.png" width="15%" />
+  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil2.png" width="25%" />
+</p>
+
+```
+if #available(iOS 13.0, *) {
+    CD_PencilDraw.show(imageView.image ?? Assets().logo_0, drawing: drawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
+        self?.drawing = draw
+        self?.imageView.image = image
+    }
+} else {
+    
+}
+```
+
 #### 持续增新...
 [回顶部目录](#目录)
 ## 第三方扩展组件

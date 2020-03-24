@@ -20,7 +20,7 @@ open class CD_FormViewController: UIViewController {
         return v
     }()
     /// 头部安全区约束
-    open var safeAreaTop:Bool = false
+    open var safeAreaTop:Bool = true
     /// 尾部安全区约束
     open var safeAreaBottom:Bool = true
     

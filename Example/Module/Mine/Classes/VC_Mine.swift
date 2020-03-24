@@ -2,13 +2,15 @@
 
 import UIKit
 
+import PencilKit
+
+
 public struct R_Mine: CD_RowVCProtocol {
     public init(){}
     public var vc: UIViewController {
         return VC_Mine.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Mine
     }
 }
-
 class VC_Mine: UIViewController {
     @IBOutlet weak var topBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
@@ -60,8 +62,24 @@ class VC_Mine: UIViewController {
         return UIImageView(image: Assets().logo_0)
     }()
     lazy var tableViewHeaderImgLogo: UIImageView = {
-        return UIImageView(image: Assets().logo_0)
+        let v = UIImageView(image: Assets().logo_0)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(headerLogoClick(_:)))
+        v.cd.isUser(true).add(tap)
+        return v
     }()
+    
+    
+    var logoPKDrawing:Any?
+    @objc func headerLogoClick(_ tap:Any) {
+        if #available(iOS 13.0, *) {
+            CD_PencilDraw.show(tableViewHeaderImgLogo.image ?? Assets().logo_0, drawing: logoPKDrawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
+                self?.logoPKDrawing = draw
+                self?.tableViewHeaderImgLogo.image = image
+            }
+        } else {
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,7 +179,7 @@ class VC_Mine: UIViewController {
 }
 
 extension VC_Mine: CD_TopBarProtocol {
-    func topBarCustom() {
+    func topBar(custom topBar: CD_TopBar) {
         topBar.cd.background(UIColor.clear)
         topBar.bar_navigation.line.isHidden = true
         topBar._colorTitle = UIColor.white
@@ -184,7 +202,7 @@ extension VC_Mine: CD_TopBarProtocol {
     }
     
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    func topBar(_ topBar: CD_TopBar, updateItemStyleForItem item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
             let icon = CD_IconFont.tsearch(22)
@@ -201,7 +219,7 @@ extension VC_Mine: CD_TopBarProtocol {
         }
     }
     
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
         switch item {
         case .rightItem1:
             self.view.layoutIfNeeded()

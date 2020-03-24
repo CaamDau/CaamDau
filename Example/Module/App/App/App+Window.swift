@@ -11,16 +11,16 @@ import Foundation
 import TabBarNavigation
 import Mine
 import Home
+import Demo
 
 class App_VC: CD_AppDelegate {
     var window: UIWindow?
-    var tabbar: VC_TabBar?
+    var tabbar: UITabBarController?
     init(_ win: UIWindow?) {
         window = win
     }
     var observer:[NSObjectProtocol] = []
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        window?.makeKeyAndVisible()
         
         User.shared.statusNotification = true
         observer.append(User.notice.signIn.add(block: { [weak self](n) in
@@ -48,19 +48,57 @@ class App_VC: CD_AppDelegate {
     
     func makeTabBar() {
         let vc1 = UINavigationController(rootViewController: R_Home().vc)
-        let vc2 = UINavigationController(rootViewController: R_Mine().vc)
-        let vc3 = UINavigationController(rootViewController: R_Mine().vc)
+        let vc2 = UINavigationController(rootViewController: R_Demo().vc)
+        let vc3 = UINavigationController(rootViewController: R_BaiduMapView().vc)
         let vc4 = UINavigationController(rootViewController: R_Mine().vc)
         
-        tabbar = VC_TabBar().cd
-            .viewControllers([vc1,
-                              vc2,
-                              vc3,
-                              vc4
+        tabbar = UITabBarController()
+        tabbar?.cd
+            .viewControllers([
+                vc1,
+                vc2,
+                vc3,
+                vc4
             ])
-            .build
-        tabbar?.makeTabBar()
-        tabbar?.selectedIndex = 3
+            .makeTabBar()
+        tabbar?.selectedIndex = 2
         window?.rootViewController = tabbar
+    }
+}
+
+extension CaamDau where Base: UITabBarController { 
+    @discardableResult
+    func makeTabBar() -> CaamDau {
+        let assets = AssetsTabBar()
+        base.tabBar.cd
+            .hideLine()
+            .isTranslucent(false)
+            .imageNormals([assets.home_normal,
+                           assets.me_normal,
+                           assets.me_normal,
+                           assets.me_normal])
+            .imageSelects([assets.home_selected,
+                           assets.me_selected,
+                           assets.me_selected,
+                           assets.me_selected])
+            .titles(["首页", "示例", "地图", "我的"])
+            //.colorNormals([.red, .yellow, .blue, .orange])
+            //.colorSelecteds((0..<5).map{_ in Config.color.tabbar1})
+//            .fontNormals([.systemFont(ofSize: 10),
+//                          .systemFont(ofSize: 10),
+//                          .systemFont(ofSize: 10)])
+//            .fontSelecteds([.systemFont(ofSize: 14),
+//                            .systemFont(ofSize: 14),
+//                            .systemFont(ofSize: 14)])
+            .badges([nil,"123","666","999"])
+            //.badgeColors([nil,.black,.yellow])
+            //.badgeColorSelecteds([.black,.black,.red])
+            .addShadowLine(backgroundColor: Config.color.line_1) { (v) in
+                v.snp.makeConstraints { (make) in
+                    make.left.right.top.equalToSuperview()
+                    make.height.equalTo(0.5)
+                }
+        }
+        return self
     }
 }

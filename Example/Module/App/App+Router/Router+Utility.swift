@@ -22,6 +22,12 @@ extension App_Router {
             R_Web.push(.html(html), title: title)
         case Router.Utility.file(let url, let title):
             R_Web.push(.file(url), title: title)
+        case Router.Utility.pencilDraw:
+            if #available(iOS 13.0, *) {
+                CD_PencilDraw.show(UIImage(named: "launchScreen")!)
+            } else {
+                
+            }
         default:
             break
         }

@@ -11,11 +11,11 @@ import CaamDau
 struct R_PageList {
     static func push() {
         let vm = VM_PageList()
-        R_CDBaseTableViewController.push(vm)
+        R_CDTableViewController.push(vm)
     }
 }
 class VM_PageList {
-    lazy var form: [CD_RowProtocol] = {
+    lazy var form: [CD_CellProtocol] = {
         return []
     }()
     var reloadData:(()->Void)?
@@ -27,7 +27,7 @@ class VM_PageList {
 extension VM_PageList {
     func makeForm() {
         for (i,item) in ["默认-横向-横向","横向-纵向","纵向-纵向","纵向-横向"].enumerated() {
-            let row = CD_Row<CD_TableViewCellBase>(data: CD_TableViewCellBase.Model(title:item), frame: CGRect(h:45), didSelect: {
+            let row = CD_RowCell<CD_TableViewCellBase>(data: CD_TableViewCellBase.Model(title:item), frame: CGRect(h:45), didSelect: {
                 VC_Page.push(VC_Page.Style(rawValue: i) ?? .hh)
             })
             form.append(row)
@@ -85,15 +85,15 @@ extension VM_PageList: CD_ViewModelDataSource {
         return []
     }
     
-    var _form: [[CD_RowProtocol]] {
+    var _forms: [[CD_CellProtocol]] {
         return [form]
     }
     
-    var _formHeader: [CD_RowProtocol] {
+    var _formHeaders: [CD_CellProtocol] {
         return []
     }
     
-    var _formFooter: [CD_RowProtocol] {
+    var _formFooters: [CD_CellProtocol] {
         return []
     }
     

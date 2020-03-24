@@ -9,7 +9,7 @@
 		<key>navigation1</key>
 		<string>00AEFF</string>
 		<key>tabbar0</key>
-		<string>00A6FF</string>
+		<string>3</string>
 		<key>tabbar1</key>
 		<string>00A6FF</string>
 		<key>main_1</key>
@@ -100,9 +100,9 @@
 		<key>price</key>
 		<string>FF3B30</string>
 		<key>bg</key>
-		<string>0</string>
+		<string>3</string>
 		<key>line_1</key>
-		<string>f5</string>
+		<string>3</string>
 		<key>line_2</key>
 		<string>f0</string>
 		<key>warning</key>

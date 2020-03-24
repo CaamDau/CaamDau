@@ -74,9 +74,10 @@ class Cell_MineForm: UITableViewCell {
 }
 extension Cell_MineForm:CD_RowCellUpdateProtocol {
     typealias ConfigModel = Any
-    typealias DataSource = String
-    func row_update(dataSource data: String) {
-        self.lab_title.cd.text(data)
+    typealias DataSource = (String, UIImage)
+    func row_update(dataSource data: DataSource) {
+        lab_title.cd.text(data.0)
+        btn_github.cd.image(data.1)
     }
     func row_update(callBack block: CD_RowCallBack?) {
         self.callBack = block

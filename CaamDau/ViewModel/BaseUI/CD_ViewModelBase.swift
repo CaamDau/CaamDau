@@ -89,7 +89,7 @@ extension CD_ViewModelTopBarDelegater {
     
     public var _topBarDidSelect: ((CD_TopBar, CD_TopNavigationBar.Item) -> Void)? {
         return { (top, item) in
-            top.super_topBarClick(item)
+            top.topBarItemClick(item)
         }
     }
     

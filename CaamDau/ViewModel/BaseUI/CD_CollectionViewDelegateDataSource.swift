@@ -77,6 +77,8 @@ public struct R_CDCollectionViewController {
     public static func push(_ vm:CD_ViewModelCollectionViewProtocol) {
         let vc = CD_CollectionViewController()
         vc.vm = vm
+        vc.safeAreaTop = false
+        vc.safeAreaBottom = true
         CD.push(vc)
     }
 }
@@ -141,16 +143,14 @@ open class CD_CollectionViewController: CD_FormCollectionViewController {
 }
 
 extension CD_CollectionViewController: CD_TopBarProtocol {
-    open func topBarCustom() {
-        vm?._topBarCustom?(self.topBar)
-    }
     
-    open func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
-        //super_topBarClick(item)
-        vm?._topBarDidSelect?(self.topBar, item)
+    open func topBar(custom topBar: CD_TopBar) {
+        vm?._topBarCustom?(topBar)
     }
-    
-    open func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return vm?._topBarUpdate?(self.topBar, item)
+    open func topBar(_ topBar: CD_TopBar, didSelectAt item: CD_TopNavigationBar.Item) {
+        vm?._topBarDidSelect?(topBar, item)
+    }
+    open func topBar(_ topBar: CD_TopBar, updateItemStyleForItem item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        return vm?._topBarUpdate?(topBar, item)
     }
 }
