@@ -34,7 +34,7 @@ public protocol CD_TopBarProtocol: NSObjectProtocol {
     /// 按钮事件
     @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(custom topBar:CD_TopBar)")
     func didSelect(withTopBar item:CD_TopNavigationBar.Item)
-    
+
     /// TopBar 自定义
     @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(_ topBar:CD_TopBar, didSelectItemAt item:CD_TopNavigationBar.Item)")
     func topBarCustom()
@@ -47,10 +47,6 @@ public protocol CD_TopBarProtocol: NSObjectProtocol {
 extension CD_TopBarProtocol {
     /// TopBar 自定义
     public func topBar(custom topBar:CD_TopBar) {
-        
-    }
-    
-    public func topBarCustom() {
         
     }
     
@@ -68,15 +64,6 @@ extension CD_TopBarProtocol {
         }
     }
     
-    public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
-        self.super_topBarClick(item)
-    }
-    
-    /// 更新按钮样式
-    public func update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return super_update(withTopBar: item)
-    }
-    
     public func super_update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
@@ -84,6 +71,19 @@ extension CD_TopBarProtocol {
         default:
             return nil
         }
+    }
+    
+    public func topBarCustom() {
+
+    }
+
+    public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+        self.super_topBarClick(item)
+    }
+
+    /// 更新按钮样式
+    public func update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        return nil
     }
 }
 
@@ -529,15 +529,15 @@ extension CD_TopBar {
 extension CD_TopBar: CD_TopNavigationBarProtocol {
     public func update(withNavigationBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         if let de = self.delegate {
-            return de.topBar(self, updateItemStyleForItem: item) ?? de.update(withTopBar:item)
+            return de.update(withTopBar:item) ?? de.topBar(self, updateItemStyleForItem: item)
         }
         return self.super_update(withTopBar:item)
     }
     
     public func didSelect(withNavigationBar item: CD_TopNavigationBar.Item) {
         if let de = self.delegate {
-            de.topBar(self, didSelectAt: item)
             de.didSelect(withTopBar: item)
+            de.topBar(self, didSelectAt: item)
         }
         else if let call = self.callBack {
             call(item)
