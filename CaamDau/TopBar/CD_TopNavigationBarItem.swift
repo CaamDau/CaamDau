@@ -13,9 +13,11 @@ import SnapKit
 //MARK:--- 协议 ----------
 public protocol CD_TopNavigationBarItemProtocol: NSObjectProtocol {
     /// 更新样式
-    func update(withBarItem tag:Int,  _ item:CD_TopNavigationBarItem.Item) -> [CD_TopNavigationBarItem.Item.Style]?
+    func topNavigationBarItem(_ topNavigationBarItem:CD_TopNavigationBarItem, itemTag tag:Int,  updateItemStyleForItem item:CD_TopNavigationBarItem.Item) -> [CD_TopNavigationBarItem.Item.Style]?
+    
+    
     /// 按钮事件
-    func didSelect(withBarItem tag:Int, _ item:CD_TopNavigationBarItem.Item)
+    func topNavigationBarItem(_ topNavigationBarItem:CD_TopNavigationBarItem, didSelectAt  item:CD_TopNavigationBarItem.Item)
 }
 
 //MARK:--- 样式 ----------
@@ -414,7 +416,7 @@ extension CD_TopNavigationBarItem {
     
     @objc func buttonClick(_ sender: UIButton) {
         
-        self.delegate?.didSelect(withBarItem: self.tag,  CD_TopNavigationBarItem.Item(rawValue: sender.tag) ?? .itemNone)
+        self.delegate?.topNavigationBarItem(self, didSelectAt: CD_TopNavigationBarItem.Item(rawValue: sender.tag) ?? .itemNone)
         self.callBack?(CD_TopNavigationBarItem.Item(rawValue: sender.tag) ?? .itemNone)
     }
 }
@@ -424,13 +426,13 @@ extension CD_TopNavigationBarItem {
 extension CD_TopNavigationBarItem {
     /// 此更新方法用于 delegate 类回调更新
     public func reloadData() {
-        if let styles = self.delegate?.update(withBarItem: self.tag, .item1) {
+        if let styles = self.delegate?.topNavigationBarItem(self, itemTag: self.tag, updateItemStyleForItem: .item1) {
             reloadData(withButton: btn_1, styles: styles)
         }
-        if let styles = self.delegate?.update(withBarItem:self.tag, .item2) {
+        if let styles = self.delegate?.topNavigationBarItem(self, itemTag: self.tag, updateItemStyleForItem: .item2) {
             reloadData(withButton: btn_2, styles: styles)
         }
-        if let styles = self.delegate?.update(withBarItem:self.tag, .item3) {
+        if let styles = self.delegate?.topNavigationBarItem(self, itemTag: self.tag, updateItemStyleForItem: .item3) {
             reloadData(withButton: btn_3, styles: styles)
         }
     }

@@ -76,8 +76,8 @@ public struct R_CDTableViewController {
     public static func push(_ vm:CD_ViewModelTableViewProtocol) {
         let vc = CD_TableViewController()
         vc.vm = vm
-        //vc.safeAreaTop = false
-        //vc.safeAreaBottom = true
+        vc.safeAreaTop = false
+        vc.safeAreaBottom = true
         CD.push(vc)
     }
 }

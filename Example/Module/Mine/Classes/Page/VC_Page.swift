@@ -282,7 +282,7 @@ extension VC_Page: CD_PageScrollProtocol {
 
 
 extension VC_Page: CD_TopBarProtocol {
-    public func topBarCustom() {
+    public func topBar(custom topBar: CD_TopBar) {
         topBar._title = "CD_Page"
         topBar.cd.background(UIColor.clear)
         topBar.bar_navigation.line.isHidden = true

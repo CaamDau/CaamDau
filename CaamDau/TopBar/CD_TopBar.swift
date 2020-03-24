@@ -27,21 +27,6 @@ public protocol CD_TopBarProtocol: NSObjectProtocol {
     func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
     /// 新：按钮事件
     func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item)
-    
-    /// 更新按钮样式
-    @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?")
-    func update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
-    /// 按钮事件
-    @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(custom topBar:CD_TopBar)")
-    func didSelect(withTopBar item:CD_TopNavigationBar.Item)
-
-    /// TopBar 自定义
-    @available(*, deprecated, message: "旧的协议，弃用, 建议用新的 topBar(_ topBar:CD_TopBar, didSelectItemAt item:CD_TopNavigationBar.Item)")
-    func topBarCustom()
-    /// 导航栏默认按钮事件
-    func super_topBarClick(_ item:CD_TopNavigationBar.Item)
-    /// 导航栏默认 样式
-    func super_update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
 }
 
 extension CD_TopBarProtocol {
@@ -51,39 +36,11 @@ extension CD_TopBarProtocol {
     }
     
     public func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return super_update(withTopBar: item)
+        return topBar.topBarItemUpdate(item)
     }
     
     public func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
-        super_topBarClick(item)
-    }
-    
-    public func super_topBarClick(_ item:CD_TopNavigationBar.Item) {
-        if item == .leftItem1 {
-            CD.pop()
-        }
-    }
-    
-    public func super_update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        switch item {
-        case .leftItem1:
-            return [CD_TopBar.Model.back]
-        default:
-            return nil
-        }
-    }
-    
-    public func topBarCustom() {
-
-    }
-
-    public func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
-        self.super_topBarClick(item)
-    }
-
-    /// 更新按钮样式
-    public func update(withTopBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return nil
+        topBar.topBarItemClick(item)
     }
 }
 
@@ -516,7 +473,6 @@ private extension CD_TopBar {
 
 extension CD_TopBar {
     public func reloadData() {
-        self.delegate?.topBarCustom()
         self.delegate?.topBar(custom: self)
         self.bar_navigation.reloadData()
         
@@ -527,22 +483,35 @@ extension CD_TopBar {
 }
 
 extension CD_TopBar: CD_TopNavigationBarProtocol {
-    public func update(withNavigationBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    public func topNavigationBar(_ topNavigationBar: CD_TopNavigationBar, updateItemStyleForItem item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         if let de = self.delegate {
-            return de.update(withTopBar:item) ?? de.topBar(self, updateItemStyleForItem: item)
+            return de.topBar(self, updateItemStyleForItem: item)
         }
-        return self.super_update(withTopBar:item)
+        return self.topBarItemUpdate(item)
     }
-    
-    public func didSelect(withNavigationBar item: CD_TopNavigationBar.Item) {
+    public func topNavigationBar(_ topNavigationBar: CD_TopNavigationBar, didSelectAt item: CD_TopNavigationBar.Item) {
         if let de = self.delegate {
-            de.didSelect(withTopBar: item)
             de.topBar(self, didSelectAt: item)
         }
         else if let call = self.callBack {
             call(item)
         }else{
-            self.super_topBarClick(item)
+            self.topBarItemClick(item)
+        }
+    }
+    
+    public func topBarItemClick(_ item:CD_TopNavigationBar.Item) {
+        if item == .leftItem1 {
+            CD.pop()
+        }
+    }
+    
+    public func topBarItemUpdate(_ item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        switch item {
+        case .leftItem1:
+            return [CD_TopBar.Model.back]
+        default:
+            return nil
         }
     }
 }

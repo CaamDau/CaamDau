@@ -106,7 +106,7 @@ extension VC_Web {
 }
 
 extension VC_Web: CD_TopBarProtocol {
-    func topBarCustom() {
+    func topBar(custom topBar: CD_TopBar) {
         topBar._title = _title ?? ""
     }
 }

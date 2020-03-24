@@ -179,7 +179,7 @@ class VC_Mine: UIViewController {
 }
 
 extension VC_Mine: CD_TopBarProtocol {
-    func topBarCustom() {
+    func topBar(custom topBar: CD_TopBar) {
         topBar.cd.background(UIColor.clear)
         topBar.bar_navigation.line.isHidden = true
         topBar._colorTitle = UIColor.white
@@ -202,7 +202,7 @@ extension VC_Mine: CD_TopBarProtocol {
     }
     
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+    func topBar(_ topBar: CD_TopBar, updateItemStyleForItem item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
             let icon = CD_IconFont.tsearch(22)
@@ -219,7 +219,7 @@ extension VC_Mine: CD_TopBarProtocol {
         }
     }
     
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
         switch item {
         case .rightItem1:
             self.view.layoutIfNeeded()

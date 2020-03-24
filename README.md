@@ -343,7 +343,7 @@ extension VC_***: CD_TopBarProtocol {
         topBar._heightCustomBar = 70
         topBar.cd.snp().gradient()
     }
-    func didSelect(withTopBar item: CD_TopNavigationBar.Item) {
+    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
         super_topBarClick(item)
         switch item {
         case .rightItem1:
@@ -355,7 +355,7 @@ extension VC_***: CD_TopBarProtocol {
         }
     }
     
-    func update(withTopBar item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+     func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
             return topBar.cd.backWhite()

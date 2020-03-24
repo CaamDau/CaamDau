@@ -77,6 +77,8 @@ public struct R_CDCollectionViewController {
     public static func push(_ vm:CD_ViewModelCollectionViewProtocol) {
         let vc = CD_CollectionViewController()
         vc.vm = vm
+        vc.safeAreaTop = false
+        vc.safeAreaBottom = true
         CD.push(vc)
     }
 }

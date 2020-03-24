@@ -124,21 +124,21 @@ extension VM_Mine{
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_HUD", "HUD"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
-                R_CDBaseTableViewController.push(vm)
+                R_CDTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
-                R_CDBaseTableViewController.push(vm)
+                R_CDTableViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseCollectionViewController", "基础CollectionView"), frame: CGRect(h:45)) {
                 let vm = VM_BaseColle()
-                R_CDBaseCollectionViewController.push(vm)
+                R_CDCollectionViewController.push(vm)
             }
             self.forms[Section.other.rawValue].append(row)
         }

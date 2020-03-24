@@ -12,9 +12,9 @@ import SnapKit
 
 public protocol CD_TopNavigationBarProtocol: NSObjectProtocol {
     /// 更新按钮样式
-    func update(withNavigationBar item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
+    func topNavigationBar(_ topNavigationBar:CD_TopNavigationBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?
     /// 按钮事件
-    func didSelect(withNavigationBar item:CD_TopNavigationBar.Item)
+    func topNavigationBar(_ topNavigationBar:CD_TopNavigationBar, didSelectAt  item:CD_TopNavigationBar.Item)
 }
 
 extension CD_TopNavigationBar {
@@ -408,18 +408,18 @@ extension CD_TopNavigationBar {
 extension CD_TopNavigationBar {
     /// 此更新方法用于 delegate 类回调更新
     public func reloadData() {
-        if self.delegate?.update(withNavigationBar: .leftItem1) != nil ||
-            self.delegate?.update(withNavigationBar: .leftItem2) != nil ||
-            self.delegate?.update(withNavigationBar: .leftItem3) != nil {
+        if self.delegate?.topNavigationBar(self, updateItemStyleForItem: .leftItem1) != nil ||
+            self.delegate?.topNavigationBar(self, updateItemStyleForItem: .leftItem2) != nil ||
+            self.delegate?.topNavigationBar(self, updateItemStyleForItem: .leftItem3) != nil {
             item_left.reloadData()
         }
-        if self.delegate?.update(withNavigationBar: .centreItem1) != nil ||
-            self.delegate?.update(withNavigationBar: .centreItem2) != nil {
+        if self.delegate?.topNavigationBar(self, updateItemStyleForItem: .centreItem1) != nil ||
+            self.delegate?.topNavigationBar(self, updateItemStyleForItem: .centreItem2) != nil {
             item_centre.reloadData()
         }
-        if self.delegate?.update(withNavigationBar: .rightItem1) != nil ||
-            self.delegate?.update(withNavigationBar: .rightItem2) != nil ||
-            self.delegate?.update(withNavigationBar: .rightItem3) != nil {
+        if self.delegate?.topNavigationBar(self, updateItemStyleForItem: .rightItem1) != nil ||
+            self.delegate?.topNavigationBar(self, updateItemStyleForItem: .rightItem2) != nil ||
+            self.delegate?.topNavigationBar(self, updateItemStyleForItem: .rightItem3) != nil {
             item_right.reloadData()
         }
     }
@@ -449,12 +449,13 @@ extension CD_TopNavigationBar {
 }
 
 extension CD_TopNavigationBar: CD_TopNavigationBarItemProtocol {
-    public func update(withBarItem tag: Int, _ item: CD_TopNavigationBarItem.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return self.delegate?.update(withNavigationBar: CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
-    }
-    public func didSelect(withBarItem tag: Int, _ item: CD_TopNavigationBarItem.Item) {
-        self.delegate?.didSelect(withNavigationBar: CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
-        self.callBack?(CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
+    public func topNavigationBarItem(_ topNavigationBarItem: CD_TopNavigationBarItem, itemTag tag: Int, updateItemStyleForItem item: CD_TopNavigationBarItem.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+        return self.delegate?.topNavigationBar(self, updateItemStyleForItem: CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
     }
     
+    public func topNavigationBarItem(_ topNavigationBarItem: CD_TopNavigationBarItem, didSelectAt item: CD_TopNavigationBarItem.Item) {
+        self.delegate?.topNavigationBar(self, didSelectAt: CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
+        
+        self.callBack?(CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
+    }
 }
