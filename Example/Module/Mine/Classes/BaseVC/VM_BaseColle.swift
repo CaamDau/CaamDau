@@ -19,9 +19,10 @@ class Cell_BaseColleTitle:UICollectionViewCell {
         super.init(coder: aDecoder)
     }
 }
-extension Cell_BaseColleTitle:CD_RowUpdateProtocol {
+extension Cell_BaseColleTitle:CD_RowCellUpdateProtocol {
     typealias DataSource = (UIImage,String)
-    func row_update(_ data: (UIImage,String), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         btn.cd.image(data.0).text(data.1).text(Config.color.txt_1)
     }
 }
@@ -31,18 +32,19 @@ public class Header_BaseCollectionReusableView: UICollectionReusableView {
     static let id:String = "CD_CollectionReusableViewNone"
     
 }
-extension Header_BaseCollectionReusableView:CD_RowUpdateProtocol{
+extension Header_BaseCollectionReusableView:CD_RowCellUpdateProtocol{
     public typealias DataSource = UIColor
-    public func row_update(_ data: UIColor, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    public typealias ConfigModel = Any
+    public func row_update(dataSource data: DataSource) {
         self.backgroundColor = data
     }
 }
 
 
 class VM_BaseColle {
-    var form:[[CD_RowProtocol]] = []
-    //var formHeader:[CD_RowProtocol]
-    //var formFooter:[CD_RowProtocol]
+    var form:[[CD_CellProtocol]] = []
+    //var formHeader:[CD_CellProtocol]
+    //var formFooter:[CD_CellProtocol]
     var mjRefreshType:[CD_MJRefreshModel.RefreshType] = [.tBegin, .tHiddenFoot(true)]
     
     var reloadData:(()->Void)?
@@ -81,7 +83,7 @@ extension VM_BaseColle: CD_ViewModelDataSource {
     func requestData(_ refresh: Bool) {
         
         for item in 0..<10 {
-            let row = CD_Row<Cell_BaseColleTitle>(data: (Assets().logo_30, "String"), frame: CGRect(x: 5, y: 5, w: 50, h: 50))
+            let row = CD_RowCell<Cell_BaseColleTitle>(data: (Assets().logo_30, "String"), frame: CGRect(x: 5, y: 5, w: 50, h: 50))
             form.append([row,row,row,row,row,row,row,row,row,row,row,row])
         }
         
@@ -91,16 +93,16 @@ extension VM_BaseColle: CD_ViewModelDataSource {
         }
     }
     
-    var _form: [[CD_RowProtocol]] {
+    var _forms: [[CD_CellProtocol]] {
         return form
     }
     
-    var _formHeader: [CD_RowProtocol] {
-        return [CD_Row<Header_BaseCollectionReusableView>(data: UIColor.yellow, frame: CGRect(x: 15, y: 15, w: 100, h: 40)),
-                CD_Row<Header_BaseCollectionReusableView>.init(data: UIColor.red, frame: CGRect(x: 5, y: 5, w: 100, h: 40), insets: UIEdgeInsets(t: 20, l: 20, b: 20, r: 20))]
+    var _formHeader: [CD_CellProtocol] {
+        return [CD_RowCell<Header_BaseCollectionReusableView>(data: UIColor.yellow, frame: CGRect(x: 15, y: 15, w: 100, h: 40)),
+                CD_RowCell<Header_BaseCollectionReusableView>.init(data: UIColor.red, frame: CGRect(x: 5, y: 5, w: 100, h: 40), insets: UIEdgeInsets(t: 20, l: 20, b: 20, r: 20))]
     }
     
-    var _formFooter: [CD_RowProtocol] {
+    var _formFooters: [CD_CellProtocol] {
         return []
     }
     

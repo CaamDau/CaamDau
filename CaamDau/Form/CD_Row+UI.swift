@@ -73,12 +73,7 @@ public class CD_TableViewCellBase: UITableViewCell{
         
     }
 }
-extension CD_TableViewCellBase:CD_RowUpdateProtocol{
-    public typealias DataSource = CD_TableViewCellBase.Model
-    public func row_update(_ data: CD_TableViewCellBase.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.update(data, id: id, tag: tag, frame: frame, callBack: callBack)
-    }
-}
+
 extension CD_TableViewCellBase: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
     public func row_update(config data: Any) {
@@ -98,11 +93,7 @@ public class CD_CollectionViewCellNone: UICollectionViewCell{
     public static let id:String = "CD_CollectionViewCellNone"
     public static let bundle:String = "CaamDau"
 }
-extension CD_CollectionViewCellNone:CD_RowUpdateProtocol{
-    public typealias DataSource = Any
-    public func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-    }
-}
+
 extension CD_CollectionViewCellNone: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
     public func row_update(config data: Any) {
@@ -119,11 +110,7 @@ public class CD_CollectionReusableViewNone: UICollectionReusableView {
     public static let id:String = "CD_CollectionReusableViewNone"
     public static let bundle:String = "CaamDau"
 }
-extension CD_CollectionReusableViewNone:CD_RowUpdateProtocol{
-    public typealias DataSource = Any
-    public func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-    }
-}
+
 extension CD_CollectionReusableViewNone: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
     public func row_update(config data: Any) {

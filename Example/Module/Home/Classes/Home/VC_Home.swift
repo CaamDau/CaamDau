@@ -49,13 +49,13 @@ extension VC_Home:UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = vm.forms[indexPath.section][indexPath.row]
-        let cell = tableView.cd.cell(row.viewClass)
+        let cell = tableView.cd.cell(row.cellClass)
         row.bind(cell!)
         return cell!
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = vm.forms[indexPath.section][indexPath.row]
-        row.didSelect?()
+        row.tapBlock?()
     }
     
 }

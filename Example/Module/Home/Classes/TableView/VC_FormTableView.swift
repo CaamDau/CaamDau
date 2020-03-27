@@ -39,7 +39,7 @@ class VC_FormTableView: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = vm.forms[indexPath.section][indexPath.row]
-        let cell = tableView.cd.cell(row.viewClass)
+        let cell = tableView.cd.cell(row.cellClass)
         row.bind(cell!)
         return cell!
     }

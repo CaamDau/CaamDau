@@ -21,15 +21,15 @@ class VM_FormTableView {
             }
         }
     }
-    lazy var forms:[[CD_RowProtocol]] = {
+    lazy var forms:[[CD_CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
     
     
-    lazy var formsHeader:[CD_RowProtocol] = {
-        var f = [CD_RowProtocol]()
+    lazy var formsHeader:[CD_CellProtocol] = {
+        var f = [CD_CellProtocol]()
         for (i,item) in self.forms.enumerated() {
-            f.append(CD_Row<View_Header>(data:Section(rawValue: i)!.headerTitle, frame: CGRect(h:30)))
+            f.append(CD_RowCell<View_Header>(data:Section(rawValue: i)!.headerTitle, frame: CGRect(h:30)))
         }
         return f
     }()

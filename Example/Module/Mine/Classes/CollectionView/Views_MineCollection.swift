@@ -48,9 +48,10 @@ class Cell_MineCollectionLabel: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-extension Cell_MineCollectionLabel: CD_RowUpdateProtocol {
+extension Cell_MineCollectionLabel: CD_RowCellUpdateProtocol {
     typealias DataSource = (CD_IconFont, UIColor)
-    func row_update(_ data: (CD_IconFont, UIColor), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         self.lab_icon.cd.iconfont(data.0)
         self.lab_title.cd.text("\(data.0)")
     }
@@ -66,9 +67,10 @@ class Cell_MineCollectionImage: UICollectionViewCell {
         //self.img.cd.content(.center)
     }
 }
-extension Cell_MineCollectionImage: CD_RowUpdateProtocol {
+extension Cell_MineCollectionImage: CD_RowCellUpdateProtocol {
     typealias DataSource = (CD_IconFont, UIColor, UIView.ContentMode)
-    func row_update(_ data: (CD_IconFont, UIColor, UIView.ContentMode), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         self.img.cd
             .iconfont(data.0, color: data.1)
             .content(data.2)
@@ -88,9 +90,10 @@ class View_MineCollectionHeader: UICollectionReusableView {
     }
     
 }
-extension View_MineCollectionHeader: CD_RowUpdateProtocol {
+extension View_MineCollectionHeader: CD_RowCellUpdateProtocol {
     typealias DataSource = (CD_IconFont, UIColor, String)
-    func row_update(_ data: (CD_IconFont, UIColor, String), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         self.btn.cd
             //.text(data.0.font)
             .text(data.2)
@@ -111,9 +114,10 @@ class View_MineCollectionFooter: UICollectionReusableView {
     }
     
 }
-extension View_MineCollectionFooter: CD_RowUpdateProtocol {
+extension View_MineCollectionFooter: CD_RowCellUpdateProtocol {
     typealias DataSource = NSAttributedString
-    func row_update(_ data: NSAttributedString, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         lab.cd.text(data)
     }
 }

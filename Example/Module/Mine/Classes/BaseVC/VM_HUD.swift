@@ -16,9 +16,10 @@ class Cell_BaseTabTitle:UITableViewCell {
         super.init(coder: aDecoder)
     }
 }
-extension Cell_BaseTabTitle:CD_RowUpdateProtocol {
+extension Cell_BaseTabTitle:CD_RowCellUpdateProtocol {
     typealias DataSource = (UIImage?,String)
-    func row_update(_ data: (UIImage?,String), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         btn.cd
             //.image(data.0)
             .text(data.1)
@@ -30,11 +31,11 @@ extension Cell_BaseTabTitle:CD_RowUpdateProtocol {
 
 
 class VM_HUD {
-    lazy var form: [[CD_RowProtocol]] = {
+    lazy var form: [[CD_CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
-    //var formHeader:[CD_RowProtocol]
-    //var formFooter:[CD_RowProtocol]
+    //var formHeader:[CD_CellProtocol]
+    //var formFooter:[CD_CellProtocol]
     var mjRefreshType:[CD_MJRefreshModel.RefreshType] = [.tBegin, .tHiddenFoot(true)]
     
     var reloadData:(()->Void)?
@@ -112,43 +113,43 @@ extension VM_HUD {
             self.form = (0..<Section.end.rawValue).map{_ in []}
         }
         do{//MARK:--- Config ----------
-            let row = CD_Row<Cell_HUDConfig>(data: "", frame: CGRect( h: UITableView.automaticDimension), bundleFrom: "Mine")
+            let row = CD_RowCell<Cell_HUDConfig>(data: "", frame: CGRect( h: UITableView.automaticDimension), bundleFrom: "Mine")
             form[Section.config.rawValue].append(row)
         }
         do{//MARK:--- Proress ----------
-            let row = CD_Row<Cell_HUDProress>(data: "", frame: CGRect(h:140), bundleFrom: "Mine")
+            let row = CD_RowCell<Cell_HUDProress>(data: "", frame: CGRect(h:140), bundleFrom: "Mine")
             form[Section.progress.rawValue].append(row)
         }
         
         
         do{//MARK:--- HUD ----------
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Title"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:10)) {
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Title"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:10)) {
                 CD.window?.cd.hud(.text, title:VM_HUD.title)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Title-Detail"), frame: CGRect( h: 50)) {
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Title-Detail"), frame: CGRect( h: 50)) {
                 CD.window?.cd.hud(.text, title:VM_HUD.title, detail:"\((0..<500).map{_ in VM_HUD.detail}.joined())")
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Loading"), frame: CGRect( h: 50)) {
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Loading"), frame: CGRect( h: 50)) {
                 CD.window?.cd.hud(.loading(VM_HUD.loadingStyle), title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Infos"), frame: CGRect( h: 50)) {
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Infos"), frame: CGRect( h: 50)) {
                 CD.window?.cd.hud(VM_HUD.infoStyle, title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Custom"), frame: CGRect( h: 50)) {
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Custom"), frame: CGRect( h: 50)) {
                 let image = UIImageView(image: Assets().logo_0)
                 /*/ 两种便捷方式 固定约束，不设置，将自适应
                  // 1
@@ -166,20 +167,20 @@ extension VM_HUD {
         }
         
         do{
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - default"), frame: CGRect( h: 50)) {[weak self] in
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - default"), frame: CGRect( h: 50)) {[weak self] in
                 self?.showProress(false)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - custom"), frame: CGRect( h: 50)) {[weak self] in
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - custom"), frame: CGRect( h: 50)) {[weak self] in
                 self?.showProress(true)
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{//MARK:--- HUD-自定义动画 ----------
-            let row = CD_Row<Cell_BaseTabTitle>(data: (assets.logo_20, "HUD-自定义动画"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:20, b:10)) {[weak self]in
+            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "HUD-自定义动画"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:20, b:10)) {[weak self]in
                 self?.customAnimation()
             }
             form[Section.custom.rawValue].append(row)
@@ -287,15 +288,15 @@ extension VM_HUD: CD_ViewModelDataSource {
         return []
     }
     
-    var _form: [[CD_RowProtocol]] {
+    var _forms: [[CD_CellProtocol]] {
         return form
     }
     
-    var _formHeader: [CD_RowProtocol] {
+    var _formHeaders: [CD_CellProtocol] {
         return []
     }
     
-    var _formFooter: [CD_RowProtocol] {
+    var _formFooters: [CD_CellProtocol] {
         return []
     }
     
