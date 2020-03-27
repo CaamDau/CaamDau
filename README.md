@@ -12,6 +12,7 @@
 > 前言：CaamDau是一个开发套件，旨在构建一个通用业务组件库和Cocoa便利性扩展，作为基础业务组件，在新项目初期与老项目维护期快速完成通用业务代码的构建（其实就是方便自己，同时也希望能方便同志）。
 
 # 目录
+- [CocoaPods](#CocoaPods)
 - [CaamDau核心组件](#CaamDau核心组件)
   - [Form流式模型化排版组件](#Form流式模型化排版组件)
   - [Extension便利性扩展&链式](#Extension便利性扩展And链式)
@@ -42,9 +43,11 @@
   - [组件化示例](#组件化示例)
   - [友情链接](#友情链接)
  
+# CocoaPods
 ```
 pod 'CaamDau'
 pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
+# 码云有同步仓库，国内速度更快
 pod 'CaamDau', :git => 'https://gitee.com/CaamDau/CaamDau.git'
 
 pod 'CaamDau/Core'  # 只引入CaamDau核心组件
