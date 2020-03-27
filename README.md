@@ -45,6 +45,7 @@
 ```
 pod 'CaamDau'
 pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
+# 码云有同步仓库，国内速度更快
 pod 'CaamDau', :git => 'https://gitee.com/CaamDau/CaamDau.git'
 
 pod 'CaamDau/Core'  # 只引入CaamDau核心组件
