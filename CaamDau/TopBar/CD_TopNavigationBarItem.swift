@@ -17,7 +17,7 @@ public protocol CD_TopNavigationBarItemProtocol: NSObjectProtocol {
     
     
     /// 按钮事件
-    func topNavigationBarItem(_ topNavigationBarItem:CD_TopNavigationBarItem, didSelectAt  item:CD_TopNavigationBarItem.Item)
+    func topNavigationBarItem(_ topNavigationBarItem:CD_TopNavigationBarItem, didSelectAt item:CD_TopNavigationBarItem.Item)
 }
 
 //MARK:--- 样式 ----------
