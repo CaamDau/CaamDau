@@ -14,6 +14,7 @@ struct R_Forms {
     static func push() {
         let vc = CD_FormTableViewController()
         vc._form = VM_Forms()
+        vc.title = "Form"
         CD.push(vc)
     }
 }
