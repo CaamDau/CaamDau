@@ -100,7 +100,7 @@
 		476840F9233E0132000080E9 /* CALayer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CALayer.playground; sourceTree = "<group>"; };
 		476840FA233E0132000080E9 /* M_Sign.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = M_Sign.playground; sourceTree = "<group>"; };
 		479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBarController.swift; sourceTree = "<group>"; };
-		47D1FF8A2427140700AA9D43 /* Mine.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mine.podspec; sourceTree = "<group>"; };
+		47D1FF8A2427140700AA9D43 /* Mine.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mine.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		47D1FF8C2427140700AA9D43 /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
 		47D1FF8D2427140700AA9D43 /* Cell_HUDProress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_HUDProress.xib; sourceTree = "<group>"; };
 		47D1FF8E2427140700AA9D43 /* PageStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PageStoryboard.storyboard; sourceTree = "<group>"; };
