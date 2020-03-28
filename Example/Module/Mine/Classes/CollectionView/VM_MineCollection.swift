@@ -28,23 +28,23 @@ extension VM_MineCollection {
 }
 
 struct VM_MineCollection {
-    lazy var forms:[[CD_RowProtocol]] = {
+    lazy var forms:[[CD_CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
     
-    lazy var formsHeader:[CD_RowProtocol] = {
-        return (0..<Section.end.rawValue).map({ (i) -> CD_RowProtocol in
+    lazy var formsHeader:[CD_CellProtocol] = {
+        return (0..<Section.end.rawValue).map({ (i) -> CD_CellProtocol in
             let icon = CD_IconFont.tlist(15)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return CD_Row<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: CD.screenW, h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
+            return CD_RowCell<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: CD.screenW, h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
         })
     }()
     
-    lazy var formsFooter:[CD_RowProtocol] = {
-        return (0..<Section.end.rawValue).map({ (i) -> CD_RowProtocol in
+    lazy var formsFooter:[CD_CellProtocol] = {
+        return (0..<Section.end.rawValue).map({ (i) -> CD_CellProtocol in
             let icon = CD_IconFont.tlist(20)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return CD_Row<View_MineCollectionFooter>.init(data: attributedString(i), frame: CGRect(w: CD.screenW, h: 40), bundleFrom: "Mine")
+            return CD_RowCell<View_MineCollectionFooter>.init(data: attributedString(i), frame: CGRect(w: CD.screenW, h: 40), bundleFrom: "Mine")
         })
     }()
     
@@ -82,7 +82,7 @@ extension VM_MineCollection {
             (CD_IconFont.twarn(www), .bottom),
             (CD_IconFont.tlocation(www), .bottomRight)]
         for item in arr {
-            let row = CD_Row<Cell_MineCollectionImage>(data: (item.0,Config.color.main_2,item.1), frame: CGRect(x: 5, y: 5, w: ww, h: ww + 30), bundleFrom: "Mine")
+            let row = CD_RowCell<Cell_MineCollectionImage>(data: (item.0,Config.color.main_2,item.1), frame: CGRect(x: 5, y: 5, w: ww, h: ww + 30), bundleFrom: "Mine")
             self.forms[Section.value0.rawValue].append(row)
         }
     }
@@ -91,7 +91,7 @@ extension VM_MineCollection {
                                  CD_IconFont.tcamera(60),
                                  CD_IconFont.tscan(60)]
         for item in arr {
-            let row = CD_Row<Cell_MineCollectionLabel>(data: (item,Config.color.txt_1), frame: CGRect(x: 5, y: 5, w: (CD.screenW-20)/3, h: (CD.screenW-20)/3 + 20), bundleFrom: "Mine")
+            let row = CD_RowCell<Cell_MineCollectionLabel>(data: (item,Config.color.txt_1), frame: CGRect(x: 5, y: 5, w: (CD.screenW-20)/3, h: (CD.screenW-20)/3 + 20), bundleFrom: "Mine")
             self.forms[v.rawValue].append(row)
         }
     }

@@ -31,9 +31,10 @@ class Cell_SignInput: UITableViewCell {
     
 }
 
-extension Cell_SignInput:CD_RowUpdateProtocol{
+extension Cell_SignInput:CD_RowCellUpdateProtocol{
     typealias DataSource = (Style, M_Sign)
-    func row_update(_ data: (Style, M_Sign), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         switch data.0 {
         case .account(let title, let placeholder),
              .pwd(let title, let placeholder),
@@ -52,9 +53,10 @@ extension Cell_SignInput:CD_RowUpdateProtocol{
 class Cell_SignOption: UITableViewCell {
     
 }
-extension Cell_SignOption:CD_RowUpdateProtocol{
+extension Cell_SignOption:CD_RowCellUpdateProtocol{
     typealias DataSource = Any
-    func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         
     }
 }
@@ -69,9 +71,10 @@ class Cell_SignSubmit: UITableViewCell {
         
     }
 }
-extension Cell_SignSubmit:CD_RowUpdateProtocol{
+extension Cell_SignSubmit:CD_RowCellUpdateProtocol{
     typealias DataSource = M_Sign
-    func row_update(_ data: M_Sign, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         self.btn_submit.cd
             .background(Config.color.enabledFalse)
         
@@ -109,9 +112,10 @@ class Cell_SignAgreement: UITableViewCell {
         }
     }
 }
-extension Cell_SignAgreement:CD_RowUpdateProtocol{
+extension Cell_SignAgreement:CD_RowCellUpdateProtocol{
     typealias DataSource = M_Sign
-    func row_update(_ data: M_Sign, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         self.signModel = data
         if data.isAgreement {
             btn_agree.cd
@@ -130,9 +134,10 @@ extension Cell_SignAgreement:CD_RowUpdateProtocol{
 class Cell_SignOther: UITableViewCell {
     
 }
-extension Cell_SignOther:CD_RowUpdateProtocol{
+extension Cell_SignOther:CD_RowCellUpdateProtocol{
     typealias DataSource = Any
-    func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         
     }
 }
@@ -160,9 +165,10 @@ class Cell_SignOtherBtn: UITableViewCell {
             .text(Config.color.normal)
     }
 }
-extension Cell_SignOtherBtn:CD_RowUpdateProtocol{
+extension Cell_SignOtherBtn:CD_RowCellUpdateProtocol{
     typealias DataSource = Any
-    func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         
     }
 }
@@ -170,9 +176,13 @@ extension Cell_SignOtherBtn:CD_RowUpdateProtocol{
 class Cell_SignLine: UITableViewCell {
     
 }
-extension Cell_SignLine:CD_RowUpdateProtocol{
+extension Cell_SignLine:CD_RowCellUpdateProtocol{
+    
+    
     typealias DataSource = Any
-    func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         
     }
+    
 }

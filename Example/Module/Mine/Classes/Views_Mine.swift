@@ -104,17 +104,10 @@ class Cell_MineLine:UITableViewCell{
         }
     }
 }
-extension Cell_MineLine:CD_RowUpdateProtocol{
+extension Cell_MineLine:CD_RowCellUpdateProtocol{
     typealias DataSource = Cell_MineLine.Style
-    func row_update(_ data: Cell_MineLine.Style, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        self.contentView.cd.background(data.colorValue)
-    }
-}
-
-
-extension Cell_MineLine:CD_RowCellUpdateProtocol {
     typealias ConfigModel = Any
-    func row_update(dataSource data: Cell_MineLine.Style) {
+    func row_update(dataSource data: DataSource) {
         self.contentView.cd.background(data.colorValue)
     }
 }

@@ -60,7 +60,7 @@ extension VC_Sign:UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = vm.form[indexPath.row]
-        let cell = tableView.cd.cell(row.viewClass)!
+        let cell = tableView.cd.cell(row.cellClass)!
         row.bind(cell)
         return cell
     }

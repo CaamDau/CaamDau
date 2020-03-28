@@ -54,7 +54,7 @@ extension VC_MineCollection: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let row = vm.forms[indexPath.section][indexPath.row]
-        let cell = collectionView.cd.cell(row.viewId, indexPath)
+        let cell = collectionView.cd.cell(row.cellId, indexPath)
         row.bind(cell)
         return cell
     }
@@ -85,12 +85,12 @@ extension VC_MineCollection: UICollectionViewDelegate, UICollectionViewDataSourc
         switch kind {
         case CaamDau<UICollectionView>.Kind.tHeader.stringValue:
             let row = vm.formsHeader[indexPath.section]
-            let v = collectionView.cd.view(row.viewId, kind, indexPath)
+            let v = collectionView.cd.view(row.cellId, kind, indexPath)
             row.bind(v)
             return v
         default:
             let row = vm.formsFooter[indexPath.section]
-            let v = collectionView.cd.view(row.viewId, kind, indexPath)
+            let v = collectionView.cd.view(row.cellId, kind, indexPath)
             row.bind(v)
             return v
         }

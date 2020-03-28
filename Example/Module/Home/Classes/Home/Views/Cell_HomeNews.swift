@@ -20,9 +20,11 @@ public class Cell_HomeNews: UITableViewCell {
     }
     
 }
-extension Cell_HomeNews:CD_RowUpdateProtocol{
+extension Cell_HomeNews:CD_RowCellUpdateProtocol{
     public typealias DataSource = Any
-    public func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    
+    public typealias ConfigModel = Any
+    public func row_update(dataSource data: DataSource) {
         if let model = data as? M_HomeNews {
             print(lab)
             //img.image = Assets().logo_200

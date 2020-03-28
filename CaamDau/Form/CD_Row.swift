@@ -504,7 +504,7 @@ extension CD_RowCellClass {
 
 
 //MARK:--- ------------------- 旧的 表单 协议 --------------------
-
+/*
 //MARK:---  单元格配置协议 ---
 /// 旧的协议，弃用
 @available(*, deprecated, message: "旧的协议，弃用")
@@ -538,6 +538,7 @@ public protocol CD_RowUpdateProtocol {
 public extension CD_RowUpdateProtocol{
     func row_update(_ data: DataSource, id:String , tag:Int, frame:CGRect, callBack:CD_RowCallBack?) {}
 }
+
 
 //MARK:---  建设单元格模型 ---
 /// 旧的协议，弃用
@@ -719,3 +720,4 @@ extension CD_RowClass {
     }
 }
 
+*/

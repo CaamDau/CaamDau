@@ -95,9 +95,10 @@ class Cell_HUDProress: UITableViewCell {
     
 }
 
-extension Cell_HUDProress: CD_RowUpdateProtocol {
+extension Cell_HUDProress: CD_RowCellUpdateProtocol {
     typealias DataSource = Any
-    func row_update(_ data: Any, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         
     }
 }

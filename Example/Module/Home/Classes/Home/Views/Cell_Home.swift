@@ -22,12 +22,17 @@ class Cell_HomeTitle: UITableViewCell {
     }
     
 }
-extension Cell_HomeTitle:CD_RowUpdateProtocol{
+extension Cell_HomeTitle:CD_RowCellUpdateProtocol{
+    typealias ConfigModel = Any
     typealias DataSource = String
-    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: String) {
         self.lab_title.cd.text(data)
-        self.callBack = callBack
+        
     }
+    func row_update(callBack block: CD_RowCallBack?) {
+        self.callBack = block
+    }
+    
     
 }
 
@@ -36,14 +41,17 @@ extension Cell_HomeTitle:CD_RowUpdateProtocol{
 class View_Header: UITableViewHeaderFooterView {
     
 }
-extension View_Header: CD_RowUpdateProtocol {
+extension View_Header: CD_RowCellUpdateProtocol {
+    typealias ConfigModel = Any
+    
     typealias DataSource = String
-    func row_update(_ data: String, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(dataSource data: String) {
         self.textLabel?.cd
-            .text(data)
-            .text(Config.color.txt_2)
-            .text(Config.font.fontBold(13).cd.fit)
+        .text(data)
+        .text(Config.color.txt_2)
+        .text(Config.font.fontBold(13).cd.fit)
     }
+    
     
 }
 
@@ -64,9 +72,12 @@ class Cell_HomeSwitch: UITableViewCell {
         super.awakeFromNib()
     }
 }
-extension Cell_HomeSwitch:CD_RowUpdateProtocol{
+extension Cell_HomeSwitch:CD_RowCellUpdateProtocol{
+    
+    
     typealias DataSource = (String,Bool)
-    func row_update(_ data: (String,Bool), id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    typealias ConfigModel = Any
+    func row_update(dataSource data: DataSource) {
         self.textLabel?.text = data.0
         self.switch.isOn = data.1
         self.imageView?.image = Assets().logo_launch
