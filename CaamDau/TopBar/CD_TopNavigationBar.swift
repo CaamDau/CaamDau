@@ -450,12 +450,12 @@ extension CD_TopNavigationBar {
 
 extension CD_TopNavigationBar: CD_TopNavigationBarItemProtocol {
     public func topNavigationBarItem(_ topNavigationBarItem: CD_TopNavigationBarItem, itemTag tag: Int, updateItemStyleForItem item: CD_TopNavigationBarItem.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
-        return self.delegate?.topNavigationBar(self, updateItemStyleForItem: CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
+        return self.delegate?.topNavigationBar(self, updateItemStyleForItem: CD_TopNavigationBar.Item(rawValue: topNavigationBarItem.tag + item.rawValue) ?? .itemNone)
     }
     
     public func topNavigationBarItem(_ topNavigationBarItem: CD_TopNavigationBarItem, didSelectAt item: CD_TopNavigationBarItem.Item) {
-        self.delegate?.topNavigationBar(self, didSelectAt: CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
+        self.delegate?.topNavigationBar(self, didSelectAt: CD_TopNavigationBar.Item(rawValue: topNavigationBarItem.tag + item.rawValue) ?? .itemNone)
         
-        self.callBack?(CD_TopNavigationBar.Item(rawValue: tag + item.rawValue) ?? .itemNone)
+        self.callBack?(CD_TopNavigationBar.Item(rawValue: topNavigationBarItem.tag + item.rawValue) ?? .itemNone)
     }
 }
