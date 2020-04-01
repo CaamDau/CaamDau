@@ -363,6 +363,7 @@ extension CD_TextDelegate {
                 return CD_RegEx.match(newText, pattern: pattern)
             case .tRegEx(let pattern):
                 let bool = CD_RegEx.match(newText, pattern: pattern)
+                guard bool else { return bool }
                 guard let max = max else { return bool }
                 guard newText.count <= max else { return false }
                 return true
