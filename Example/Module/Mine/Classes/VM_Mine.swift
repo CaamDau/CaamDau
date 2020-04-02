@@ -97,7 +97,7 @@ extension VM_Mine{
         
         // --------- IconFont CountDown ----------
         do{
-            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_Timer","计时器"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<CD_TableViewCellBase>(data: CD_TableViewCellBase.Model(title: "CD_Timer", detail: "计时器"), frame: CGRect(h:45)) {
                 VC_MineTableView.push()
             }
             self.forms[Section.other.rawValue].append(row)
@@ -129,7 +129,7 @@ extension VM_Mine{
             self.forms[Section.other.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_MineTitle>(data: ("CD_BaseTableViewController", "基础TableView"), frame: CGRect(h:45)) {
+            let row = CD_RowCell<CD_TableViewCellBase>(data: CD_TableViewCellBase.Model(title:"CD_BaseTableViewController", detail: "基础TableView"), frame: CGRect(h:45)) {
                 let vm = VM_HUD()
                 R_CDTableViewController.push(vm)
             }

@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		269B01BEE2F83BF445F25CF3 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAB45DED5B2C2D6CC4D07D2 /* Pods_Example.framework */; };
-		4718A9622410A4D9001B0B59 /* VC_BaiduMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718A9612410A4D9001B0B59 /* VC_BaiduMapView.swift */; };
 		4744E0C5240F913C00F8A1CD /* Router+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744E0C4240F913C00F8A1CD /* Router+Map.swift */; };
-		4744E0D3240F915100F8A1CD /* LocationBaidu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744E0CB240F915100F8A1CD /* LocationBaidu.swift */; };
-		4744E0D4240F915100F8A1CD /* App_BaiduMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4744E0CC240F915100F8A1CD /* App_BaiduMap.swift */; };
-		4744E0D7240F915100F8A1CD /* Map.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4744E0D2240F915100F8A1CD /* Map.podspec */; };
 		476840B8233DFDDA000080E9 /* CaamDau_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476840B7233DFDDA000080E9 /* CaamDau_ExampleUITests.swift */; };
 		479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */; };
+		47C21FA62435C7B700E6F60C /* LocationBaidu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21F9D2435C7B700E6F60C /* LocationBaidu.swift */; };
+		47C21FA72435C7B700E6F60C /* App_BaiduMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21F9E2435C7B700E6F60C /* App_BaiduMap.swift */; };
+		47C21FA82435C7B700E6F60C /* VC_BaiduMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21FA02435C7B700E6F60C /* VC_BaiduMapView.swift */; };
+		47C21FA92435C7B700E6F60C /* CD_LocationSys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21FA22435C7B700E6F60C /* CD_LocationSys.swift */; };
+		47C21FAA2435C7B700E6F60C /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C21FA42435C7B700E6F60C /* CLLocation+YCLocation.m */; };
+		47C21FAB2435C7B700E6F60C /* Map.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 47C21FA52435C7B700E6F60C /* Map.podspec */; };
 		47D1FFB42427140700AA9D43 /* Mine.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 47D1FF8A2427140700AA9D43 /* Mine.podspec */; };
 		47D1FFB52427140700AA9D43 /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D1FF8C2427140700AA9D43 /* MineStoryboard.storyboard */; };
 		47D1FFB62427140700AA9D43 /* Cell_HUDProress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47D1FF8D2427140700AA9D43 /* Cell_HUDProress.xib */; };
@@ -72,11 +74,7 @@
 
 /* Begin PBXFileReference section */
 		11C7E6571DE563F6433941AC /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
-		4718A9612410A4D9001B0B59 /* VC_BaiduMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_BaiduMapView.swift; sourceTree = "<group>"; };
 		4744E0C4240F913C00F8A1CD /* Router+Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Router+Map.swift"; sourceTree = "<group>"; };
-		4744E0CB240F915100F8A1CD /* LocationBaidu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBaidu.swift; sourceTree = "<group>"; };
-		4744E0CC240F915100F8A1CD /* App_BaiduMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App_BaiduMap.swift; sourceTree = "<group>"; };
-		4744E0D2240F915100F8A1CD /* Map.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Map.podspec; sourceTree = "<group>"; };
 		476840B5233DFDDA000080E9 /* CaamDau_ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaamDau_ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		476840B7233DFDDA000080E9 /* CaamDau_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaamDau_ExampleUITests.swift; sourceTree = "<group>"; };
 		476840B9233DFDDA000080E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +98,13 @@
 		476840F9233E0132000080E9 /* CALayer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CALayer.playground; sourceTree = "<group>"; };
 		476840FA233E0132000080E9 /* M_Sign.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = M_Sign.playground; sourceTree = "<group>"; };
 		479F397822C9D8EB00AD6916 /* CD_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CD_TabBarController.swift; sourceTree = "<group>"; };
+		47C21F9D2435C7B700E6F60C /* LocationBaidu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBaidu.swift; sourceTree = "<group>"; };
+		47C21F9E2435C7B700E6F60C /* App_BaiduMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App_BaiduMap.swift; sourceTree = "<group>"; };
+		47C21FA02435C7B700E6F60C /* VC_BaiduMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_BaiduMapView.swift; sourceTree = "<group>"; };
+		47C21FA22435C7B700E6F60C /* CD_LocationSys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_LocationSys.swift; sourceTree = "<group>"; };
+		47C21FA32435C7B700E6F60C /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
+		47C21FA42435C7B700E6F60C /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
+		47C21FA52435C7B700E6F60C /* Map.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Map.podspec; sourceTree = "<group>"; };
 		47D1FF8A2427140700AA9D43 /* Mine.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mine.podspec; sourceTree = "<group>"; };
 		47D1FF8C2427140700AA9D43 /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
 		47D1FF8D2427140700AA9D43 /* Cell_HUDProress.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_HUDProress.xib; sourceTree = "<group>"; };
@@ -170,66 +175,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4718A9602410A4AD001B0B59 /* MapView */ = {
-			isa = PBXGroup;
-			children = (
-				4718A9612410A4D9001B0B59 /* VC_BaiduMapView.swift */,
-			);
-			path = MapView;
-			sourceTree = "<group>";
-		};
-		4744E0C6240F915100F8A1CD /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				4744E0C7240F915100F8A1CD /* Map */,
-				4744E0D2240F915100F8A1CD /* Map.podspec */,
-			);
-			name = Map;
-			path = Module/Map;
-			sourceTree = "<group>";
-		};
-		4744E0C7240F915100F8A1CD /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				4744E0C8240F915100F8A1CD /* Classes */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		4744E0C8240F915100F8A1CD /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				4744E0C9240F915100F8A1CD /* BaiduMap */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		4744E0C9240F915100F8A1CD /* BaiduMap */ = {
-			isa = PBXGroup;
-			children = (
-				4718A9602410A4AD001B0B59 /* MapView */,
-				4744E0CA240F915100F8A1CD /* Location */,
-				4744E0CC240F915100F8A1CD /* App_BaiduMap.swift */,
-				4744E0CD240F915100F8A1CD /* Frameworks */,
-			);
-			path = BaiduMap;
-			sourceTree = "<group>";
-		};
-		4744E0CA240F915100F8A1CD /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				4744E0CB240F915100F8A1CD /* LocationBaidu.swift */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		4744E0CD240F915100F8A1CD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
 		476840B6233DFDDA000080E9 /* CaamDau_ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +209,69 @@
 			);
 			name = Playground;
 			path = ../Playground;
+			sourceTree = "<group>";
+		};
+		47C21F982435C7B700E6F60C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				47C21F992435C7B700E6F60C /* Map */,
+				47C21FA52435C7B700E6F60C /* Map.podspec */,
+			);
+			name = Map;
+			path = Module/Map;
+			sourceTree = "<group>";
+		};
+		47C21F992435C7B700E6F60C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				47C21F9A2435C7B700E6F60C /* Classes */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		47C21F9A2435C7B700E6F60C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				47C21F9B2435C7B700E6F60C /* BaiduMap */,
+				47C21FA12435C7B700E6F60C /* Location */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		47C21F9B2435C7B700E6F60C /* BaiduMap */ = {
+			isa = PBXGroup;
+			children = (
+				47C21F9C2435C7B700E6F60C /* Location */,
+				47C21F9E2435C7B700E6F60C /* App_BaiduMap.swift */,
+				47C21F9F2435C7B700E6F60C /* MapView */,
+			);
+			path = BaiduMap;
+			sourceTree = "<group>";
+		};
+		47C21F9C2435C7B700E6F60C /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				47C21F9D2435C7B700E6F60C /* LocationBaidu.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		47C21F9F2435C7B700E6F60C /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				47C21FA02435C7B700E6F60C /* VC_BaiduMapView.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		47C21FA12435C7B700E6F60C /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				47C21FA22435C7B700E6F60C /* CD_LocationSys.swift */,
+				47C21FA32435C7B700E6F60C /* CLLocation+YCLocation.h */,
+				47C21FA42435C7B700E6F60C /* CLLocation+YCLocation.m */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		47D1FF892427140700AA9D43 /* Mine */ = {
@@ -406,8 +414,8 @@
 		47FC34D32238076F0022174D = {
 			isa = PBXGroup;
 			children = (
+				47C21F982435C7B700E6F60C /* Map */,
 				47D1FF892427140700AA9D43 /* Mine */,
-				4744E0C6240F915100F8A1CD /* Map */,
 				47F0472523D043E5009E4439 /* App */,
 				476840E7233E0131000080E9 /* Playground */,
 				47FC34DE2238076F0022174D /* Example */,
@@ -550,13 +558,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C21FAB2435C7B700E6F60C /* Map.podspec in Resources */,
 				47D1FFBB2427140700AA9D43 /* View_MineCollectionFooter.xib in Resources */,
 				47D1FFB52427140700AA9D43 /* MineStoryboard.storyboard in Resources */,
 				47D1FFB42427140700AA9D43 /* Mine.podspec in Resources */,
 				47D1FFB62427140700AA9D43 /* Cell_HUDProress.xib in Resources */,
 				47FC34EA223807710022174D /* LaunchScreen.storyboard in Resources */,
 				47D1FFB82427140700AA9D43 /* Cell_HUDConfig.xib in Resources */,
-				4744E0D7240F915100F8A1CD /* Map.podspec in Resources */,
 				47FC34E7223807710022174D /* Assets.xcassets in Resources */,
 				47D1FFBC2427140700AA9D43 /* View_PageConfig.xib in Resources */,
 				47D1FFB72427140700AA9D43 /* PageStoryboard.storyboard in Resources */,
@@ -657,15 +665,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C21FA92435C7B700E6F60C /* CD_LocationSys.swift in Sources */,
 				47D1FFD22427140700AA9D43 /* VC_Mine.swift in Sources */,
 				47D1FFC82427140700AA9D43 /* VM_Forms.swift in Sources */,
 				47D1FFC52427140700AA9D43 /* VC_PageD.swift in Sources */,
+				47C21FA72435C7B700E6F60C /* App_BaiduMap.swift in Sources */,
 				47D1FFCB2427140700AA9D43 /* VC_MineCollection.swift in Sources */,
+				47C21FA62435C7B700E6F60C /* LocationBaidu.swift in Sources */,
 				47F0473323D043E5009E4439 /* App+Router.swift in Sources */,
 				47D1FFCE2427140700AA9D43 /* VM_HUD.swift in Sources */,
 				47FC34E2223807700022174D /* ViewController.swift in Sources */,
-				4744E0D4240F915100F8A1CD /* App_BaiduMap.swift in Sources */,
 				479F397922C9D8EB00AD6916 /* CD_TabBarController.swift in Sources */,
+				47C21FA82435C7B700E6F60C /* VC_BaiduMapView.swift in Sources */,
 				47D1FFC12427140700AA9D43 /* View_PageConfig.swift in Sources */,
 				47D1FFC02427140700AA9D43 /* VM_MineTableView.swift in Sources */,
 				47D1FFCA2427140700AA9D43 /* VC_FormsTableViewB.swift in Sources */,
@@ -680,15 +691,14 @@
 				47D1FFC42427140700AA9D43 /* VC_Page.swift in Sources */,
 				47D1FFC22427140700AA9D43 /* VC_PageA.swift in Sources */,
 				47F0473023D043E5009E4439 /* AppDelegate.swift in Sources */,
+				47C21FAA2435C7B700E6F60C /* CLLocation+YCLocation.m in Sources */,
 				47D1FFBD2427140700AA9D43 /* Views_Mine.swift in Sources */,
 				47D1FFC32427140700AA9D43 /* VC_PageC.swift in Sources */,
 				47F0473123D043E5009E4439 /* UIViewController+Swizzling.swift in Sources */,
 				47D1FFC92427140700AA9D43 /* VM_FormsTableViewA.swift in Sources */,
-				4744E0D3240F915100F8A1CD /* LocationBaidu.swift in Sources */,
 				47F0473223D043E5009E4439 /* Router+Utility.swift in Sources */,
 				47D1FFCF2427140700AA9D43 /* VM_BaseColle.swift in Sources */,
 				47F0472E23D043E5009E4439 /* App+Window.swift in Sources */,
-				4718A9622410A4D9001B0B59 /* VC_BaiduMapView.swift in Sources */,
 				47D1FFC62427140700AA9D43 /* VC_PageB.swift in Sources */,
 				4744E0C5240F913C00F8A1CD /* Router+Map.swift in Sources */,
 				47D1FFCC2427140700AA9D43 /* Views_MineCollection.swift in Sources */,

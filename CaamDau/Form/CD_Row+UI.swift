@@ -45,13 +45,15 @@ public class CD_TableViewCellBase: UITableViewCell{
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    public func update(_ data: CD_TableViewCellBase.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
-        update(dataSource:data)
-    }
-    public func update(config data: Any) {
+}
+
+extension CD_TableViewCellBase: CD_RowCellUpdateProtocol {
+    public typealias ConfigModel = Any
+    public typealias DataSource = CD_TableViewCellBase.Model
+    open func row_update(config data: ConfigModel) {
         
     }
-    public func update(dataSource data: CD_TableViewCellBase.Model) {
+    open func row_update(dataSource data: DataSource) {
         self.accessoryType = data.accType
         self.textLabel?.text = data.title ?? ""
         self.textLabel?.textColor = data.titleColor ?? UIColor.cd_hex("3", dark: "f")
@@ -68,24 +70,12 @@ public class CD_TableViewCellBase: UITableViewCell{
             self.accessoryView = vv
         }
     }
-    
-    public func update(callBack block: CD_RowCallBack?) {
+    open func row_update(callBack block: CD_RowCallBack?) {
         
     }
 }
 
-extension CD_TableViewCellBase: CD_RowCellUpdateProtocol {
-    public typealias ConfigModel = Any
-    public func row_update(config data: Any) {
-        update(config: data)
-    }
-    public func row_update(dataSource data: CD_TableViewCellBase.Model) {
-        update(dataSource: data)
-    }
-    public func row_update(callBack block: CD_RowCallBack?) {
-        update(callBack: block)
-    }
-}
+
 
 
 //MARK:--- 默认的空 UICollectionViewCell CD_CollectionReusableView ----------
@@ -96,11 +86,12 @@ public class CD_CollectionViewCellNone: UICollectionViewCell{
 
 extension CD_CollectionViewCellNone: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
-    public func row_update(config data: Any) {
+    public typealias DataSource = Any
+    open func row_update(config data: ConfigModel) {
     }
-    public func row_update(dataSource data: Any) {
+    open func row_update(dataSource data: DataSource) {
     }
-    public func row_update(callBack block: CD_RowCallBack?) {
+    open func row_update(callBack block: CD_RowCallBack?) {
     }
 }
 
@@ -113,13 +104,14 @@ public class CD_CollectionReusableViewNone: UICollectionReusableView {
 
 extension CD_CollectionReusableViewNone: CD_RowCellUpdateProtocol {
     public typealias ConfigModel = Any
-    public func row_update(config data: Any) {
+    public typealias DataSource = Any
+    open func row_update(config data: ConfigModel) {
         
     }
-    public func row_update(dataSource data: Any) {
+    open func row_update(dataSource data: DataSource) {
         
     }
-    public func row_update(callBack block: CD_RowCallBack?) {
+    open func row_update(callBack block: CD_RowCallBack?) {
         
     }
 }
