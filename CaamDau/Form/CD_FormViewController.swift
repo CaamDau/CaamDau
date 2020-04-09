@@ -14,7 +14,7 @@ import UIKit
 //@IBDesignable
 /// ViewController 组装基类，里面包含一个 StackView
 open class CD_FormViewController: UIViewController {
-    lazy var stackView: UIStackView = {
+    public lazy var stackView: UIStackView = {
         let v = UIStackView()
         v.axis = .vertical
         return v
