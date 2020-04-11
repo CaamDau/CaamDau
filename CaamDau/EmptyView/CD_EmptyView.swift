@@ -124,7 +124,7 @@ extension CD_EmptyView {
                 let v = UIButton().cd
                     .tag(i)
                     .add(toSuperstack: stackView)
-                    .action(self, action: #selector(tapClick(_:)), event: .touchUpInside)
+                    .target(add: self, action: #selector(tapClick(_:)), event: .touchUpInside)
                     .build
                 CD_EmptyView.config.buttonCallback?(v)
                 actions.append(action)
