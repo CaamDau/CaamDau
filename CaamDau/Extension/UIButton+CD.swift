@@ -6,8 +6,13 @@ import UIKit
 public extension CaamDau where Base: UIButton {
     @discardableResult
     ///addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event)
-    func action(_ target: Any?, action: Selector, event: UIControl.Event) -> CaamDau {
+    func target(add target: Any?, action: Selector, event: UIControl.Event = .touchUpInside) -> CaamDau {
         base.addTarget(target, action: action, for: event)
+        return self
+    }
+    
+    func target(remove target: Any?, action: Selector, event: UIControl.Event = .touchUpInside) -> CaamDau {
+        base.removeTarget(target, action: action, for: event)
         return self
     }
     
