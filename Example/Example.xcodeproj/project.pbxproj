@@ -14,8 +14,6 @@
 		47C21FA62435C7B700E6F60C /* LocationBaidu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21F9D2435C7B700E6F60C /* LocationBaidu.swift */; };
 		47C21FA72435C7B700E6F60C /* App_BaiduMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21F9E2435C7B700E6F60C /* App_BaiduMap.swift */; };
 		47C21FA82435C7B700E6F60C /* VC_BaiduMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21FA02435C7B700E6F60C /* VC_BaiduMapView.swift */; };
-		47C21FA92435C7B700E6F60C /* CD_LocationSys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C21FA22435C7B700E6F60C /* CD_LocationSys.swift */; };
-		47C21FAA2435C7B700E6F60C /* CLLocation+YCLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C21FA42435C7B700E6F60C /* CLLocation+YCLocation.m */; };
 		47C21FAB2435C7B700E6F60C /* Map.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 47C21FA52435C7B700E6F60C /* Map.podspec */; };
 		47D1FFB42427140700AA9D43 /* Mine.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 47D1FF8A2427140700AA9D43 /* Mine.podspec */; };
 		47D1FFB52427140700AA9D43 /* MineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47D1FF8C2427140700AA9D43 /* MineStoryboard.storyboard */; };
@@ -101,9 +99,6 @@
 		47C21F9D2435C7B700E6F60C /* LocationBaidu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationBaidu.swift; sourceTree = "<group>"; };
 		47C21F9E2435C7B700E6F60C /* App_BaiduMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App_BaiduMap.swift; sourceTree = "<group>"; };
 		47C21FA02435C7B700E6F60C /* VC_BaiduMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VC_BaiduMapView.swift; sourceTree = "<group>"; };
-		47C21FA22435C7B700E6F60C /* CD_LocationSys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CD_LocationSys.swift; sourceTree = "<group>"; };
-		47C21FA32435C7B700E6F60C /* CLLocation+YCLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+YCLocation.h"; sourceTree = "<group>"; };
-		47C21FA42435C7B700E6F60C /* CLLocation+YCLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+YCLocation.m"; sourceTree = "<group>"; };
 		47C21FA52435C7B700E6F60C /* Map.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Map.podspec; sourceTree = "<group>"; };
 		47D1FF8A2427140700AA9D43 /* Mine.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mine.podspec; sourceTree = "<group>"; };
 		47D1FF8C2427140700AA9D43 /* MineStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MineStoryboard.storyboard; sourceTree = "<group>"; };
@@ -233,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				47C21F9B2435C7B700E6F60C /* BaiduMap */,
-				47C21FA12435C7B700E6F60C /* Location */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -262,16 +256,6 @@
 				47C21FA02435C7B700E6F60C /* VC_BaiduMapView.swift */,
 			);
 			path = MapView;
-			sourceTree = "<group>";
-		};
-		47C21FA12435C7B700E6F60C /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				47C21FA22435C7B700E6F60C /* CD_LocationSys.swift */,
-				47C21FA32435C7B700E6F60C /* CLLocation+YCLocation.h */,
-				47C21FA42435C7B700E6F60C /* CLLocation+YCLocation.m */,
-			);
-			path = Location;
 			sourceTree = "<group>";
 		};
 		47D1FF892427140700AA9D43 /* Mine */ = {
@@ -665,7 +649,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47C21FA92435C7B700E6F60C /* CD_LocationSys.swift in Sources */,
 				47D1FFD22427140700AA9D43 /* VC_Mine.swift in Sources */,
 				47D1FFC82427140700AA9D43 /* VM_Forms.swift in Sources */,
 				47D1FFC52427140700AA9D43 /* VC_PageD.swift in Sources */,
@@ -691,7 +674,6 @@
 				47D1FFC42427140700AA9D43 /* VC_Page.swift in Sources */,
 				47D1FFC22427140700AA9D43 /* VC_PageA.swift in Sources */,
 				47F0473023D043E5009E4439 /* AppDelegate.swift in Sources */,
-				47C21FAA2435C7B700E6F60C /* CLLocation+YCLocation.m in Sources */,
 				47D1FFBD2427140700AA9D43 /* Views_Mine.swift in Sources */,
 				47D1FFC32427140700AA9D43 /* VC_PageC.swift in Sources */,
 				47F0473123D043E5009E4439 /* UIViewController+Swizzling.swift in Sources */,

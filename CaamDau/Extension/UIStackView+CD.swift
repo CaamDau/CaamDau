@@ -54,12 +54,6 @@ public extension CaamDau where Base: UIStackView {
     }
     
     @discardableResult
-    func a(_ a: UIView) -> CaamDau {
-        
-        return self
-    }
-    
-    @discardableResult
     func isBaselineRelativeArrangement(_ a: Bool) -> CaamDau {
         base.isBaselineRelativeArrangement = a
         return self

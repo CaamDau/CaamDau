@@ -18,6 +18,10 @@ class App_BaiduMap: CD_AppDelegate {
         let res = map.start("UyjvnHVpKfuQDrpwPqtIyZA69WHeFDRR", generalDelegate: self)
         print_cd("百度地图启动引擎：",res)
         CD_LocationBaidu.shared.location()
+        
+//        BMKLocationAuth.sharedInstance()?.checkPermision(withKey: "aWl33QKO6SpMPfxZQs0hykc9OCVgQHbR", authDelegate: self)
+//        let map = BMKMapManager()
+//        let res = map.start("aWl33QKO6SpMPfxZQs0hykc9OCVgQHbR", generalDelegate: self)
         return true
     }
 }
