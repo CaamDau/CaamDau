@@ -183,7 +183,7 @@ public extension CD_Value {
         case let i as Bool:
             return i ? 1 : 0
         case let i as String:
-            return Int(i)
+            return Int(i.doubleValue)
         default:
             return nil
         }

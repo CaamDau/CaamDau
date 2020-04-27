@@ -12,6 +12,7 @@ import TabBarNavigation
 import Mine
 import Home
 import Demo
+import Sign
 
 class App_VC: CD_AppDelegate {
     var window: UIWindow?
@@ -40,6 +41,8 @@ class App_VC: CD_AppDelegate {
             //makeSign()
             makeTabBar()
         }
+        
+        
         return true
     }
     func makeSign() {
@@ -47,21 +50,20 @@ class App_VC: CD_AppDelegate {
     }
     
     func makeTabBar() {
-        let vc1 = UINavigationController(rootViewController: R_Home().vc)
+        let vc0 = UINavigationController(rootViewController: R_Mine().vc)
+        let vc1 = UINavigationController(rootViewController: R_Home().vc ?? ViewController())
         let vc2 = UINavigationController(rootViewController: R_Demo().vc)
-        let vc3 = UINavigationController(rootViewController: R_BaiduMapView().vc)
-        let vc4 = UINavigationController(rootViewController: R_Mine().vc)
         
+        let vc3 = UIStoryboard(name: "VisibleVCStoryboard", bundle: nil).instantiateInitialViewController()!
         tabbar = UITabBarController()
         tabbar?.cd
             .viewControllers([
+                vc0,
                 vc1,
                 vc2,
-                vc3,
-                vc4
+                vc3
             ])
             .makeTabBar()
-        tabbar?.selectedIndex = 2
         window?.rootViewController = tabbar
     }
 }
@@ -81,7 +83,7 @@ extension CaamDau where Base: UITabBarController {
                            assets.me_selected,
                            assets.me_selected,
                            assets.me_selected])
-            .titles(["首页", "示例", "地图", "我的"])
+            .titles(["首页", "示例", "我的", "我的"])
             //.colorNormals([.red, .yellow, .blue, .orange])
             //.colorSelecteds((0..<5).map{_ in Config.color.tabbar1})
 //            .fontNormals([.systemFont(ofSize: 10),

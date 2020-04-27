@@ -22,7 +22,39 @@ class ViewController: UIViewController {
         } else {
             
         }
+        
+        
+        
     }
     
 }
 
+
+class R_VVC1: CD_RouterInterface {
+    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        
+    }
+    
+    func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        
+    }
+    
+}
+
+
+class R_VVC2: NSObject, CD_RouterInterface {
+    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        
+    }
+    
+    func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        
+    }
+    
+    var ob:Any?
+    func notice() {
+        ob = NotificationCenter.default.addObserver(forName: NSNotification.Name(self.description), object: nil, queue: .main, using: { (n) in
+            
+        })
+    }
+}

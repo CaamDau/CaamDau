@@ -10,30 +10,67 @@
 import Foundation
 import CaamDau
 
+func test(_ scheme:String, path:String) {
+    switch scheme {
+    case "sign":
+        Router.Sign(rawValue: path)?.router([:], callback: { (res) in
+            
+        })
+    default:
+        break
+    }
+}
+
+
 public struct Router {
+    /// 同一页面 不同模式、状态、类型，进行区分
+    public static let PathKey = "router_path"
     
 }
+
+
 //MARK:--- 登录注册 ----------
 extension Router {
-    public enum Sign: CD_RouterProtocol {
-        case up(_ canback:Bool)
-        case out
+    public enum Sign:String, CD_RouterProtocol {
+        case up = "up"
+        case out = "out"
+        
+        public var parameter: CD_RouterParameter {
+            return [Router.PathKey:self.rawValue]
+        }
+        
+        public var target: String? {
+            return "Sign.VC_Sign"
+        }
     }
 }
 //MARK:--- 通用 ----------
 extension Router {
-    public enum Utility: CD_RouterProtocol {
-        case html(_ html:String, _ title:String)
-        case http(_ url:String, _ title:String)
-        case file(_ url:String, _ title:String)
-        case pencilDraw
+    public enum Utility:String, CD_RouterProtocol {
+        case html = "html"
+        case http = "http"
+        case file = "file"
+        case pencilDraw = "pencildraw"
+        
+        public var parameter: CD_RouterParameter {
+            return [Router.PathKey:self.rawValue]
+        }
+        public var target: String? {
+            switch self {
+            case .pencilDraw:
+                return nil
+            default:
+                return "Utility.VC_Web"
+            }
+            
+        }
     }
 }
 
 //MARK:--- 通用 ----------
 extension Router {
-    public enum Map: CD_RouterProtocol {
-        case location
-        case baidu
+    public enum Map:String, CD_RouterProtocol {
+        case location = "location"
+        case baidu = "baidu"
     }
 }

@@ -26,7 +26,7 @@ extension UIViewController {
 extension UIViewController {
     static let methodSwizzling: Void = {
         #selector(viewDidLoad) <=> #selector(swizzling_viewDidLoad)
-        //#selector(getter: modalPresentationStyle) <=> #selector(getter: swizzling_modalPresentationStyle)
+        #selector(viewDidAppear(_:)) <=> #selector(swizzling_viewDidAppear(_:))
     }()
     
     @objc var swizzling_modalPresentationStyle: UIModalPresentationStyle {
@@ -35,6 +35,7 @@ extension UIViewController {
     
     @objc private func swizzling_viewDidLoad() {
         swizzling_viewDidLoad()
+        
         /// ios11 以下 需要
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -45,7 +46,12 @@ extension UIViewController {
             return
         }
         self.view.backgroundColor = Config.color.bg
-        
-        debugPrint("☢️☢️☢️ 当前ViewController：" + self.description)
     }
+    
+    @objc private func swizzling_viewDidAppear(_ animated:Bool) {
+        swizzling_viewDidAppear(animated)
+        
+        debugPrint("☢️☢️☢️ 当前VC：", self.title, CD.visibleVC?.title)
+    }
+    
 }

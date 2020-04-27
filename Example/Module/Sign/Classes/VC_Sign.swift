@@ -4,19 +4,23 @@ import UIKit
 
 import CaamDau
 
-public struct R_Sign: CD_RowVCProtocol {
-    public var vc: UIViewController {
-        return VC_Sign.cd_storyboard("SignStoryboard", from: "Sign") as! VC_Sign
-    }
-    
-    @discardableResult
-    public static func isSignUp(_ canBack:Bool = true, _ blockEnd:(()->Void)? = nil) -> Bool {
-        let vc = R_Sign().vc as! VC_Sign
-        vc.canBack = canBack
-        vc.blockEnd = blockEnd
-        let pvc = CD.visibleVC
-        pvc?.present(vc, animated: true, completion: nil)
-        return false
+extension VC_Sign: CD_RouterInterface {
+    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        let enumm = param.stringValue("router_path")
+        switch enumm {
+        case "up":
+            let vc = VC_Sign.cd_storyboard("SignStoryboard", from: "Sign") as! VC_Sign
+            vc.canBack = param.boolValue("canBack")
+            vc.blockEnd = {
+                callback?([:])
+            }
+            vc.modalPresentationStyle = .fullScreen
+            CD.visibleVC?.present(vc, animated: true, completion: nil)
+        case "out":
+            User.notice.signOut.post()
+        default:
+            break
+        }
     }
 }
 
