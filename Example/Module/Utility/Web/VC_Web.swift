@@ -10,14 +10,25 @@ import UIKit
 import CaamDau
 import WebKit
 
-public struct R_Web {
-    public static func push(_ style:Style, title:String? = nil) {
+extension VC_Web:CD_RouterInterface {
+    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
         let vc = VC_Web()
-        vc.webType = style
-        vc._title = title
+        let style = param.stringValue("router_path")
+        switch style {
+        case "http":
+            vc.webType = Style.http(param.stringValue("url"))
+        case "html":
+            vc.webType = Style.http(param.stringValue("html"))
+        case "file":
+            vc.webType = Style.http(param.stringValue("file"))
+        default:
+            break
+        }
+        vc._title = param.stringValue("title")
         CD.push(vc)
     }
-    public enum Style {
+    
+    enum Style {
         case http(_ url:String)
         case html(_ string:String)
         case file(_ string:String)
@@ -37,7 +48,7 @@ class VC_Web: UIViewController {
         v.tintColor = Config.color.main_1
         return v
     }()
-    var webType:R_Web.Style = .http("https://")
+    var webType:Style = .http("https://")
     var _title: String?
     
     override func viewDidLoad() {

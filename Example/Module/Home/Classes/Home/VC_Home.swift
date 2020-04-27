@@ -3,9 +3,22 @@
 import UIKit
 
 
-public struct R_Home: CD_RowVCProtocol {
-    public var vc: UIViewController {
+public class R_Home: CD_RouterInterface {
+    lazy var _vc: UIViewController? = {
         return VC_Home.cd_storyboard("HomeStoryboard", from: "Home") as! VC_Home
+    }()
+    
+    public var vc: UIViewController? {
+        return _vc
+    }
+    
+    
+    public static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        print_cd("R_Home static router")
+    }
+    
+    public func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+        print_cd("R_Home router")
     }
     
     public init() {

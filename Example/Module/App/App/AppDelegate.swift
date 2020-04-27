@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             App_Router(),
             App_Net(),
             App_VC(window),
-            App_Config(),
-            App_BaiduMap()
+            App_Config()
         ]
         
         #if DEBUG

@@ -66,7 +66,7 @@ enum Router {
 /// 模式1：协议内默认通道
 /// --> CD_RouterProtocol 。。。
 
-/// 模式2：单例统一通道
+/// 模式2：单例通道
 CD_Router.shared.routerHandler = { (r, param, callback) in
     switch r {
     case Router.Order.submit:
@@ -76,6 +76,15 @@ CD_Router.shared.routerHandler = { (r, param, callback) in
     }
 }
 
+ /// 模式3：open url 通道 走 application open url
+ switch url.host {
+ case "order" where url.path.first? == "submit":
+     CD.router(target: "Order.VC_OrderSubmit")?.router(url.parameters, callback: { (res) in
+     })
+ default:
+     break
+ }
+
 /// 调用
 Router.Order.list.router()
 Router.Order.submit.router(["carId":999]) { (res) in
@@ -83,6 +92,9 @@ Router.Order.submit.router(["carId":999]) { (res) in
 }
 Router.Order.detail("123").router()
 Router.Pay.pay.router(["123":456, 7:888])
+ 
+ 
+CD_Router.open(url: "caamdau://order/submit", param:  ["id":999])
 */
 
 
@@ -92,42 +104,70 @@ import Foundation
 public typealias CD_RouterParameter = [AnyHashable:Any]
 public typealias CD_RouterCallback = ((CD_RouterParameter?)->Void)?
 
+/// 输入协议：路由表协议
 public protocol CD_RouterProtocol {
+    /// 目标 如："Home.R_Home" (Home: 模块、组件 命名空间，R_Home：接口类)
     var target:String? {get}
-    var forClass: AnyClass?  {get}
+    /// 增补固定参数
     var parameter:CD_RouterParameter {get}
-    func router()
     /// 入参、回参 模糊，自由度更好
     func router(_ param:CD_RouterParameter, callback:CD_RouterCallback)
 }
 extension CD_RouterProtocol {
-    public var target:String? { return "" }
-    public var forClass: AnyClass?  { return nil }
+    /// 目标 如："Home.R_Home" (Home: 模块、组件 命名空间，R_Home：接口类)
+    public var target:String? { return nil }
     public var parameter:CD_RouterParameter { return [:] }
     
-    public func router() {
-        router([:], callback: nil)
-    }
     /// 入参、回参 模糊，自由度更好
     public func router(_ param:CD_RouterParameter = [:], callback:CD_RouterCallback = nil) {
         self.routerCore(param, callback: callback)
     }
     
     public func routerCore(_ param:CD_RouterParameter, callback:CD_RouterCallback) {
-        if  let target = target, let r = CD.classFrom(string: target, forClass: forClass) as? CD_RouterInterface.Type {
+        if  let target = target, let r = CD_Router.target(target) {
             var param = param
             param += parameter
             r.router(param, callback: callback)
         }else{
+            var param = param
+            param += parameter
             CD_Router.shared.routerHandler?(self, param, callback)
         }
     }
 }
 
-public class CD_Router {
-    private init(){}
+@objc public class CD_Router: NSObject {
+    private override init(){}
     public static let shared = CD_Router()
     public var routerHandler:((_ router:CD_RouterProtocol, _ parameter:CD_RouterParameter, _ callback:CD_RouterCallback)->Void)?
+}
+
+extension CD_Router {
+    /// 直接通过 URL 配合 application open url 进行寻址
+    @objc public class func open(url string:String, param:CD_RouterParameter = [:]) {
+        guard let urlComponents = NSURLComponents(string: string) else {
+            print_cd("CD_Router withURL string error:", string)
+            return
+        }
+        var items:[URLQueryItem] = []
+        param.forEach {
+            guard let key = $0.key as? String, let value = $0.value as? String else { return }
+            items.append(URLQueryItem(name: key, value: value))
+        }
+        urlComponents.queryItems = items
+        
+        guard var url = urlComponents.url else {
+            print_cd("CD_Router withURL error:", urlComponents)
+            return
+        }
+        
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
 }
 
 
@@ -136,3 +176,9 @@ public protocol CD_RouterInterface {
     static func router(_ param:CD_RouterParameter, callback:CD_RouterCallback)
 }
 
+
+extension CD_Router {
+    public static func target(_ string:String) -> CD_RouterInterface.Type? {
+        return NSClassFromString(string) as? CD_RouterInterface.Type
+    }
+}

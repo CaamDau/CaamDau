@@ -63,9 +63,26 @@ struct VM_Mine {
 extension VM_Mine{
     mutating func makeSectionMe(){
         do{
-            let row = CD_RowCell<Cell_MineSign>(data: "登 录", frame: CGRect(h:45)) {
-                Router.Sign.up(true).router()
+            let row = CD_RowCell<Cell_MineSign>(data: "登 录 - 不可返回", frame: CGRect(h:45)) {
+                Router.Sign.up.router(["canBack":false]) { res in
+                    
+                }
                 
+            }
+            self.forms[Section.me.rawValue].append(row)
+        }
+        
+        do{
+            let row = CD_RowCell<Cell_MineSign>(data: "登 录 - 可以返回", frame: CGRect(h:45)) {
+                Router.Sign.up.router(["canBack":true])
+                
+            }
+            self.forms[Section.me.rawValue].append(row)
+        }
+        
+        do{
+            let row = CD_RowCell<Cell_MineSign>(data: "登 录 - Router open url", frame: CGRect(h:45)) {
+                CD_Router.open(url: "caamdau://sign/up/out", param: ["canBack":true.stringValue, "haha":"好啊好啊"])
             }
             self.forms[Section.me.rawValue].append(row)
         }
@@ -74,7 +91,7 @@ extension VM_Mine{
 extension VM_Mine{
     mutating func makeSectionForm() {
         let callBack:CD_RowCallBack = { _ in
-            Router.Utility.http("https://github.com/liucaide/CaamDau", "CaamDau").router()
+            Router.Utility.http.router(["url":"https://github.com/liucaide/CaamDau", "title": "CaamDau"])
         }
         do{
             let row = CD_RowCell<Cell_MineForm>(data: ("Form", Assets().com_点赞_已点), frame: CGRect(h:45), callBack: callBack) {
@@ -110,7 +127,7 @@ extension VM_Mine{
         }
         do{
             let row = CD_RowCell<Cell_MineTitle>(data: ("CD_RegEx", "常用正则表达式"), frame: CGRect(h:45)) {
-               Router.Utility.http("https://github.com/liucaide/CaamDau/CD_RegEx", "CaamDau").router()
+                Router.Utility.http.router(["url":"https://github.com/liucaide/CaamDau/CD_RegEx", "title": "CaamDau"])
             }
             self.forms[Section.other.rawValue].append(row)
         }
