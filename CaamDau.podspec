@@ -197,7 +197,7 @@ Pod::Spec.new do |s|
     
     net.subspec 'Core' do |core|
       core.source_files = 'CaamDau/NetWork/Core/*'
-      core.dependency 'Alamofire'
+      core.dependency 'Alamofire', '4.9.1'
       core.dependency 'CaamDau/Core'
     end
     
