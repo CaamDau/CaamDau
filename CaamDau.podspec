@@ -131,10 +131,10 @@ s.subspec 'Calendar' do |ss|
   ss.dependency 'CaamDauCalendar'
 end
 
-s.subspec 'Empty' do |ss|
-  ss.source_files = 'CaamDau/Empty.h'
-  ss.dependency 'CaamDauEmpty'
-end
+# s.subspec 'Empty' do |ss|
+#   ss.source_files = 'CaamDau/Empty.h'
+#   ss.dependency 'CaamDauEmpty'
+# end
 
 s.subspec 'Pencil' do |ss|
   ss.source_files = 'CaamDau/Pencil.h'
