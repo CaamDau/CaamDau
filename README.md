@@ -1,16 +1,16 @@
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/caamdau.png" align=centre />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/caamdau.png" align=centre />
 </p>
 
-[![CI Status](https://img.shields.io/travis/liucaide/CaamDau.svg?style=flat)](https://travis-ci.org/liucaide/CaamDau)
+[![CI Status](https://img.shields.io/travis/CaamDau/CaamDau.svg?style=flat)](https://travis-ci.org/CaamDau/CaamDau)
 [![Version](https://img.shields.io/cocoapods/v/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 [![License](https://img.shields.io/cocoapods/l/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 [![Platform](https://img.shields.io/cocoapods/p/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 [![](https://img.shields.io/badge/Swift-4.0~5.0-orange.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 
-# [CaamDau 各组件拆分转移中...欢迎关注，如果有兴趣联系管理员加入](https://github.com/CaamDau)
+### CaamDau 各组件正在拆分扩展中...，如果你有兴趣，欢迎联系管理员加入
 
-> 蚕豆 (粤语caam dau) （[OC版本在这里](https://github.com/liucaide/CaamDauObjC)）（[CaamDauRx - RxSwift扩展版本](https://github.com/liucaide/CaamDauRx)）
+> 蚕豆 (粤语caam dau) （[OC版本在这里](https://github.com/CaamDau/CaamDauObjC)）（[CaamDauRx - RxSwift扩展版本](https://github.com/CaamDau/CaamDauRx)）
 
 > 前言：CaamDau是一个开发套件，旨在构建一个通用业务组件库和Cocoa便利性扩展，作为基础业务组件，在新项目初期与老项目维护期快速完成通用业务代码的构建（其实就是方便自己，同时也希望能方便同志）。
 
@@ -49,7 +49,7 @@
 # CocoaPods
 ```
 pod 'CaamDau'
-pod 'CaamDau', :git => 'https://github.com/liucaide/CaamDau.git'
+pod 'CaamDau', :git => 'https://github.com/CaamDau/CaamDau.git'
 # 码云有同步仓库，国内速度更快
 pod 'CaamDau', :git => 'https://gitee.com/CaamDau/CaamDau.git'
 
@@ -68,7 +68,7 @@ pod 'CaamDau/.../...'
 ### Form:流式模型化排版组件
 - 流式模型化排版组件—使UI排版更加直观、易扩展、易维护；解决TableView/CollectionView 排版 section row height didselect 等多点关系的灾难
 - 原理:将多点关联的UI排版数据转化为单一的 CD_Row 模型单元
-- [更多详细的介绍请移步](https://github.com/liucaide/CaamDau/tree/master/CaamDau/Form)
+- [更多详细的介绍请移步](https://github.com/CaamDau/CaamDau/tree/master/CaamDau/Form)
 ```
 /// Cell数据源遵循 CD_FormProtocol 协议
 var form:CD_FormProtocol = CD_FormProtocol()
@@ -274,12 +274,12 @@ Router.Order.submit.router(["id":999]) { (res) in
 [回顶部目录](#目录)
 ### HUD提示窗组件
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud10.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud11.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud1.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud2.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud20.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/hud21.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/hud10.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/hud11.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/hud1.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/hud2.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/hud20.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/hud21.png" width="15%" />
 </p>
 
 ```
@@ -293,9 +293,9 @@ view.cd.hud(.succeed, title: title, model:model)
 ### Page分页导航控制组件
 
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/page1.gif" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/page2.gif" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/page3.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/page1.gif" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/page2.gif" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/page3.png" width="15%" />
 </p>
 
 ```
@@ -330,7 +330,7 @@ pageControl.selectIndex = 2
 ### TopBar自定义导航栏组件
 - 完全隐藏系统导航栏，使用自定义导航栏
 <p>
-<img src="https://github.com/liucaide/Images/blob/master/CaamDau/TopBar1.jpeg" width="15%" />
+<img src="https://github.com/CaamDau/Images/blob/master/CaamDau/TopBar1.jpeg" width="15%" />
 </p>
 
 ```
@@ -462,8 +462,8 @@ CD_InputBoxPopping.show( ... ){ ... }
 ### Indexes一个漂亮的索引View
 
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/indexes0.gif" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/indexes1.gif" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/indexes0.gif" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/indexes1.gif" width="15%" />
 </p>
 
 
@@ -501,8 +501,8 @@ CD_DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callbac
 [回顶部目录](#目录)
 ### PencilKit图片编辑组件
 <p>
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil1.png" width="15%" />
-  <img src="https://github.com/liucaide/Images/blob/master/CaamDau/pencil2.png" width="25%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/pencil1.png" width="15%" />
+  <img src="https://github.com/CaamDau/Images/blob/master/CaamDau/pencil2.png" width="25%" />
 </p>
 
 ```
@@ -553,7 +553,7 @@ CD_Net()
 - [阿里矢量图标资源管理类](https://github.com/liucaide/SapSapSeoi/blob/master/swift/swift_iconfont.py)
 
 ### 工程统一配置&适配方案
-- [通用型 基本资源、配置管理](https://github.com/liucaide/CaamDau/tree/master/Example/Util)
+- [通用型 基本资源、配置管理](https://github.com/CaamDau/CaamDau/tree/master/Example/Util)
 
 ### 组件化示例
 ### 友情链接

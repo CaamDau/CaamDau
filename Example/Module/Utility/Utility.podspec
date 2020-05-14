@@ -59,7 +59,7 @@ Pod::Spec.new do |s|
   # 网络基本配置
   s.subspec 'App' do |app|
     app.source_files = 'App/**/*'
-    app.dependency 'CaamDau/MJRefresh'
+    app.dependency 'CaamDau/Refresh'
     app.dependency 'CaamDau/TopBar'
     app.dependency 'CaamDau/Net/All'
     app.dependency 'IQKeyboardManagerSwift'

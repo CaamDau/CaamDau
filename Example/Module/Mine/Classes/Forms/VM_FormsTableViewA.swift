@@ -12,18 +12,18 @@ import UIKit
 struct R_FormsTableViewA {
     static func push() {
         let vc = CD_TableViewController()
-        vc.vm = VM_FormsTableViewA()
+        //vc.vm = VM_FormsTableViewA()
         CD.push(vc)
     }
 }
 
 
-
+/*
 class VM_FormsTableViewA {
     var forms: [[CD_CellProtocol]] = []
     var reloadData: (() -> Void)?
     var mjRefreshType: [CD_MJRefreshModel.RefreshType] = [.tBegin]
-    lazy var itemsLoad: [CD_EmptyView.Item] = {
+    lazy var itemsLoad: [Any] = {
         return [
             .activity(nil),
             .image({
@@ -48,7 +48,7 @@ class VM_FormsTableViewA {
         ]
     }()
     
-    lazy var itemsNotData: [CD_EmptyView.Item] = {
+    lazy var itemsNotData: [Any] = {
         return [
             .lable({
                 let icon = CD_IconFont.twarn(40)
@@ -65,9 +65,9 @@ class VM_FormsTableViewA {
     }()
     
     
-    lazy var emptyView: CD_EmptyView = {
-        let v = CD_EmptyView()
-        v.items = itemsLoad
+    lazy var emptyView: UIView = {
+        let v = UIView()
+        //v.items = itemsLoad
         return v
     }()
 }
@@ -111,3 +111,4 @@ extension VM_FormsTableViewA: CD_ViewModelTableViewProtocol {
         }
     }
 }
+*/

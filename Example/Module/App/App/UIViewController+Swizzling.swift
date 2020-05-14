@@ -37,7 +37,7 @@ extension UIViewController {
         swizzling_viewDidLoad()
         
         /// ios11 以下 需要
-        self.automaticallyAdjustsScrollViewInsets = false
+        //self.automaticallyAdjustsScrollViewInsets = false
         
         /// CD_ Form基类控制器没有设置背景色，
         /// 导致表单下行约束在安全区的小段Home键位置是黑色的

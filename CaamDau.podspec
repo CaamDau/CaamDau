@@ -1,231 +1,187 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CaamDau'
-  s.version          = '1.1.0'
-  s.summary          = 'A iOS development toolbox (iOS 开发工具箱(模块组件) Swift 版).'
+  s.version          = '2.0.0'
+  s.summary          = 'CaamDau 系列产品组合，iOS 开发工具箱(模块组件) Swift 版.'
   s.description      = <<-DESC
-  TODO: iOS 开发组件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
+  TODO: CaamDau 系列产品：iOS 便捷开发套件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
   附.各种类库使用示例demo.
                        DESC
 
-  s.homepage         = 'https://github.com/liucaide/CaamDau'
+  s.homepage         = 'https://github.com/CaamDau/CaamDau'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'liucaide' => '565726319@qq.com' }
-  s.source           = { :git => 'https://github.com/liucaide/CaamDau.git', :tag => s.version }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/CaamDau/CaamDau.git', :tag => s.version }
 
   s.ios.deployment_target = '9.0'
-  s.swift_version = ['4.0', '4.2', '5.0']
-  # s.source_files = 'CaamDau/**/*'
-  
+  s.swift_version = ['4.0', '4.2', '5.0', '5.1']
   s.default_subspec = 'Core'
-  
-  s.subspec 'Core' do |core|
-    core.source_files = 'CaamDau/Core/**/*.swift',
-    'CaamDau/Extension/**/*.swift',
-    'CaamDau/Value/*.{swift}',
-    'CaamDau/Form/**/*.{swift}',
-    'CaamDau/RegEx/**/*.{swift}'
+  s.source_files = 'CaamDau/*.swift'
+
+  s.subspec 'Core' do |ss|
+    ss.dependency 'CaamDau/Extension'
+    ss.dependency 'CaamDau/Form'
+    ss.dependency 'CaamDau/AppDelegate'
+    ss.dependency 'CaamDau/Router'
   end
   
-  s.subspec 'Module' do |mo|
-    mo.dependency 'CaamDau/Core'
-    
-    mo.dependency 'CaamDau/IBInspectable'
-    mo.dependency 'CaamDau/Timer'
-    mo.dependency 'CaamDau/InputBox'
-    mo.dependency 'CaamDau/IconFont'
-    mo.dependency 'CaamDau/Page'
-    mo.dependency 'CaamDau/TopBar'
-    mo.dependency 'CaamDau/AppDelegate'
-    mo.dependency 'CaamDau/Router'
-    mo.dependency 'CaamDau/HUD'
-    mo.dependency 'CaamDau/ViewModel/Core'
-    mo.dependency 'CaamDau/Indexes'
-    mo.dependency 'CaamDau/Calendar'
-    mo.dependency 'CaamDau/Empty'
-    mo.dependency 'CaamDau/PencilDraw'
+  s.subspec 'Module' do |ss|
+    ss.dependency 'CaamDau/Core'
+
+    ss.dependency 'CaamDau/Timer'
+    ss.dependency 'CaamDau/InputBox'
+    ss.dependency 'CaamDau/IconFont'
+    ss.dependency 'CaamDau/Page'
+    ss.dependency 'CaamDau/TopBar'
+    ss.dependency 'CaamDau/HUD'
+    ss.dependency 'CaamDau/ViewModel/Core'
+    ss.dependency 'CaamDau/Indexes'
+    ss.dependency 'CaamDau/Calendar'
+    ss.dependency 'CaamDau/Pencil'
+    #ss.dependency 'CaamDau/Empty'
   end
   
-  s.subspec 'All' do |all|
-    all.dependency 'CaamDau/Module'
+  s.subspec 'All' do |ss|
+    ss.dependency 'CaamDau/Module'
     
-    all.dependency 'CaamDau/FDFullscreenPopGesture'
-    all.dependency 'CaamDau/MJRefresh'
-    all.dependency 'CaamDau/Net/All'
-    all.dependency 'CaamDau/ViewModel/BaseUI'
+    ss.dependency 'CaamDau/PopGesture'
+    ss.dependency 'CaamDau/Refresh'
+    ss.dependency 'CaamDau/Net/All'
+    ss.dependency 'CaamDau/ViewModel/BaseUI'
     
   end
-  
+
   # ---- 核心插件 组件
-  s.subspec 'Extension' do |ex|
-      ex.source_files = 'CaamDau/Core/**/*.swift',
-      'CaamDau/Extension/**/*.swift',
-      'CaamDau/Value/*.{swift}',
-      'CaamDau/RegEx/**/*.{swift}'
+  s.subspec 'Extension' do |ss|
+    ss.source_files = 'CaamDau/Extension.h'
+    ss.dependency 'CaamDauExtension'
+end
+
+s.subspec 'Form' do |ss|
+  ss.source_files = 'CaamDau/Form.h'
+  ss.dependency 'CaamDauForm'
+end
+
+s.subspec 'Timer' do |ss|
+  ss.source_files = 'CaamDau/Timer.h'
+  ss.dependency 'CaamDauTimer'
+end
+
+s.subspec 'Value' do |ss|
+  ss.source_files = 'CaamDau/Value.h'
+  ss.dependency 'CaamDauValue'
+end
+
+s.subspec 'AppDelegate' do |ss|
+  ss.source_files = 'CaamDau/AppDelegate.h'
+  ss.dependency 'CaamDauAppDelegate'
+end
+
+s.subspec 'IconFont' do |ss|
+  ss.source_files = 'CaamDau/IconFont.h'
+  ss.dependency 'CaamDauIconFont'
+end
+
+s.subspec 'TopBar' do |ss|
+  ss.source_files = 'CaamDau/TopBar.h'
+  ss.dependency 'CaamDauTopBar'
+end
+
+s.subspec 'Page' do |ss|
+  ss.source_files = 'CaamDau/Page.h'
+  ss.dependency 'CaamDauPage'
+end
+
+s.subspec 'InputBox' do |ss|
+  ss.source_files = 'CaamDau/InputBox.h'
+  ss.dependency 'CaamDauInputBox'
+end
+
+s.subspec 'HUD' do |ss|
+  ss.source_files = 'CaamDau/HUD.h'
+  ss.dependency 'CaamDauHUD'
+end
+
+s.subspec 'ViewModel' do |vm|
+  
+  vm.subspec 'Core' do |ss|
+    ss.source_files = 'CaamDau/ViewModel.h'
+    ss.dependency 'CaamDauViewModel/Core'
   end
   
-  s.subspec 'Form' do |form|
-    form.source_files = 'CaamDau/Core/**/*.swift',
-    'CaamDau/Extension/**/*.swift',
-    'CaamDau/Value/*.{swift}',
-    'CaamDau/Form/**/*.{swift}',
-    'CaamDau/RegEx/**/*.{swift}'
+  vm.subspec 'BaseUI' do |ss|
+    ss.source_files = 'CaamDau/ViewModel.h'
+    ss.dependency 'CaamDauViewModel/BaseUI'
   end
   
-  s.subspec 'Timer' do |t|
-    t.source_files = 'CaamDau/Timer/*.{swift}'
-    t.dependency 'CaamDau/Core'
+end
+
+s.subspec 'Router' do |ss|
+  ss.source_files = 'CaamDau/Router.h'
+  ss.dependency 'CaamDauRouter'
+end
+
+s.subspec 'Indexes' do |ss|
+  ss.source_files = 'CaamDau/Indexes.h'
+  ss.dependency 'CaamDauIndexes'
+end
+
+s.subspec 'Calendar' do |ss|
+  ss.source_files = 'CaamDau/Calendar.h'
+  ss.dependency 'CaamDauCalendar'
+end
+
+s.subspec 'Empty' do |ss|
+  ss.source_files = 'CaamDau/Empty.h'
+  ss.dependency 'CaamDauEmpty'
+end
+
+s.subspec 'Pencil' do |ss|
+  ss.source_files = 'CaamDau/Pencil.h'
+  ss.dependency 'CaamDauPencil'
+end
+
+# ---- 第三方 扩展 或 桥接
+s.subspec 'Refresh' do |ss|
+  ss.source_files = 'CaamDau/Refresh.h'
+  ss.dependency 'CaamDauRefresh'
+end
+
+s.subspec 'PopGesture' do |ss|
+  ss.source_files = 'CaamDau/PopGesture.h'
+  ss.dependency 'CaamDauPopGesture'
+end
+
+s.subspec 'Net' do |net|
+  
+  net.subspec 'Core' do |ss|
+    ss.source_files = 'CaamDau/Net.h'
+    ss.dependency 'CaamDauNet/Core'
   end
   
-  s.subspec 'Value' do |v|
-    v.source_files = 'CaamDau/Value/*.{swift}'
-  end
-  
-  s.subspec 'IBInspectable' do |ib|
-    ib.source_files = 'CaamDau/IBInspectable/*.{swift}'
-  end
-  
-  s.subspec 'AppDelegate' do |app|
-    app.source_files = 'CaamDau/AppDelegate/*.{swift}'
-  end
-  
-  s.subspec 'IconFont' do |ifont|
-      ifont.source_files = 'CaamDau/IconFont/Classes/*.{swift}'
-      ifont.resource_bundles = {
-          'CaamDauIconFont' => ['CaamDau/IconFont/Assets/*.{ttf}']
-      }
-      ifont.dependency 'CaamDau/Core'
-  end
-  
-  s.subspec 'TopBar' do |topbar|
-      topbar.source_files = 'CaamDau/TopBar/*.{swift}'
-      topbar.dependency 'CaamDau/Core'
-      topbar.dependency 'CaamDau/Value'
-      topbar.dependency 'CaamDau/IconFont'
-      topbar.dependency 'CaamDau/FDFullscreenPopGesture'
-      topbar.dependency 'SnapKit'
-  end
-  
-  s.subspec 'Page' do |page|
-      page.source_files = 'CaamDau/Page/*.{swift}'
-      page.dependency 'CaamDau/Core'
-      page.dependency 'CaamDau/FDFullscreenPopGesture'
-      page.dependency 'SnapKit'
-  end
-  
-  s.subspec 'InputBox' do |input|
-      input.source_files = 'CaamDau/InputBox/Classes/*.{swift}'
-      input.dependency 'CaamDau/Core'
-      input.dependency 'SnapKit'
-      input.resource_bundles = {
-        'CaamDauInputBox' => ['CaamDau/InputBox/Nib/*.{xib}']
-      }
-  end
-  
-  s.subspec 'HUD' do |hud|
-    hud.source_files = 'CaamDau/HUD/*.{swift}'
-    hud.dependency 'CaamDau/Core'
-    hud.dependency 'CaamDau/Timer'
-    hud.dependency 'CaamDau/IconFont'
-    hud.dependency 'SnapKit'
-  end
-  
-  s.subspec 'ViewModel' do |vm|
+  net.subspec 'All' do |ss|
     
-    vm.subspec 'Core' do |core|
-      core.source_files = 'CaamDau/ViewModel/Core/**/*.{swift}'
-      core.dependency 'CaamDau/Core'
-    end
-    
-    vm.subspec 'BaseUI' do |bui|
-      bui.source_files = 'CaamDau/ViewModel/BaseUI/**/*.{swift}'
-      bui.dependency 'CaamDau/ViewModel/Core'
-      bui.dependency 'CaamDau/TopBar'
-      bui.dependency 'CaamDau/MJRefresh'
-      bui.dependency 'SnapKit'
-    end
-    
+    ss.dependency 'CaamDau/Net/SwiftyJSON'
+    ss.dependency 'CaamDau/Net/Cache'
+    ss.dependency 'CaamDau/Net/Codable'
   end
   
-  s.subspec 'Router' do |rr|
-    rr.source_files = 'CaamDau/Router/*.{swift}'
-    rr.dependency 'CaamDau/Core'
+  net.subspec 'SwiftyJSON' do |ss|
+    ss.dependency 'CaamDau/Net/Core'
+    ss.dependency 'CaamDauNet/SwiftyJSON'
   end
   
-  s.subspec 'Indexes' do |indx|
-      indx.source_files = 'CaamDau/Indexes/*.{swift}'
-      indx.dependency 'CaamDau/Core'
-      indx.dependency 'SnapKit'
+  net.subspec 'Cache' do |ss|
+    ss.dependency 'CaamDau/Net/Core'
+    ss.dependency 'CaamDauNet/Cache'
   end
   
-  s.subspec 'Calendar' do |date|
-      date.source_files = 'CaamDau/Calendar/*.{swift}'
-      date.dependency 'CaamDau/Core'
-      date.dependency 'SnapKit'
+  net.subspec 'Codable' do |ss|
+    ss.dependency 'CaamDau/Net/Core'
+    ss.dependency 'CaamDauNet/Codable'
   end
   
-  s.subspec 'Empty' do |empty|
-    empty.source_files = 'CaamDau/EmptyView/**/*.{swift}'
-    empty.dependency 'CaamDau/Core'
-  end
-  
-  s.subspec 'PencilDraw' do |pencil|
-      pencil.source_files = 'CaamDau/PencilDraw/**/*.{swift}'
-      pencil.dependency 'CaamDau/Core'
-  end
-  
-  # ---- 第三方 扩展 或 桥接
-  s.subspec 'MJRefresh' do |mj|
-    mj.source_files = 'CaamDau/MJRefresh/*.{swift}'
-    mj.dependency 'CaamDau/Core'
-    mj.dependency 'MJRefresh', '3.2.0'
-  end
-  
-  s.subspec 'FDFullscreenPopGesture' do |fd|
-      fd.source_files = 'CaamDau/FDFullscreenPopGesture/*.{swift}'
-      fd.dependency 'CaamDau/Core'
-      fd.dependency 'FDFullscreenPopGesture'
-  end
-  
-  s.subspec 'Net' do |net|
-    
-    net.subspec 'Core' do |core|
-      core.source_files = 'CaamDau/NetWork/Core/*'
-      core.dependency 'Alamofire'
-      core.dependency 'CaamDau/Core'
-    end
-    
-    net.subspec 'All' do |all|
-      all.dependency 'CaamDau/Net/Core'
-      all.dependency 'CaamDau/Net/SwiftyJSON'
-      all.dependency 'CaamDau/Net/Cache'
-      all.dependency 'CaamDau/Net/Codable'
-    end
-    
-    net.subspec 'SwiftyJSON' do |json|
-      json.source_files = 'CaamDau/NetWork/SwiftyJSON/*.{swift}'
-      json.dependency 'CaamDau/Net/Core'
-      json.dependency 'SwiftyJSON'
-    end
-    
-    net.subspec 'Cache' do |cache|
-      cache.source_files = 'CaamDau/NetWork/Cache/*.{swift}'
-      cache.dependency 'CaamDau/Core'
-      cache.dependency 'CaamDau/Net/Core'
-      cache.dependency 'Cache'
-    end
-    
-    net.subspec 'Codable' do |codable|
-      codable.source_files = 'CaamDau/NetWork/Codable/*.{swift}'
-      codable.dependency 'CaamDau/Net/Core'
-      codable.dependency 'CleanJSON'
-    end
-    
-  end
-  
-  
-  
+end
+
   s.frameworks = 'UIKit', 'Foundation'
-  # s.dependency 'Then'
 end
