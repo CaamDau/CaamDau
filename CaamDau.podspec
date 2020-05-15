@@ -54,131 +54,131 @@ Pod::Spec.new do |s|
   # ---- 核心插件 组件
   s.subspec 'Extension' do |ss|
     ss.source_files = 'CaamDau/Extension.h'
-    ss.dependency 'CaamDauExtension'
+    ss.dependency 'CaamDauExtension', '1.2.1'
 end
 
 s.subspec 'Form' do |ss|
   ss.source_files = 'CaamDau/Form.h'
-  ss.dependency 'CaamDauForm'
+  ss.dependency 'CaamDauForm', '1.2.0'
 end
 
 s.subspec 'Timer' do |ss|
   ss.source_files = 'CaamDau/Timer.h'
-  ss.dependency 'CaamDauTimer'
+  ss.dependency 'CaamDauTimer', '1.2.0'
 end
 
 s.subspec 'Value' do |ss|
   ss.source_files = 'CaamDau/Value.h'
-  ss.dependency 'CaamDauValue'
+  ss.dependency 'CaamDauValue', '1.2.0'
 end
 
 s.subspec 'AppDelegate' do |ss|
   ss.source_files = 'CaamDau/AppDelegate.h'
-  ss.dependency 'CaamDauAppDelegate'
+  ss.dependency 'CaamDauAppDelegate', '1.2.1'
 end
 
 s.subspec 'IconFont' do |ss|
   ss.source_files = 'CaamDau/IconFont.h'
-  ss.dependency 'CaamDauIconFont'
+  ss.dependency 'CaamDauIconFont', '1.2.0'
 end
 
 s.subspec 'TopBar' do |ss|
   ss.source_files = 'CaamDau/TopBar.h'
-  ss.dependency 'CaamDauTopBar'
+  ss.dependency 'CaamDauTopBar', '1.2.0'
 end
 
 s.subspec 'Page' do |ss|
   ss.source_files = 'CaamDau/Page.h'
-  ss.dependency 'CaamDauPage'
+  ss.dependency 'CaamDauPage', '1.2.0'
 end
 
 s.subspec 'InputBox' do |ss|
   ss.source_files = 'CaamDau/InputBox.h'
-  ss.dependency 'CaamDauInputBox'
+  ss.dependency 'CaamDauInputBox', '1.2.0'
 end
 
 s.subspec 'HUD' do |ss|
   ss.source_files = 'CaamDau/HUD.h'
-  ss.dependency 'CaamDauHUD'
+  ss.dependency 'CaamDauHUD', '1.2.0'
 end
 
 s.subspec 'ViewModel' do |vm|
   
   vm.subspec 'Core' do |ss|
     ss.source_files = 'CaamDau/ViewModel.h'
-    ss.dependency 'CaamDauViewModel/Core'
+    ss.dependency 'CaamDauViewModel/Core', '1.2.0'
   end
   
   vm.subspec 'BaseUI' do |ss|
     ss.source_files = 'CaamDau/ViewModel.h'
-    ss.dependency 'CaamDauViewModel/BaseUI'
+    ss.dependency 'CaamDauViewModel/BaseUI', '1.2.0'
   end
   
 end
 
 s.subspec 'Router' do |ss|
   ss.source_files = 'CaamDau/Router.h'
-  ss.dependency 'CaamDauRouter'
+  ss.dependency 'CaamDauRouter', '1.2.0'
 end
 
 s.subspec 'Indexes' do |ss|
   ss.source_files = 'CaamDau/Indexes.h'
-  ss.dependency 'CaamDauIndexes'
+  ss.dependency 'CaamDauIndexes', '1.2.0'
 end
 
 s.subspec 'Calendar' do |ss|
   ss.source_files = 'CaamDau/Calendar.h'
-  ss.dependency 'CaamDauCalendar'
+  ss.dependency 'CaamDauCalendar', '1.2.0'
 end
 
 # s.subspec 'Empty' do |ss|
 #   ss.source_files = 'CaamDau/Empty.h'
-#   ss.dependency 'CaamDauEmpty'
+#   ss.dependency 'CaamDauEmpty', '1.2.0'
 # end
 
 s.subspec 'Pencil' do |ss|
   ss.source_files = 'CaamDau/Pencil.h'
-  ss.dependency 'CaamDauPencil'
+  ss.dependency 'CaamDauPencil', '1.2.0'
 end
 
 # ---- 第三方 扩展 或 桥接
 s.subspec 'Refresh' do |ss|
   ss.source_files = 'CaamDau/Refresh.h'
-  ss.dependency 'CaamDauRefresh'
+  ss.dependency 'CaamDauRefresh', '1.2.0'
 end
 
 s.subspec 'PopGesture' do |ss|
   ss.source_files = 'CaamDau/PopGesture.h'
-  ss.dependency 'CaamDauPopGesture'
+  ss.dependency 'CaamDauPopGesture', '1.2.0'
 end
 
 s.subspec 'Net' do |net|
   
   net.subspec 'Core' do |ss|
     ss.source_files = 'CaamDau/Net.h'
-    ss.dependency 'CaamDauNet/Core'
+    ss.dependency 'CaamDauNet/Core', '1.2.1'
   end
   
   net.subspec 'All' do |ss|
     
-    ss.dependency 'CaamDau/Net/SwiftyJSON'
-    ss.dependency 'CaamDau/Net/Cache'
-    ss.dependency 'CaamDau/Net/Codable'
+    ss.dependency 'CaamDau/Net/SwiftyJSON', '1.2.1'
+    ss.dependency 'CaamDau/Net/Cache', '1.2.1'
+    ss.dependency 'CaamDau/Net/Codable', '1.2.1'
   end
   
   net.subspec 'SwiftyJSON' do |ss|
     ss.dependency 'CaamDau/Net/Core'
-    ss.dependency 'CaamDauNet/SwiftyJSON'
+    ss.dependency 'CaamDauNet/SwiftyJSON', '1.2.1'
   end
   
   net.subspec 'Cache' do |ss|
     ss.dependency 'CaamDau/Net/Core'
-    ss.dependency 'CaamDauNet/Cache'
+    ss.dependency 'CaamDauNet/Cache', '1.2.1'
   end
   
   net.subspec 'Codable' do |ss|
     ss.dependency 'CaamDau/Net/Core'
-    ss.dependency 'CaamDauNet/Codable'
+    ss.dependency 'CaamDauNet/Codable', '1.2.1'
   end
   
 end
