@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CaamDau'
-  s.version          = '2.0.0'
+  s.version          = '1.2.1'
   s.summary          = 'CaamDau 系列产品组合，iOS 开发工具箱(模块组件) Swift 版.'
   s.description      = <<-DESC
   TODO: CaamDau 系列产品：iOS 便捷开发套件 Swift 版：iOS项目开发通用&非通用型模块代码，多功能组件，可快速集成使用以大幅减少基础工作量；便利性扩展&链式扩展、UI排班组件Form、正则表达式扩展RegEx、计时器管理Timer、简易提示窗HUD、AppDelegate解耦方案、分页控制Page、自定义导航栏TopBar、阿里矢量图标管理IconFonts、MJRefresh扩展、Alamofire扩展......
@@ -16,9 +16,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.swift_version = ['4.0', '4.2', '5.0', '5.1']
   s.default_subspec = 'Core'
-  s.source_files = 'CaamDau/*.swift'
-
+  
   s.subspec 'Core' do |ss|
+    ss.source_files = 'CaamDau/*.swift'
     ss.dependency 'CaamDau/Extension'
     ss.dependency 'CaamDau/Form'
     ss.dependency 'CaamDau/AppDelegate'
@@ -160,7 +160,6 @@ s.subspec 'Net' do |net|
   end
   
   net.subspec 'All' do |ss|
-    
     ss.dependency 'CaamDau/Net/SwiftyJSON'
     ss.dependency 'CaamDau/Net/Cache'
     ss.dependency 'CaamDau/Net/Codable'
