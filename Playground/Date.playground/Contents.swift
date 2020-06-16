@@ -10,7 +10,7 @@ print(time)
 
 extension TimeInterval {
     /// 转时间
-    func cd_date(_ since:Date.CD_TimeSince = .s1970) -> Date {
+    func cd_date(_ since:Date.TimeSince = .s1970) -> Date {
         switch since {
         case .s1970:
             return Date(timeIntervalSince1970: self)
@@ -26,14 +26,14 @@ extension TimeInterval {
 
 
 extension Date {
-    enum CD_TimeSince {
+    enum TimeSince {
         case s1970
         case s2001
         case sNow
         case s(_ date:Date)
     }
     ///时间戳 | 时间间隔
-    func cd_timestamp(_ since:CD_TimeSince = .s1970) -> TimeInterval {
+    func cd_timestamp(_ since:TimeSince = .s1970) -> TimeInterval {
         switch since {
         case .s1970:
             return self.timeIntervalSince1970

@@ -9,14 +9,14 @@ import CaamDau
 
 /// 一般来说，在开发中 都是 model先行的，并不一定先有明确的 json
 /// 同时，通用model需要达到 多模块的契合
-public protocol CD_SwiftyJSONProtocol {
+public protocol SwiftyJSONProtocol {
     /// model 遵循 此协议，使用SwiftyJSON 进行转模型
     /// 多模块通用可根据 tag，实现不同 json <key> 转同一模型
     init(_ json:JSON, tag:Int?)
 }
 
-public extension CD_Net {
-    func mapModels<T:CD_SwiftyJSONProtocol>(withSwiftyJSON t:T.Type, tag:Int? = nil, succeed:(([T]) ->Void)?) -> Self {
+public extension Net {
+    func mapModels<T:SwiftyJSONProtocol>(withSwiftyJSON t:T.Type, tag:Int? = nil, succeed:(([T]) ->Void)?) -> Self {
         success = { res in
             let jsons = JSON(res).arrayValue
             let model = jsons.compactMap{T($0, tag: tag)}
@@ -25,7 +25,7 @@ public extension CD_Net {
         return self
     }
     @discardableResult
-    func mapModel<T:CD_SwiftyJSONProtocol>(withSwiftyJSON t:T.Type, tag:Int? = nil, succeed:((T) ->Void)?) -> Self {
+    func mapModel<T:SwiftyJSONProtocol>(withSwiftyJSON t:T.Type, tag:Int? = nil, succeed:((T) ->Void)?) -> Self {
         success = { res in
             let json = JSON(res)
             let model = T(json, tag: tag)
@@ -35,7 +35,7 @@ public extension CD_Net {
     }
 }
 
-extension CD_Net {
+extension Net {
     public enum RequestStyle {
         case data
         case json
@@ -57,7 +57,7 @@ extension CD_Net {
         /// 开启控制台 print
         public var log:Bool = true
         /// 返回数据样式 默认 json
-        public var responseStyle:CD_Net.RequestStyle = .json
+        public var responseStyle:Net.RequestStyle = .json
         /// method 默认 get
         public var method:Alamofire.HTTPMethod = .get
     }
@@ -83,7 +83,7 @@ extension CD_Net {
         }
     }
 }
-extension CD_Net.Error: LocalizedError {
+extension Net.Error: LocalizedError {
     /// 错误的本地化消息
     public var errorDescription: String? {
         return massage
@@ -101,7 +101,7 @@ extension CD_Net.Error: LocalizedError {
         return nil
     }
 }
-public class CD_Net {
+public class Net {
     open var method:Alamofire.HTTPMethod = .get
     open var baseURL:String  = ""
     open var path:String  = ""
@@ -111,11 +111,11 @@ public class CD_Net {
     open var headers:[String:String]?
     open var timeoutInterval:TimeInterval = 10
     open var log:Bool = false
-    open var responseStyle:CD_Net.RequestStyle = .json
+    open var responseStyle:Net.RequestStyle = .json
     
     open var statusCodes:[Int] = [200]
     open var success:((Any) ->Void)?
-    open var failure:((CD_Net.Error) ->Void)?
+    open var failure:((Net.Error) ->Void)?
     open var uploadProgress:Request.ProgressHandler?
     open var onCache:((Any) ->Void)?
     open var cache:(() ->Void)?
@@ -126,16 +126,16 @@ public class CD_Net {
     
     static var config:Manager = Manager()
     init() {
-        self.timeoutInterval = CD_Net.config.timeoutInterval
-        self.headers = CD_Net.config.headers
-        self.baseURL = CD_Net.config.baseURL
-        self.log = CD_Net.config.log
-        self.responseStyle = CD_Net.config.responseStyle
-        self.method = CD_Net.config.method
+        self.timeoutInterval = Net.config.timeoutInterval
+        self.headers = Net.config.headers
+        self.baseURL = Net.config.baseURL
+        self.log = Net.config.log
+        self.responseStyle = Net.config.responseStyle
+        self.method = Net.config.method
     }
 }
 
-extension CD_Net {
+extension Net {
     func logPrint<T>(_ res:DataResponse<T>) {
         guard log else { return }
         debugPrint("---👉👉👉", res.request?.url ?? "")
@@ -153,15 +153,15 @@ extension CD_Net {
                 self.cache?()
                 self.success?(res)
             }else{
-                let err = CD_Net.Error(code: statusCode ?? -88888, massage: "")
-                self.failure?(CD_Net.Error(code: err.code, massage: err.localizedDescription))
+                let err = Net.Error(code: statusCode ?? -88888, massage: "")
+                self.failure?(Net.Error(code: err.code, massage: err.localizedDescription))
             }
         case .failure(let error):
             let err = error as NSError
-            self.failure?(CD_Net.Error(code: err.code, massage: err.localizedDescription))
+            self.failure?(Net.Error(code: err.code, massage: err.localizedDescription))
         }
     }
-    func request(_ style:CD_Net.RequestStyle = .json) -> Self {
+    func request(_ style:Net.RequestStyle = .json) -> Self {
         responseStyle = style
         let urlPath = (self.baseURL + self.path)
         request = SessionManager.default.request(urlPath, method: self.method, parameters: self.parameters, encoding: self.encoding, headers: self.headers)
@@ -207,12 +207,12 @@ extension CD_Net {
             
         case .failure(let error):
             let err = error as NSError
-            self.failure?(CD_Net.Error(code: err.code, massage: err.localizedDescription))
+            self.failure?(Net.Error(code: err.code, massage: err.localizedDescription))
         }
     }
     
     /// 上传 MultipartFormData 类型的文件数据，
-    func uploadFormData(_ style:CD_Net.RequestStyle = .json) {
+    func uploadFormData(_ style:Net.RequestStyle = .json) {
         responseStyle = style
         let url = (self.baseURL + self.path)
         SessionManager.default.upload(multipartFormData: { (formData) in
@@ -239,7 +239,7 @@ extension CD_Net {
     /// 下载，断线续传能力
 }
 
-public extension CD_Net {
+public extension Net {
     @discardableResult
     func onCache(_ t:((Any) ->Void)?) -> Self {
         
@@ -254,7 +254,7 @@ public extension CD_Net {
     }
 }
 
-public extension CD_Net {
+public extension Net {
     @discardableResult
     func method(_ t:Alamofire.HTTPMethod) -> Self {
         method = t
@@ -276,7 +276,7 @@ public extension CD_Net {
         return self
     }
     @discardableResult
-    func uploadParameters(_ t:[CD_Net.UploadParam]) -> Self {
+    func uploadParameters(_ t:[Net.UploadParam]) -> Self {
         uploadParameters = t
         return self
     }
@@ -288,7 +288,7 @@ public extension CD_Net {
     }
     @discardableResult
     func headers(_ t:[String:String]?) -> Self {
-        headers = t ?? CD_Net.config.headers
+        headers = t ?? Net.config.headers
         return self
     }
     @discardableResult
@@ -302,7 +302,7 @@ public extension CD_Net {
         return self
     }
     @discardableResult
-    func responseStyle(_ t:CD_Net.RequestStyle) -> Self {
+    func responseStyle(_ t:Net.RequestStyle) -> Self {
         responseStyle = t
         return self
     }
@@ -317,7 +317,7 @@ public extension CD_Net {
         return self
     }
     @discardableResult
-    func failure(_ t:((CD_Net.Error) ->Void)?) -> Self {
+    func failure(_ t:((Net.Error) ->Void)?) -> Self {
         failure = t
         return self
     }
@@ -342,7 +342,7 @@ public extension CD_Net {
     }
     
     @discardableResult
-    func upload(_ style:CD_Net.RequestStyle = .json) -> Self {
+    func upload(_ style:Net.RequestStyle = .json) -> Self {
         uploadFormData(style)
         return self
     }
@@ -361,7 +361,7 @@ public extension CD_Net {
 //    })
 
 
-struct M_Test<T:CD_SwiftyJSONProtocol>:CD_SwiftyJSONProtocol {
+struct M_Test<T:SwiftyJSONProtocol>:SwiftyJSONProtocol {
     init(_ json: JSON, tag: Int?) {
         code = json["origin"].stringValue
         data = T(json["headers"], tag: tag)
@@ -370,7 +370,7 @@ struct M_Test<T:CD_SwiftyJSONProtocol>:CD_SwiftyJSONProtocol {
     let data:T
 }
 
-struct M_T:CD_SwiftyJSONProtocol {
+struct M_T:SwiftyJSONProtocol {
     init(_ json: JSON, tag: Int?) {
         host = json["Host"].stringValue
     }
@@ -383,7 +383,7 @@ class Test {
         
         var page = 0
         
-        _ = CD_Net()
+        _ = Net()
             .baseURL("http://httpbin.org/")
             .path("get")
             .method(.get)

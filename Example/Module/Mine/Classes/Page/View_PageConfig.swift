@@ -51,19 +51,19 @@ class View_PageConfig: UIView {
     
     
     
-    var callBack: CD_RowCallBack?
+    var callBack: RowCallBack?
 }
 extension View_PageConfig {
     struct Model {
-        var bar_alig:CD_Page.Model.Alignment = .leftOrTop
+        var bar_alig:Page.Model.Alignment = .leftOrTop
         var bar_marge:CGFloat = 10
         var bar_space:CGFloat = 10
-        var bar_itemAni:CD_PageControlItem.Model.Animotion = .zoom
-        var bar_buoyAni:CD_PageControlBuoy.Model.Animotion = .slide
+        var bar_itemAni:PageControlItem.Model.Animotion = .zoom
+        var bar_buoyAni:PageControlBuoy.Model.Animotion = .slide
     }
 }
-extension View_PageConfig: CD_UIViewProtocol {
-    static func row_init(withDataSource dataSource: View_PageConfig.Model?, config: Any?, callBack: CD_RowCallBack?, tapBlock: CD_RowDidSelectBlock?) -> UIView {
+extension View_PageConfig: UIViewProtocol {
+    static func row_init(withDataSource dataSource: View_PageConfig.Model?, config: Any?, callBack: RowCallBack?, tapBlock: RowDidSelectBlock?) -> UIView {
         let v = View_PageConfig.cd_loadNib(from:"Mine")?.first as? View_PageConfig ?? View_PageConfig()
         v.callBack = callBack
         v.model = dataSource ?? View_PageConfig.Model()

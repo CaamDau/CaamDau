@@ -22,8 +22,8 @@ public extension User {
     }
 }
 
-extension User.InfoModel:CD_SwiftyJSONProtocol {
-    public init(_ json: JSON, tag: CD_SwiftyJSONTagProtocol?) {
+extension User.InfoModel:SwiftyJSONProtocol {
+    public init(_ json: JSON, tag: SwiftyJSONTag?) {
         status = json["status"].stringValue
         userid = json["userid"].stringValue
         username = json["username"].stringValue
@@ -44,8 +44,8 @@ public extension User {
         public init(){}
     }
 }
-extension User.Detail:CD_SwiftyJSONProtocol {
-    public init(_ json: JSON, tag: CD_SwiftyJSONTagProtocol?) {
+extension User.Detail:SwiftyJSONProtocol {
+    public init(_ json: JSON, tag: SwiftyJSONTag?) {
         status = json["status"].stringValue
     }
 }

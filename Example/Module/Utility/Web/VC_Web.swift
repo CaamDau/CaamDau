@@ -10,8 +10,8 @@ import UIKit
 import CaamDau
 import WebKit
 
-extension VC_Web:CD_RouterInterface {
-    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+extension VC_Web:RouterInterface {
+    static func router(_ param: RouterParameter, callback: RouterCallback) {
         let vc = VC_Web()
         let style = param.stringValue("router_path")
         switch style {
@@ -36,8 +36,8 @@ extension VC_Web:CD_RouterInterface {
 }
 
 class VC_Web: UIViewController {
-    lazy var topBar: CD_TopBar = {
-        return CD_TopBar()
+    lazy var topBar: TopBar = {
+        return TopBar()
     }()
     lazy var webView: WKWebView = {
         let web = WKWebView()
@@ -116,8 +116,8 @@ extension VC_Web {
     }
 }
 
-extension VC_Web: CD_TopBarProtocol {
-    func topBar(custom topBar: CD_TopBar) {
+extension VC_Web: TopBarProtocol {
+    func topBar(custom topBar: TopBar) {
         topBar._title = _title ?? ""
     }
 }

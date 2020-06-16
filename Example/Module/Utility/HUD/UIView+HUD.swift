@@ -54,7 +54,7 @@ public func hud_hidden() {
 public extension UIView {
     func hud_loading(_ title:String = "") {
         self.cd.hud_remove()
-        //var model = CD_HUD.modelDefault
+        //var model = HUD.modelDefault
         //model._axis = .horizontal
         //model._textAlignment = .left
         //model._isSquare = false
@@ -66,7 +66,7 @@ public extension UIView {
     }
     func hud_msg(_ title:String, detail:String = "") {
         self.cd.hud_remove()
-        var model = CD_HUD.modelDefault
+        var model = HUD.modelDefault
         model._position = .bottom
         model._showAnimation = .slide
         model._isEnabledMask = true
@@ -75,7 +75,7 @@ public extension UIView {
     
     func hud_succeed(_ title:String) {
         self.cd.hud_remove()
-        var model = CD_HUD.modelDefault
+        var model = HUD.modelDefault
         model._axis = .horizontal
         model._textAlignment = .left
         model._isSquare = false
@@ -84,7 +84,7 @@ public extension UIView {
     
     func hud_error(_ title:String, detail:String = "") {
         self.cd.hud_remove()
-        var model = CD_HUD.modelDefault
+        var model = HUD.modelDefault
         model._axis = .horizontal
         if title.count > 30 || detail.count > 30 {
             model._axis = .vertical
@@ -95,7 +95,7 @@ public extension UIView {
     }
     func hud_info(_ title:String) {
         self.cd.hud_remove()
-        var model = CD_HUD.modelDefault
+        var model = HUD.modelDefault
         model._axis = .horizontal
         if title.count > 30 {
             model._axis = .vertical
@@ -106,7 +106,7 @@ public extension UIView {
     }
     func hud_warning(_ title:String) {
         self.cd.hud_remove()
-        var model = CD_HUD.modelDefault
+        var model = HUD.modelDefault
         model._axis = .horizontal
         if title.count > 30 {
             model._axis = .vertical

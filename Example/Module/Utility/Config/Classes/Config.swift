@@ -181,7 +181,7 @@ public extension Config {
 
 public extension Config {
     /// 字体
-    public struct font {
+    struct font {
         private static var fonts:[String : Any] = {
             return configPlist["font"] as? [String : Any] ?? [:]
         }()

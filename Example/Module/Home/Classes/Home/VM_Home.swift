@@ -20,7 +20,7 @@ class VM_Home {
         case end
     }
     
-    lazy var forms:[[CD_CellProtocol]] = {
+    lazy var forms:[[CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
     

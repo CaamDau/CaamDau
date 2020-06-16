@@ -10,7 +10,7 @@
 import UIKit
 import CaamDau
 
-extension VC_Indexes: CD_RouterProtocol {
+extension VC_Indexes: RouterProtocol {
     static func router(_ param: [AnyHashable : Any]? = nil, callback: (([AnyHashable : Any]?) -> Void)? = nil) {
         let vc = VC_Indexes.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Indexes
         CD.push(vc)
@@ -26,8 +26,8 @@ class VC_Indexes: UIViewController {
         return ["选", "主"] + CD.atoz(true) + ["#"]
     }()
     
-    lazy var indexesView: CD_IndexesView = {
-        return CD_IndexesView()
+    lazy var indexesView: IndexesView = {
+        return IndexesView()
     }()
     
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ class VC_Indexes: UIViewController {
             $0.centerY.equalTo(tableView)
             $0.top.greaterThanOrEqualTo(tableView).offset(20)
         }
-        indexesView.items = headers.map{ CD_IndexesView.Item(title:$0, color:Config.color.txt_1)}
+        indexesView.items = headers.map{ IndexesView.Item(title:$0, color:Config.color.txt_1)}
         //indexesView.firstIndex = 1
         indexesView.selectHandler = { [weak self](item, idx)in
             let i = self!.headers.index(of: item.title)!

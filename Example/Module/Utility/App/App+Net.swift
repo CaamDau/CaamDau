@@ -10,7 +10,7 @@ import CaamDau
 import Alamofire
 import SwiftyJSON
 
-public class App_Net: CD_AppDelegate {
+public class App_Net: AppProtocol {
     
     var observer:[NSObjectProtocol] = []
     var domainType:Int = 0
@@ -31,7 +31,7 @@ public class App_Net: CD_AppDelegate {
     ///- 生产、测试环境 域名配置
     func domainSwitching(_ type:Int) {
         domainType = type
-        CD_Net.config.baseURL = domainGet(type).0
+        Net.config.baseURL = domainGet(type).0
     }
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -44,13 +44,13 @@ public class App_Net: CD_AppDelegate {
         domainSwitching(type)
         
         // - 基本网络配置
-        CD_Net.config.method = .post
-        CD_Net.config.encoding = JSONEncoding(options: [])
+        Net.config.method = .post
+        Net.config.encoding = JSONEncoding(options: [])
         // responseStyle 默认为.data
-        //CD_Net.config.responseStyle = .json
-        CD_Net.config.headers = [:]
-        CD_Net.config.log = true
-        CD_Net.config.logHandler = { (res, h, p) in
+        //Net.config.responseStyle = .json
+        Net.config.headers = [:]
+        Net.config.log = true
+        Net.config.logHandler = { (res, h, p) in
             guard let res = res else { return }
             var url:URL?
             var value:Any?
@@ -74,8 +74,8 @@ public class App_Net: CD_AppDelegate {
         
         // - 登录登出  接口增补参数配置
         if !User.shared.info.userid.isEmpty {
-            CD_Net.config.parametersSubjoin = ["token":User.shared.token]
-            CD_Net.config.parametersHandler = { (p) -> [String:Any]? in
+            Net.config.parametersSubjoin = ["token":User.shared.token]
+            Net.config.parametersHandler = { (p) -> [String:Any]? in
                 /// 执行参数签名
                 return p
             }
@@ -83,14 +83,14 @@ public class App_Net: CD_AppDelegate {
             App_Net.requestData()
         }
         observer.append(User.notice.signIn.add(block: { (_) in
-            CD_Net.config.parametersSubjoin = ["token":User.shared.token]
+            Net.config.parametersSubjoin = ["token":User.shared.token]
             App_Net.requestData()
         }))
         observer.append(User.notice.signOut.add(block: { (n) in
-            CD_Net.config.parametersSubjoin = [:]
+            Net.config.parametersSubjoin = [:]
         }))
         observer.append(User.notice.signForced.add(block: { (n) in
-            CD_Net.config.parametersSubjoin = [:]
+            Net.config.parametersSubjoin = [:]
         }))
         
         
@@ -122,8 +122,8 @@ extension App_Net {
         observer.append(notice.addObserver(forName: name, object: nil, queue: nil) { [weak self](n) in
             guard let self = self else{ return }
             var domain = self.domainGet(self.domainType)
-            if domain.0 != CD_Net.config.baseURL {
-                domain.0 = CD_Net.config.baseURL
+            if domain.0 != Net.config.baseURL {
+                domain.0 = Net.config.baseURL
             }
             UIAlertController.cd_init(style: .actionSheet).cd
                 .title("环境切换")
@@ -132,17 +132,17 @@ extension App_Net {
                 .action("开发环境", handler: { [weak self](a) in
                     self?.domainSwitching(-1)
                     User.shared.signOut(User.shared.account)
-                    CD.window?.hud_msg("环境已切换:"+CD_Net.config.baseURL)
+                    CD.window?.hud_msg("环境已切换:"+Net.config.baseURL)
                 })
                 .action("测试环境", handler: { [weak self](a) in
                     self?.domainSwitching(0)
                     User.shared.signOut(User.shared.account)
-                    CD.window?.hud_msg("环境已切换:"+CD_Net.config.baseURL)
+                    CD.window?.hud_msg("环境已切换:"+Net.config.baseURL)
                 })
                 .action("生产环境", handler: { [weak self](a) in
                     self?.domainSwitching(1)
                     User.shared.signOut(User.shared.account)
-                    CD.window?.hud_msg("环境已切换:"+CD_Net.config.baseURL)
+                    CD.window?.hud_msg("环境已切换:"+Net.config.baseURL)
                 })
                 .show()
         })

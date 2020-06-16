@@ -16,8 +16,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var composite: CD_AppDelegateComposite = {
-        var arr:[CD_AppDelegate] = [
+    lazy var composite: AppComposite = {
+        var arr:[AppProtocol] = [
             App_Router(),
             App_Net(),
             App_VC(window),
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //arr.append(App_NetTest())
         #endif
         
-        return CD_AppDelegateComposite(arr)
+        return AppComposite(arr)
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

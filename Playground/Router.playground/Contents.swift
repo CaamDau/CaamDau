@@ -2,49 +2,49 @@ import UIKit
 
 var str = "Hello, playground"
 
-public protocol CD_RouterProtocol {
+public protocol RouterProtocol {
     
     func router()
     /// 入参、回参 模糊，自由度更好
     func router(_ param:[AnyHashable:Any]?, callback:(([AnyHashable:Any]?)->Void)?)
 }
-extension CD_RouterProtocol {
+extension RouterProtocol {
     public func router() {
         router(nil, callback: nil)
     }
     public func router(_ param:[AnyHashable:Any]? = nil, callback:(([AnyHashable:Any]?)->Void)? = nil) {
-        CD_Router.shared.routerHandler?(self, param, callback)
+        Router.shared.routerHandler?(self, param, callback)
         
     }
 }
 
 
-public class CD_Router {
+public class Router {
     private init(){}
-    public static let shared = CD_Router()
-    public var routerHandler:((_ router:CD_RouterProtocol, _ parameter:[AnyHashable:Any]?, _ callback:(([AnyHashable:Any]?)->Void)?)->Void)?
+    public static let shared = Router()
+    public var routerHandler:((_ router:RouterProtocol, _ parameter:[AnyHashable:Any]?, _ callback:(([AnyHashable:Any]?)->Void)?)->Void)?
 }
 
 
 enum Router {
-    /// 只声明路由模块，路由走统一 CD_Router.shared.routerHandle
-    enum Order:CD_RouterProtocol {
+    /// 只声明路由模块，路由走统一 Router.shared.routerHandle
+    enum Order:RouterProtocol {
         case list
         case detail
         case create
     }
     /// 在声明路由模块, 并同时配置路由
-    enum Pay:CD_RouterProtocol {
+    enum Pay:RouterProtocol {
         case pay
         case payLater
         
         func router(_ param: [AnyHashable : Any]? = nil, callback: (([AnyHashable : Any]?) -> Void)? = nil) {
-            print("重写了， 不走 CD_Router.shared.routerHandle")
+            print("重写了， 不走 Router.shared.routerHandle")
         }
     }
 }
 /// 统一路由配置
-CD_Router.shared.routerHandler = { (router, parameter, callback) in
+Router.shared.routerHandler = { (router, parameter, callback) in
     
     switch router {
     case Router.Order.list:

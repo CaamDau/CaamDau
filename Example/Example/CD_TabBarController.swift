@@ -10,7 +10,7 @@
 import UIKit
 import CaamDau
 
-class CD_TabBarController: UITabBarController {
+class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

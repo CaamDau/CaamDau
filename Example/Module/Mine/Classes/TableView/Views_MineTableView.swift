@@ -24,7 +24,7 @@ class Cell_MineCountDown:UITableViewCell{
     weak var model:VM_MineTableView.Model? {
         didSet{
             if let m = oldValue {
-                CD_Timer.remove(m.id)
+                Time.remove(m.id)
             }
             print_cd("old->",oldValue?.id)
             makeTimer()
@@ -38,7 +38,7 @@ class Cell_MineCountDown:UITableViewCell{
         print_cd("new->", m.id)
         let end = m.endTime.cd_date("yyyy-MM-dd HH:mm:ss:SSS")!.cd_timestamp()
         let time = end - Date().cd_timestamp()
-        CD_Timer.make(CD_Timer.Style.delegate(self, m.id, time, m.second))
+        Time.make(Time.Style.delegate(self, m.id, time, m.second))
     }
     
     override func awakeFromNib() {
@@ -64,18 +64,18 @@ class Cell_MineCountDown:UITableViewCell{
     
     deinit {
         if let m = model {
-            CD_Timer.remove(m.id)
+            Time.remove(m.id)
         }
     }
 }
 
-extension Cell_MineCountDown:CD_TimerProtocol{
-    func cd_timer(withModel model: CD_Timer.Model, id:String) {
+extension Cell_MineCountDown:TimeProtocol{
+    func time(withModel model: Time.Model, id:String) {
         if self.model?.id == id {
             makeDown(model)
         }
     }
-    func makeDown(_ model:CD_Timer.Model) {
+    func makeDown(_ model:Time.Model) {
         self.lab_day.cd.text(model.day > 0 ? "\(model.day)天" : "")
         self.lab_hour.cd.text(model.hour > 9 ? "\(model.hour)" : "0\(model.hour)")
         self.lab_minute.cd.text(model.minute > 9 ? "\(model.minute)" : "0\(model.minute)")
@@ -84,7 +84,7 @@ extension Cell_MineCountDown:CD_TimerProtocol{
     }
 }
 
-extension Cell_MineCountDown:CD_RowCellUpdateProtocol{
+extension Cell_MineCountDown:RowCellUpdateProtocol{
     typealias ConfigModel = Any
     typealias DataSource = VM_MineTableView.Model
     
@@ -115,12 +115,12 @@ class Cell_MineInput:UITableViewCell{
         super.awakeFromNib()
         
         self.btn_add.cd
-            .text(CD_IconFont.tadd(18).font)
-            .text(CD_IconFont.tadd(18).text)
+            .text(IconFont.tadd(18).font)
+            .text(IconFont.tadd(18).text)
         
         self.btn_sub.cd
-            .text(CD_IconFont.tmove(18).font)
-            .text(CD_IconFont.tmove(18).text)
+            .text(IconFont.tmove(18).font)
+            .text(IconFont.tmove(18).text)
         
         self.text_field.cd.delegate(self)
     }
@@ -164,7 +164,7 @@ extension Cell_MineInput: UITextFieldDelegate{
         }
     }
 }
-extension Cell_MineInput: CD_RowCellUpdateProtocol{
+extension Cell_MineInput: RowCellUpdateProtocol{
     typealias ConfigModel = Any
     
     typealias DataSource = VM_MineTableView.Model
@@ -198,14 +198,14 @@ class Cell_MineSwitch:UITableViewCell{
     }
 }
 
-extension Cell_MineSwitch:CD_RowCellUpdateProtocol{
+extension Cell_MineSwitch:RowCellUpdateProtocol{
     typealias ConfigModel = Any
     
     typealias DataSource = VM_MineTableView.Model
     func row_update(dataSource data: VM_MineTableView.Model) {
         self.model = data
     }
-    func row_update(_ data: VM_MineTableView.Model, id: String, tag: Int, frame: CGRect, callBack: CD_RowCallBack?) {
+    func row_update(_ data: VM_MineTableView.Model, id: String, tag: Int, frame: CGRect, callBack: RowCallBack?) {
         self.model = data
     }
 }
@@ -216,7 +216,7 @@ class Cell_MineDetail:UITableViewCell{
     
 }
 
-extension Cell_MineDetail:CD_RowCellUpdateProtocol{
+extension Cell_MineDetail:RowCellUpdateProtocol{
     typealias ConfigModel = Any
     
     typealias DataSource = String

@@ -38,8 +38,8 @@ class VC_PageC: UIViewController {
 
 }
 
-extension VC_PageC: CD_UIViewControllerProtocol {
-    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: CD_RowCallBack?, tapBlock: CD_RowDidSelectBlock?) -> UIViewController {
+extension VC_PageC: UIViewControllerProtocol {
+    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: RowCallBack?, tapBlock: RowDidSelectBlock?) -> UIViewController {
         let vc = VC_PageC()
         vc.dataSource = dataSource
         vc.config = config

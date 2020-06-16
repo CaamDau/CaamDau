@@ -67,18 +67,18 @@ pod 'CaamDau/.../...'
 ## CaamDau核心组件
 ### Form:流式模型化排版组件
 - 流式模型化排版组件—使UI排版更加直观、易扩展、易维护；解决TableView/CollectionView 排版 section row height didselect 等多点关系的灾难
-- 原理:将多点关联的UI排版数据转化为单一的 CD_Row 模型单元
+- 原理:将多点关联的UI排版数据转化为单一的 Row 模型单元
 - [更多详细的介绍请移步](https://github.com/CaamDau/CaamDau/tree/master/CaamDau/Form)
 ```
-/// Cell数据源遵循 CD_FormProtocol 协议
-var form:CD_FormProtocol = CD_FormProtocol()
+/// Cell数据源遵循 FormProtocol 协议
+var form:FormProtocol = FormProtocol()
 
 /// tableView Delegate DataSource 代理类
-lazy var delegateData:CD_FormTableViewDelegateDataSource? = {
-    return CD_FormTableViewDelegateDataSource(form)
+lazy var delegateData:FormTableViewDelegateDataSource? = {
+    return FormTableViewDelegateDataSource(form)
 }()
 
-/// 代理设置为 CD_FormTableViewDelegateDataSource
+/// 代理设置为 FormTableViewDelegateDataSource
 tableView.delegate = delegateData
 tableView.dataSource = delegateData
 
@@ -87,7 +87,7 @@ delegateData?.makeReloadData(tableView)
 ```
 ```
 /// 构建一个单元格模型，包装在 form 数据组内
-let row = CD_RowCell<Cell_***>()
+let row = RowCell<Cell_***>()
 form.forms += [row]
 
 reloadData?()
@@ -148,7 +148,7 @@ let font = UIFont.iconFont(...)
 
 ### RegEx正则表达式
 ```
-CD_RegEx.match("123_a@456", type: CD_RegEx.tPassword(CD_RegEx.Password.value2))
+RegEx.match("123_a@456", type: RegEx.tPassword(RegEx.Password.value2))
 ```
 ```
 do{// 获取所有匹配结果
@@ -200,11 +200,11 @@ arr.dictValue(5).dictValue("23")
 func countDown(_ tag:Int){
     switch tag {
     case 0:// 代理接收
-        CD_Timer.make(.delegate(self, "123", 120, 0.1))
+        Timer.make(.delegate(self, "123", 120, 0.1))
     case 1://广播
-        CD_Timer.make(.notification("456", 120, 0.1))
+        Timer.make(.notification("456", 120, 0.1))
     case 2://闭包回调接收
-        CD_Timer.make(.callBack("789", 60, 0.1, { [weak self](model) in
+        Timer.make(.callBack("789", 60, 0.1, { [weak self](model) in
             self?.lab_3.cd.text("\(model.day)天\(model.hour):\(model.minute):\(model.second):\(model.millisecond/100)")
             }))
     default:
@@ -213,30 +213,30 @@ func countDown(_ tag:Int){
 }
 ```
 ```
-CD_Timer.after(2) { .... }
+Time.after(2) { .... }
 ```
 [回顶部目录](#目录)
 ### AppDelegate解耦方案
 ```
-class App_Win: CD_AppDelegate { // 实现window 主页面切换、配置，
+class App_Win: AppDelegate { // 实现window 主页面切换、配置，
     func application( ...
 }
-class App_Config: CD_AppDelegate { // 统一信息配置
+class App_Config: AppDelegate { // 统一信息配置
     func application( ...
 }
-class App_Net: CD_AppDelegate { // 网络配置
+class App_Net: AppDelegate { // 网络配置
     func application( ...
 }
-class App_Test: CD_AppDelegate { // DEBUG
+class App_Test: AppDelegate { // DEBUG
     func application( ...
 }
 ```
 ```
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    lazy var composite: CD_AppDelegateComposite = {
+    lazy var composite: AppDelegateComposite = {
         window = UIWindow(frame: UIScreen.main.bounds)
-        var arr:[CD_AppDelegate] = [
+        var arr:[AppDelegate] = [
             App_Net(),
             App_Win(window),
             App_Config()
@@ -244,7 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         arr.append(App_Test())
         #endif
-        return CD_AppDelegateComposite(arr)
+        return AppDelegateComposite(arr)
     }()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return composite.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -256,7 +256,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ### Router极致简约而强大的页面路由协议
 ```
 // 路由表
-enum Order: CD_RouterProtocol {
+enum Order: RouterProtocol {
     case submit
 }
 
@@ -283,7 +283,7 @@ Router.Order.submit.router(["id":999]) { (res) in
 </p>
 
 ```
-var model = CD_HUD.modelDefault
+var model = HUD.modelDefault
 model._axis = .horizontal
 model._textAlignment = .left
 model._isSquare = false
@@ -300,28 +300,28 @@ view.cd.hud(.succeed, title: title, model:model)
 
 ```
 // 指示器
-lazy var pageControl: CD_PageControl = {
-    return CD_PageControl<CD_PageControlItem,CD_PageControlBuoy>(itemConfig:CD_PageControlItem.Model(), buoyConfig: CD_PageControlBuoy.Model())
+lazy var pageControl: PageControl = {
+    return PageControl<PageControlItem,PageControlBuoy>(itemConfig:PageControlItem.Model(), buoyConfig: PageControlBuoy.Model())
 }()
 
-pageControl.dataSource = (0..<3).map({ (i) -> CD_PageControlItemDataSource in
-    var d = CD_PageControlItemDataSource()
+pageControl.dataSource = (0..<3).map({ (i) -> PageControlItemDataSource in
+    var d = PageControlItemDataSource()
     d.id = i.stringValue
     d.title = "Title-\(i)"
     return d
 })
 
 /// 控制器
-lazy var pageVC: CD_PageViewController = {
-    return CD_PageViewController()
+lazy var pageVC: PageViewController = {
+    return PageViewController()
 }()
-pageVC.dataSource = [CD_RowVC<VC_PageA>(dataSource: "id", config: "config"),
-                     CD_RowVC<VC_PageB>(),
-                     CD_RowVC<VC_PageC>()]
+pageVC.dataSource = [RowVC<VC_PageA>(dataSource: "id", config: "config"),
+                     RowVC<VC_PageB>(),
+                     RowVC<VC_PageC>()]
 
-pageVC.dataSource.append(CD_RowVC<VC_PageA>()) 
+pageVC.dataSource.append(RowVC<VC_PageA>()) 
 
-pageVC.dataSource += [CD_RowVC<VC_PageA>()]  
+pageVC.dataSource += [RowVC<VC_PageA>()]  
 
 // 指定显示
 pageControl.selectIndex = 2
@@ -334,12 +334,12 @@ pageControl.selectIndex = 2
 </p>
 
 ```
-lazy var topBar: CD_TopBar = {
-    return CD_TopBar()
+lazy var topBar: TopBar = {
+    return TopBar()
 }()
 
-extension VC_***: CD_TopBarProtocol {
-    func topBar(custom topBar:CD_TopBar) {
+extension VC_***: TopBarProtocol {
+    func topBar(custom topBar:TopBar) {
         topBar._style = "22"
         topBar._leftItemsWidth2 = 60
         topBar._rightItemsWidth1 = 80
@@ -349,7 +349,7 @@ extension VC_***: CD_TopBarProtocol {
         topBar._heightCustomBar = 70
         topBar.cd.snp().gradient()
     }
-    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
+    func topBar(_ topBar:TopBar, didSelectAt item:TopNavigationBar.Item) {
         super_topBarClick(item)
         switch item {
         case .rightItem1:
@@ -361,7 +361,7 @@ extension VC_***: CD_TopBarProtocol {
         }
     }
     
-     func topBar(_ topBar:CD_TopBar, updateItemStyleForItem item:CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
+     func topBar(_ topBar:TopBar, updateItemStyleForItem item:TopNavigationBar.Item) -> [TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
             return topBar.cd.backWhite()
@@ -381,15 +381,15 @@ extension VC_***: CD_TopBarProtocol {
 ### ViewModel协议
 - Form & MJRefresh & Request 组合扩展
 ```
-/// Cell数据源遵循 CD_FormProtocol 协议
+/// Cell数据源遵循 FormProtocol 协议
 var vm:VM_**** = VM_****()
 
 /// tableView Delegate DataSource 代理类
-lazy var delegateData:CD_TableViewDelegateDataSource? = {
-    return CD_TableViewDelegateDataSource(vm)
+lazy var delegateData:TableViewDelegateDataSource? = {
+    return TableViewDelegateDataSource(vm)
 }()
 
-/// 代理设置为 CD_FormTableViewDelegateDataSource
+/// 代理设置为 FormTableViewDelegateDataSource
 tableView.delegate = delegateData
 tableView.dataSource = delegateData
 
@@ -399,32 +399,32 @@ delegateData?.makeReloadData(tableView)
 [回顶部目录](#目录)
 ### IconFont阿里矢量图标管理和使用
 ```
-self.img.cd.iconfont(CD_IconFont.temoji(60), color: UIColor.red, mode: .center)
+self.img.cd.iconfont(IconFont.temoji(60), color: UIColor.red, mode: .center)
 
-self.lab_icon.cd.iconfont(CD_IconFont.temoji(60))
+self.lab_icon.cd.iconfont(IconFont.temoji(60))
 
-self.lab_icon.cd.text(CD_IconFont.temoji(60).attributedString)
+self.lab_icon.cd.text(IconFont.temoji(60).attributedString)
 
 self.btn.cd
-    .text(CD_IconFont.temoji(60).font)
-    .text(CD_IconFont.temoji(60).text)
+    .text(IconFont.temoji(60).font)
+    .text(IconFont.temoji(60).text)
 
-self.btn.cd.text(CD_IconFont.temoji(60).attributedString)
+self.btn.cd.text(IconFont.temoji(60).attributedString)
     
-self.btn.cd.iconfont(CD_IconFont.temoji(60), style: .image(.normal, color: UIColor.red, mode: .center))
+self.btn.cd.iconfont(IconFont.temoji(60), style: .image(.normal, color: UIColor.red, mode: .center))
 ```
 [回顶部目录](#目录)
 ### InputBox输入框扩展组件
 ```
-lazy var text_search: CD_TextField = {
-    let text = CD_TextField().cd
+lazy var text_search: TextField = {
+    let text = TextField().cd
         .tint(Config.color.main_1)
         .background(Config.color.hex("f"))
         .corner(15, clips: true)
         .build
     text.btn_placeholder.cd
-        .text(CD_IconFont.tsearch(14).text + " 请输入关键词")
-        .text(CD_IconFont.tsearch(14).font)
+        .text(IconFont.tsearch(14).text + " 请输入关键词")
+        .text(IconFont.tsearch(14).font)
     text._placeholderAlignment = .left
     text._widthBtnLeft = 10
     text._returnKeyType = .search
@@ -437,7 +437,7 @@ text_search.blockShouldReturn = { (t) -> Bool in
 }
 ```
 ```
-@IBOutlet weak var textView: CD_TextView!
+@IBOutlet weak var textView: TextView!
 
 textView.placeholder = "详细地址"
 textView.textColor = Config.color.txt_1
@@ -452,11 +452,11 @@ textView.blockEditing = { [weak self](t,e) in
 }
 ```
 ```
-var keyboard:CD_Keyboard?
-keyboard = CD_Keyboard(view: view_bottom)
+var keyboard:Keyboard?
+keyboard = Keyboard(view: view_bottom)
 ```
 ```
-CD_InputBoxPopping.show( ... ){ ... }
+InputBoxPopping.show( ... ){ ... }
 ```
 [回顶部目录](#目录)
 ### Indexes一个漂亮的索引View
@@ -472,11 +472,11 @@ lazy var headers:[String] = {
     return ["选", "主"] + CD.atoz(true) + ["#"]
 }()
     
-lazy var indexesView: CD_IndexesView = {
-    return CD_IndexesView()
+lazy var indexesView: IndexesView = {
+    return IndexesView()
 }()
 
-indexesView.items = headers.map{ CD_IndexesView.Item(title:$0, color:Config.color.txt_1)}
+indexesView.items = headers.map{ IndexesView.Item(title:$0, color:Config.color.txt_1)}
 
 //indexesView.firstIndex = 1
 indexesView.selectHandler = { [weak self](item, idx)in
@@ -487,7 +487,7 @@ indexesView.selectHandler = { [weak self](item, idx)in
 [回顶部目录](#目录)
 ### Calendar日历日期选择组件
 ```
-CD_DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callback: { (da) in
+DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callback: { (da) in
     print_cd(da)
 }) {
     $0.colorLine = Config.color.line_1
@@ -507,7 +507,7 @@ CD_DatePickerAlert.show(.yyyyMMdd, date: Date(), preferredStyle: .sheet, callbac
 
 ```
 if #available(iOS 13.0, *) {
-    CD_PencilDraw.show(imageView.image ?? Assets().logo_0, drawing: drawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
+    PencilDraw.show(imageView.image ?? Assets().logo_0, drawing: drawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
         self?.drawing = draw
         self?.imageView.image = image
     }
@@ -532,9 +532,9 @@ self.tableView.cd
 [回顶部目录](#目录)
 ### Alamofire扩展组件
 ```
-CD_Net.config.log = true
-CD_Net.config.baseURL = "https://..."
-CD_Net()
+Net.config.log = true
+Net.config.baseURL = "https://..."
+Net()
     .method(.get)
     .path("/order/info")
     .parameters(["id":"999"])

@@ -39,10 +39,10 @@ extension UIViewController {
         /// ios11 以下 需要
         //self.automaticallyAdjustsScrollViewInsets = false
         
-        /// CD_ Form基类控制器没有设置背景色，
+        ///  Form基类控制器没有设置背景色，
         /// 导致表单下行约束在安全区的小段Home键位置是黑色的
-        guard self.isKind(of: CD_TableViewController.self)
-            || self.isKind(of: CD_CollectionViewController.self)  else {
+        guard self.isKind(of: TableViewController.self)
+            || self.isKind(of: CollectionViewController.self)  else {
             return
         }
         self.view.backgroundColor = Config.color.bg
