@@ -19,7 +19,7 @@ class Cell_BaseColleTitle:UICollectionViewCell {
         super.init(coder: aDecoder)
     }
 }
-extension Cell_BaseColleTitle:RowCellUpdateProtocol {
+extension Cell_BaseColleTitle:CD_RowCellUpdateProtocol {
     typealias DataSource = (UIImage,String)
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -29,10 +29,10 @@ extension Cell_BaseColleTitle:RowCellUpdateProtocol {
 
 
 public class Header_BaseCollectionReusableView: UICollectionReusableView {
-    static let id:String = "CollectionReusableViewNone"
+    static let id:String = "CD_CollectionReusableViewNone"
     
 }
-extension Header_BaseCollectionReusableView:RowCellUpdateProtocol{
+extension Header_BaseCollectionReusableView:CD_RowCellUpdateProtocol{
     public typealias DataSource = UIColor
     public typealias ConfigModel = Any
     public func row_update(dataSource data: DataSource) {
@@ -42,16 +42,16 @@ extension Header_BaseCollectionReusableView:RowCellUpdateProtocol{
 
 
 class VM_BaseColle {
-    var form:[[CellProtocol]] = []
-    //var formHeader:[CellProtocol]
-    //var formFooter:[CellProtocol]
-    var mjRefreshType:[RefreshModel.RefreshType] = [.tBegin, .tHiddenFoot(true)]
+    var form:[[CD_CellProtocol]] = []
+    //var formHeader:[CD_CellProtocol]
+    //var formFooter:[CD_CellProtocol]
+    var mjRefreshType:[CD_MJRefreshModel.RefreshType] = [.tBegin, .tHiddenFoot(true)]
     
     var reloadData:(()->Void)?
     var reloadDataIndexPath:(([IndexPath],UITableView.RowAnimation)->Void)?
     
-    var topBarCustom:((TopBar)->Void)?
-    var topBarDidSelect:((TopBar,TopNavigationBar.Item)->Void)?
+    var topBarCustom:((CD_TopBar)->Void)?
+    var topBarDidSelect:((CD_TopBar,CD_TopNavigationBar.Item)->Void)?
     
     init() {
         
@@ -59,13 +59,13 @@ class VM_BaseColle {
     }
 }
 
-extension VM_BaseColle: ViewModelRefreshDelegater {
-    var _mjRefreshType: [RefreshModel.RefreshType] {
+extension VM_BaseColle: CD_ViewModelRefreshDelegater {
+    var _mjRefreshType: [CD_MJRefreshModel.RefreshType] {
         return mjRefreshType
     }
 }
 
-extension VM_BaseColle: ViewModelCollectionViewDelegater {
+extension VM_BaseColle: CD_ViewModelCollectionViewDelegater {
     
     
     var _collectionRegisters: [CaamDau<UICollectionView>.View] {
@@ -75,34 +75,34 @@ extension VM_BaseColle: ViewModelCollectionViewDelegater {
     
 }
 
-extension VM_BaseColle: ViewModelTopBarDelegater {}
+extension VM_BaseColle: CD_ViewModelTopBarDelegater {}
 
-extension VM_BaseColle: ViewModelDataSource {
+extension VM_BaseColle: CD_ViewModelDataSource {
     
     
     func requestData(_ refresh: Bool) {
         
         for item in 0..<10 {
-            let row = RowCell<Cell_BaseColleTitle>(data: (Assets().logo_30, "String"), frame: CGRect(x: 5, y: 5, w: 50, h: 50))
+            let row = CD_RowCell<Cell_BaseColleTitle>(data: (Assets().logo_30, "String"), frame: CGRect(x: 5, y: 5, w: 50, h: 50))
             form.append([row,row,row,row,row,row,row,row,row,row,row,row])
         }
         
-        Time.after(3) {[weak self] in
+        CD_Timer.after(3) {[weak self] in
             self?.mjRefreshType = [.tEnd]
             self?.reloadData?()
         }
     }
     
-    var _forms: [[CellProtocol]] {
+    var _forms: [[CD_CellProtocol]] {
         return form
     }
     
-    var _formHeader: [CellProtocol] {
-        return [RowCell<Header_BaseCollectionReusableView>(data: UIColor.yellow, frame: CGRect(x: 15, y: 15, w: 100, h: 40)),
-                RowCell<Header_BaseCollectionReusableView>.init(data: UIColor.red, frame: CGRect(x: 5, y: 5, w: 100, h: 40), insets: UIEdgeInsets(t: 20, l: 20, b: 20, r: 20))]
+    var _formHeader: [CD_CellProtocol] {
+        return [CD_RowCell<Header_BaseCollectionReusableView>(data: UIColor.yellow, frame: CGRect(x: 15, y: 15, w: 100, h: 40)),
+                CD_RowCell<Header_BaseCollectionReusableView>.init(data: UIColor.red, frame: CGRect(x: 5, y: 5, w: 100, h: 40), insets: UIEdgeInsets(t: 20, l: 20, b: 20, r: 20))]
     }
     
-    var _formFooters: [CellProtocol] {
+    var _formFooters: [CD_CellProtocol] {
         return []
     }
     

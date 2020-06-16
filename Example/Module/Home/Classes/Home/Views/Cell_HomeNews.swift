@@ -20,7 +20,7 @@ public class Cell_HomeNews: UITableViewCell {
     }
     
 }
-extension Cell_HomeNews:RowCellUpdateProtocol{
+extension Cell_HomeNews:CD_RowCellUpdateProtocol{
     public typealias DataSource = Any
     
     public typealias ConfigModel = Any

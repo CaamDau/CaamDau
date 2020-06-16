@@ -37,8 +37,8 @@ class VC_PageB: UIViewController {
 
 
 }
-extension VC_PageB: UIViewControllerProtocol {
-    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: RowCallBack?, tapBlock: RowDidSelectBlock?) -> UIViewController {
+extension VC_PageB: CD_UIViewControllerProtocol {
+    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: CD_RowCallBack?, tapBlock: CD_RowDidSelectBlock?) -> UIViewController {
         let vc = VC_PageB.show()
         vc.dataSource = dataSource
         vc.config = config

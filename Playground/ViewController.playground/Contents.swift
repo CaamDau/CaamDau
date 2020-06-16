@@ -14,7 +14,7 @@ extension UIColor {
     }
 }
 
-class GradientLayer:CALayer {
+class CD_GradientLayer:CALayer {
     var point: CGPoint = CGPoint.zero
     var colorSpace = CGColorSpaceCreateDeviceRGB()
     var locations:[CGFloat] = [0.0, 1.0]
@@ -54,10 +54,10 @@ extension UIView {
         }
     }
     
-    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil, then:((GradientLayer)->Void)? = nil) {
+    func gradient(layerRadial gradients:[(color:UIColor,location:CGFloat)], point:CGPoint = CGPoint(x: 0, y: 0), radius:CGFloat? = nil, at: UInt32 = 0, updateIndex:Int? = nil, then:((CD_GradientLayer)->Void)? = nil) {
         
         
-        func gradient(_ layer:GradientLayer) {
+        func gradient(_ layer:CD_GradientLayer) {
             self.layoutIfNeeded()
             layer.locations = gradients.map{$0.location}
             layer.colors =  Array(gradients.map({ (c) -> [CGFloat] in
@@ -69,9 +69,9 @@ extension UIView {
             layer.radius = radius ?? max(self.bounds.size.width, self.bounds.size.height)
             layer.setNeedsDisplay()
         }
-        let layers:[GradientLayer] = self.layer.sublayers?.filter{$0.isKind(of: GradientLayer.self)}.map{$0} as? [GradientLayer] ?? []
+        let layers:[CD_GradientLayer] = self.layer.sublayers?.filter{$0.isKind(of: CD_GradientLayer.self)}.map{$0} as? [CD_GradientLayer] ?? []
         if layers.count <= at {
-            let layer = GradientLayer()
+            let layer = CD_GradientLayer()
             gradient(layer)
             self.layer.insertSublayer(layer, at: at)
             then?(layer)

@@ -22,7 +22,7 @@ func test(_ scheme:String, path:String) {
 }
 
 
-extension Router {
+public struct Router {
     /// 同一页面 不同模式、状态、类型，进行区分
     public static let PathKey = "router_path"
     
@@ -31,11 +31,11 @@ extension Router {
 
 //MARK:--- 登录注册 ----------
 extension Router {
-    public enum Sign:String, RouterProtocol {
+    public enum Sign:String, CD_RouterProtocol {
         case up = "up"
         case out = "out"
         
-        public var parameter: RouterParameter {
+        public var parameter: CD_RouterParameter {
             return [Router.PathKey:self.rawValue]
         }
         
@@ -46,13 +46,13 @@ extension Router {
 }
 //MARK:--- 通用 ----------
 extension Router {
-    public enum Utility:String, RouterProtocol {
+    public enum Utility:String, CD_RouterProtocol {
         case html = "html"
         case http = "http"
         case file = "file"
         case pencilDraw = "pencildraw"
         
-        public var parameter: RouterParameter {
+        public var parameter: CD_RouterParameter {
             return [Router.PathKey:self.rawValue]
         }
         public var target: String? {
@@ -69,7 +69,7 @@ extension Router {
 
 //MARK:--- 通用 ----------
 extension Router {
-    public enum Map:String, RouterProtocol {
+    public enum Map:String, CD_RouterProtocol {
         case location = "location"
         case baidu = "baidu"
     }

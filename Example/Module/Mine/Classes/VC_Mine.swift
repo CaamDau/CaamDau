@@ -5,20 +5,20 @@ import UIKit
 import PencilKit
 
 
-public struct R_Mine: RowVCProtocol {
+public struct R_Mine: CD_RowVCProtocol {
     public init(){}
     public var vc: UIViewController {
         return VC_Mine.cd_storyboard("MineStoryboard", from: "Mine") as! VC_Mine
     }
 }
 class VC_Mine: UIViewController {
-    @IBOutlet weak var topBar: TopBar!
+    @IBOutlet weak var topBar: CD_TopBar!
     @IBOutlet weak var tableView: UITableView!
     
     var vm:VM_Mine = VM_Mine()
     var delegateData:VC_MineTableViewDelegateDataSource?
-    lazy var modelMj:RefreshModel = {
-        var m = RefreshModel()
+    lazy var modelMj:CD_MJRefreshModel = {
+        var m = CD_MJRefreshModel()
         let ass = Assets()
         let arr = [ass.refresh_0,
                    ass.refresh_1,
@@ -72,7 +72,7 @@ class VC_Mine: UIViewController {
     var logoPKDrawing:Any?
     @objc func headerLogoClick(_ tap:Any) {
         if #available(iOS 13.0, *) {
-            PencilDraw.show(tableViewHeaderImgLogo.image ?? Assets().logo_0, drawing: logoPKDrawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
+            CD_PencilDraw.show(tableViewHeaderImgLogo.image ?? Assets().logo_0, drawing: logoPKDrawing as? PKDrawing ?? PKDrawing()) { [weak self](draw, image) in
                 self?.logoPKDrawing = draw
                 self?.tableViewHeaderImgLogo.image = image
             }
@@ -96,7 +96,7 @@ class VC_Mine: UIViewController {
             .estimatedAll()
             //.content(inset: UIEdgeInsets(top: topBar._heightStatusBar, left: 0, bottom: 0, right: 0))
             /*.headerMJGifWithModel({ [weak self] in
-                Time.after(3, {[weak self] in
+                CD_Timer.after(3, {[weak self] in
                     self?.tableView.cd.endRefreshing()
                     self?.tableView.reloadData()
                 })
@@ -157,7 +157,7 @@ class VC_Mine: UIViewController {
         }
         
         
-        //let vvc = TableViewController()
+        //let vvc = CD_TableViewController()
         //vvc.vm = VM_Mine()
         
         
@@ -182,8 +182,8 @@ class VC_Mine: UIViewController {
     
 }
 
-extension VC_Mine: TopBarProtocol {
-    func topBar(custom topBar: TopBar) {
+extension VC_Mine: CD_TopBarProtocol {
+    func topBar(custom topBar: CD_TopBar) {
         topBar.cd.background(UIColor.clear)
         topBar.bar_navigation.line.isHidden = true
         topBar._colorTitle = UIColor.white
@@ -206,15 +206,15 @@ extension VC_Mine: TopBarProtocol {
     }
     
     
-    func topBar(_ topBar: TopBar, updateItemStyleForItem item: TopNavigationBar.Item) -> [TopNavigationBarItem.Item.Style]? {
+    func topBar(_ topBar: CD_TopBar, updateItemStyleForItem item: CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]? {
         switch item {
         case .leftItem1:
-            let icon = IconFont.tsearch(22)
+            let icon = CD_IconFont.tsearch(22)
             return [.title([(txt: icon.text, font: icon.font, color: Config.color.hex("f"), state: .normal),
                             (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .highlighted),
                             (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .selected)])]
         case .rightItem1:
-            let icon = IconFont.tshare(22)
+            let icon = CD_IconFont.tshare(22)
             return [.title([(txt: icon.text, font: icon.font, color: Config.color.hex("f"), state: .normal),
                             (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .highlighted),
                             (txt: icon.text, font: icon.font, color: Config.color.hex("d"), state: .selected)])]
@@ -223,7 +223,7 @@ extension VC_Mine: TopBarProtocol {
         }
     }
     
-    func topBar(_ topBar:TopBar, didSelectAt item:TopNavigationBar.Item) {
+    func topBar(_ topBar:CD_TopBar, didSelectAt item:CD_TopNavigationBar.Item) {
         switch item {
         case .rightItem1:
             self.view.layoutIfNeeded()
@@ -231,8 +231,8 @@ extension VC_Mine: TopBarProtocol {
             break
         }
         
-        Net.config.log = true
-        Net()
+        CD_Net.config.log = true
+        CD_Net()
             .method(.get)
             .baseURL("http://apis.juhe.cn/qrcode/api")
             .parameters(
@@ -260,7 +260,7 @@ extension VC_Mine: TopBarProtocol {
     }
 }
 
-class VC_MineTableViewDelegateDataSource: TableViewDelegateDataSource {
+class VC_MineTableViewDelegateDataSource: CD_TableViewDelegateDataSource {
     
     var scrollViewDidScrollBlock:((UIScrollView)->Void)?
     

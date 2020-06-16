@@ -15,21 +15,21 @@ class VM_FormTableView {
         var headerTitle:String {
             switch self {
             case .value0:
-                return "Form"
+                return "CD_Form"
             default:
                 return ""
             }
         }
     }
-    lazy var forms:[[CellProtocol]] = {
+    lazy var forms:[[CD_CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
     
     
-    lazy var formsHeader:[CellProtocol] = {
-        var f = [CellProtocol]()
+    lazy var formsHeader:[CD_CellProtocol] = {
+        var f = [CD_CellProtocol]()
         for (i,item) in self.forms.enumerated() {
-            f.append(RowCell<View_Header>(data:Section(rawValue: i)!.headerTitle, frame: CGRect(h:30)))
+            f.append(CD_RowCell<View_Header>(data:Section(rawValue: i)!.headerTitle, frame: CGRect(h:30)))
         }
         return f
     }()

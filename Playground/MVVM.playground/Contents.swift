@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-public protocol ViewModelProtocol {
+public protocol CD_ViewModelProtocol {
     associatedtype Input
     associatedtype Output
     func put(_ input: Input) -> Output
@@ -16,7 +16,7 @@ struct ViewModel{
     }
 }
 
-extension ViewModel: ViewModelProtocol {
+extension ViewModel: CD_ViewModelProtocol {
     func put(_ input: ViewModel.Input) -> ViewModel.Output {
         return Output()
     }

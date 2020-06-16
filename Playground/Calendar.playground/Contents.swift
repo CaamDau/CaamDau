@@ -4,7 +4,7 @@ import UIKit
 import PlaygroundSupport
 
 public extension Date {
-    enum TimeSince {
+    enum CD_TimeSince {
         case s1970
         case s2001
         case sNow
@@ -28,7 +28,7 @@ public extension Date {
 
 public extension TimeInterval {
     /// 时间戳 转时间
-    func cd_date(_ since:Date.TimeSince = .s1970) -> Date {
+    func cd_date(_ since:Date.CD_TimeSince = .s1970) -> Date {
         switch since {
         case .s1970:
             return Date(timeIntervalSince1970: self)
@@ -41,7 +41,7 @@ public extension TimeInterval {
         }
     }
     /// 时间戳 相对时间转换
-    func cd_timestamp(_ from:Date.TimeSince, _ to:Date.TimeSince) -> TimeInterval {
+    func cd_timestamp(_ from:Date.CD_TimeSince, _ to:Date.CD_TimeSince) -> TimeInterval {
         return self.cd_date(from).cd_timestamp(to)
     }
 }
@@ -49,7 +49,7 @@ public extension TimeInterval {
 public extension Date {
     /// Returns the timestamp or time interval
     /// 时间戳 | 时间间隔  110.cd_date(.s2001).cd_timestamp(.sNow)
-    func cd_timestamp(_ since:TimeSince = .s1970) -> TimeInterval {
+    func cd_timestamp(_ since:CD_TimeSince = .s1970) -> TimeInterval {
         switch since {
         case .s1970:
             return self.timeIntervalSince1970
@@ -128,7 +128,7 @@ do{
 }
 
 
-class Picker: UIView {
+class CD_Picker: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -168,7 +168,7 @@ class Picker: UIView {
     }
     var completionHandler:((_ component:Int, _ row:Int, _ selects:[Int:String])->Void)?
 }
-extension Picker: UIPickerViewDelegate, UIPickerViewDataSource {
+extension CD_Picker: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return rows.count
     }
@@ -191,7 +191,7 @@ extension Picker: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 
-extension DatePicker {
+extension CD_DatePicker {
     enum Style {
         case yyyy
         case MM
@@ -200,7 +200,7 @@ extension DatePicker {
         case yyyyMMdd
     }
 }
-class DatePicker:UIView {
+class CD_DatePicker:UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -215,8 +215,8 @@ class DatePicker:UIView {
         super.init(coder: coder)
     }
     
-    lazy var picker: Picker = {
-        let vv = Picker(frame: self.bounds)
+    lazy var picker: CD_Picker = {
+        let vv = CD_Picker(frame: self.bounds)
         return vv
     }()
     
@@ -329,7 +329,7 @@ class MyViewController : UIViewController {
         view.addSubview(label)
         
         do{
-            let picker = DatePicker(frame: CGRect(x: 0, y: 0, width: 400, height: 200))
+            let picker = CD_DatePicker(frame: CGRect(x: 0, y: 0, width: 400, height: 200))
             picker.backgroundColor = .red
             //view.addSubview(picker)
             view.insertSubview(picker, aboveSubview: label)

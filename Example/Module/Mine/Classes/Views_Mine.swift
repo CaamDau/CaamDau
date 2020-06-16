@@ -19,7 +19,7 @@ class Cell_MineSign:UITableViewCell{
             .text(Config.color.main_1)
     }
 }
-extension Cell_MineSign:RowCellUpdateProtocol{
+extension Cell_MineSign:CD_RowCellUpdateProtocol{
     typealias ConfigModel = Any
     
     typealias DataSource = String
@@ -41,7 +41,7 @@ class Cell_MineTitle:UITableViewCell{
             .text(Config.color.txt_3)
     }
 }
-extension Cell_MineTitle:RowCellUpdateProtocol{
+extension Cell_MineTitle:CD_RowCellUpdateProtocol{
     typealias ConfigModel = Any
     typealias DataSource = (String,String)
     func row_update(dataSource data: (String, String)) {
@@ -66,20 +66,20 @@ class Cell_MineForm: UITableViewCell {
             .text(Config.font.fontRegular(15).cd_fit())
             .background(Config.color.normal)
     }
-    var callBack: RowCallBack?
+    var callBack: CD_RowCallBack?
     @IBAction func buttonClick(_ sender: Any) {
         callBack?("")
     }
     
 }
-extension Cell_MineForm:RowCellUpdateProtocol {
+extension Cell_MineForm:CD_RowCellUpdateProtocol {
     typealias ConfigModel = Any
     typealias DataSource = (String, UIImage)
     func row_update(dataSource data: DataSource) {
         lab_title.cd.text(data.0)
         btn_github.cd.image(data.1)
     }
-    func row_update(callBack block: RowCallBack?) {
+    func row_update(callBack block: CD_RowCallBack?) {
         self.callBack = block
     }
 }
@@ -104,7 +104,7 @@ class Cell_MineLine:UITableViewCell{
         }
     }
 }
-extension Cell_MineLine:RowCellUpdateProtocol{
+extension Cell_MineLine:CD_RowCellUpdateProtocol{
     typealias DataSource = Cell_MineLine.Style
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {

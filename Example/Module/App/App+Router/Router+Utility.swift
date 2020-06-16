@@ -11,9 +11,9 @@ import Foundation
 import Sign
 
 extension App_Router {
-    func utility(_ router:RouterProtocol,
-    _ param:RouterParameter = [:],
-    _ callback:RouterCallback = nil) {
+    func utility(_ router:CD_RouterProtocol,
+    _ param:CD_RouterParameter = [:],
+    _ callback:CD_RouterCallback = nil) {
         /*
         switch router {
         case Router.Utility.http(let url, let title):
@@ -24,12 +24,12 @@ extension App_Router {
             R_Web.push(.file(url), title: title)
         case Router.Utility.pencilDraw:
             
-            if let r = NSClassFromString("Home.R_Home") as? RouterInterface.Type {
+            if let r = NSClassFromString("Home.R_Home") as? CD_RouterInterface.Type {
                 r.router(param, callback: callback)
             }
             
             if #available(iOS 13.0, *) {
-                PencilDraw.show(UIImage(named: "launchScreen")!)
+                CD_PencilDraw.show(UIImage(named: "launchScreen")!)
             } else {
                 
             }
@@ -43,9 +43,9 @@ extension App_Router {
 
 
 extension App_Router {
-    func sign(_ router:RouterProtocol,
-    _ param:RouterParameter = [:],
-    _ callback:RouterCallback = nil) {
+    func sign(_ router:CD_RouterProtocol,
+    _ param:CD_RouterParameter = [:],
+    _ callback:CD_RouterCallback = nil) {
         
     }
     
@@ -56,7 +56,7 @@ extension App_Router {
         case "sign":
             var param = url.parameters ?? [:]
             param += [Router.PathKey:url.paths.first ?? ""]
-            Router.target("Sign.VC_Sign")?.router(param, callback: { (res) in
+            CD_Router.target("Sign.VC_Sign")?.router(param, callback: { (res) in
             })
         default:
             break

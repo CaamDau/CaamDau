@@ -30,17 +30,17 @@ extension VC_Page {
 
 class VC_Page: UIViewController {
     var style:Style = .hh
-    lazy var topBar: TopBar = {
-        let bar = TopBar()
+    lazy var topBar: CD_TopBar = {
+        let bar = CD_TopBar()
         return bar
     }()
     
-    lazy var pageVC: PageViewController = {
-        return PageViewController()
+    lazy var pageVC: CD_PageViewController = {
+        return CD_PageViewController()
     }()
     
-    lazy var pageControl: PageControl = {
-        return PageControl<PageControlItem,PageControlBuoy>(itemConfig:PageControlItem.Model(), buoyConfig: PageControlBuoy.Model())
+    lazy var pageControl: CD_PageControl = {
+        return CD_PageControl<CD_PageControlItem,CD_PageControlBuoy>(itemConfig:CD_PageControlItem.Model(), buoyConfig: CD_PageControlBuoy.Model())
     }()
     
 //    lazy var configView: View_PageConfig = {
@@ -90,7 +90,7 @@ class VC_Page: UIViewController {
                 make.left.right.bottom.equalToSuperview()
                 make.top.equalTo(pageControl.snp.bottom)
             }
-            var m = Page.Model()
+            var m = CD_Page.Model()
             m.scrollDirection = .vertical
             m.marge = 0
             m.space = 0
@@ -98,19 +98,19 @@ class VC_Page: UIViewController {
             pageVC.model = m
         case .vv:
             do{
-                var m = PageControlBuoy.Model()
+                var m = CD_PageControlBuoy.Model()
                 m.frame = CGRect(x: 0, y: 0, w: 30, h: 10)
                 m.style = .background(.left(0))
                 m.animotion = .crawl
                 pageControl.buoyConfig = m
             }
             do{
-                var m = Page.Model()
+                var m = CD_Page.Model()
                 m.scrollDirection = .vertical
                 pageControl.model = m
             }
             do{
-                var m = Page.Model()
+                var m = CD_Page.Model()
                 m.marge = 0
                 m.space = 0
                 m.scrollDirection = .vertical
@@ -129,14 +129,14 @@ class VC_Page: UIViewController {
             
         case .vh:
             do{
-                var m = PageControlBuoy.Model()
+                var m = CD_PageControlBuoy.Model()
                 m.frame = CGRect(x: 0, y: 0, w: 3, h: 10)
                 m.style = .background(.left(0))
                 m.animotion = .crawl
                 pageControl.buoyConfig = m
             }
             do{
-                var m = Page.Model()
+                var m = CD_Page.Model()
                 m.scrollDirection = .vertical
                 pageControl.model = m
             }
@@ -153,61 +153,61 @@ class VC_Page: UIViewController {
         }
         pageControl.layoutIfNeeded()
         
-        pageControl.dataSource = (0..<3).map({ (i) -> PageControlItemDataSource in
-            var d = PageControlItemDataSource()
+        pageControl.dataSource = (0..<3).map({ (i) -> CD_PageControlItemDataSource in
+            var d = CD_PageControlItemDataSource()
             d.id = i.stringValue
             d.title = "Title-\(i)"
             return d
         })
         
-        pageVC.dataSource = [RowVC<VC_PageA>(dataSource: "id", config: "config"),
-                              RowVC<VC_PageB>(),
-                              RowVC<VC_PageC>()]
+        pageVC.dataSource = [CD_RowVC<VC_PageA>(dataSource: "id", config: "config"),
+                              CD_RowVC<VC_PageB>(),
+                              CD_RowVC<VC_PageC>()]
         if style != .hh {
-            pageControl.dataSource += (3..<20).map({ (i) -> PageControlItemDataSource in
-                var d = PageControlItemDataSource()
+            pageControl.dataSource += (3..<20).map({ (i) -> CD_PageControlItemDataSource in
+                var d = CD_PageControlItemDataSource()
                 d.id = i.stringValue
                 
                 d.title = "Title-\(i)"
                 return d
             })
             
-            pageVC.dataSource.append(RowVC<VC_PageA>())
-            pageVC.dataSource.append(RowVC<VC_PageB>())
-            pageVC.dataSource.append(RowVC<VC_PageC>())
-            pageVC.dataSource.append(RowVC<VC_PageD>())
+            pageVC.dataSource.append(CD_RowVC<VC_PageA>())
+            pageVC.dataSource.append(CD_RowVC<VC_PageB>())
+            pageVC.dataSource.append(CD_RowVC<VC_PageC>())
+            pageVC.dataSource.append(CD_RowVC<VC_PageD>())
             (0..<13).forEach { (_) in
-                pageVC.dataSource.append(RowVC<VC_PageD>())
+                pageVC.dataSource.append(CD_RowVC<VC_PageD>())
             }
         }
         
         
-        Time.after(0.01) {
+        CD_Timer.after(0.01) {
             self.pageVC.selectIndex = 2
         }
         
         
         guard style == .hh else { return }
         
-        RowView<View_PageConfig>(dataSource: View_PageConfig.Model(), callBack: { [unowned self](obj) in
+        CD_RowView<View_PageConfig>(dataSource: View_PageConfig.Model(), callBack: { [unowned self](obj) in
             if let tag = obj as? Int {
                 switch tag {
                 case 1 :
-                    var d = PageControlItemDataSource()
+                    var d = CD_PageControlItemDataSource()
                     d.id = "\(self.pageControl.dataSource.count)"
                     d.title = "增加-"+d.id
                     self.pageControl.dataSource.append(d)
-                    self.pageVC.dataSource.append(RowVC<VC_PageD>())
+                    self.pageVC.dataSource.append(CD_RowVC<VC_PageD>())
                 case 2 :
                     guard self.pageControl.dataSource.count > 3 else {return}
                     self.pageControl.dataSource.removeLast()
                     self.pageVC.dataSource.removeLast()
                 case 3 :
-                    var d = PageControlItemDataSource()
+                    var d = CD_PageControlItemDataSource()
                     d.id = "\(self.pageControl.dataSource.count)"
                     d.title = "插入-"+d.id
                     self.pageControl.dataSource.insert(d, at: self.pageVC.selectIndex)
-                    self.pageVC.dataSource.insert(RowVC<VC_PageD>(), at: self.pageVC.selectIndex)
+                    self.pageVC.dataSource.insert(CD_RowVC<VC_PageD>(), at: self.pageVC.selectIndex)
                 default:
                     return
                 }
@@ -256,7 +256,7 @@ extension VC_Page {
 }
 
 
-extension VC_Page: PageScrollProtocol {
+extension VC_Page: CD_PageScrollProtocol {
     func scroll(didScroll view: UIScrollView, contentOffset:CGFloat, offsetRatio:CGFloat, size:CGFloat, index:Int) {
         
     }
@@ -281,9 +281,9 @@ extension VC_Page: PageScrollProtocol {
 }
 
 
-extension VC_Page: TopBarProtocol {
-    func topBar(custom topBar: TopBar) {
-        topBar._title = "Page"
+extension VC_Page: CD_TopBarProtocol {
+    func topBar(custom topBar: CD_TopBar) {
+        topBar._title = "CD_Page"
         topBar.cd.background(UIColor.clear)
         topBar.bar_navigation.line.isHidden = true
 //        topBar._colorTitle = UIColor.white

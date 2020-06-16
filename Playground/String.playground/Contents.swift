@@ -74,14 +74,14 @@ do{
      */
 }
 
-protocol NotificationProtocol {
+protocol CD_NotificationProtocol {
     var name: NSNotification.Name { get }
     func post(_ object:Any?, userInfo:[AnyHashable:Any]?)
     func add(withSelector selector: Selector, observer: Any, object: Any?)
     func add(withBlock object: Any?, queue: OperationQueue?, block:@escaping (Notification) -> Void) -> NSObjectProtocol
     func remove(_ observer: Any, object:Any?)
 }
-extension NotificationProtocol {
+extension CD_NotificationProtocol {
     func post(_ object:Any? = nil, userInfo:[AnyHashable:Any]? = nil) {
         NotificationCenter.default.post(name: name, object: object, userInfo: userInfo)
     }
@@ -99,7 +99,7 @@ extension NotificationProtocol {
 enum NoticeUser:String {
     case login = "login"
 }
-extension NoticeUser:NotificationProtocol {
+extension NoticeUser:CD_NotificationProtocol {
     var name: Notification.Name {
         return Notification.Name("user."+self.rawValue)
     }

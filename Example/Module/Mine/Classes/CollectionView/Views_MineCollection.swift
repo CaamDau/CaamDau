@@ -48,8 +48,8 @@ class Cell_MineCollectionLabel: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-extension Cell_MineCollectionLabel: RowCellUpdateProtocol {
-    typealias DataSource = (IconFont, UIColor)
+extension Cell_MineCollectionLabel: CD_RowCellUpdateProtocol {
+    typealias DataSource = (CD_IconFont, UIColor)
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
         self.lab_icon.cd.iconfont(data.0)
@@ -67,8 +67,8 @@ class Cell_MineCollectionImage: UICollectionViewCell {
         //self.img.cd.content(.center)
     }
 }
-extension Cell_MineCollectionImage: RowCellUpdateProtocol {
-    typealias DataSource = (IconFont, UIColor, UIView.ContentMode)
+extension Cell_MineCollectionImage: CD_RowCellUpdateProtocol {
+    typealias DataSource = (CD_IconFont, UIColor, UIView.ContentMode)
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
         self.img.cd
@@ -90,8 +90,8 @@ class View_MineCollectionHeader: UICollectionReusableView {
     }
     
 }
-extension View_MineCollectionHeader: RowCellUpdateProtocol {
-    typealias DataSource = (IconFont, UIColor, String)
+extension View_MineCollectionHeader: CD_RowCellUpdateProtocol {
+    typealias DataSource = (CD_IconFont, UIColor, String)
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
         self.btn.cd
@@ -114,7 +114,7 @@ class View_MineCollectionFooter: UICollectionReusableView {
     }
     
 }
-extension View_MineCollectionFooter: RowCellUpdateProtocol {
+extension View_MineCollectionFooter: CD_RowCellUpdateProtocol {
     typealias DataSource = NSAttributedString
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {

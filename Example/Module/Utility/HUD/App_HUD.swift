@@ -12,10 +12,10 @@ import Foundation
 import CaamDau
 
 
-public class App_HUD: AppProtocol {
+public class App_HUD: CD_AppDelegate {
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        //HUD.modelDefault
+        //CD_HUD.modelDefault
         
         return true
     }

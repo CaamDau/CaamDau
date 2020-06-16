@@ -16,20 +16,20 @@ class Cell_HomeTitle: UITableViewCell {
         self.btn_github.cd
             .text(Config.font.font(14).cd.fit)
     }
-    var callBack: RowCallBack?
+    var callBack: CD_RowCallBack?
     @IBAction func buttonClick(_ sender: Any) {
         callBack?("")
     }
     
 }
-extension Cell_HomeTitle:RowCellUpdateProtocol{
+extension Cell_HomeTitle:CD_RowCellUpdateProtocol{
     typealias ConfigModel = Any
     typealias DataSource = String
     func row_update(dataSource data: String) {
         self.lab_title.cd.text(data)
         
     }
-    func row_update(callBack block: RowCallBack?) {
+    func row_update(callBack block: CD_RowCallBack?) {
         self.callBack = block
     }
     
@@ -41,7 +41,7 @@ extension Cell_HomeTitle:RowCellUpdateProtocol{
 class View_Header: UITableViewHeaderFooterView {
     
 }
-extension View_Header: RowCellUpdateProtocol {
+extension View_Header: CD_RowCellUpdateProtocol {
     typealias ConfigModel = Any
     
     typealias DataSource = String
@@ -72,7 +72,7 @@ class Cell_HomeSwitch: UITableViewCell {
         super.awakeFromNib()
     }
 }
-extension Cell_HomeSwitch:RowCellUpdateProtocol{
+extension Cell_HomeSwitch:CD_RowCellUpdateProtocol{
     
     
     typealias DataSource = (String,Bool)

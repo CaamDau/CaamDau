@@ -18,10 +18,10 @@ struct R_FormsTableViewB {
 }
 class VM_FormsTableViewB {
 }
-extension VM_FormsTableViewB: ViewModelTableViewProtocol {
+extension VM_FormsTableViewB: CD_ViewModelTableViewProtocol {
     
 }
-class VC_FormsTableViewB: TableViewController {
+class VC_FormsTableViewB: CD_TableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

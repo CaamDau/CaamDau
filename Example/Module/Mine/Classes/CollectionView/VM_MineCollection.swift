@@ -28,23 +28,23 @@ extension VM_MineCollection {
 }
 
 struct VM_MineCollection {
-    lazy var forms:[[CellProtocol]] = {
+    lazy var forms:[[CD_CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
     
-    lazy var formsHeader:[CellProtocol] = {
-        return (0..<Section.end.rawValue).map({ (i) -> CellProtocol in
-            let icon = IconFont.tlist(15)
+    lazy var formsHeader:[CD_CellProtocol] = {
+        return (0..<Section.end.rawValue).map({ (i) -> CD_CellProtocol in
+            let icon = CD_IconFont.tlist(15)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return RowCell<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: CD.screenW, h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
+            return CD_RowCell<View_MineCollectionHeader>(data: (icon, color, Section(rawValue: i)!.titleValue), frame: CGRect(w: CD.screenW, h: 30), insets: UIEdgeInsets(t: 5, l: 5, b: 5, r: 5), bundleFrom: "Mine")
         })
     }()
     
-    lazy var formsFooter:[CellProtocol] = {
-        return (0..<Section.end.rawValue).map({ (i) -> CellProtocol in
-            let icon = IconFont.tlist(20)
+    lazy var formsFooter:[CD_CellProtocol] = {
+        return (0..<Section.end.rawValue).map({ (i) -> CD_CellProtocol in
+            let icon = CD_IconFont.tlist(20)
             let color = i%2 == 0 ? Config.color.main_1 : Config.color.main_2
-            return RowCell<View_MineCollectionFooter>.init(data: attributedString(i), frame: CGRect(w: CD.screenW, h: 40), bundleFrom: "Mine")
+            return CD_RowCell<View_MineCollectionFooter>.init(data: attributedString(i), frame: CGRect(w: CD.screenW, h: 40), bundleFrom: "Mine")
         })
     }()
     
@@ -71,27 +71,27 @@ extension VM_MineCollection {
     mutating func makeFormsValue0() {
         let ww:CGFloat = (CD.screenW-20)/3
         let www:CGFloat = 60
-        let arr:[(IconFont, UIView.ContentMode)] = [
-            (IconFont.temoji(www), .topLeft),
-            (IconFont.tcamera(www), .top),
-            (IconFont.tscan(www), .topRight),
-            (IconFont.tcascades(www), .left),
-            (IconFont.thome(www), .center),
-            (IconFont.tmessage(www), .right),
-            (IconFont.tdelete(www), .bottomLeft),
-            (IconFont.twarn(www), .bottom),
-            (IconFont.tlocation(www), .bottomRight)]
+        let arr:[(CD_IconFont, UIView.ContentMode)] = [
+            (CD_IconFont.temoji(www), .topLeft),
+            (CD_IconFont.tcamera(www), .top),
+            (CD_IconFont.tscan(www), .topRight),
+            (CD_IconFont.tcascades(www), .left),
+            (CD_IconFont.thome(www), .center),
+            (CD_IconFont.tmessage(www), .right),
+            (CD_IconFont.tdelete(www), .bottomLeft),
+            (CD_IconFont.twarn(www), .bottom),
+            (CD_IconFont.tlocation(www), .bottomRight)]
         for item in arr {
-            let row = RowCell<Cell_MineCollectionImage>(data: (item.0,Config.color.main_2,item.1), frame: CGRect(x: 5, y: 5, w: ww, h: ww + 30), bundleFrom: "Mine")
+            let row = CD_RowCell<Cell_MineCollectionImage>(data: (item.0,Config.color.main_2,item.1), frame: CGRect(x: 5, y: 5, w: ww, h: ww + 30), bundleFrom: "Mine")
             self.forms[Section.value0.rawValue].append(row)
         }
     }
     mutating func makeFormsValue(_ v:Section) {
-        let arr:[IconFont] = [IconFont.temoji(60),
-                                 IconFont.tcamera(60),
-                                 IconFont.tscan(60)]
+        let arr:[CD_IconFont] = [CD_IconFont.temoji(60),
+                                 CD_IconFont.tcamera(60),
+                                 CD_IconFont.tscan(60)]
         for item in arr {
-            let row = RowCell<Cell_MineCollectionLabel>(data: (item,Config.color.txt_1), frame: CGRect(x: 5, y: 5, w: (CD.screenW-20)/3, h: (CD.screenW-20)/3 + 20), bundleFrom: "Mine")
+            let row = CD_RowCell<Cell_MineCollectionLabel>(data: (item,Config.color.txt_1), frame: CGRect(x: 5, y: 5, w: (CD.screenW-20)/3, h: (CD.screenW-20)/3 + 20), bundleFrom: "Mine")
             self.forms[v.rawValue].append(row)
         }
     }
@@ -102,12 +102,12 @@ extension VM_MineCollection {
         let str = NSMutableAttributedString()
         if idx > 0 {
             for _ in 0..<(idx>5 ? 5 : idx) {
-                str.append(IconFont.tfavor_fill(20).attributedString)
+                str.append(CD_IconFont.tfavor_fill(20).attributedString)
             }
         }
         if 5 - idx > 0 {
             for _ in 0..<(5 - idx) {
-                str.append(IconFont.tfavor(20).attributedString)
+                str.append(CD_IconFont.tfavor(20).attributedString)
             }
         }
         return str

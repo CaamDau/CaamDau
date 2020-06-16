@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 struct R_FormsTableViewA {
     static func push() {
-        let vc = TableViewController()
+        let vc = CD_TableViewController()
         //vc.vm = VM_FormsTableViewA()
         CD.push(vc)
     }
@@ -20,9 +20,9 @@ struct R_FormsTableViewA {
 
 /*
 class VM_FormsTableViewA {
-    var forms: [[CellProtocol]] = []
+    var forms: [[CD_CellProtocol]] = []
     var reloadData: (() -> Void)?
-    var mjRefreshType: [RefreshModel.RefreshType] = [.tBegin]
+    var mjRefreshType: [CD_MJRefreshModel.RefreshType] = [.tBegin]
     lazy var itemsLoad: [Any] = {
         return [
             .activity(nil),
@@ -51,7 +51,7 @@ class VM_FormsTableViewA {
     lazy var itemsNotData: [Any] = {
         return [
             .lable({
-                let icon = IconFont.twarn(40)
+                let icon = CD_IconFont.twarn(40)
                 $0.cd.text(icon.text).text(icon.font)
             }, {
                 print("点击了")
@@ -77,8 +77,8 @@ extension VM_FormsTableViewA {
         reloadData?()
     }
 }
-extension VM_FormsTableViewA: ViewModelTableViewProtocol {
-    var _forms: [[CellProtocol]] {
+extension VM_FormsTableViewA: CD_ViewModelTableViewProtocol {
+    var _forms: [[CD_CellProtocol]] {
         return forms
     }
     
@@ -90,7 +90,7 @@ extension VM_FormsTableViewA: ViewModelTableViewProtocol {
             return reloadData
         }
     }
-    var _mjRefreshType: [RefreshModel.RefreshType] {
+    var _mjRefreshType: [CD_MJRefreshModel.RefreshType] {
         return mjRefreshType
     }
     
@@ -106,7 +106,7 @@ extension VM_FormsTableViewA: ViewModelTableViewProtocol {
     }
     
     func requestData(_ refresh: Bool) {
-        Time.after(3) {[weak self] in
+        CD_Timer.after(3) {[weak self] in
             self?.makeForm()
         }
     }

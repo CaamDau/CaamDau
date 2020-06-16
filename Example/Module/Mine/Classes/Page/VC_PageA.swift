@@ -86,8 +86,8 @@ extension VC_PageA: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension VC_PageA: UIViewControllerProtocol {
-    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: RowCallBack?, tapBlock: RowDidSelectBlock?) -> UIViewController {
+extension VC_PageA: CD_UIViewControllerProtocol {
+    static func row_init(withDataSource dataSource: Any?, config: Any?, callBack: CD_RowCallBack?, tapBlock: CD_RowDidSelectBlock?) -> UIViewController {
         let vc = VC_PageA.show()
         vc.dataSource = dataSource
         vc.config = config

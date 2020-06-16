@@ -4,21 +4,21 @@ import Foundation
 import UIKit
 
 /*
-protocol Key {
+protocol CD_Key {
     var int:Int? { get }
     init(_ k:Any)
 }
-extension Key {
+extension CD_Key {
     var int:Int? {
         return Int(self)
     }
 }
 
-protocol Values {
-    func value<T:Key, D>(_ key:D) -> T?
+protocol CD_Values {
+    func value<T:CD_Key, D>(_ key:D) -> T?
 }
-extension Values {
-    func value<T:Key, D>(_ key:D) -> T? {
+extension CD_Values {
+    func value<T:CD_Key, D>(_ key:D) -> T? {
         if let arr = self as? Array<Any>,
             let i = key as? Int,
             let v = arr[i] as? AnyHashable {
@@ -32,23 +32,23 @@ extension Values {
         return nil
     }
 }
-extension Int:Key {
+extension Int:CD_Key {
     init(_ k: Any) {
         self = k as! Int
     }
 }
-extension Array:Key {
+extension Array:CD_Key {
     init(_ k: Any) {
         self = k as! Array
     }
 }
-extension Array:Values {
+extension Array:CD_Values {
     
 }
 */
 
 
-public protocol Value {
+public protocol CD_Value {
     var int:Int? { get }
     var intValue:Int { get }
     func int<T>(_ key:T) -> Int?
@@ -158,7 +158,7 @@ public protocol Value {
 }
 
 
-public extension Value {
+public extension CD_Value {
     private func isArray<T>(_ key:T) -> Any? {
         guard let arr = self as? Array<Any> else {
             return nil
@@ -454,14 +454,14 @@ public extension Value {
     }
 }
 
-extension AnyHashable:Value{}
-extension Dictionary:Value {}
-extension Array:Value {}
-extension String:Value {}
-extension Double:Value {}
-extension Float:Value {}
-extension Int:Value {}
-extension Bool:Value {}
+extension AnyHashable:CD_Value{}
+extension Dictionary:CD_Value {}
+extension Array:CD_Value {}
+extension String:CD_Value {}
+extension Double:CD_Value {}
+extension Float:CD_Value {}
+extension Int:CD_Value {}
+extension Bool:CD_Value {}
 
 
 let arr:[Any] = [3.0,

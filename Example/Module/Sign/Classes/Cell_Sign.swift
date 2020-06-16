@@ -31,7 +31,7 @@ class Cell_SignInput: UITableViewCell {
     
 }
 
-extension Cell_SignInput:RowCellUpdateProtocol{
+extension Cell_SignInput:CD_RowCellUpdateProtocol{
     typealias DataSource = (Style, M_Sign)
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -53,7 +53,7 @@ extension Cell_SignInput:RowCellUpdateProtocol{
 class Cell_SignOption: UITableViewCell {
     
 }
-extension Cell_SignOption:RowCellUpdateProtocol{
+extension Cell_SignOption:CD_RowCellUpdateProtocol{
     typealias DataSource = Any
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -71,7 +71,7 @@ class Cell_SignSubmit: UITableViewCell {
         
     }
 }
-extension Cell_SignSubmit:RowCellUpdateProtocol{
+extension Cell_SignSubmit:CD_RowCellUpdateProtocol{
     typealias DataSource = M_Sign
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -100,31 +100,31 @@ class Cell_SignAgreement: UITableViewCell {
         self.signModel?.isAgreement = sender.isSelected
         if sender.isSelected {
             btn_agree.cd
-                .text(IconFont.tround_check_fill(20).font)
-                .text(IconFont.tround_check_fill(20).text)
+                .text(CD_IconFont.tround_check_fill(20).font)
+                .text(CD_IconFont.tround_check_fill(20).text)
                 .text(Config.color.normal)
         }else{
             btn_agree.cd
-                .text(IconFont.tround(20).font)
-                .text(IconFont.tround(20).text)
+                .text(CD_IconFont.tround(20).font)
+                .text(CD_IconFont.tround(20).text)
                 .text(Config.color.normal)
             
         }
     }
 }
-extension Cell_SignAgreement:RowCellUpdateProtocol{
+extension Cell_SignAgreement:CD_RowCellUpdateProtocol{
     typealias DataSource = M_Sign
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
         self.signModel = data
         if data.isAgreement {
             btn_agree.cd
-                .text(IconFont.tround_check_fill(20).font)
-                .text(IconFont.tround_check_fill(20).text)
+                .text(CD_IconFont.tround_check_fill(20).font)
+                .text(CD_IconFont.tround_check_fill(20).text)
         }else{
             btn_agree.cd
-                .text(IconFont.tround(20).font)
-                .text(IconFont.tround(20).text)
+                .text(CD_IconFont.tround(20).font)
+                .text(CD_IconFont.tround(20).text)
             
         }
         btn_agree.isSelected = data.isAgreement
@@ -134,7 +134,7 @@ extension Cell_SignAgreement:RowCellUpdateProtocol{
 class Cell_SignOther: UITableViewCell {
     
 }
-extension Cell_SignOther:RowCellUpdateProtocol{
+extension Cell_SignOther:CD_RowCellUpdateProtocol{
     typealias DataSource = Any
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -152,20 +152,20 @@ class Cell_SignOtherBtn: UITableViewCell {
         super.awakeFromNib()
         
         self.btn_1.cd
-            .text(IconFont.twarn_fill(45).font)
-            .text(IconFont.twarn_fill(45).text)
+            .text(CD_IconFont.twarn_fill(45).font)
+            .text(CD_IconFont.twarn_fill(45).text)
             .text(Config.color.normal)
         self.btn_2.cd
-            .text(IconFont.temoji(45).font)
-            .text(IconFont.temoji(45).text)
+            .text(CD_IconFont.temoji(45).font)
+            .text(CD_IconFont.temoji(45).text)
             .text(Config.color.normal)
         self.btn_3.cd
-            .text(IconFont.tinfo_fill(45).font)
-            .text(IconFont.tinfo_fill(45).text)
+            .text(CD_IconFont.tinfo_fill(45).font)
+            .text(CD_IconFont.tinfo_fill(45).text)
             .text(Config.color.normal)
     }
 }
-extension Cell_SignOtherBtn:RowCellUpdateProtocol{
+extension Cell_SignOtherBtn:CD_RowCellUpdateProtocol{
     typealias DataSource = Any
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -176,7 +176,7 @@ extension Cell_SignOtherBtn:RowCellUpdateProtocol{
 class Cell_SignLine: UITableViewCell {
     
 }
-extension Cell_SignLine:RowCellUpdateProtocol{
+extension Cell_SignLine:CD_RowCellUpdateProtocol{
     
     
     typealias DataSource = Any
