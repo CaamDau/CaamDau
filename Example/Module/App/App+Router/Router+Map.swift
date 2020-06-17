@@ -8,12 +8,12 @@
 
 
 import Foundation
-//import Map
+
 
 extension App_Router {
-    func map(_ router:CD_RouterProtocol,
-    _ param:CD_RouterParameter = [:],
-    _ callback:CD_RouterCallback = nil) {
+    func map(_ router:RouterProtocol,
+    _ param:RouterParameter = [:],
+    _ callback:RouterCallback = nil) {
         
         switch router {
         case Router.Map.location:

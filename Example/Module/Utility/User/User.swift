@@ -208,10 +208,10 @@ public extension User {
             pwd[0..<0] = random()
             /// 尾部插入
             pwd.append(random())
-            return pwd.cd_base64Encoding
+            return pwd.cd.base64Encoding.build
         }
         func decryption() -> String {
-            var pwd = pwd.cd_base64Decoding
+            var pwd = pwd.cd.base64Decoding.build
             /// 头部删除
             pwd[0..<6] = ""
             /// 中间插入
@@ -307,7 +307,7 @@ public extension User {
                 model.status == "2" {
                 _infoDataModel = model
             }
-            setUserDefaults(account+User.Keys.userInfoData, newValue)
+            setUserDefaults(account+User.Keys.userInfoData, newValue!)
         }
         get{
             guard !account.isEmpty else {
@@ -331,7 +331,7 @@ public extension User {
 }
 
 public extension User {
-    enum notice:String , CaamDauNotificationProtocol{
+    enum notice:String , NotificationProtocol{
         public var name: Notification.Name {
             return Notification.Name("User.sign." + self.rawValue)
         }

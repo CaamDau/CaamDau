@@ -102,7 +102,7 @@ class LoadingView: UIView {
 }
 
 
-public class CD_HUDProgressView: UIView {
+public class HUDProgressView: UIView {
     
     let ww:CGFloat = 60,
     radius:CGFloat = 30
@@ -181,14 +181,14 @@ public class CD_HUDProgressView: UIView {
         return angle/180.0 * CGFloat.pi
     }
 }
-extension CD_HUDProgressView {
+extension HUDProgressView {
     func makeDefault() {
         self.heightAnchor.constraint(equalToConstant: 60).isActive = true
         self.widthAnchor.constraint(equalToConstant: 60).isActive = true
     }
 }
 
-extension CD_HUDProgressView {
+extension HUDProgressView {
     struct Model {
         //进度条宽度
         static let lineWidth: CGFloat = 5
@@ -302,7 +302,7 @@ class MyViewController : UIViewController {
             vv.backgroundColor = UIColor.black
         }
         do{
-            let vv = CD_HUDProgressView(frame: CGRect(x: 100, y: 200, width: 60, height: 60))
+            let vv = HUDProgressView(frame: CGRect(x: 100, y: 200, width: 60, height: 60))
             view.addSubview(vv)
             vv.backgroundColor = UIColor.black
             vv.progress = 10
@@ -310,8 +310,8 @@ class MyViewController : UIViewController {
                 //print("asyncAfter")
                 //vv?.progressLayer.strokeStart = 0
                 //vv?.progressLayer.strokeEnd = 0
-                //vv?.trackLayer.strokeColor = CD_HUDProgressView.Model.colorProgress.cgColor
-                //vv?.progressLayer.strokeColor = CD_HUDProgressView.Model.colorTrack.cgColor
+                //vv?.trackLayer.strokeColor = HUDProgressView.Model.colorProgress.cgColor
+                //vv?.progressLayer.strokeColor = HUDProgressView.Model.colorTrack.cgColor
                 print("progressLayer")
                 vv?.progress = 20
             }
@@ -325,8 +325,8 @@ class MyViewController : UIViewController {
                 //print("asyncAfter")
                 //vv?.progressLayer.strokeStart = 0
                 //vv?.progressLayer.strokeEnd = 0
-                //vv?.trackLayer.strokeColor = CD_HUDProgressView.Model.colorProgress.cgColor
-                //vv?.progressLayer.strokeColor = CD_HUDProgressView.Model.colorTrack.cgColor
+                //vv?.trackLayer.strokeColor = HUDProgressView.Model.colorProgress.cgColor
+                //vv?.progressLayer.strokeColor = HUDProgressView.Model.colorTrack.cgColor
                 print("progressLayer")
                 vv?.setProgress(5, animated: true)
             }

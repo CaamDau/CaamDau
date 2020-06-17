@@ -3,7 +3,7 @@
 import UIKit
 
 
-public class R_Home: CD_RouterInterface {
+public class R_Home: RouterInterface {
     lazy var _vc: UIViewController? = {
         return VC_Home.cd_storyboard("HomeStoryboard", from: "Home") as! VC_Home
     }()
@@ -13,11 +13,11 @@ public class R_Home: CD_RouterInterface {
     }
     
     
-    public static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+    public static func router(_ param: RouterParameter, callback: RouterCallback) {
         print_cd("R_Home static router")
     }
     
-    public func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+    public func router(_ param: RouterParameter, callback: RouterCallback) {
         print_cd("R_Home router")
     }
     
@@ -33,8 +33,8 @@ class VC_Home: UIViewController {
         return VM_Home()
     }()
     
-//    lazy var modelMj:CD_MJRefreshModel = {
-//        //var m = CD_MJRefreshModel()
+//    lazy var modelMj:RefreshModel = {
+//        //var m = RefreshModel()
 //
 //        return m
 //    }()

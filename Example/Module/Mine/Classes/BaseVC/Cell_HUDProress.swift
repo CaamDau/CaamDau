@@ -15,20 +15,20 @@ class Cell_HUDProress: UITableViewCell {
     @IBOutlet weak var step1: UIStepper!
     @IBOutlet weak var view_bg: UIView!
     
-    lazy var proress1: CD_HUDProgressView = {
-        return CD_HUDProgressView(frame: CGRect(w: 80, h: 80))
+    lazy var proress1: HUDProgressView = {
+        return HUDProgressView(frame: CGRect(w: 80, h: 80))
     }()
     
-    lazy var proress2: CD_HUDProgressView = {
-        return CD_HUDProgressView()
+    lazy var proress2: HUDProgressView = {
+        return HUDProgressView()
     }()
     
-    lazy var proress3: CD_HUDProgressView = {
-        return CD_HUDProgressView(frame: CGRect(x:180, w: 80, h: 80))
+    lazy var proress3: HUDProgressView = {
+        return HUDProgressView(frame: CGRect(x:180, w: 80, h: 80))
     }()
     
-    lazy var proress4: CD_HUDProgressView = {
-        return CD_HUDProgressView()
+    lazy var proress4: HUDProgressView = {
+        return HUDProgressView()
     }()
     
     override func awakeFromNib() {
@@ -65,14 +65,14 @@ class Cell_HUDProress: UITableViewCell {
     }
     func proressCycle3() {
         guard proress2.progress < 100 else {return}
-        CD_Timer.after(2) {[weak self] in
+        Time.after(2) {[weak self] in
             self?.proress3.progress += 10
             self?.proressCycle3()
         }
     }
     func proressCycle4() {
         guard proress4.progress < 100 else {return}
-        CD_Timer.after(2) {[weak self] in
+        Time.after(2) {[weak self] in
             self?.proress4.progress += 15
             self?.proressCycle4()
         }
@@ -95,7 +95,7 @@ class Cell_HUDProress: UITableViewCell {
     
 }
 
-extension Cell_HUDProress: CD_RowCellUpdateProtocol {
+extension Cell_HUDProress: RowCellUpdateProtocol {
     typealias DataSource = Any
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {

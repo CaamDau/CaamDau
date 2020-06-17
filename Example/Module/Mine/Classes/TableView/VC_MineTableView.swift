@@ -24,15 +24,15 @@ extension VC_MineTableView {
 
 class VC_MineTableView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tabbar: CD_TopBar!
+    @IBOutlet weak var tabbar: TopBar!
     var vm:VM_MineTableView = VM_MineTableView()
-    var delegateData:CD_TableViewDelegateDataSource?
+    var delegateData:TableViewDelegateDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.cd.navigationBar(hidden: true)
         
-        delegateData = CD_TableViewDelegateDataSource(vm)
+        delegateData = TableViewDelegateDataSource(vm)
         self.tableView.cd
             .background(Config.color.bg)
             .estimatedAll(5)
@@ -59,22 +59,22 @@ class VC_MineTableView: UIViewController {
     func makeCounDown(){
         /// 输出
         obs = CD.notice.addObserver(forName: Notification.Name(rawValue: "VC_MineTableView"), object: nil, queue: nil, using: { [weak self](n) in
-            if let model = n.userInfo?["VC_MineTableView"] as? CD_Timer.Model {
+            if let model = n.userInfo?["VC_MineTableView"] as? Time.Model {
                 self?.tabbar._title = "\(model.day)天\(model.hour):\(model.minute):\(model.second)"
             }
         })
         /// 输入
-        CD_Timer.make(.notification("VC_MineTableView", 172800, 1), qos: .background)
+        Time.make(.notification("VC_MineTableView", 172800, 1), qos: .background)
         
     }
     
     deinit {
         //如果不需要保持 可以移除
-        //CD_Timer.remove("VC_MineTableView")
+        //Timer.remove("VC_MineTableView")
     }
 }
 
 
-class Da: CD_TableViewDelegateDataSource {
+class Da: TableViewDelegateDataSource {
     
 }

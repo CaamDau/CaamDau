@@ -15,7 +15,7 @@ import Demo
 import Sign
 
 
-class App_VC: CD_AppDelegate {
+class App_VC: AppProtocol {
     var window: UIWindow?
     var tabbar: UITabBarController?
     init(_ win: UIWindow?) {

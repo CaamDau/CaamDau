@@ -10,10 +10,10 @@
 import Foundation
 
 
-class App_Router: CD_AppDelegate {
+class App_Router: AppProtocol {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         /*
-        CD_Router.shared.routerHandler = { [weak self](r, param, callback) in
+        Router.shared.routerHandler = { [weak self](r, param, callback) in
             self?.utility(r, param, callback)
             self?.sign(r, param, callback)
             self?.map(r, param, callback)

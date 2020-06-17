@@ -15,7 +15,7 @@ struct R_PageList {
     }
 }
 class VM_PageList {
-    lazy var form: [CD_CellProtocol] = {
+    lazy var form: [CellProtocol] = {
         return []
     }()
     var reloadData:(()->Void)?
@@ -27,7 +27,7 @@ class VM_PageList {
 extension VM_PageList {
     func makeForm() {
         for (i,item) in ["默认-横向-横向","横向-纵向","纵向-纵向","纵向-横向"].enumerated() {
-            let row = CD_RowCell<CD_TableViewCellBase>(data: CD_TableViewCellBase.Model(title:item), frame: CGRect(h:45), didSelect: {
+            let row = RowCell<RowTableViewCellBase>(data: RowTableViewCellBase.Model(title:item), frame: CGRect(h:45), didSelect: {
                 VC_Page.push(VC_Page.Style(rawValue: i) ?? .hh)
             })
             form.append(row)
@@ -36,20 +36,20 @@ extension VM_PageList {
     
 }
 
-extension VM_PageList: CD_ViewModelTopBarDelegater {
-    var _topBarCustom: ((CD_TopBar) -> Void)? {
+extension VM_PageList: ViewModelTopBarDelegater {
+    var _topBarCustom: ((TopBar) -> Void)? {
         return { bar in
-            bar._title = "CD_Page"
+            bar._title = "Page"
         }
     }
-    var _topBarUpdate: ((CD_TopBar, CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?)? {
+    var _topBarUpdate: ((TopBar, TopNavigationBar.Item) -> [TopNavigationBarItem.Item.Style]?)? {
         return nil
     }
     
     
 }
-extension VM_PageList: CD_ViewModelRefreshDelegater {
-    var _mjRefreshType: [CD_MJRefreshModel.RefreshType] {
+extension VM_PageList: ViewModelRefreshDelegater {
+    var _mjRefreshType: [RefreshModel.RefreshType] {
         return []
     }
     
@@ -59,14 +59,14 @@ extension VM_PageList: CD_ViewModelRefreshDelegater {
     
 }
 
-extension VM_PageList: CD_ViewModelTableViewDelegater {
+extension VM_PageList: ViewModelTableViewDelegater {
     var _tableViewCustom: ((UITableView) -> Void)? {
         return { _ in
             //tab.cd.separator(style: .none)
         }
     }
 }
-extension VM_PageList: CD_ViewModelDataSource {
+extension VM_PageList: ViewModelDataSource {
     var _reloadDataIndexPath: (([IndexPath], UITableView.RowAnimation) -> Void)? {
         get {
             return nil
@@ -85,15 +85,15 @@ extension VM_PageList: CD_ViewModelDataSource {
         return []
     }
     
-    var _forms: [[CD_CellProtocol]] {
+    var _forms: [[CellProtocol]] {
         return [form]
     }
     
-    var _formHeaders: [CD_CellProtocol] {
+    var _formHeaders: [CellProtocol] {
         return []
     }
     
-    var _formFooters: [CD_CellProtocol] {
+    var _formFooters: [CellProtocol] {
         return []
     }
     

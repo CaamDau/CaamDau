@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     @IBAction func buttonClick(_ sender: Any) {
         if #available(iOS 13.0, *) {
-            CD_PencilDraw.show(UIImage(named: "launchScreen")!)
+            PencilDraw.show(UIImage(named: "launchScreen")!)
         } else {
             
         }
@@ -30,24 +30,24 @@ class ViewController: UIViewController {
 }
 
 
-class R_VVC1: CD_RouterInterface {
-    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+class R_VVC1: RouterInterface {
+    static func router(_ param: RouterParameter, callback: RouterCallback) {
         
     }
     
-    func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+    func router(_ param: RouterParameter, callback: RouterCallback) {
         
     }
     
 }
 
 
-class R_VVC2: NSObject, CD_RouterInterface {
-    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+class R_VVC2: NSObject, RouterInterface {
+    static func router(_ param: RouterParameter, callback: RouterCallback) {
         
     }
     
-    func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+    func router(_ param: RouterParameter, callback: RouterCallback) {
         
     }
     

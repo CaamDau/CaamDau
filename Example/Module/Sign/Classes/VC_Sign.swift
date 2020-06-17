@@ -4,8 +4,8 @@ import UIKit
 
 import CaamDau
 
-extension VC_Sign: CD_RouterInterface {
-    static func router(_ param: CD_RouterParameter, callback: CD_RouterCallback) {
+extension VC_Sign: RouterInterface {
+    static func router(_ param: RouterParameter, callback: RouterCallback) {
         let enumm = param.stringValue("router_path")
         switch enumm {
         case "up":
@@ -40,8 +40,8 @@ class VC_Sign: UIViewController {
         self.tableView.reloadData()
         
         self.btn_back.cd
-            .text(CD_IconFont.tclose(30).font)
-            .text(CD_IconFont.tclose(30).text)
+            .text(IconFont.tclose(30).font)
+            .text(IconFont.tclose(30).text)
             .text(UIColor.cd_hex("3"))
             .background(UIColor.cd_hex("f"))
     }

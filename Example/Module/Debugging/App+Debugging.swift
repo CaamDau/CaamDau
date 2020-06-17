@@ -13,8 +13,8 @@ import CaamDau
 import DoraemonKit
 #endif
 
-public class App_Debugging: CD_AppDelegate {
-    public enum Notice:String, CaamDauNotificationProtocol {
+public class App_Debugging: AppProtocol {
+    public enum Notice:String, NotificationProtocol {
         public var name: Notification.Name {
             return Notification.Name("App_Debugging." + self.rawValue)
         }

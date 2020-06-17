@@ -16,7 +16,7 @@ class Cell_BaseTabTitle:UITableViewCell {
         super.init(coder: aDecoder)
     }
 }
-extension Cell_BaseTabTitle:CD_RowCellUpdateProtocol {
+extension Cell_BaseTabTitle:RowCellUpdateProtocol {
     typealias DataSource = (UIImage?,String)
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -31,18 +31,18 @@ extension Cell_BaseTabTitle:CD_RowCellUpdateProtocol {
 
 
 class VM_HUD {
-    lazy var form: [[CD_CellProtocol]] = {
+    lazy var form: [[CellProtocol]] = {
         return (0..<Section.end.rawValue).map{_ in []}
     }()
-    //var formHeader:[CD_CellProtocol]
-    //var formFooter:[CD_CellProtocol]
-    var mjRefreshType:[CD_MJRefreshModel.RefreshType] = [.tBegin, .tHiddenFoot(true)]
+    //var formHeader:[CellProtocol]
+    //var formFooter:[CellProtocol]
+    var mjRefreshType:[RefreshModel.RefreshType] = [.tBegin, .tHiddenFoot(true)]
     
     var reloadData:(()->Void)?
     var reloadDataIndexPath:(([IndexPath],UITableView.RowAnimation)->Void)?
     
-    var topBarCustom:((CD_TopBar)->Void)?
-    var topBarDidSelect:((CD_TopBar,CD_TopNavigationBar.Item)->Void)?
+    var topBarCustom:((TopBar)->Void)?
+    var topBarDidSelect:((TopBar,TopNavigationBar.Item)->Void)?
     
     init() {
     }
@@ -52,15 +52,15 @@ class VM_HUD {
     }()
 }
 
-extension VM_HUD: CD_ViewModelRefreshDelegater {
-    var _mjRefreshType: [CD_MJRefreshModel.RefreshType] {
+extension VM_HUD: ViewModelRefreshDelegater {
+    var _mjRefreshType: [RefreshModel.RefreshType] {
         return mjRefreshType
     }
     
     
 }
 
-extension VM_HUD: CD_ViewModelTableViewDelegater {
+extension VM_HUD: ViewModelTableViewDelegater {
     var _tableViewCustom: ((UITableView) -> Void)? {
         return { tab in
             tab.cd.estimatedAll()
@@ -69,24 +69,24 @@ extension VM_HUD: CD_ViewModelTableViewDelegater {
     }
 }
 
-extension VM_HUD: CD_ViewModelTopBarDelegater {
-    var _topBarCustom: ((CD_TopBar) -> Void)? {
+extension VM_HUD: ViewModelTopBarDelegater {
+    var _topBarCustom: ((TopBar) -> Void)? {
         return { bar in
             bar._style = "22"
             bar._title = "HUD"
         }
     }
-    var _topBarUpdate: ((CD_TopBar, CD_TopNavigationBar.Item) -> [CD_TopNavigationBarItem.Item.Style]?)? {
-        return { (top,item) -> [CD_TopNavigationBarItem.Item.Style]?  in
+    var _topBarUpdate: ((TopBar, TopNavigationBar.Item) -> [TopNavigationBarItem.Item.Style]?)? {
+        return { (top,item) -> [TopNavigationBarItem.Item.Style]?  in
             switch item {
             case .leftItem1:
-                return [.title([(CD_IconFont.tclose(30).text,CD_IconFont.tclose(30).font,.black,.normal), (CD_IconFont.tclose(30).text,CD_IconFont.tclose(30).font,.lightGray,.highlighted), (CD_IconFont.tclose(30).text,CD_IconFont.tclose(30).font,.lightGray,.selected)])]
+                return [.title([(IconFont.tclose(30).text,IconFont.tclose(30).font,.black,.normal), (IconFont.tclose(30).text,IconFont.tclose(30).font,.lightGray,.highlighted), (IconFont.tclose(30).text,IconFont.tclose(30).font,.lightGray,.selected)])]
             case .leftItem2:
-                return [.title([(CD_IconFont.temoji(30).text,CD_IconFont.temoji(30).font,.black,.normal), (CD_IconFont.temoji(30).text,CD_IconFont.temoji(30).font,.lightGray,.highlighted), (CD_IconFont.temoji(30).text,CD_IconFont.temoji(30).font,.lightGray,.selected)])]
+                return [.title([(IconFont.temoji(30).text,IconFont.temoji(30).font,.black,.normal), (IconFont.temoji(30).text,IconFont.temoji(30).font,.lightGray,.highlighted), (IconFont.temoji(30).text,IconFont.temoji(30).font,.lightGray,.selected)])]
             case .rightItem1:
-                return [.title([(CD_IconFont.tadd(30).text,CD_IconFont.tadd(30).font,.black,.normal), (CD_IconFont.tadd(30).text,CD_IconFont.tadd(30).font,.lightGray,.highlighted), (CD_IconFont.tadd(30).text,CD_IconFont.tadd(30).font,.lightGray,.selected)])]
+                return [.title([(IconFont.tadd(30).text,IconFont.tadd(30).font,.black,.normal), (IconFont.tadd(30).text,IconFont.tadd(30).font,.lightGray,.highlighted), (IconFont.tadd(30).text,IconFont.tadd(30).font,.lightGray,.selected)])]
             case .rightItem2:
-                return [.title([(CD_IconFont.tshare(30).text,CD_IconFont.tshare(30).font,.black,.normal), (CD_IconFont.tshare(30).text,CD_IconFont.tshare(30).font,.lightGray,.highlighted), (CD_IconFont.tshare(30).text,CD_IconFont.tshare(30).font,.lightGray,.selected)])]
+                return [.title([(IconFont.tshare(30).text,IconFont.tshare(30).font,.black,.normal), (IconFont.tshare(30).text,IconFont.tshare(30).font,.lightGray,.highlighted), (IconFont.tshare(30).text,IconFont.tshare(30).font,.lightGray,.selected)])]
             default:
                 return nil
             }
@@ -103,8 +103,8 @@ extension VM_HUD {
         case end
     }
     
-    static var loadingStyle:CD_HUD.Style.Loading? = nil
-    static var infoStyle:CD_HUD.Style = .info
+    static var loadingStyle:HUD.Style.Loading? = nil
+    static var infoStyle:HUD.Style = .info
     static var title:String = "HUD"
     static var detail:String = "Detail"
     
@@ -113,43 +113,43 @@ extension VM_HUD {
             self.form = (0..<Section.end.rawValue).map{_ in []}
         }
         do{//MARK:--- Config ----------
-            let row = CD_RowCell<Cell_HUDConfig>(data: "", frame: CGRect( h: UITableView.automaticDimension), bundleFrom: "Mine")
+            let row = RowCell<Cell_HUDConfig>(data: "", frame: CGRect( h: UITableView.automaticDimension), bundleFrom: "Mine")
             form[Section.config.rawValue].append(row)
         }
         do{//MARK:--- Proress ----------
-            let row = CD_RowCell<Cell_HUDProress>(data: "", frame: CGRect(h:140), bundleFrom: "Mine")
+            let row = RowCell<Cell_HUDProress>(data: "", frame: CGRect(h:140), bundleFrom: "Mine")
             form[Section.progress.rawValue].append(row)
         }
         
         
         do{//MARK:--- HUD ----------
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Title"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:10)) {
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Title"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:10)) {
                 CD.window?.cd.hud(.text, title:VM_HUD.title)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Title-Detail"), frame: CGRect( h: 50)) {
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Title-Detail"), frame: CGRect( h: 50)) {
                 CD.window?.cd.hud(.text, title:VM_HUD.title, detail:"\((0..<500).map{_ in VM_HUD.detail}.joined())")
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Loading"), frame: CGRect( h: 50)) {
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Loading"), frame: CGRect( h: 50)) {
                 CD.window?.cd.hud(.loading(VM_HUD.loadingStyle), title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Infos"), frame: CGRect( h: 50)) {
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Infos"), frame: CGRect( h: 50)) {
                 CD.window?.cd.hud(VM_HUD.infoStyle, title: VM_HUD.title, detail: VM_HUD.detail).hud_remove(10)
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Custom"), frame: CGRect( h: 50)) {
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Custom"), frame: CGRect( h: 50)) {
                 let image = UIImageView(image: Assets().logo_0)
                 /*/ 两种便捷方式 固定约束，不设置，将自适应
                  // 1
@@ -167,25 +167,25 @@ extension VM_HUD {
         }
         
         do{
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - default"), frame: CGRect( h: 50)) {[weak self] in
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - default"), frame: CGRect( h: 50)) {[weak self] in
                 self?.showProress(false)
             }
             form[Section.hud.rawValue].append(row)
         }
         do{
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - custom"), frame: CGRect( h: 50)) {[weak self] in
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "Proress - custom"), frame: CGRect( h: 50)) {[weak self] in
                 self?.showProress(true)
             }
             form[Section.hud.rawValue].append(row)
         }
         
         do{//MARK:--- HUD-自定义动画 ----------
-            let row = CD_RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "HUD-自定义动画"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:20, b:10)) {[weak self]in
+            let row = RowCell<Cell_BaseTabTitle>(data: (assets.logo_20, "HUD-自定义动画"), frame: CGRect( h: 50), insets:UIEdgeInsets(t:20, b:10)) {[weak self]in
                 self?.customAnimation()
             }
             form[Section.custom.rawValue].append(row)
         }
-        CD_Timer.after(0.5) {[weak self] in
+        Time.after(0.5) {[weak self] in
             self?.mjRefreshType = [.tEnd]
             self?.reloadData?()
         }
@@ -195,36 +195,36 @@ extension VM_HUD {
     
     func showProress(_ custom:Bool) {
         if !custom {
-            var pro:CD_HUDProgressView?
+            var pro:HUDProgressView?
             func proressCycle() {
                 guard let pp = pro else { return }
                 guard pp.progress < 100 else {
                     CD.window?.cd.hud_remove(2)
                     return
                 }
-                CD_Timer.after(2) {[weak pro] in
+                Time.after(2) {[weak pro] in
                     pro?.progress += 10
                     proressCycle()
                 }
             }
-            CD.window?.cd.hud(.progress(.default(model: CD_HUDProgressView.Model(), handler: { (vv) in
+            CD.window?.cd.hud(.progress(.default(model: HUDProgressView.Model(), handler: { (vv) in
                 pro = vv
                 proressCycle()
             })), title: VM_HUD.title, detail: VM_HUD.detail)
             
         }else{
-            var pro:CD_HUDProgressView = CD_HUDProgressView()
+            var pro:HUDProgressView = HUDProgressView()
             pro.translatesAutoresizingMaskIntoConstraints = false
             pro.heightAnchor.constraint(equalToConstant: 60).isActive = true
             pro.widthAnchor.constraint(equalToConstant: 60).isActive = true
-            var model = CD_HUDProgressView.Model()
+            var model = HUDProgressView.Model()
             pro.model = model
             func proressCycle() {
                 guard pro.progress < 100 else {
                     CD.window?.cd.hud_remove(2)
                     return
                 }
-                CD_Timer.after(2) {[weak pro] in
+                Time.after(2) {[weak pro] in
                     pro?.progress += 10
                     proressCycle()
                 }
@@ -238,7 +238,7 @@ extension VM_HUD {
     
     //MARK:--- 自定义显示动画 ----------
     func customAnimation() {
-        var model = CD_HUD.Model()
+        var model = HUD.Model()
         model._position = .bottom
         model._showAnimation = .custom { (hud, contentView) in
             guard let v = hud else {return}
@@ -278,7 +278,7 @@ extension VM_HUD {
     }
 }
 
-extension VM_HUD: CD_ViewModelDataSource {
+extension VM_HUD: ViewModelDataSource {
     
     func requestData(_ refresh: Bool) {
         makeFrom(refresh)
@@ -288,15 +288,15 @@ extension VM_HUD: CD_ViewModelDataSource {
         return []
     }
     
-    var _forms: [[CD_CellProtocol]] {
+    var _forms: [[CellProtocol]] {
         return form
     }
     
-    var _formHeaders: [CD_CellProtocol] {
+    var _formHeaders: [CellProtocol] {
         return []
     }
     
-    var _formFooters: [CD_CellProtocol] {
+    var _formFooters: [CellProtocol] {
         return []
     }
     

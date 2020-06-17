@@ -10,7 +10,7 @@
 import UIKit
 import CaamDau
 
-extension CD_HUD.Axis {
+extension HUD.Axis {
     var intValue:Int {
         switch self {
         case .vertical: return 0
@@ -18,7 +18,7 @@ extension CD_HUD.Axis {
         }
     }
 }
-extension CD_HUD.Position {
+extension HUD.Position {
     var intValue:Int {
         switch self {
         case .top: return 0
@@ -28,7 +28,7 @@ extension CD_HUD.Position {
         }
     }
 }
-extension CD_HUD.Animation {
+extension HUD.Animation {
     var intValue:Int {
         switch self {
         case .fade: return 0
@@ -40,7 +40,7 @@ extension CD_HUD.Animation {
         }
     }
 }
-extension CD_HUD.Style {
+extension HUD.Style {
     var intValue:Int {
         switch self {
         case .text: return 0
@@ -54,7 +54,7 @@ extension CD_HUD.Style {
         }
     }
 }
-extension CD_HUD.Style.Loading {
+extension HUD.Style.Loading {
     var intValue:Int {
         switch self {
         case .activity: return 0
@@ -89,27 +89,27 @@ class Cell_HUDConfig: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        switch_enabled.isOn = CD_HUD.modelDefault._isEnabledMask
-        switch_square.isOn = CD_HUD.modelDefault._isSquare
-        segmented_axis.selectedSegmentIndex = CD_HUD.modelDefault._axis.intValue
-        segmented_position.selectedSegmentIndex = CD_HUD.modelDefault._position.intValue
-        segmented_show.selectedSegmentIndex = CD_HUD.modelDefault._showAnimation.intValue == 5 ? 4 : CD_HUD.modelDefault._showAnimation.intValue
-        segmented_hidden.selectedSegmentIndex = CD_HUD.modelDefault._hiddenAnimat.intValue == 5 ? 3 : CD_HUD.modelDefault._hiddenAnimat.intValue
+        switch_enabled.isOn = HUD.modelDefault._isEnabledMask
+        switch_square.isOn = HUD.modelDefault._isSquare
+        segmented_axis.selectedSegmentIndex = HUD.modelDefault._axis.intValue
+        segmented_position.selectedSegmentIndex = HUD.modelDefault._position.intValue
+        segmented_show.selectedSegmentIndex = HUD.modelDefault._showAnimation.intValue == 5 ? 4 : HUD.modelDefault._showAnimation.intValue
+        segmented_hidden.selectedSegmentIndex = HUD.modelDefault._hiddenAnimat.intValue == 5 ? 3 : HUD.modelDefault._hiddenAnimat.intValue
         segmented_infos.selectedSegmentIndex = VM_HUD.infoStyle.intValue + 2
         segmented_loading.selectedSegmentIndex = VM_HUD.loadingStyle?.intValue ?? 0
-        segmented_alignment.selectedSegmentIndex = CD_HUD.modelDefault._textAlignment.rawValue
+        segmented_alignment.selectedSegmentIndex = HUD.modelDefault._textAlignment.rawValue
         
         
         makeButton()
     }
     func makeButton(){
-        btn_margeM.cd.text("margeM:\(CD_HUD.modelDefault._margeMask)")
-        btn_colorM.cd.text("colorM:\(CD_HUD.modelDefault._colorMask.cd_hex)")
-        btn_colorBg.cd.text("colorBg:\(CD_HUD.modelDefault._colorBg.cd_hex)")
-        btn_marge.cd.text("marge:\(CD_HUD.modelDefault._marge)")
-        btn_space.cd.text("space:\(CD_HUD.modelDefault._space)")
-        btn_topY.cd.text("topY:\(CD_HUD.modelDefault._offsetTopY)")
-        btn_bottomY.cd.text("bottomY:\(CD_HUD.modelDefault._offsetBottomY)")
+        btn_margeM.cd.text("margeM:\(HUD.modelDefault._margeMask)")
+        btn_colorM.cd.text("colorM:\(HUD.modelDefault._colorMask.cd_hex)")
+        btn_colorBg.cd.text("colorBg:\(HUD.modelDefault._colorBg.cd_hex)")
+        btn_marge.cd.text("marge:\(HUD.modelDefault._marge)")
+        btn_space.cd.text("space:\(HUD.modelDefault._space)")
+        btn_topY.cd.text("topY:\(HUD.modelDefault._offsetTopY)")
+        btn_bottomY.cd.text("bottomY:\(HUD.modelDefault._offsetBottomY)")
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -118,9 +118,9 @@ class Cell_HUDConfig: UITableViewCell {
     @IBAction func switchClick(_ sender: UISwitch) {
         switch sender {
         case switch_enabled:
-            CD_HUD.modelDefault._isEnabledMask = sender.isOn
+            HUD.modelDefault._isEnabledMask = sender.isOn
         case switch_square:
-            CD_HUD.modelDefault._isSquare = sender.isOn
+            HUD.modelDefault._isSquare = sender.isOn
         default:
             break
         }
@@ -142,15 +142,15 @@ class Cell_HUDConfig: UITableViewCell {
         let idx = sender.selectedSegmentIndex
         switch sender {
         case segmented_axis:
-            CD_HUD.modelDefault._axis = [.vertical, .horizontal][idx]
+            HUD.modelDefault._axis = [.vertical, .horizontal][idx]
         case segmented_position:
-            CD_HUD.modelDefault._position = [.top,.center,.bottom][idx]
+            HUD.modelDefault._position = [.top,.center,.bottom][idx]
         case segmented_alignment:
-            CD_HUD.modelDefault._textAlignment = [.left,.center,.right][idx]
+            HUD.modelDefault._textAlignment = [.left,.center,.right][idx]
         case segmented_show:
-            CD_HUD.modelDefault._showAnimation = [.fade,.slide,.zoom, .spring, .none][idx]
+            HUD.modelDefault._showAnimation = [.fade,.slide,.zoom, .spring, .none][idx]
         case segmented_hidden:
-            CD_HUD.modelDefault._hiddenAnimat = [.fade,.slide,.zoom, .none][idx]
+            HUD.modelDefault._hiddenAnimat = [.fade,.slide,.zoom, .none][idx]
         case segmented_loading:
             VM_HUD.loadingStyle = [.activity,.ring,.arrow,.images(gif,0.8,0),.diamond,.brush,.roundEyes][idx]
         case segmented_infos:
@@ -160,8 +160,8 @@ class Cell_HUDConfig: UITableViewCell {
         }
     }
     
-    lazy var dotView: CD_HUDCustomLoadingView = {
-        return CD_HUDCustomLoadingView()
+    lazy var dotView: HUDCustomLoadingView = {
+        return HUDCustomLoadingView()
     }()
     
     @IBAction func textChange(_ sender: UITextField) {
@@ -176,19 +176,19 @@ class Cell_HUDConfig: UITableViewCell {
     @IBAction func buttonClick(_ sender: UIButton) {
         switch sender {
         case btn_margeM:
-            CD_HUD.modelDefault._margeMask = [20,40,100][Int(arc4random() % 3)]
+            HUD.modelDefault._margeMask = [20,40,100][Int(arc4random() % 3)]
         case btn_colorM:
-            CD_HUD.modelDefault._colorMask = [UIColor.red,UIColor.black,UIColor.gray][Int(arc4random() % 3)].cd_alpha([0.0,0.3,0.5][Int(arc4random() % 3)])
+            HUD.modelDefault._colorMask = [UIColor.red,UIColor.black,UIColor.gray][Int(arc4random() % 3)].cd_alpha([0.0,0.3,0.5][Int(arc4random() % 3)])
         case btn_colorBg:
-            CD_HUD.modelDefault._colorBg = [UIColor.red,UIColor.black,UIColor.gray][Int(arc4random() % 3)].cd_alpha([0.6,0.8,1.0][Int(arc4random() % 3)])
+            HUD.modelDefault._colorBg = [UIColor.red,UIColor.black,UIColor.gray][Int(arc4random() % 3)].cd_alpha([0.6,0.8,1.0][Int(arc4random() % 3)])
         case btn_marge:
-            CD_HUD.modelDefault._marge = [5,10,30][Int(arc4random() % 3)]
+            HUD.modelDefault._marge = [5,10,30][Int(arc4random() % 3)]
         case btn_space:
-            CD_HUD.modelDefault._space = [5,10,30][Int(arc4random() % 3)]
+            HUD.modelDefault._space = [5,10,30][Int(arc4random() % 3)]
         case btn_topY:
-            CD_HUD.modelDefault._offsetTopY = [40,88,200][Int(arc4random() % 3)]
+            HUD.modelDefault._offsetTopY = [40,88,200][Int(arc4random() % 3)]
         case btn_bottomY:
-            CD_HUD.modelDefault._offsetBottomY = [5,88,200][Int(arc4random() % 3)]
+            HUD.modelDefault._offsetBottomY = [5,88,200][Int(arc4random() % 3)]
         default:
             break
         }
@@ -196,7 +196,7 @@ class Cell_HUDConfig: UITableViewCell {
     }
 }
 
-extension Cell_HUDConfig: CD_RowCellUpdateProtocol {
+extension Cell_HUDConfig: RowCellUpdateProtocol {
     typealias DataSource = Any
     typealias ConfigModel = Any
     func row_update(dataSource data: DataSource) {
@@ -209,7 +209,7 @@ extension Cell_HUDConfig: CD_RowCellUpdateProtocol {
 
 
 //MARK:--- 自定义LoadingView ----------
-class CD_HUDCustomLoadingView: UIView {
+class HUDCustomLoadingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
