@@ -8,12 +8,13 @@
 [![Platform](https://img.shields.io/cocoapods/p/CaamDau.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 [![](https://img.shields.io/badge/Swift-4.0~5.0-orange.svg?style=flat)](https://cocoapods.org/pods/CaamDau)
 
-### CaamDau 各组件正在拆分扩展中...，如果你有兴趣，欢迎联系管理员加入
+### CaamDau 各组件正在扩展中...，如果你有兴趣，欢迎联系管理员加入
 
 > 蚕豆 (粤语caam dau) （[OC版本在这里](https://github.com/CaamDau/CaamDauObjC)）（[CaamDauRx - RxSwift扩展版本](https://github.com/CaamDau/CaamDauRx)）
 
-> 前言：CaamDau是一个开发套件，旨在构建一个通用业务组件库和Cocoa便利性扩展，作为基础业务组件，在新项目初期与老项目维护期快速完成通用业务代码的构建（其实就是方便自己，同时也希望能方便同志）。
+> 前言：CaamDau是一个开发套件集合，旨在构建一个通用业务组件库和Cocoa便利性扩展，作为基础业务组件，在新项目初期与老项目维护期快速完成通用业务代码的构建（其实就是方便自己，同时也希望能方便同志）。
 
+> CaamDau 已经进行模块拆分，并提交到 2.0 版本，较之1.0，去除了前缀，并修改了特定的名称
 # 目录
 - [CocoaPods](#CocoaPods)
 - [CaamDau核心组件](#CaamDau核心组件)
@@ -48,27 +49,26 @@
  
 # CocoaPods
 ```
-pod 'CaamDau'
-pod 'CaamDau', :git => 'https://github.com/CaamDau/CaamDau.git'
-# 码云有同步仓库，国内速度更快
+pod 'CaamDau'          # 只引入CaamDau核心组件
+pod 'CaamDau/Module'   # 引入CaamDau核心组件+辅助组件
+pod 'CaamDau/All'      # 引入CaamDau所有组件
+
+pod 'CaamDau/Form'     # 引入CaamDau 单项组件
+```
+- 如果已经在使用 CaamDau 但又暂时不希望更新到 2.0 可以使用 1.0分支
+```
+pod 'CaamDau', :git => 'https://github.com/CaamDau/CaamDau.git', :branch => '1.0'
+```
+- 码云有同步仓库，国内速度更快
+```
 pod 'CaamDau', :git => 'https://gitee.com/CaamDau/CaamDau.git'
-
-pod 'CaamDau/Core'  # 只引入CaamDau核心组件
-pod 'CaamDau/Module'  # 引入CaamDau核心组件+辅助组件
-
-pod 'CaamDau/All' # 引入CaamDau所有组件
-
-# 引入CaamDau单项组件
-pod 'CaamDau/Form'
-pod 'CaamDau/Net/Core'
-pod 'CaamDau/.../...'
 ```
 
 ## CaamDau核心组件
 ### Form:流式模型化排版组件
 - 流式模型化排版组件—使UI排版更加直观、易扩展、易维护；解决TableView/CollectionView 排版 section row height didselect 等多点关系的灾难
 - 原理:将多点关联的UI排版数据转化为单一的 Row 模型单元
-- [更多详细的介绍请移步](https://github.com/CaamDau/CaamDau/tree/master/CaamDau/Form)
+- [更多详细的介绍请移步](https://github.com/CaamDau/Form)
 ```
 /// Cell数据源遵循 FormProtocol 协议
 var form:FormProtocol = FormProtocol()
@@ -200,11 +200,11 @@ arr.dictValue(5).dictValue("23")
 func countDown(_ tag:Int){
     switch tag {
     case 0:// 代理接收
-        Timer.make(.delegate(self, "123", 120, 0.1))
+        Time.make(.delegate(self, "123", 120, 0.1))
     case 1://广播
-        Timer.make(.notification("456", 120, 0.1))
+        Time.make(.notification("456", 120, 0.1))
     case 2://闭包回调接收
-        Timer.make(.callBack("789", 60, 0.1, { [weak self](model) in
+        Time.make(.callBack("789", 60, 0.1, { [weak self](model) in
             self?.lab_3.cd.text("\(model.day)天\(model.hour):\(model.minute):\(model.second):\(model.millisecond/100)")
             }))
     default:
@@ -565,7 +565,7 @@ Net()
 
 ## Author
 
-- Email：565726319@qq.com 
+- Email：565726319@qq.com
 - QQ & Wechat：565726319
 
 ## License
